@@ -35,7 +35,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.CreatePatientReq"
+                            "$ref": "#/definitions/models_booking_service.CreatePatientReq"
                         }
                     }
                 ],
@@ -43,19 +43,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Patient"
+                            "$ref": "#/definitions/models_booking_service.Patient"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     }
                 }
@@ -86,19 +86,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.DeleteStatus"
+                            "$ref": "#/definitions/models_booking_service.DeleteStatus"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     }
                 }
@@ -129,19 +129,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Patient"
+                            "$ref": "#/definitions/models_booking_service.Patient"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     }
                 }
@@ -196,19 +196,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Patients"
+                            "$ref": "#/definitions/models_booking_service.Patients"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     }
                 }
@@ -234,7 +234,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.UpdatePatientReq"
+                            "$ref": "#/definitions/models_booking_service.UpdatePatientReq"
                         }
                     }
                 ],
@@ -242,19 +242,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Patient"
+                            "$ref": "#/definitions/models_booking_service.Patient"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     }
                 }
@@ -280,7 +280,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.UpdatePhoneNumber"
+                            "$ref": "#/definitions/models_booking_service.UpdatePhoneNumber"
                         }
                     }
                 ],
@@ -288,19 +288,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Patient"
+                            "$ref": "#/definitions/models_booking_service.Patient"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models.Errors"
+                            "$ref": "#/definitions/models_booking_service.Errors"
                         }
                     }
                 }
@@ -308,7 +308,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "models.CreatePatientReq": {
+        "models_booking_service.CreatePatientReq": {
             "type": "object",
             "properties": {
                 "address": {
@@ -346,7 +346,7 @@ const docTemplate = `{
                 }
             }
         },
-        "models.DeleteStatus": {
+        "models_booking_service.DeleteStatus": {
             "type": "object",
             "properties": {
                 "status": {
@@ -354,16 +354,16 @@ const docTemplate = `{
                 }
             }
         },
-        "models.Errors": {
+        "models_booking_service.Errors": {
             "type": "object",
             "properties": {
-                "res_error": {},
+                "error_res": {},
                 "status_code": {
                     "type": "integer"
                 }
             }
         },
-        "models.Patient": {
+        "models_booking_service.Patient": {
             "type": "object",
             "properties": {
                 "address": {
@@ -410,7 +410,7 @@ const docTemplate = `{
                 }
             }
         },
-        "models.Patients": {
+        "models_booking_service.Patients": {
             "type": "object",
             "properties": {
                 "count": {
@@ -419,12 +419,12 @@ const docTemplate = `{
                 "patients": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.Patient"
+                        "$ref": "#/definitions/models_booking_service.Patient"
                     }
                 }
             }
         },
-        "models.UpdatePatientReq": {
+        "models_booking_service.UpdatePatientReq": {
             "type": "object",
             "properties": {
                 "address": {
@@ -462,7 +462,7 @@ const docTemplate = `{
                 }
             }
         },
-        "models.UpdatePhoneNumber": {
+        "models_booking_service.UpdatePhoneNumber": {
             "type": "object",
             "properties": {
                 "field": {

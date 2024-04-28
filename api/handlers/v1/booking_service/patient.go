@@ -1,9 +1,10 @@
-package v1
+package booking_service
 
 import (
 	errorapi "dennic_api_gateway/api/errors"
 	"dennic_api_gateway/api/handlers"
-	"dennic_api_gateway/api/models"
+	"dennic_api_gateway/api/models/models_booking_service"
+	_ "dennic_api_gateway/api/models/models_booking_service"
 	pb "dennic_api_gateway/genproto/booking_service"
 	grpcClient "dennic_api_gateway/internal/infrastructure/grpc_service_client"
 	"dennic_api_gateway/internal/pkg/config"
@@ -115,15 +116,15 @@ func NewPatientHandler(option *handlers.HandlerOption) http.Handler {
 // @Tags Patient
 // @Accept json
 // @Produce json
-// @Param Create body models.CreatePatientReq true "Create Patient"
-// @Success 200 {object} models.Patient
-// @Failure 404 {object} models.Errors
-// @Failure 500 {object} models.Errors
+// @Param Create body models_booking_service.CreatePatientReq true "Create Patient"
+// @Success 200 {object} models_booking_service.Patient
+// @Failure 404 {object} models_booking_service.Errors
+// @Failure 500 {object} models_booking_service.Errors
 func (h *patientHandler) createPatient() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 
-		var patient models.Patient
+		var patient models_booking_service.Patient
 
 		err := json.NewDecoder(r.Body).Decode(&patient)
 		if err != nil {
@@ -151,7 +152,7 @@ func (h *patientHandler) createPatient() http.HandlerFunc {
 			return
 		}
 
-		render.JSON(w, r, &models.Patient{
+		render.JSON(w, r, &models_booking_service.Patient{
 			ID:             res.Id,
 			FirstName:      res.FirstName,
 			LastName:       res.LastName,
@@ -178,9 +179,9 @@ func (h *patientHandler) createPatient() http.HandlerFunc {
 // @Accept json
 // @Produce json
 // @Param patient_id query string false "Patient id"
-// @Success 200 {object} models.Patient
-// @Failure 404 {object} models.Errors
-// @Failure 500 {object} models.Errors
+// @Success 200 {object} models_booking_service.Patient
+// @Failure 404 {object} models_booking_service.Errors
+// @Failure 500 {object} models_booking_service.Errors
 func (h *patientHandler) getPatient() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
@@ -198,7 +199,7 @@ func (h *patientHandler) getPatient() http.HandlerFunc {
 			return
 		}
 
-		render.JSON(w, r, &models.Patient{
+		render.JSON(w, r, &models_booking_service.Patient{
 			ID:             res.Id,
 			FirstName:      res.FirstName,
 			LastName:       res.LastName,
@@ -229,9 +230,9 @@ func (h *patientHandler) getPatient() http.HandlerFunc {
 // @Param page query string false "page"
 // @Param limit query uint64 false "limit"
 // @Param orderBy query string false "orderBy"
-// @Success 200 {object} models.Patients
-// @Failure 404 {object} models.Errors
-// @Failure 500 {object} models.Errors
+// @Success 200 {object} models_booking_service.Patients
+// @Failure 404 {object} models_booking_service.Errors
+// @Failure 500 {object} models_booking_service.Errors
 func (h *patientHandler) listPatient() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
@@ -246,7 +247,7 @@ func (h *patientHandler) listPatient() http.HandlerFunc {
 		limitInt, _ := strconv.Atoi(limit)
 
 		var (
-			patients models.Patients
+			patients models_booking_service.Patients
 		)
 
 		res, err := h.service.BookingService().PatientService().GetAllPatients(ctx, &pb.GetAllPatientsReq{
@@ -264,7 +265,7 @@ func (h *patientHandler) listPatient() http.HandlerFunc {
 		}
 
 		for _, patientRes := range res.Patients {
-			var patient models.Patient
+			var patient models_booking_service.Patient
 			patient.ID = patientRes.Id
 			patient.FirstName = patientRes.FirstName
 			patient.LastName = patientRes.LastName
@@ -293,15 +294,15 @@ func (h *patientHandler) listPatient() http.HandlerFunc {
 // @Tags Patient
 // @Accept json
 // @Produce json
-// @Param Create body models.UpdatePatientReq true "Update Patient"
-// @Success 200 {object} models.Patient
-// @Failure 404 {object} models.Errors
-// @Failure 500 {object} models.Errors
+// @Param Create body models_booking_service.UpdatePatientReq true "Update Patient"
+// @Success 200 {object} models_booking_service.Patient
+// @Failure 404 {object} models_booking_service.Errors
+// @Failure 500 {object} models_booking_service.Errors
 func (h *patientHandler) updatePatient() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 
-		var patient models.UpdatePatientReq
+		var patient models_booking_service.UpdatePatientReq
 
 		err := json.NewDecoder(r.Body).Decode(&patient)
 		if err != nil {
@@ -329,7 +330,7 @@ func (h *patientHandler) updatePatient() http.HandlerFunc {
 			return
 		}
 
-		render.JSON(w, r, &models.Patient{
+		render.JSON(w, r, &models_booking_service.Patient{
 			ID:             res.Id,
 			FirstName:      res.FirstName,
 			LastName:       res.LastName,
@@ -355,15 +356,15 @@ func (h *patientHandler) updatePatient() http.HandlerFunc {
 // @Tags Patient
 // @Accept json
 // @Produce json
-// @Param Create body models.UpdatePhoneNumber true "Update Patient"
-// @Success 200 {object} models.Patient
-// @Failure 404 {object} models.Errors
-// @Failure 500 {object} models.Errors
+// @Param Create body models_booking_service.UpdatePhoneNumber true "Update Patient"
+// @Success 200 {object} models_booking_service.Patient
+// @Failure 404 {object} models_booking_service.Errors
+// @Failure 500 {object} models_booking_service.Errors
 func (h *patientHandler) updatePhonePatient() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 
-		var patient models.UpdatePhoneNumber
+		var patient models_booking_service.UpdatePhoneNumber
 
 		err := json.NewDecoder(r.Body).Decode(&patient)
 		if err != nil {
@@ -383,7 +384,7 @@ func (h *patientHandler) updatePhonePatient() http.HandlerFunc {
 			return
 		}
 
-		render.JSON(w, r, &models.StatusType{Status: res.Status})
+		render.JSON(w, r, &models_booking_service.StatusType{Status: res.Status})
 	}
 }
 
@@ -395,9 +396,9 @@ func (h *patientHandler) updatePhonePatient() http.HandlerFunc {
 // @Accept json
 // @Produce json
 // @Param patient_id query string false "Patient id"
-// @Success 200 {object} models.DeleteStatus
-// @Failure 404 {object} models.Errors
-// @Failure 500 {object} models.Errors
+// @Success 200 {object} models_booking_service.DeleteStatus
+// @Failure 404 {object} models_booking_service.Errors
+// @Failure 500 {object} models_booking_service.Errors
 func (h *patientHandler) deletePatient() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
@@ -415,6 +416,6 @@ func (h *patientHandler) deletePatient() http.HandlerFunc {
 			return
 		}
 
-		render.JSON(w, r, &models.DeleteStatus{Status: res.Status})
+		render.JSON(w, r, &models_booking_service.DeleteStatus{Status: res.Status})
 	}
 }

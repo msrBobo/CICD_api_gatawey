@@ -1,4 +1,4 @@
-package models
+package models_booking_service
 
 import (
 	"github.com/rickb777/date"

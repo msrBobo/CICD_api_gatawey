@@ -2,6 +2,7 @@ package api
 
 import (
 	_ "dennic_api_gateway/api/docs"
+	v1 "dennic_api_gateway/api/handlers/v1/booking_service"
 	redisrepo "dennic_api_gateway/internal/infrastructure/redis"
 	"github.com/casbin/casbin/v2"
 	"github.com/go-chi/chi/v5"
@@ -13,7 +14,6 @@ import (
 	"time"
 
 	"dennic_api_gateway/api/handlers"
-	v1 "dennic_api_gateway/api/handlers/v1"
 	"dennic_api_gateway/api/middleware"
 	grpcClients "dennic_api_gateway/internal/infrastructure/grpc_service_client"
 	"dennic_api_gateway/internal/pkg/config"
