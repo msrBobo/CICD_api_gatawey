@@ -1,0 +1,305 @@
+definitions:
+  models.CreatePatientReq:
+    properties:
+      address:
+        type: string
+      birth_date:
+        type: string
+      blood_group:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      patient_problem:
+        type: string
+      phone_number:
+        type: string
+    type: object
+  models.DeleteStatus:
+    properties:
+      status:
+        type: boolean
+    type: object
+  models.Errors:
+    properties:
+      res_error: {}
+      status_code:
+        type: integer
+    type: object
+  models.Patient:
+    properties:
+      address:
+        type: string
+      birth_date:
+        type: string
+      blood_group:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      patient_problem:
+        type: string
+      phone_number:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.Patients:
+    properties:
+      count:
+        type: integer
+      patients:
+        items:
+          $ref: '#/definitions/models.Patient'
+        type: array
+    type: object
+  models.UpdatePatientReq:
+    properties:
+      address:
+        type: string
+      birth_date:
+        type: string
+      blood_group:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      field:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      last_name:
+        type: string
+      patient_problem:
+        type: string
+      value:
+        type: string
+    type: object
+  models.UpdatePhoneNumber:
+    properties:
+      field:
+        type: string
+      phone_number:
+        type: string
+      value:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/patient/create:
+    post:
+      consumes:
+      - application/json
+      description: Patients
+      parameters:
+      - description: Create Patient
+        in: body
+        name: Create
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreatePatientReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Patient'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Errors'
+      summary: Create Patient
+      tags:
+      - Patient
+  /v1/patient/delete:
+    delete:
+      consumes:
+      - application/json
+      description: Patients
+      parameters:
+      - description: Patient id
+        in: query
+        name: patient_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DeleteStatus'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Errors'
+      summary: Delete Patient
+      tags:
+      - Patient
+  /v1/patient/get:
+    get:
+      consumes:
+      - application/json
+      description: Patients
+      parameters:
+      - description: Patient id
+        in: query
+        name: patient_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Patient'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Errors'
+      summary: Create Patient
+      tags:
+      - Patient
+  /v1/patient/list:
+    get:
+      consumes:
+      - application/json
+      description: Patients
+      parameters:
+      - description: field
+        in: query
+        name: field
+        type: string
+      - description: value
+        in: query
+        name: value
+        type: string
+      - description: page
+        in: query
+        name: page
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: orderBy
+        in: query
+        name: orderBy
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Patients'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Errors'
+      summary: List Patient
+      tags:
+      - Patient
+  /v1/patient/update:
+    put:
+      consumes:
+      - application/json
+      description: Patients
+      parameters:
+      - description: Update Patient
+        in: body
+        name: Create
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdatePatientReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Patient'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Errors'
+      summary: Update Patient
+      tags:
+      - Patient
+  /v1/patient/update_phone:
+    put:
+      consumes:
+      - application/json
+      description: Patients
+      parameters:
+      - description: Update Patient
+        in: body
+        name: Create
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdatePhoneNumber'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Patient'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Errors'
+      summary: Update Patient
+      tags:
+      - Patient
+swagger: "2.0"

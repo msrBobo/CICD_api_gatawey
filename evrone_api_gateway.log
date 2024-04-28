@@ -1,0 +1,642 @@
+2024-04-27T17:52:08.013+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T17:54:01.507+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T17:54:47.528+0500	INFO	app/main.go:31	Listen: 	{"address": "localhost:50060"}
+2024-04-27T17:55:57.859+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T17:57:06.829+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T17:59:03.784+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T17:59:03.785+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T17:59:05.198+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:26:43.085+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:26:43.087+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:26:55.338+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:28:52.770+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:28:52.771+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:28:54.161+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:29:59.961+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:29:59.962+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:30:12.641+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:32:28.050+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:32:28.051+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:32:29.901+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:32:48.362+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:32:48.363+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:33:42.680+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:34:24.182+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:34:24.183+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:34:25.501+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:34:55.465+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:34:55.466+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:34:56.950+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:35:11.965+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:35:11.966+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:35:13.180+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:35:48.214+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:35:48.215+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:35:49.272+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:36:34.039+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:36:34.040+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:36:35.191+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:37:11.001+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:37:11.002+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:37:13.189+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:40:37.229+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:40:37.230+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:41:00.357+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T18:59:04.591+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T18:59:04.592+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T18:59:39.536+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T19:05:04.185+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T19:05:04.185+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T19:20:11.316+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T19:22:15.696+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T19:22:15.697+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T19:22:16.797+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T19:23:39.461+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T19:23:39.462+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T19:23:51.961+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-27T19:35:51.960+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-27T19:35:51.961+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-27T19:35:53.315+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:04:10.071+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:04:10.185+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:04:10.186+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:04:36.920+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:06:49.699+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:06:49.704+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:06:52.284+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:06:54.917+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:06:54.918+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:07:05.466+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:09:26.115+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:09:26.116+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:09:27.913+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:09:55.646+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:09:55.647+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:09:57.755+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:10:35.146+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:10:35.147+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:10:36.818+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:12:34.744+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:12:34.744+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:12:36.357+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:13:55.103+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:13:55.104+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:13:57.002+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:14:32.469+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:14:32.470+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:14:34.029+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:15:54.867+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:15:54.868+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:16:07.863+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:17:32.092+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:17:32.093+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:17:33.806+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:18:07.081+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:18:07.082+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:18:09.208+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:24:50.472+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:24:50.475+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:50060: bind: address already in use"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T12:25:04.861+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T12:25:07.964+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T12:25:07.966+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:50060: bind: address already in use"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:41:16.524+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T13:42:05.998+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T13:42:05.999+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:42:16.382+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T13:42:46.816+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T13:42:46.817+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:42:48.805+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T13:44:07.343+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T13:44:07.344+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:44:09.344+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T13:44:34.565+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T13:44:34.566+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:44:36.165+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T13:46:54.258+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T13:46:54.260+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:46:56.195+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T13:51:29.855+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T13:51:29.857+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:51:39.081+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T13:52:52.473+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T13:52:52.474+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:52:54.896+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T13:53:40.332+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T13:53:40.333+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:53:52.296+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T13:57:41.179+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T13:57:41.180+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:57:52.319+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T13:58:53.212+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T13:58:53.213+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T13:59:07.916+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:00:43.770+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:00:43.771+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:01:06.762+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:01:18.093+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:01:18.094+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:01:27.371+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:02:56.950+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:02:56.951+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:03:04.709+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:06:03.120+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:06:03.121+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:06:12.259+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:06:48.865+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:06:48.865+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:06:50.342+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:07:12.100+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:07:12.101+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:07:20.077+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:12:33.945+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:12:33.946+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:12:42.704+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:43:22.404+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:43:22.406+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:43:41.180+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:45:13.375+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:45:13.376+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:45:24.022+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:46:47.470+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:46:47.471+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:46:50.435+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:47:47.906+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:47:47.907+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:48:13.526+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:48:40.232+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:48:40.232+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:48:42.166+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:48:44.587+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:48:44.588+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:49:07.578+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:50:32.935+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:50:32.936+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:50:34.891+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T14:53:23.865+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T14:53:23.867+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T14:54:57.038+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:05:33.901+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:08:20.673+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:08:20.674+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T22:08:32.066+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:12:18.717+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:12:18.718+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T22:12:27.933+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:13:40.511+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:13:40.512+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T22:13:57.897+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:14:26.693+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:14:26.694+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T22:14:59.405+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:15:47.397+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:15:47.398+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T22:15:48.905+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:21:01.834+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:21:01.836+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T22:21:26.987+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:21:30.291+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:21:30.292+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T22:21:42.559+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:26:22.068+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:26:22.069+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T22:26:24.442+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:26:31.408+0500	ERROR	v1/patient.go:226	error decoding product	{"error": "EOF"}
+dennic_api_gateway/api/handlers/v1.NewPatientHandler.func1.(*patientHandler).listPatient.3
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/patient.go:226
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*ChainHandler).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/chain.go:31
+github.com/go-chi/chi/v5.(*Mux).routeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:459
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*Mux).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:73
+github.com/go-chi/chi/v5.(*Mux).Mount.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:327
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*Mux).routeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:459
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+dennic_api_gateway/api.NewRoute.func1.AuthContext.1.1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/auth_context.go:32
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*Mux).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:73
+github.com/go-chi/chi/v5.(*Mux).Mount.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:327
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*Mux).routeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:459
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/cors.(*Cors).Handler-fm.(*Cors).Handler.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/cors/cors.go:228
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+dennic_api_gateway/api/middleware.Tracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:19
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+dennic_api_gateway/api.NewRoute.Timeout.func2.1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/middleware/timeout.go:44
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*Mux).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:90
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-04-28T22:26:52.024+0500	ERROR	v1/patient.go:226	error decoding product	{"error": "EOF"}
+dennic_api_gateway/api/handlers/v1.NewPatientHandler.func1.(*patientHandler).listPatient.3
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/patient.go:226
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*ChainHandler).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/chain.go:31
+github.com/go-chi/chi/v5.(*Mux).routeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:459
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*Mux).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:73
+github.com/go-chi/chi/v5.(*Mux).Mount.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:327
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*Mux).routeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:459
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+dennic_api_gateway/api.NewRoute.func1.AuthContext.1.1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/auth_context.go:32
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*Mux).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:73
+github.com/go-chi/chi/v5.(*Mux).Mount.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:327
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*Mux).routeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:459
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/cors.(*Cors).Handler-fm.(*Cors).Handler.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/cors/cors.go:228
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+dennic_api_gateway/api/middleware.Tracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:19
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+dennic_api_gateway/api.NewRoute.Timeout.func2.1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/middleware/timeout.go:44
+net/http.HandlerFunc.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2166
+github.com/go-chi/chi/v5.(*Mux).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/go-chi/chi/v5/mux.go:90
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-04-28T22:27:31.705+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:27:31.705+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T22:27:33.510+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:43:00.476+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:43:00.477+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T22:43:24.285+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T22:46:20.196+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T22:46:20.197+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:24:25.627+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:30:57.141+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:30:57.142+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:30:58.910+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:31:31.944+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:31:31.945+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:31:33.148+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:31:50.370+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:31:50.370+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:31:51.843+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:32:53.574+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:32:53.575+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:32:54.906+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:32:59.894+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:32:59.894+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:33:08.151+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:34:21.958+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:34:21.959+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:34:23.280+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:37:41.328+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:37:41.329+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:37:55.689+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:43:44.711+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:43:44.712+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:43:46.231+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:43:52.857+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:43:52.858+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:44:16.066+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:44:22.831+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:44:22.831+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:45:58.044+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:46:53.919+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:46:53.920+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:46:55.849+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:47:56.009+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:47:56.010+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:47:57.309+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:48:37.170+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:48:37.171+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:48:38.639+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:48:50.018+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:48:50.019+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:48:51.348+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:55:09.290+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:55:09.290+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:55:11.911+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-28T23:55:18.970+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-28T23:55:18.970+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-28T23:55:20.185+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:01:26.316+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:01:26.317+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:01:27.663+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:15:24.476+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:15:24.476+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:15:26.142+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:16:09.594+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:16:09.595+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:16:10.886+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:17:36.546+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:17:36.547+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:17:38.231+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:20:56.977+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:20:56.978+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:20:58.315+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:21:03.356+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:21:03.357+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:21:37.870+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:22:19.605+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:22:19.605+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:22:20.692+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:23:42.615+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:23:42.615+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:23:43.802+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:23:51.550+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:23:51.551+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:23:52.594+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:25:12.868+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:25:12.869+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:25:14.158+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:25:15.817+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:25:15.818+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:25:49.601+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:25:51.125+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:25:51.125+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:26:08.993+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:27:12.374+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:27:12.376+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:27:13.619+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:27:30.970+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:27:30.971+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:27:32.587+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:28:07.492+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:28:07.493+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:28:09.621+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:28:16.477+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:28:16.478+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:28:18.013+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:28:29.540+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:28:29.541+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:28:30.905+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:29:20.017+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:29:20.018+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:29:21.408+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:29:37.017+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:29:37.018+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:29:38.305+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:29:59.699+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:29:59.700+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:30:01.219+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:30:17.084+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:30:17.084+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-04-29T00:30:18.626+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-29T00:30:31.809+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T00:30:31.809+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
