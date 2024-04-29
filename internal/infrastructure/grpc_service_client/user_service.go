@@ -2,6 +2,7 @@ package grpc_service_clients
 
 import (
 	user_service "dennic_api_gateway/genproto/user_service"
+
 	"google.golang.org/grpc"
 )
 

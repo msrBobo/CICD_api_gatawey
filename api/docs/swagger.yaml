@@ -87,8 +87,6 @@ definitions:
         type: string
       country:
         type: string
-      field:
-        type: string
       first_name:
         type: string
       gender:
@@ -96,8 +94,6 @@ definitions:
       last_name:
         type: string
       patient_problem:
-        type: string
-      value:
         type: string
     type: object
   models_booking_service.UpdatePhoneNumber:
@@ -112,7 +108,36 @@ definitions:
 info:
   contact: {}
 paths:
-  /v1/patient/create:
+  /v1/patient/delete/:key:
+    delete:
+      consumes:
+      - application/json
+      description: Patients
+      parameters:
+      - description: key
+        in: path
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models_booking_service.DeleteStatus'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models_booking_service.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models_booking_service.Errors'
+      summary: Delete Patient
+      tags:
+      - Patient
+  /v1/patients/create:
     post:
       consumes:
       - application/json
@@ -142,43 +167,16 @@ paths:
       summary: Create Patient
       tags:
       - Patient
-  /v1/patient/delete:
-    delete:
-      consumes:
-      - application/json
-      description: Patients
-      parameters:
-      - description: Patient id
-        in: query
-        name: patient_id
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models_booking_service.DeleteStatus'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/models_booking_service.Errors'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/models_booking_service.Errors'
-      summary: Delete Patient
-      tags:
-      - Patient
-  /v1/patient/get:
+  /v1/patients/get:
     get:
       consumes:
       - application/json
       description: Patients
       parameters:
-      - description: Patient id
-        in: query
-        name: patient_id
+      - description: key
+        in: path
+        name: key
+        required: true
         type: string
       produces:
       - application/json
@@ -198,31 +196,38 @@ paths:
       summary: Create Patient
       tags:
       - Patient
-  /v1/patient/list:
+  /v1/patients/list:
     get:
       consumes:
       - application/json
       description: Patients
       parameters:
-      - description: field
+      - example: first_name
         in: query
         name: field
         type: string
-      - description: value
+      - example: true
         in: query
-        name: value
-        type: string
-      - description: page
-        in: query
-        name: page
-        type: string
-      - description: limit
+        name: is_active
+        type: boolean
+      - example: 10
         in: query
         name: limit
         type: integer
-      - description: orderBy
+      - example: last_name
         in: query
-        name: orderBy
+        name: order_by
+        type: string
+      - example: 1
+        in: query
+        name: page
+        type: integer
+      - in: query
+        name: search
+        type: string
+      - example: A
+        in: query
+        name: value
         type: string
       produces:
       - application/json
@@ -242,7 +247,7 @@ paths:
       summary: List Patient
       tags:
       - Patient
-  /v1/patient/update:
+  /v1/patients/phone:
     put:
       consumes:
       - application/json
@@ -253,7 +258,7 @@ paths:
         name: Create
         required: true
         schema:
-          $ref: '#/definitions/models_booking_service.UpdatePatientReq'
+          $ref: '#/definitions/models_booking_service.UpdatePhoneNumber'
       produces:
       - application/json
       responses:
@@ -272,18 +277,28 @@ paths:
       summary: Update Patient
       tags:
       - Patient
-  /v1/patient/update_phone:
+  /v1/patients/update:
     put:
       consumes:
       - application/json
       description: Patients
       parameters:
+      - description: field
+        in: query
+        name: field
+        required: true
+        type: string
+      - description: value
+        in: query
+        name: value
+        required: true
+        type: string
       - description: Update Patient
         in: body
         name: Create
         required: true
         schema:
-          $ref: '#/definitions/models_booking_service.UpdatePhoneNumber'
+          $ref: '#/definitions/models_booking_service.UpdatePatientReq'
       produces:
       - application/json
       responses:

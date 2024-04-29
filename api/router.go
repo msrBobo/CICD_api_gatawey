@@ -58,7 +58,7 @@ func NewRoute(option RouteOption) http.Handler {
 
 	router.Route("/v1", func(r chi.Router) {
 		r.Use(middleware.AuthContext(option.Config.Token.Secret))
-		r.Mount("/patient", v1.NewPatientHandler(handleOption))
+		r.Mount("/patients", v1.NewPatientHandler(handleOption))
 
 	})
 

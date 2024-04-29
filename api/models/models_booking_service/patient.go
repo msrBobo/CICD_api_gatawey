@@ -37,8 +37,6 @@ type CreatePatientReq struct {
 }
 
 type UpdatePatientReq struct {
-	Field          string `json:"field"`
-	Value          string `json:"value"`
 	FirstName      string `json:"first_name"`
 	LastName       string `json:"last_name"`
 	BirthDate      string `json:"birth_date"`

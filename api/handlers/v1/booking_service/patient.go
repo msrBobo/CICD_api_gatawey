@@ -3,15 +3,18 @@ package booking_service
 import (
 	errorapi "dennic_api_gateway/api/errors"
 	"dennic_api_gateway/api/handlers"
-	"dennic_api_gateway/api/models/models_booking_service"
 	_ "dennic_api_gateway/api/models/models_booking_service"
+	models_booking_service "dennic_api_gateway/api/models/models_booking_service"
 	pb "dennic_api_gateway/genproto/booking_service"
 	grpcClient "dennic_api_gateway/internal/infrastructure/grpc_service_client"
 	"dennic_api_gateway/internal/pkg/config"
 	"encoding/json"
-	"github.com/google/uuid"
+	"fmt"
 	"net/http"
 	"strconv"
+
+	"github.com/google/uuid"
+	"github.com/gorilla/mux"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/go-chi/chi/v5"
@@ -52,12 +55,12 @@ func NewPatientHandler(option *handlers.HandlerOption) http.Handler {
 	handler.Config = option.Config
 
 	policies := [][]string{
-		{"investor", "/v1/patient/create", "POST"},
-		{"investor", "/v1/patient/get", "GET"},
-		{"investor", "/v1/patient/list", "GET"},
-		{"investor", "/v1/patient/update", "PUT"},
-		{"investor", "/v1/patient/update_phone", "PUT"},
-		{"investor", "/v1/patient/delete", "DELETE"},
+		{"investor", "/v1/patients/create", "POST"},
+		{"investor", "/v1/patients/get", "GET"},
+		{"investor", "/v1/patients/list", "GET"},
+		{"investor", "/v1/patients/update", "PUT"},
+		{"investor", "/v1/patients/:phone", "PUT"},
+		{"investor", "/v1/patients/delete", "DELETE"},
 	}
 	for _, policy := range policies {
 		_, err := option.Enforcer.AddPolicy(policy)
@@ -99,18 +102,18 @@ func NewPatientHandler(option *handlers.HandlerOption) http.Handler {
 
 		// content
 		r.Post("/create", handler.createPatient())
-		r.Get("/get", handler.getPatient())
-		r.Get("/list", handler.listPatient())
+		r.Get("/get/:key", handler.getPatient())
+		r.Get("/list", handler.listPatients())
 		r.Put("/update", handler.updatePatient())
-		r.Put("/update_phone", handler.updatePhonePatient())
-		r.Delete("/delete", handler.deletePatient())
+		r.Put("/phone", handler.updatePhonePatient())
+		r.Delete("/delete/:key", handler.deletePatient())
 
 	})
 	return router
 }
 
 // createPatient
-// @Router /v1/patient/create [post]
+// @Router /v1/patients/create [post]
 // @Summary Create Patient
 // @Description Patients
 // @Tags Patient
@@ -172,13 +175,13 @@ func (h *patientHandler) createPatient() http.HandlerFunc {
 }
 
 // getPatient
-// @Router /v1/patient/get [get]
+// @Router /v1/patients/get [get]
 // @Summary Create Patient
 // @Description Patients
 // @Tags Patient
 // @Accept json
 // @Produce json
-// @Param patient_id query string false "Patient id"
+// @Param key path string true "key"
 // @Success 200 {object} models_booking_service.Patient
 // @Failure 404 {object} models_booking_service.Errors
 // @Failure 500 {object} models_booking_service.Errors
@@ -186,7 +189,12 @@ func (h *patientHandler) getPatient() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 
-		patientId := r.URL.Query().Get("patient_id")
+		params := mux.Vars(r)
+		patientId, ok := params["key"]
+		if !ok {
+			render.Render(w, r, errorapi.Error(fmt.Errorf("key not found in path")))
+			return
+		}
 
 		res, err := h.service.BookingService().PatientService().GetPatient(ctx, &pb.PatientFieldValueReq{
 			Field:    "id",
@@ -219,21 +227,17 @@ func (h *patientHandler) getPatient() http.HandlerFunc {
 }
 
 // listPatient
-// @Router /v1/patient/list [get]
+// @Router /v1/patients/list [get]
 // @Summary List Patient
 // @Description Patients
 // @Tags Patient
 // @Accept json
 // @Produce json
-// @Param field query string false "field"
-// @Param value query string false "value"
-// @Param page query string false "page"
-// @Param limit query uint64 false "limit"
-// @Param orderBy query string false "orderBy"
+// @Param request query models_booking_service.GetAllRequest false "request"
 // @Success 200 {object} models_booking_service.Patients
 // @Failure 404 {object} models_booking_service.Errors
 // @Failure 500 {object} models_booking_service.Errors
-func (h *patientHandler) listPatient() http.HandlerFunc {
+func (h *patientHandler) listPatients() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 
@@ -242,6 +246,7 @@ func (h *patientHandler) listPatient() http.HandlerFunc {
 		page := r.URL.Query().Get("page")
 		limit := r.URL.Query().Get("limit")
 		orderBy := r.URL.Query().Get("orderBy")
+		// search := r.URL.Query().Get("search")
 
 		pageInt, _ := strconv.Atoi(page)
 		limitInt, _ := strconv.Atoi(limit)
@@ -257,6 +262,7 @@ func (h *patientHandler) listPatient() http.HandlerFunc {
 			Page:     uint64(pageInt),
 			Limit:    uint64(limitInt),
 			OrderBy:  orderBy,
+			// Search: search,
 		})
 
 		if err != nil {
@@ -288,12 +294,14 @@ func (h *patientHandler) listPatient() http.HandlerFunc {
 }
 
 // updatePatient
-// @Router /v1/patient/update [put]
+// @Router /v1/patients/update [put]
 // @Summary Update Patient
 // @Description Patients
 // @Tags Patient
 // @Accept json
 // @Produce json
+// @Param field query string true "field"
+// @Param value query string true "value"
 // @Param Create body models_booking_service.UpdatePatientReq true "Update Patient"
 // @Success 200 {object} models_booking_service.Patient
 // @Failure 404 {object} models_booking_service.Errors
@@ -311,9 +319,12 @@ func (h *patientHandler) updatePatient() http.HandlerFunc {
 			return
 		}
 
+		field := r.URL.Query().Get("field")
+		value := r.URL.Query().Get("value")
+
 		res, err := h.service.BookingService().PatientService().UpdatePatient(ctx, &pb.UpdatePatientReq{
-			Field:          patient.Field,
-			Value:          patient.Value,
+			Field:          field,
+			Value:          value,
 			FirstName:      patient.FirstName,
 			LastName:       patient.LastName,
 			BirthDate:      patient.BirthDate,
@@ -350,7 +361,7 @@ func (h *patientHandler) updatePatient() http.HandlerFunc {
 }
 
 // updatePhonePatient
-// @Router /v1/patient/update_phone [put]
+// @Router /v1/patients/phone [put]
 // @Summary Update Patient
 // @Description Patients
 // @Tags Patient
@@ -389,13 +400,13 @@ func (h *patientHandler) updatePhonePatient() http.HandlerFunc {
 }
 
 // deletePatient
-// @Router /v1/patient/delete [delete]
+// @Router /v1/patient/delete/:key [delete]
 // @Summary Delete Patient
 // @Description Patients
 // @Tags Patient
 // @Accept json
 // @Produce json
-// @Param patient_id query string false "Patient id"
+// @Param key path string true "key"
 // @Success 200 {object} models_booking_service.DeleteStatus
 // @Failure 404 {object} models_booking_service.Errors
 // @Failure 500 {object} models_booking_service.Errors
@@ -403,7 +414,12 @@ func (h *patientHandler) deletePatient() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 
-		patientId := r.URL.Query().Get("patient_id")
+		params := mux.Vars(r)
+		patientId, ok := params["key"]
+		if !ok {
+			render.Render(w, r, errorapi.Error(fmt.Errorf("key not found in path")))
+			return
+		}
 
 		res, err := h.service.BookingService().PatientService().DeletePatient(ctx, &pb.PatientFieldValueReq{
 			Field:    "id",

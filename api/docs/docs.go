@@ -15,7 +15,51 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/v1/patient/create": {
+        "/v1/patient/delete/:key": {
+            "delete": {
+                "description": "Patients",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "Delete Patient",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "key",
+                        "name": "key",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models_booking_service.DeleteStatus"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models_booking_service.Errors"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models_booking_service.Errors"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patients/create": {
             "post": {
                 "description": "Patients",
                 "consumes": [
@@ -61,50 +105,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/patient/delete": {
-            "delete": {
-                "description": "Patients",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Patient"
-                ],
-                "summary": "Delete Patient",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Patient id",
-                        "name": "patient_id",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models_booking_service.DeleteStatus"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/patient/get": {
+        "/v1/patients/get": {
             "get": {
                 "description": "Patients",
                 "consumes": [
@@ -120,9 +121,10 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Patient id",
-                        "name": "patient_id",
-                        "in": "query"
+                        "description": "key",
+                        "name": "key",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -147,7 +149,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/patient/list": {
+        "/v1/patients/list": {
             "get": {
                 "description": "Patients",
                 "consumes": [
@@ -163,32 +165,43 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "field",
+                        "example": "first_name",
                         "name": "field",
                         "in": "query"
                     },
                     {
-                        "type": "string",
-                        "description": "value",
-                        "name": "value",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "page",
-                        "name": "page",
+                        "type": "boolean",
+                        "example": true,
+                        "name": "is_active",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "limit",
+                        "example": 10,
                         "name": "limit",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "orderBy",
-                        "name": "orderBy",
+                        "example": "last_name",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "example": 1,
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "search",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "example": "A",
+                        "name": "value",
                         "in": "query"
                     }
                 ],
@@ -214,7 +227,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/patient/update": {
+        "/v1/patients/phone": {
             "put": {
                 "description": "Patients",
                 "consumes": [
@@ -234,7 +247,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.UpdatePatientReq"
+                            "$ref": "#/definitions/models_booking_service.UpdatePhoneNumber"
                         }
                     }
                 ],
@@ -260,7 +273,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/patient/update_phone": {
+        "/v1/patients/update": {
             "put": {
                 "description": "Patients",
                 "consumes": [
@@ -275,12 +288,26 @@ const docTemplate = `{
                 "summary": "Update Patient",
                 "parameters": [
                     {
+                        "type": "string",
+                        "description": "field",
+                        "name": "field",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "value",
+                        "name": "value",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
                         "description": "Update Patient",
                         "name": "Create",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.UpdatePhoneNumber"
+                            "$ref": "#/definitions/models_booking_service.UpdatePatientReq"
                         }
                     }
                 ],
@@ -442,9 +469,6 @@ const docTemplate = `{
                 "country": {
                     "type": "string"
                 },
-                "field": {
-                    "type": "string"
-                },
                 "first_name": {
                     "type": "string"
                 },
@@ -455,9 +479,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "patient_problem": {
-                    "type": "string"
-                },
-                "value": {
                     "type": "string"
                 }
             }
@@ -489,6 +510,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
 func init() {

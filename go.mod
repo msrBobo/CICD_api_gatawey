@@ -16,9 +16,11 @@ require (
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/golang/protobuf v1.5.4
 	github.com/google/uuid v1.6.0
+	github.com/gorilla/mux v1.8.1
 	github.com/jackc/pgconn v1.14.3
 	github.com/jackc/pgx/v4 v4.18.3
 	github.com/pckhoi/casbin-pgx-adapter/v2 v2.2.2
+	github.com/redis/go-redis/v9 v9.0.3
 	github.com/rickb777/date v1.20.6
 	github.com/swaggo/http-swagger v1.3.4
 	github.com/swaggo/swag v1.8.1
@@ -63,7 +65,6 @@ require (
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/mailru/easyjson v0.7.6 // indirect
 	github.com/mmcloughlin/meow v0.0.0-20200201185800-3501c7c05d21 // indirect
-	github.com/redis/go-redis/v9 v9.0.3 // indirect
 	github.com/rickb777/plural v1.4.1 // indirect
 	github.com/rogpeppe/go-internal v1.12.0 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect

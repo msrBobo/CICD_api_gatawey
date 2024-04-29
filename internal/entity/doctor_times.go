@@ -1,8 +1,9 @@
 package entity
 
 import (
-	"github.com/rickb777/date"
 	"time"
+
+	"github.com/rickb777/date"
 )
 
 type Doctor struct {
