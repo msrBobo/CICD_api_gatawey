@@ -1,0 +1,116 @@
+package token
+
+import (
+	"fmt"
+	"github.com/dgrijalva/jwt-go"
+	"go.uber.org/zap"
+	"time"
+)
+
+// JWTHandler ...
+type JWTHandler struct {
+	Id      string
+	Phone   string
+	Sub     string
+	Exp     string
+	Iat     string
+	Aud     []string
+	Role    string
+	SignKey string
+	Log     *zap.Logger
+	Token   string
+	Timout  time.Duration
+}
+
+type CustomClaims struct {
+	*jwt.Token
+	Sub      string   `json:"sub"`
+	UserName string   `json:"user_name"`
+	Id       string   `json:"id"`
+	Exp      float64  `json:"exp"`
+	Iat      float64  `json:"iat"`
+	Aud      []string `json:"aud"`
+	Role     string   `json:"role"`
+}
+
+// GenerateAuthJWT ...
+func (jwtHandler *JWTHandler) GenerateAuthJWT(phone, id, role string) (access, refresh string, err error) {
+	var (
+		accessToken  *jwt.Token
+		refreshToken *jwt.Token
+		claims       jwt.MapClaims
+		rtClaims     jwt.MapClaims
+	)
+	jwtHandler.Timout = 60
+	accessToken = jwt.New(jwt.SigningMethodHS256)
+	refreshToken = jwt.New(jwt.SigningMethodHS256)
+	claims = accessToken.Claims.(jwt.MapClaims)
+	claims["id"] = id
+	claims["phone"] = phone
+	claims["sub"] = jwtHandler.Sub
+	claims["exp"] = time.Now().Add(time.Minute * jwtHandler.Timout).Unix()
+	claims["iat"] = time.Now().Unix()
+	claims["role"] = role
+	access, err = accessToken.SignedString([]byte("dennic"))
+	if err != nil {
+		jwtHandler.Log.Log(1, err.Error())
+		return
+	}
+
+	rtClaims = refreshToken.Claims.(jwt.MapClaims)
+	rtClaims["id"] = id
+	rtClaims["phone"] = phone
+	rtClaims["sub"] = jwtHandler.Sub
+	rtClaims["exp"] = time.Now().Add(time.Minute * jwtHandler.Timout).Unix()
+	rtClaims["iat"] = time.Now().Unix()
+	rtClaims["role"] = role
+	refresh, err = refreshToken.SignedString([]byte("dennic"))
+	if err != nil {
+		jwtHandler.Log.Log(1, err.Error())
+		return
+	}
+	return access, refresh, nil
+}
+
+// ExtractClaims ...
+func (jwtHandler *JWTHandler) ExtractClaims() (jwt.MapClaims, error) {
+	var (
+		token *jwt.Token
+		err   error
+	)
+
+	token, err = jwt.Parse(jwtHandler.Token, func(t *jwt.Token) (interface{}, error) {
+		return []byte(jwtHandler.SignKey), nil
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !(ok && token.Valid) {
+		fmt.Println(err)
+		return nil, err
+	}
+	return claims, nil
+}
+
+// ExtractClaim extracts claims from given token
+func ExtractClaim(tokenStr string) (jwt.MapClaims, error) {
+	var (
+		token *jwt.Token
+		err   error
+	)
+	token, err = jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
+		// check token signing method etc
+		return []byte("dennic"), nil
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !(ok && token.Valid) {
+		return nil, err
+	}
+	return claims, nil
+}

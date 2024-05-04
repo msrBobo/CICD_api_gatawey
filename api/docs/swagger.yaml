@@ -1,0 +1,256 @@
+definitions:
+  model_common.ResponseError:
+    properties:
+      date:
+        type: string
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+  model_common.StandardErrorModel:
+    properties:
+      error:
+        $ref: '#/definitions/model_common.ResponseError'
+    type: object
+  model_user_service.ForgetPasswordVerify:
+    properties:
+      cade:
+        type: integer
+      new_password:
+        type: string
+      phone_number:
+        type: string
+    type: object
+  model_user_service.LoginReq:
+    properties:
+      fcm_token:
+        type: string
+      password:
+        example: password
+        type: string
+      phone_number:
+        example: "+998950230605"
+        type: string
+      platform_name:
+        type: string
+      platform_type:
+        type: string
+    type: object
+  model_user_service.MessageRes:
+    properties:
+      message:
+        type: string
+    type: object
+  model_user_service.RegisterRequest:
+    properties:
+      birth_date:
+        example: "2000-01-01"
+        type: string
+      first_name:
+        example: John
+        type: string
+      gender:
+        example: male
+        type: string
+      last_name:
+        example: Doe
+        type: string
+      password:
+        example: password
+        type: string
+      phone_number:
+        example: "+998950230605"
+        type: string
+    type: object
+  model_user_service.Response:
+    properties:
+      access_token:
+        type: string
+      birth_date:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      last_name:
+        type: string
+      phone_number:
+        type: string
+    type: object
+  model_user_service.Verify:
+    properties:
+      code:
+        example: 7777
+        type: integer
+      fcm_token:
+        type: string
+      phone_number:
+        example: "+998950230605"
+        type: string
+      platform_name:
+        type: string
+      platform_type:
+        type: string
+    type: object
+host: localhost:9050
+info:
+  contact: {}
+  title: Admin API
+  version: "1.7"
+paths:
+  /v1/auth/forger_password:
+    get:
+      consumes:
+      - application/json
+      description: ForgerPassword - Api for registering users
+      parameters:
+      - description: phone_number
+        in: query
+        name: phone_number
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.MessageRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ForgerPassword
+      tags:
+      - Register
+  /v1/auth/forger_password_verify:
+    post:
+      consumes:
+      - application/json
+      description: ForgerPasswordVerify - Api for registering users
+      parameters:
+      - description: RegisterModelReq
+        in: body
+        name: Verify
+        required: true
+        schema:
+          $ref: '#/definitions/model_user_service.ForgetPasswordVerify'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.MessageRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ForgerPasswordVerify
+      tags:
+      - Register
+  /v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Login - Api for registering users
+      parameters:
+      - description: Login Req
+        in: body
+        name: Login
+        required: true
+        schema:
+          $ref: '#/definitions/model_user_service.LoginReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: Login
+      tags:
+      - Register
+  /v1/auth/register/:
+    post:
+      consumes:
+      - application/json
+      description: Register - Api for registering users
+      parameters:
+      - description: RegisterRequest
+        in: body
+        name: Register
+        required: true
+        schema:
+          $ref: '#/definitions/model_user_service.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.MessageRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: Register
+      tags:
+      - Register
+  /v1/auth/verify:
+    post:
+      consumes:
+      - application/json
+      description: Authorization - Api for registering users
+      parameters:
+      - description: RegisterModelReq
+        in: body
+        name: Verify
+        required: true
+        schema:
+          $ref: '#/definitions/model_user_service.Verify'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.Verify'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: Verify
+      tags:
+      - Register
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
