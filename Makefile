@@ -27,10 +27,6 @@ run:
 proto-gen:
 	./scripts/gen-proto.sh
 
-# git submodule init
-.PHONY: pull-proto
-pull-proto:
-	git submodule update --init --recursive
 
 # go generate
 .PHONY: go-gen
@@ -60,3 +56,11 @@ build-image:
 push-image:
 	docker push ${REGISTRY}/${PROJECT_NAME}/${APP}:${TAG}
 	docker push ${REGISTRY}/${PROJECT_NAME}/${APP}:${ENV_TAG}
+
+.PHONY: pull-proto-module
+pull-proto-module:
+	git submodule update --init --recursive
+
+.PHONY: update-proto-module
+update-proto-module:
+	git submodule update --remote --merge

@@ -1,12 +1,15 @@
 {
     "swagger": "2.0",
     "info": {
-        "contact": {}
+        "title": "Admin API",
+        "contact": {},
+        "version": "1.7"
     },
+    "host": "localhost:9050",
     "paths": {
-        "/v1/patient/delete/:key": {
-            "delete": {
-                "description": "Patients",
+        "/v1/auth/forger_password": {
+            "get": {
+                "description": "ForgerPassword - Api for registering users",
                 "consumes": [
                     "application/json"
                 ],
@@ -14,15 +17,15 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Patient"
+                    "Register"
                 ],
-                "summary": "Delete Patient",
+                "summary": "ForgerPassword",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "key",
-                        "name": "key",
-                        "in": "path",
+                        "description": "phone_number",
+                        "name": "phone_number",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -30,27 +33,27 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.DeleteStatus"
+                            "$ref": "#/definitions/model_user_service.MessageRes"
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
+                    "400": {
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
                         }
                     }
                 }
             }
         },
-        "/v1/patients/create": {
+        "/v1/auth/forger_password_verify": {
             "post": {
-                "description": "Patients",
+                "description": "ForgerPasswordVerify - Api for registering users",
                 "consumes": [
                     "application/json"
                 ],
@@ -58,17 +61,17 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Patient"
+                    "Register"
                 ],
-                "summary": "Create Patient",
+                "summary": "ForgerPasswordVerify",
                 "parameters": [
                     {
-                        "description": "Create Patient",
-                        "name": "Create",
+                        "description": "RegisterModelReq",
+                        "name": "Verify",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.CreatePatientReq"
+                            "$ref": "#/definitions/model_user_service.ForgetPasswordVerify"
                         }
                     }
                 ],
@@ -76,27 +79,27 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Patient"
+                            "$ref": "#/definitions/model_user_service.MessageRes"
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
+                    "400": {
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
                         }
                     }
                 }
             }
         },
-        "/v1/patients/get": {
-            "get": {
-                "description": "Patients",
+        "/v1/auth/login": {
+            "post": {
+                "description": "Login - Api for registering users",
                 "consumes": [
                     "application/json"
                 ],
@@ -104,139 +107,17 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Patient"
+                    "Register"
                 ],
-                "summary": "Create Patient",
+                "summary": "Login",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "key",
-                        "name": "key",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models_booking_service.Patient"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/patients/list": {
-            "get": {
-                "description": "Patients",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Patient"
-                ],
-                "summary": "List Patient",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "example": "first_name",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "boolean",
-                        "example": true,
-                        "name": "is_active",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "example": 10,
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "example": "last_name",
-                        "name": "order_by",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "example": 1,
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "search",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "example": "A",
-                        "name": "value",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models_booking_service.Patients"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/patients/phone": {
-            "put": {
-                "description": "Patients",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Patient"
-                ],
-                "summary": "Update Patient",
-                "parameters": [
-                    {
-                        "description": "Update Patient",
-                        "name": "Create",
+                        "description": "Login Req",
+                        "name": "Login",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.UpdatePhoneNumber"
+                            "$ref": "#/definitions/model_user_service.LoginReq"
                         }
                     }
                 ],
@@ -244,27 +125,27 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Patient"
+                            "$ref": "#/definitions/model_user_service.Response"
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
+                    "400": {
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
                         }
                     }
                 }
             }
         },
-        "/v1/patients/update": {
-            "put": {
-                "description": "Patients",
+        "/v1/auth/register/": {
+            "post": {
+                "description": "Register - Api for registering users",
                 "consumes": [
                     "application/json"
                 ],
@@ -272,31 +153,17 @@
                     "application/json"
                 ],
                 "tags": [
-                    "Patient"
+                    "Register"
                 ],
-                "summary": "Update Patient",
+                "summary": "Register",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "field",
-                        "name": "field",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "value",
-                        "name": "value",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "description": "Update Patient",
-                        "name": "Create",
+                        "description": "RegisterRequest",
+                        "name": "Register",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.UpdatePatientReq"
+                            "$ref": "#/definitions/model_user_service.RegisterRequest"
                         }
                     }
                 ],
@@ -304,19 +171,65 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Patient"
+                            "$ref": "#/definitions/model_user_service.MessageRes"
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
+                    "400": {
+                        "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/models_booking_service.Errors"
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/auth/verify": {
+            "post": {
+                "description": "Authorization - Api for registering users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Verify",
+                "parameters": [
+                    {
+                        "description": "RegisterModelReq",
+                        "name": "Verify",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.Verify"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.Verify"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
                         }
                     }
                 }
@@ -324,83 +237,108 @@
         }
     },
     "definitions": {
-        "models_booking_service.CreatePatientReq": {
+        "model_common.ResponseError": {
             "type": "object",
             "properties": {
-                "address": {
+                "date": {
                     "type": "string"
                 },
-                "birth_date": {
+                "message": {
                     "type": "string"
                 },
-                "blood_group": {
-                    "type": "string"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "first_name": {
-                    "type": "string"
-                },
-                "gender": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "last_name": {
-                    "type": "string"
-                },
-                "patient_problem": {
-                    "type": "string"
-                },
-                "phone_number": {
-                    "type": "string"
-                }
-            }
-        },
-        "models_booking_service.DeleteStatus": {
-            "type": "object",
-            "properties": {
                 "status": {
-                    "type": "boolean"
+                    "type": "string"
                 }
             }
         },
-        "models_booking_service.Errors": {
+        "model_common.StandardErrorModel": {
             "type": "object",
             "properties": {
-                "error_res": {},
-                "status_code": {
+                "error": {
+                    "$ref": "#/definitions/model_common.ResponseError"
+                }
+            }
+        },
+        "model_user_service.ForgetPasswordVerify": {
+            "type": "object",
+            "properties": {
+                "cade": {
                     "type": "integer"
+                },
+                "new_password": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
                 }
             }
         },
-        "models_booking_service.Patient": {
+        "model_user_service.LoginReq": {
             "type": "object",
             "properties": {
-                "address": {
+                "fcm_token": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "password"
+                },
+                "phone_number": {
+                    "type": "string",
+                    "example": "+998950230605"
+                },
+                "platform_name": {
+                    "type": "string"
+                },
+                "platform_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "model_user_service.MessageRes": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "model_user_service.RegisterRequest": {
+            "type": "object",
+            "properties": {
+                "birth_date": {
+                    "type": "string",
+                    "example": "2000-01-01"
+                },
+                "first_name": {
+                    "type": "string",
+                    "example": "John"
+                },
+                "gender": {
+                    "type": "string",
+                    "example": "male"
+                },
+                "last_name": {
+                    "type": "string",
+                    "example": "Doe"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "password"
+                },
+                "phone_number": {
+                    "type": "string",
+                    "example": "+998950230605"
+                }
+            }
+        },
+        "model_user_service.Response": {
+            "type": "object",
+            "properties": {
+                "access_token": {
                     "type": "string"
                 },
                 "birth_date": {
-                    "type": "string"
-                },
-                "blood_group": {
-                    "type": "string"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "deleted_at": {
                     "type": "string"
                 },
                 "first_name": {
@@ -409,82 +347,42 @@
                 "gender": {
                     "type": "string"
                 },
-                "id": {
-                    "type": "string"
-                },
                 "last_name": {
-                    "type": "string"
-                },
-                "patient_problem": {
                     "type": "string"
                 },
                 "phone_number": {
                     "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
                 }
             }
         },
-        "models_booking_service.Patients": {
+        "model_user_service.Verify": {
             "type": "object",
             "properties": {
-                "count": {
-                    "type": "integer"
+                "code": {
+                    "type": "integer",
+                    "example": 7777
                 },
-                "patients": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models_booking_service.Patient"
-                    }
-                }
-            }
-        },
-        "models_booking_service.UpdatePatientReq": {
-            "type": "object",
-            "properties": {
-                "address": {
-                    "type": "string"
-                },
-                "birth_date": {
-                    "type": "string"
-                },
-                "blood_group": {
-                    "type": "string"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "first_name": {
-                    "type": "string"
-                },
-                "gender": {
-                    "type": "string"
-                },
-                "last_name": {
-                    "type": "string"
-                },
-                "patient_problem": {
-                    "type": "string"
-                }
-            }
-        },
-        "models_booking_service.UpdatePhoneNumber": {
-            "type": "object",
-            "properties": {
-                "field": {
+                "fcm_token": {
                     "type": "string"
                 },
                 "phone_number": {
+                    "type": "string",
+                    "example": "+998950230605"
+                },
+                "platform_name": {
                     "type": "string"
                 },
-                "value": {
+                "platform_type": {
                     "type": "string"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }

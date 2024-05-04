@@ -4,15 +4,12 @@ import (
 	"context"
 	"dennic_api_gateway/api"
 	grpcService "dennic_api_gateway/internal/infrastructure/grpc_service_client"
-	redisrepo "dennic_api_gateway/internal/infrastructure/redis"
 	"dennic_api_gateway/internal/pkg/config"
 	"dennic_api_gateway/internal/pkg/logger"
 	"dennic_api_gateway/internal/pkg/otlp"
-	"dennic_api_gateway/internal/pkg/policy"
 	"dennic_api_gateway/internal/pkg/postgres"
 	"dennic_api_gateway/internal/pkg/redis"
 	"fmt"
-	"github.com/casbin/casbin/v2"
 	"go.uber.org/zap"
 	"net/http"
 	"time"
@@ -24,7 +21,6 @@ type App struct {
 	DB           *postgres.PostgresDB
 	RedisDB      *redis.RedisDB
 	server       *http.Server
-	Enforcer     *casbin.CachedEnforcer
 	Clients      grpcService.ServiceClient
 	ShutdownOTLP func() error
 	//BrokerProducer event.BrokerProducer
@@ -59,19 +55,12 @@ func NewApp(cfg *config.Config) (*App, error) {
 	}
 
 	// initialization enforcer
-	enforcer, err := policy.NewCachedEnforcer(cfg, l)
-	if err != nil {
-		return nil, err
-	}
-
-	enforcer.SetCache(policy.NewCache(&redisdb.Client))
 
 	return &App{
-		Config:   cfg,
-		Logger:   l,
-		DB:       db,
-		RedisDB:  redisdb,
-		Enforcer: enforcer,
+		Config:  cfg,
+		Logger:  l,
+		DB:      db,
+		RedisDB: redisdb,
 		//BrokerProducer: kafkaProducer,
 		ShutdownOTLP: shutdownOTLP,
 		//appVersion:     appVersionUseCase,
@@ -79,13 +68,12 @@ func NewApp(cfg *config.Config) (*App, error) {
 }
 
 func (a *App) Run() error {
-	contextTimeout, err := time.ParseDuration(a.Config.Context.Timeout)
+	contextTimeout, err := time.ParseDuration("2s")
 	if err != nil {
 		return fmt.Errorf("error while parsing context timeout: %v", err)
 	}
 
 	// initialize cache
-	cache := redisrepo.NewCache(a.RedisDB)
 
 	clients, err := grpcService.New(a.Config)
 	if err != nil {
@@ -98,9 +86,8 @@ func (a *App) Run() error {
 		Config:         a.Config,
 		Logger:         a.Logger,
 		ContextTimeout: contextTimeout,
-		Cache:          cache,
-		Enforcer:       a.Enforcer,
 		Service:        clients,
+		Redis:          a.RedisDB,
 		//BrokerProducer: a.BrokerProducer,
 	})
 

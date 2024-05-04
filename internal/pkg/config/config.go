@@ -1,6 +1,7 @@
 package config
 
 import (
+	"github.com/spf13/cast"
 	"os"
 	"strings"
 	"time"
@@ -35,7 +36,7 @@ type Config struct {
 		SSLMode  string
 	}
 	Context struct {
-		Timeout string
+		Timeout int
 	}
 	Redis struct {
 		Host     string
@@ -64,6 +65,7 @@ type Config struct {
 	BookingService    webAddress
 	HealthcareService webAddress
 	UserService       webAddress
+	SessionService    webAddress
 	OTLPCollector     webAddress
 }
 
@@ -74,11 +76,11 @@ func NewConfig() (*Config, error) {
 	config.APP = getEnv("APP", "app")
 	config.Environment = getEnv("ENVIRONMENT", "develop")
 	config.LogLevel = getEnv("LOG_LEVEL", "debug")
-	config.Context.Timeout = getEnv("CONTEXT_TIMEOUT", "30s")
+	config.Context.Timeout = cast.ToInt(getEnv("CONTEXT_TIMEOUT", "2"))
 
 	// server configuration
 	config.Server.Host = getEnv("SERVER_HOST", "localhost")
-	config.Server.Port = getEnv("SERVER_PORT", ":50060")
+	config.Server.Port = getEnv("SERVER_PORT", ":9050")
 	config.Server.ReadTimeout = getEnv("SERVER_READ_TIMEOUT", "10s")
 	config.Server.WriteTimeout = getEnv("SERVER_WRITE_TIMEOUT", "10s")
 	config.Server.IdleTimeout = getEnv("SERVER_IDLE_TIMEOUT", "120s")
@@ -86,7 +88,7 @@ func NewConfig() (*Config, error) {
 	// db configuration
 	config.DB.Host = getEnv("POSTGRES_HOST", "localhost")
 	config.DB.Port = getEnv("POSTGRES_PORT", "5432")
-	config.DB.Name = getEnv("POSTGRES_DATABASE", "v1")
+	config.DB.Name = getEnv("POSTGRES_DATABASE", "postgres")
 	config.DB.User = getEnv("POSTGRES_USER", "postgres")
 	config.DB.Password = getEnv("POSTGRES_PASSWORD", "20030505")
 	config.DB.SSLMode = getEnv("POSTGRES_SSLMODE", "disable")
@@ -101,10 +103,13 @@ func NewConfig() (*Config, error) {
 	config.BookingService.Port = getEnv("BOOKING_SERVICE_GRPC_PORT", ":9090")
 
 	config.HealthcareService.Host = getEnv("HEALTHCARE_SERVICE_GRPC_HOST", "localhost")
-	config.HealthcareService.Port = getEnv("HEALTHCARE_SERVICE_GRPC_PORT", ":5050")
+	config.HealthcareService.Port = getEnv("HEALTHCARE_SERVICE_GRPC_PORT", ":9080")
 
-	config.UserService.Host = getEnv("CONTENT_SERVICE_GRPC_HOST", "localhost")
-	config.UserService.Port = getEnv("CONTENT_SERVICE_GRPC_PORT", ":50025")
+	config.UserService.Host = getEnv("USER_SERVICE_GRPC_HOST", "localhost")
+	config.UserService.Port = getEnv("USER_SERVICE_GRPC_PORT", ":9070")
+
+	config.SessionService.Host = getEnv("SESSION_SERVICE_GRPC_HOST", "localhost")
+	config.SessionService.Port = getEnv("SESSION_SERVICE_GRPC_PORT", ":9060")
 
 	// token configuration
 	config.Token.Secret = getEnv("TOKEN_SECRET", "token_secret")

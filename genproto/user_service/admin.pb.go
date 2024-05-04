@@ -219,26 +219,27 @@ func (m *Admin) GetDeletedAt() string {
 	return ""
 }
 
-type IfAdminExistsReq struct {
-	PhoneNumber          string   `protobuf:"bytes,1,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number"`
-	Email                string   `protobuf:"bytes,2,opt,name=email,proto3" json:"email"`
+type GetAdminReq struct {
+	Field                string   `protobuf:"bytes,1,opt,name=field,proto3" json:"field"`
+	Value                string   `protobuf:"bytes,2,opt,name=value,proto3" json:"value"`
+	IsActive             bool     `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3" json:"is_active"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *IfAdminExistsReq) Reset()         { *m = IfAdminExistsReq{} }
-func (m *IfAdminExistsReq) String() string { return proto.CompactTextString(m) }
-func (*IfAdminExistsReq) ProtoMessage()    {}
-func (*IfAdminExistsReq) Descriptor() ([]byte, []int) {
+func (m *GetAdminReq) Reset()         { *m = GetAdminReq{} }
+func (m *GetAdminReq) String() string { return proto.CompactTextString(m) }
+func (*GetAdminReq) ProtoMessage()    {}
+func (*GetAdminReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cc32bb425e570901, []int{1}
 }
-func (m *IfAdminExistsReq) XXX_Unmarshal(b []byte) error {
+func (m *GetAdminReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *IfAdminExistsReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetAdminReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_IfAdminExistsReq.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetAdminReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -248,95 +249,56 @@ func (m *IfAdminExistsReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, er
 		return b[:n], nil
 	}
 }
-func (m *IfAdminExistsReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_IfAdminExistsReq.Merge(m, src)
+func (m *GetAdminReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAdminReq.Merge(m, src)
 }
-func (m *IfAdminExistsReq) XXX_Size() int {
+func (m *GetAdminReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *IfAdminExistsReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_IfAdminExistsReq.DiscardUnknown(m)
+func (m *GetAdminReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAdminReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_IfAdminExistsReq proto.InternalMessageInfo
+var xxx_messageInfo_GetAdminReq proto.InternalMessageInfo
 
-func (m *IfAdminExistsReq) GetPhoneNumber() string {
+func (m *GetAdminReq) GetField() string {
 	if m != nil {
-		return m.PhoneNumber
+		return m.Field
 	}
 	return ""
 }
 
-func (m *IfAdminExistsReq) GetEmail() string {
+func (m *GetAdminReq) GetValue() string {
 	if m != nil {
-		return m.Email
+		return m.Value
 	}
 	return ""
 }
 
-type GetAdminReqById struct {
-	AdminId              string   `protobuf:"bytes,1,opt,name=admin_id,json=adminId,proto3" json:"admin_id"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetAdminReqById) Reset()         { *m = GetAdminReqById{} }
-func (m *GetAdminReqById) String() string { return proto.CompactTextString(m) }
-func (*GetAdminReqById) ProtoMessage()    {}
-func (*GetAdminReqById) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{2}
-}
-func (m *GetAdminReqById) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *GetAdminReqById) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_GetAdminReqById.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *GetAdminReqById) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetAdminReqById.Merge(m, src)
-}
-func (m *GetAdminReqById) XXX_Size() int {
-	return m.Size()
-}
-func (m *GetAdminReqById) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetAdminReqById.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetAdminReqById proto.InternalMessageInfo
-
-func (m *GetAdminReqById) GetAdminId() string {
+func (m *GetAdminReq) GetIsActive() bool {
 	if m != nil {
-		return m.AdminId
+		return m.IsActive
 	}
-	return ""
+	return false
 }
 
 type ListAdminsReq struct {
-	Limit                uint64            `protobuf:"varint,1,opt,name=limit,proto3" json:"limit"`
-	Offset               uint64            `protobuf:"varint,2,opt,name=offset,proto3" json:"offset"`
-	Filter               map[string]string `protobuf:"bytes,3,rep,name=filter,proto3" json:"filter" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	Value                string            `protobuf:"bytes,4,opt,name=value,proto3" json:"value"`
-	Field                string            `protobuf:"bytes,5,opt,name=field,proto3" json:"field"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
+	Page                 uint64   `protobuf:"varint,1,opt,name=page,proto3" json:"page"`
+	Limit                uint64   `protobuf:"varint,2,opt,name=limit,proto3" json:"limit"`
+	IsActive             bool     `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3" json:"is_active"`
+	Value                string   `protobuf:"bytes,4,opt,name=value,proto3" json:"value"`
+	Field                string   `protobuf:"bytes,5,opt,name=field,proto3" json:"field"`
+	OrderBy              string   `protobuf:"bytes,6,opt,name=order_by,json=orderBy,proto3" json:"order_by"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *ListAdminsReq) Reset()         { *m = ListAdminsReq{} }
 func (m *ListAdminsReq) String() string { return proto.CompactTextString(m) }
 func (*ListAdminsReq) ProtoMessage()    {}
 func (*ListAdminsReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{3}
+	return fileDescriptor_cc32bb425e570901, []int{2}
 }
 func (m *ListAdminsReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -365,6 +327,13 @@ func (m *ListAdminsReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ListAdminsReq proto.InternalMessageInfo
 
+func (m *ListAdminsReq) GetPage() uint64 {
+	if m != nil {
+		return m.Page
+	}
+	return 0
+}
+
 func (m *ListAdminsReq) GetLimit() uint64 {
 	if m != nil {
 		return m.Limit
@@ -372,18 +341,11 @@ func (m *ListAdminsReq) GetLimit() uint64 {
 	return 0
 }
 
-func (m *ListAdminsReq) GetOffset() uint64 {
+func (m *ListAdminsReq) GetIsActive() bool {
 	if m != nil {
-		return m.Offset
+		return m.IsActive
 	}
-	return 0
-}
-
-func (m *ListAdminsReq) GetFilter() map[string]string {
-	if m != nil {
-		return m.Filter
-	}
-	return nil
+	return false
 }
 
 func (m *ListAdminsReq) GetValue() string {
@@ -400,6 +362,13 @@ func (m *ListAdminsReq) GetField() string {
 	return ""
 }
 
+func (m *ListAdminsReq) GetOrderBy() string {
+	if m != nil {
+		return m.OrderBy
+	}
+	return ""
+}
+
 type ListAdminsResp struct {
 	Admins               []*Admin `protobuf:"bytes,1,rep,name=admins,proto3" json:"admins"`
 	Count                uint64   `protobuf:"varint,2,opt,name=count,proto3" json:"count"`
@@ -412,7 +381,7 @@ func (m *ListAdminsResp) Reset()         { *m = ListAdminsResp{} }
 func (m *ListAdminsResp) String() string { return proto.CompactTextString(m) }
 func (*ListAdminsResp) ProtoMessage()    {}
 func (*ListAdminsResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{4}
+	return fileDescriptor_cc32bb425e570901, []int{3}
 }
 func (m *ListAdminsResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -468,7 +437,7 @@ func (m *ChangeAdminPasswordReq) Reset()         { *m = ChangeAdminPasswordReq{}
 func (m *ChangeAdminPasswordReq) String() string { return proto.CompactTextString(m) }
 func (*ChangeAdminPasswordReq) ProtoMessage()    {}
 func (*ChangeAdminPasswordReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{5}
+	return fileDescriptor_cc32bb425e570901, []int{4}
 }
 func (m *ChangeAdminPasswordReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -519,7 +488,9 @@ func (m *ChangeAdminPasswordReq) GetPassword() string {
 }
 
 type DeleteAdminReq struct {
-	AdminId              string   `protobuf:"bytes,1,opt,name=admin_id,json=adminId,proto3" json:"admin_id"`
+	Field                string   `protobuf:"bytes,1,opt,name=field,proto3" json:"field"`
+	Value                string   `protobuf:"bytes,2,opt,name=value,proto3" json:"value"`
+	IsActive             bool     `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3" json:"is_active"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -529,7 +500,7 @@ func (m *DeleteAdminReq) Reset()         { *m = DeleteAdminReq{} }
 func (m *DeleteAdminReq) String() string { return proto.CompactTextString(m) }
 func (*DeleteAdminReq) ProtoMessage()    {}
 func (*DeleteAdminReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{6}
+	return fileDescriptor_cc32bb425e570901, []int{5}
 }
 func (m *DeleteAdminReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -558,11 +529,25 @@ func (m *DeleteAdminReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DeleteAdminReq proto.InternalMessageInfo
 
-func (m *DeleteAdminReq) GetAdminId() string {
+func (m *DeleteAdminReq) GetField() string {
 	if m != nil {
-		return m.AdminId
+		return m.Field
 	}
 	return ""
+}
+
+func (m *DeleteAdminReq) GetValue() string {
+	if m != nil {
+		return m.Value
+	}
+	return ""
+}
+
+func (m *DeleteAdminReq) GetIsActive() bool {
+	if m != nil {
+		return m.IsActive
+	}
+	return false
 }
 
 type ChangeAdminPasswordResp struct {
@@ -576,7 +561,7 @@ func (m *ChangeAdminPasswordResp) Reset()         { *m = ChangeAdminPasswordResp
 func (m *ChangeAdminPasswordResp) String() string { return proto.CompactTextString(m) }
 func (*ChangeAdminPasswordResp) ProtoMessage()    {}
 func (*ChangeAdminPasswordResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{7}
+	return fileDescriptor_cc32bb425e570901, []int{6}
 }
 func (m *ChangeAdminPasswordResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -613,8 +598,8 @@ func (m *ChangeAdminPasswordResp) GetStatus() bool {
 }
 
 type CheckAdminFieldReq struct {
-	Value                string   `protobuf:"bytes,1,opt,name=value,proto3" json:"value"`
-	Field                string   `protobuf:"bytes,2,opt,name=field,proto3" json:"field"`
+	Field                string   `protobuf:"bytes,1,opt,name=field,proto3" json:"field"`
+	Value                string   `protobuf:"bytes,2,opt,name=value,proto3" json:"value"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -624,7 +609,7 @@ func (m *CheckAdminFieldReq) Reset()         { *m = CheckAdminFieldReq{} }
 func (m *CheckAdminFieldReq) String() string { return proto.CompactTextString(m) }
 func (*CheckAdminFieldReq) ProtoMessage()    {}
 func (*CheckAdminFieldReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{8}
+	return fileDescriptor_cc32bb425e570901, []int{7}
 }
 func (m *CheckAdminFieldReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -653,16 +638,16 @@ func (m *CheckAdminFieldReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CheckAdminFieldReq proto.InternalMessageInfo
 
-func (m *CheckAdminFieldReq) GetValue() string {
+func (m *CheckAdminFieldReq) GetField() string {
 	if m != nil {
-		return m.Value
+		return m.Field
 	}
 	return ""
 }
 
-func (m *CheckAdminFieldReq) GetField() string {
+func (m *CheckAdminFieldReq) GetValue() string {
 	if m != nil {
-		return m.Field
+		return m.Value
 	}
 	return ""
 }
@@ -678,7 +663,7 @@ func (m *CheckAdminFieldResp) Reset()         { *m = CheckAdminFieldResp{} }
 func (m *CheckAdminFieldResp) String() string { return proto.CompactTextString(m) }
 func (*CheckAdminFieldResp) ProtoMessage()    {}
 func (*CheckAdminFieldResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{9}
+	return fileDescriptor_cc32bb425e570901, []int{8}
 }
 func (m *CheckAdminFieldResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -714,53 +699,6 @@ func (m *CheckAdminFieldResp) GetStatus() bool {
 	return false
 }
 
-type IfAdminExistsResp struct {
-	IsExists             bool     `protobuf:"varint,1,opt,name=is_exists,json=isExists,proto3" json:"is_exists"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *IfAdminExistsResp) Reset()         { *m = IfAdminExistsResp{} }
-func (m *IfAdminExistsResp) String() string { return proto.CompactTextString(m) }
-func (*IfAdminExistsResp) ProtoMessage()    {}
-func (*IfAdminExistsResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{10}
-}
-func (m *IfAdminExistsResp) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *IfAdminExistsResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_IfAdminExistsResp.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *IfAdminExistsResp) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_IfAdminExistsResp.Merge(m, src)
-}
-func (m *IfAdminExistsResp) XXX_Size() int {
-	return m.Size()
-}
-func (m *IfAdminExistsResp) XXX_DiscardUnknown() {
-	xxx_messageInfo_IfAdminExistsResp.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_IfAdminExistsResp proto.InternalMessageInfo
-
-func (m *IfAdminExistsResp) GetIsExists() bool {
-	if m != nil {
-		return m.IsExists
-	}
-	return false
-}
-
 type UpdateRefreshTokenAdminReq struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	RefreshToken         string   `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token"`
@@ -773,7 +711,7 @@ func (m *UpdateRefreshTokenAdminReq) Reset()         { *m = UpdateRefreshTokenAd
 func (m *UpdateRefreshTokenAdminReq) String() string { return proto.CompactTextString(m) }
 func (*UpdateRefreshTokenAdminReq) ProtoMessage()    {}
 func (*UpdateRefreshTokenAdminReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{11}
+	return fileDescriptor_cc32bb425e570901, []int{9}
 }
 func (m *UpdateRefreshTokenAdminReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -827,7 +765,7 @@ func (m *UpdateRefreshTokenAdminResp) Reset()         { *m = UpdateRefreshTokenA
 func (m *UpdateRefreshTokenAdminResp) String() string { return proto.CompactTextString(m) }
 func (*UpdateRefreshTokenAdminResp) ProtoMessage()    {}
 func (*UpdateRefreshTokenAdminResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cc32bb425e570901, []int{12}
+	return fileDescriptor_cc32bb425e570901, []int{10}
 }
 func (m *UpdateRefreshTokenAdminResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -865,17 +803,14 @@ func (m *UpdateRefreshTokenAdminResp) GetStatus() bool {
 
 func init() {
 	proto.RegisterType((*Admin)(nil), "user.Admin")
-	proto.RegisterType((*IfAdminExistsReq)(nil), "user.IfAdminExistsReq")
-	proto.RegisterType((*GetAdminReqById)(nil), "user.GetAdminReqById")
+	proto.RegisterType((*GetAdminReq)(nil), "user.GetAdminReq")
 	proto.RegisterType((*ListAdminsReq)(nil), "user.ListAdminsReq")
-	proto.RegisterMapType((map[string]string)(nil), "user.ListAdminsReq.FilterEntry")
 	proto.RegisterType((*ListAdminsResp)(nil), "user.ListAdminsResp")
 	proto.RegisterType((*ChangeAdminPasswordReq)(nil), "user.ChangeAdminPasswordReq")
 	proto.RegisterType((*DeleteAdminReq)(nil), "user.DeleteAdminReq")
 	proto.RegisterType((*ChangeAdminPasswordResp)(nil), "user.ChangeAdminPasswordResp")
 	proto.RegisterType((*CheckAdminFieldReq)(nil), "user.CheckAdminFieldReq")
 	proto.RegisterType((*CheckAdminFieldResp)(nil), "user.CheckAdminFieldResp")
-	proto.RegisterType((*IfAdminExistsResp)(nil), "user.IfAdminExistsResp")
 	proto.RegisterType((*UpdateRefreshTokenAdminReq)(nil), "user.UpdateRefreshTokenAdminReq")
 	proto.RegisterType((*UpdateRefreshTokenAdminResp)(nil), "user.UpdateRefreshTokenAdminResp")
 }
@@ -883,64 +818,59 @@ func init() {
 func init() { proto.RegisterFile("user_service/admin.proto", fileDescriptor_cc32bb425e570901) }
 
 var fileDescriptor_cc32bb425e570901 = []byte{
-	// 909 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x55, 0xdd, 0x72, 0xdb, 0x44,
-	0x14, 0x46, 0xb6, 0xe3, 0xda, 0xc7, 0xb1, 0x9b, 0x6e, 0x42, 0xaa, 0x2a, 0x4d, 0xea, 0xaa, 0x33,
-	0x8c, 0x19, 0xc0, 0x81, 0x32, 0x50, 0x7e, 0x6e, 0x48, 0xd3, 0xb4, 0x93, 0x29, 0x14, 0x10, 0x30,
-	0x4c, 0xaf, 0x34, 0xeb, 0xe8, 0xd8, 0xd6, 0x58, 0x96, 0xd4, 0xdd, 0x75, 0x83, 0xdf, 0x84, 0x0b,
-	0xde, 0x83, 0x57, 0xe0, 0x92, 0x17, 0x60, 0x86, 0x09, 0x2f, 0xc2, 0xec, 0xd9, 0x55, 0x2a, 0xc7,
-	0x8e, 0xb9, 0xe0, 0x4e, 0xe7, 0xfb, 0xbe, 0x3d, 0x7b, 0x76, 0xcf, 0x77, 0xb4, 0xe0, 0xce, 0x24,
-	0x8a, 0x50, 0xa2, 0x78, 0x1d, 0x9f, 0xe1, 0x21, 0x8f, 0xa6, 0x71, 0xda, 0xcf, 0x45, 0xa6, 0x32,
-	0x56, 0xd3, 0x8c, 0xb7, 0x37, 0xca, 0xb2, 0x51, 0x82, 0x87, 0x84, 0x0d, 0x66, 0xc3, 0x43, 0x9c,
-	0xe6, 0x6a, 0x6e, 0x24, 0xfe, 0xef, 0x35, 0xd8, 0x38, 0xd2, 0x4b, 0x58, 0x07, 0x2a, 0x71, 0xe4,
-	0x3a, 0x5d, 0xa7, 0xd7, 0x0c, 0x2a, 0x71, 0xc4, 0xee, 0x41, 0x8b, 0x72, 0x85, 0x99, 0x88, 0x50,
-	0xb8, 0x95, 0xae, 0xd3, 0xab, 0x06, 0x40, 0xd0, 0xb7, 0x1a, 0x61, 0x0c, 0x6a, 0x22, 0x4b, 0xd0,
-	0xad, 0xd2, 0x12, 0xfa, 0x66, 0xfb, 0x00, 0xc3, 0x58, 0x48, 0x15, 0xa6, 0x7c, 0x8a, 0x6e, 0x8d,
-	0x98, 0x26, 0x21, 0x2f, 0xf8, 0x14, 0xd9, 0x1e, 0x34, 0x13, 0x5e, 0xb0, 0x1b, 0xc4, 0x36, 0x34,
-	0x40, 0xe4, 0x3e, 0xc0, 0x20, 0x16, 0x6a, 0x1c, 0x46, 0x5c, 0xa1, 0x5b, 0x37, 0x6b, 0x09, 0x79,
-	0xc2, 0x15, 0xb2, 0xfb, 0xb0, 0x99, 0x8f, 0xb3, 0x14, 0xc3, 0x74, 0x36, 0x1d, 0xa0, 0x70, 0x6f,
-	0x90, 0xa0, 0x45, 0xd8, 0x0b, 0x82, 0xd8, 0x0e, 0x6c, 0xe0, 0x94, 0xc7, 0x89, 0xdb, 0x20, 0xce,
-	0x04, 0xcc, 0x83, 0x46, 0xce, 0xa5, 0x3c, 0xcf, 0x44, 0xe4, 0x36, 0xcd, 0x9e, 0x45, 0xcc, 0x76,
-	0xa1, 0x3e, 0xc2, 0x54, 0x9f, 0x0f, 0x88, 0xb1, 0x91, 0xc6, 0x25, 0x4f, 0xb8, 0x98, 0xbb, 0xad,
-	0xae, 0xd3, 0xab, 0x04, 0x36, 0x62, 0x77, 0xa1, 0x39, 0x88, 0xb3, 0x91, 0xe0, 0xf9, 0x78, 0xee,
-	0x6e, 0x16, 0x25, 0x5a, 0x80, 0xbd, 0x03, 0x37, 0xa5, 0xe2, 0x42, 0x85, 0xe7, 0x99, 0x98, 0x84,
-	0x73, 0xe4, 0xc2, 0x6d, 0x93, 0xa6, 0x4d, 0xf0, 0xcf, 0x99, 0x98, 0xbc, 0x44, 0x2e, 0x98, 0x0f,
-	0x6d, 0x4c, 0xa3, 0x92, 0xaa, 0x63, 0xce, 0x82, 0x69, 0x74, 0xa9, 0xd9, 0x07, 0xb8, 0xe4, 0xa5,
-	0x7b, 0xb3, 0xeb, 0xf4, 0x6a, 0x41, 0xf3, 0xdc, 0xb2, 0x92, 0x3d, 0x80, 0xb6, 0xc0, 0xa1, 0x40,
-	0x39, 0x0e, 0x55, 0x36, 0xc1, 0xd4, 0xdd, 0xa2, 0x14, 0x9b, 0x16, 0xfc, 0x51, 0x63, 0x3a, 0xc7,
-	0x99, 0x40, 0xae, 0x30, 0x0a, 0xb9, 0x72, 0x6f, 0x99, 0x72, 0x2d, 0x72, 0xa4, 0x34, 0x3d, 0xcb,
-	0xa3, 0x82, 0x66, 0x86, 0xb6, 0x88, 0xa1, 0x23, 0x4c, 0xd0, 0xd2, 0xdb, 0x86, 0xb6, 0xc8, 0x91,
-	0xf2, 0x9f, 0xc3, 0xd6, 0xe9, 0x90, 0xac, 0x73, 0xf2, 0x4b, 0x2c, 0x95, 0x0c, 0xf0, 0xd5, 0x52,
-	0x8f, 0x9c, 0x35, 0x3d, 0xaa, 0x94, 0x7a, 0xe4, 0xbf, 0x0f, 0x37, 0x9f, 0xa1, 0xa2, 0x6c, 0x01,
-	0xbe, 0x7a, 0x3c, 0x3f, 0x8d, 0xd8, 0x1d, 0x68, 0x18, 0xff, 0x5d, 0xba, 0xf2, 0x06, 0xc5, 0xa7,
-	0x91, 0xff, 0x97, 0x03, 0xed, 0xaf, 0x63, 0x69, 0xf4, 0xb4, 0xf1, 0x0e, 0x6c, 0x24, 0xf1, 0x34,
-	0x56, 0xa4, 0xac, 0x05, 0x26, 0xd0, 0x5d, 0xcc, 0x86, 0x43, 0x89, 0x8a, 0x36, 0xab, 0x05, 0x36,
-	0x62, 0x8f, 0xa0, 0x3e, 0x8c, 0x13, 0x85, 0xc2, 0xad, 0x76, 0xab, 0xbd, 0xd6, 0xc3, 0x7b, 0x7d,
-	0x3d, 0x28, 0xfd, 0x85, 0x94, 0xfd, 0xa7, 0xa4, 0x38, 0x49, 0x95, 0x98, 0x07, 0x56, 0xae, 0xb7,
-	0x79, 0xcd, 0x93, 0x59, 0xe1, 0x6c, 0x13, 0x68, 0x74, 0x18, 0x63, 0x12, 0x59, 0x47, 0x9b, 0xc0,
-	0xfb, 0x1c, 0x5a, 0xa5, 0x14, 0x6c, 0x0b, 0xaa, 0x13, 0x9c, 0xdb, 0x93, 0xe8, 0xcf, 0x37, 0xc9,
-	0x2a, 0xa5, 0x64, 0x5f, 0x54, 0x3e, 0x73, 0xfc, 0xe7, 0xd0, 0x29, 0xd7, 0x22, 0x73, 0xf6, 0x00,
-	0xea, 0x74, 0x78, 0xe9, 0x3a, 0x54, 0x71, 0xcb, 0x54, 0x6c, 0x2e, 0xcc, 0x52, 0x3a, 0xe1, 0x59,
-	0x36, 0x4b, 0x8b, 0xd3, 0x9a, 0xc0, 0x9f, 0xc2, 0xee, 0xf1, 0x98, 0xa7, 0x23, 0x24, 0xf1, 0x77,
-	0xd6, 0xf9, 0xff, 0xa7, 0x5b, 0x0b, 0x13, 0x55, 0x5d, 0x9c, 0x28, 0xff, 0x3d, 0xe8, 0x3c, 0x21,
-	0x8f, 0x14, 0xcd, 0x5c, 0xd7, 0xc8, 0x8f, 0xe0, 0xf6, 0xca, 0xda, 0x64, 0x4e, 0x13, 0xa8, 0xb8,
-	0x9a, 0x49, 0x5a, 0xd3, 0x08, 0x6c, 0xe4, 0x7f, 0x05, 0xec, 0x78, 0x8c, 0x67, 0x13, 0x5a, 0xf1,
-	0x54, 0xdf, 0xb4, 0xed, 0xbf, 0xb9, 0x4b, 0x67, 0x65, 0x63, 0x2a, 0xa5, 0xc6, 0xf8, 0x1f, 0xc0,
-	0xf6, 0x52, 0x86, 0x35, 0x1b, 0x7e, 0x08, 0xb7, 0xae, 0xf8, 0x5c, 0xe6, 0xfa, 0x47, 0x16, 0xcb,
-	0x10, 0x09, 0xb0, 0xfa, 0x46, 0x2c, 0x8d, 0xc0, 0xff, 0x1e, 0xbc, 0x9f, 0x68, 0x8a, 0x82, 0xd2,
-	0x30, 0x5e, 0x5e, 0xc7, 0xd5, 0xff, 0xec, 0xd2, 0x24, 0x57, 0x96, 0x27, 0xd9, 0xff, 0x04, 0xf6,
-	0xae, 0x4d, 0x79, 0x7d, 0xed, 0x0f, 0x7f, 0xab, 0xc1, 0x26, 0xa9, 0x7e, 0x30, 0xaf, 0x03, 0xf3,
-	0xa1, 0x7e, 0x4c, 0xf3, 0xcf, 0xca, 0x0e, 0xf2, 0xca, 0x81, 0xd6, 0x98, 0xbd, 0xd6, 0x68, 0xde,
-	0x85, 0xea, 0x33, 0x54, 0xec, 0x6d, 0x83, 0x5d, 0x19, 0xdd, 0x45, 0xe9, 0x23, 0x80, 0x37, 0x66,
-	0x66, 0xdb, 0x2b, 0x46, 0xcd, 0xdb, 0x59, 0x06, 0x65, 0xce, 0x3e, 0x85, 0xba, 0x71, 0x12, 0xb3,
-	0xfc, 0xa2, 0xaf, 0xbc, 0xdd, 0xbe, 0x79, 0xd8, 0xfa, 0xc5, 0xc3, 0xd6, 0x3f, 0xd1, 0x0f, 0x1b,
-	0x3b, 0x02, 0xa0, 0xfe, 0x52, 0x6b, 0x99, 0x6b, 0xd6, 0x2e, 0x7b, 0xc6, 0xbb, 0x73, 0x0d, 0x23,
-	0x73, 0xf6, 0x25, 0x34, 0x4e, 0x87, 0xa6, 0x9b, 0x6c, 0xd7, 0xc8, 0xae, 0xfe, 0xeb, 0xbc, 0xdb,
-	0x2b, 0x71, 0x99, 0xb3, 0x6f, 0xa0, 0x63, 0x4c, 0x5d, 0xf8, 0x99, 0xdd, 0x2d, 0x76, 0x5a, 0x35,
-	0x86, 0xde, 0xfe, 0x1a, 0x56, 0xe6, 0xec, 0x25, 0xb0, 0xe5, 0xd6, 0xb3, 0xae, 0x59, 0x74, 0xbd,
-	0xcf, 0xbc, 0xfb, 0xff, 0xa1, 0x90, 0xf9, 0xe3, 0xad, 0x3f, 0x2e, 0x0e, 0x9c, 0x3f, 0x2f, 0x0e,
-	0x9c, 0xbf, 0x2f, 0x0e, 0x9c, 0x5f, 0xff, 0x39, 0x78, 0x6b, 0x50, 0xa7, 0xbb, 0xfc, 0xf8, 0xdf,
-	0x00, 0x00, 0x00, 0xff, 0xff, 0xd4, 0x80, 0x01, 0x9a, 0x54, 0x08, 0x00, 0x00,
+	// 819 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x55, 0xcd, 0x72, 0x1b, 0x45,
+	0x10, 0x66, 0xa5, 0xb5, 0x22, 0xb5, 0x2c, 0x25, 0x69, 0xa7, 0xcc, 0x64, 0x1d, 0x1b, 0x65, 0x53,
+	0x50, 0xba, 0x20, 0x17, 0xa1, 0x80, 0x2b, 0x8a, 0x03, 0x39, 0x00, 0x01, 0x96, 0xbf, 0xf2, 0x69,
+	0x6b, 0xa4, 0x6d, 0x4b, 0x5b, 0x5e, 0xed, 0x2e, 0x33, 0x23, 0xbb, 0xf4, 0x26, 0x5c, 0x78, 0x0e,
+	0x5e, 0x81, 0x23, 0x77, 0x2e, 0x94, 0x79, 0x11, 0x6a, 0x7a, 0x56, 0x8a, 0x1c, 0x45, 0xa2, 0xa8,
+	0xe2, 0xb6, 0xfd, 0x7d, 0xdf, 0xf4, 0xf4, 0x4c, 0x7f, 0xbd, 0x03, 0x62, 0xae, 0x49, 0xc5, 0x9a,
+	0xd4, 0x55, 0x3a, 0xa6, 0x53, 0x99, 0xcc, 0xd2, 0x7c, 0x50, 0xaa, 0xc2, 0x14, 0xe8, 0x5b, 0x26,
+	0x38, 0x9a, 0x14, 0xc5, 0x24, 0xa3, 0x53, 0xc6, 0x46, 0xf3, 0x8b, 0x53, 0x9a, 0x95, 0x66, 0xe1,
+	0x24, 0xe1, 0x6f, 0x3e, 0xec, 0x0d, 0xed, 0x12, 0xec, 0x42, 0x2d, 0x4d, 0x84, 0xd7, 0xf3, 0xfa,
+	0xad, 0xa8, 0x96, 0x26, 0xf8, 0x0e, 0xb4, 0x39, 0x57, 0x5c, 0xa8, 0x84, 0x94, 0xa8, 0xf5, 0xbc,
+	0x7e, 0x3d, 0x02, 0x86, 0xbe, 0xb6, 0x08, 0x22, 0xf8, 0xaa, 0xc8, 0x48, 0xd4, 0x79, 0x09, 0x7f,
+	0xe3, 0x31, 0xc0, 0x45, 0xaa, 0xb4, 0x89, 0x73, 0x39, 0x23, 0xe1, 0x33, 0xd3, 0x62, 0xe4, 0xa5,
+	0x9c, 0x11, 0x1e, 0x41, 0x2b, 0x93, 0x4b, 0x76, 0x8f, 0xd9, 0xa6, 0x05, 0x98, 0x3c, 0x06, 0x18,
+	0xa5, 0xca, 0x4c, 0xe3, 0x44, 0x1a, 0x12, 0x0d, 0xb7, 0x96, 0x91, 0xe7, 0xd2, 0x10, 0x3e, 0x86,
+	0xfd, 0x72, 0x5a, 0xe4, 0x14, 0xe7, 0xf3, 0xd9, 0x88, 0x94, 0xb8, 0xc3, 0x82, 0x36, 0x63, 0x2f,
+	0x19, 0xc2, 0x07, 0xb0, 0x47, 0x33, 0x99, 0x66, 0xa2, 0xc9, 0x9c, 0x0b, 0x30, 0x80, 0x66, 0x29,
+	0xb5, 0xbe, 0x2e, 0x54, 0x22, 0x5a, 0x6e, 0xcf, 0x65, 0x8c, 0x87, 0xd0, 0x98, 0x50, 0x6e, 0xcf,
+	0x07, 0xcc, 0x54, 0x91, 0xc5, 0xb5, 0xcc, 0xa4, 0x5a, 0x88, 0x76, 0xcf, 0xeb, 0xd7, 0xa2, 0x2a,
+	0xc2, 0x47, 0xd0, 0x1a, 0xa5, 0xc5, 0x44, 0xc9, 0x72, 0xba, 0x10, 0xfb, 0xcb, 0x12, 0x2b, 0x00,
+	0xdf, 0x83, 0xbb, 0xda, 0x48, 0x65, 0xe2, 0xeb, 0x42, 0x5d, 0xc6, 0x0b, 0x92, 0x4a, 0x74, 0x58,
+	0xd3, 0x61, 0xf8, 0xa7, 0x42, 0x5d, 0x9e, 0x93, 0x54, 0x18, 0x42, 0x87, 0xf2, 0x64, 0x4d, 0xd5,
+	0x75, 0x67, 0xa1, 0x3c, 0x59, 0x69, 0x8e, 0x01, 0x56, 0xbc, 0x16, 0x77, 0x7b, 0x5e, 0xdf, 0x8f,
+	0x5a, 0xd7, 0x15, 0xab, 0xf1, 0x09, 0x74, 0x14, 0x5d, 0x28, 0xd2, 0xd3, 0xd8, 0x14, 0x97, 0x94,
+	0x8b, 0x7b, 0x9c, 0x62, 0xbf, 0x02, 0xbf, 0xb7, 0x98, 0xcd, 0x31, 0x56, 0x24, 0x0d, 0x25, 0xb1,
+	0x34, 0xe2, 0xbe, 0x2b, 0xb7, 0x42, 0x86, 0xc6, 0xd2, 0xf3, 0x32, 0x59, 0xd2, 0xe8, 0xe8, 0x0a,
+	0x71, 0x74, 0x42, 0x19, 0x55, 0xf4, 0x81, 0xa3, 0x2b, 0x64, 0x68, 0xc2, 0x1f, 0xa1, 0xfd, 0x82,
+	0x0c, 0x7b, 0x27, 0xa2, 0x9f, 0xed, 0xdd, 0x5f, 0xa4, 0x94, 0x2d, 0x1d, 0xe4, 0x02, 0x8b, 0x5e,
+	0xc9, 0x6c, 0x4e, 0x6c, 0x9f, 0x56, 0xe4, 0x02, 0x6b, 0x83, 0x54, 0xc7, 0x72, 0x6c, 0xd2, 0x2b,
+	0x67, 0x9f, 0x66, 0xd4, 0x4c, 0xf5, 0x90, 0xe3, 0xf0, 0x57, 0x0f, 0x3a, 0x5f, 0xa6, 0xda, 0x65,
+	0xd6, 0x36, 0x35, 0x82, 0x5f, 0xca, 0x09, 0x71, 0x66, 0x3f, 0xe2, 0x6f, 0x9b, 0x38, 0x4b, 0x67,
+	0xa9, 0xe1, 0xc4, 0x7e, 0xe4, 0x82, 0x9d, 0x89, 0x5f, 0xd5, 0xe2, 0xaf, 0xd7, 0xb2, 0xaa, 0x7b,
+	0x6f, 0xbd, 0xee, 0x87, 0xd0, 0x64, 0xdb, 0xc7, 0xa3, 0x45, 0xe5, 0xc4, 0x3b, 0x1c, 0x3f, 0x5b,
+	0x84, 0x5f, 0x40, 0x77, 0xbd, 0x3c, 0x5d, 0xe2, 0x13, 0x68, 0xf0, 0x58, 0x68, 0xe1, 0xf5, 0xea,
+	0xfd, 0xf6, 0xd3, 0xf6, 0xc0, 0xce, 0xdd, 0xc0, 0x5d, 0x4d, 0x45, 0xd9, 0x7d, 0xc6, 0xc5, 0x3c,
+	0x5f, 0x15, 0xcc, 0x41, 0x38, 0x83, 0xc3, 0xb3, 0xa9, 0xcc, 0x27, 0xc4, 0xe2, 0x6f, 0x2a, 0x5b,
+	0xda, 0x43, 0xbf, 0x6e, 0x77, 0x6f, 0x87, 0xdd, 0x6b, 0xdb, 0xec, 0x5e, 0xbf, 0x6d, 0xf7, 0xf0,
+	0x1c, 0xba, 0xcf, 0xb9, 0x81, 0xff, 0x7f, 0xdb, 0x3e, 0x80, 0xb7, 0xdf, 0x78, 0x12, 0x5d, 0xf2,
+	0x30, 0x19, 0x69, 0xe6, 0x9a, 0x37, 0x69, 0x46, 0x55, 0x14, 0x7e, 0x0a, 0x78, 0x36, 0xa5, 0xf1,
+	0x25, 0xaf, 0xf8, 0xdc, 0x6e, 0xfc, 0x1f, 0x2b, 0x0a, 0xdf, 0x87, 0x83, 0x8d, 0x0c, 0x3b, 0x36,
+	0xfc, 0x16, 0x82, 0x1f, 0xd8, 0xde, 0xd1, 0xda, 0x94, 0xac, 0xae, 0xe2, 0xf5, 0x1f, 0xe0, 0xc6,
+	0x88, 0xd5, 0x36, 0x47, 0x2c, 0xfc, 0x08, 0x8e, 0xb6, 0xa6, 0xdc, 0x5e, 0xc9, 0xd3, 0x3f, 0xeb,
+	0xb0, 0xcf, 0xaa, 0xef, 0xdc, 0x6f, 0x1b, 0x43, 0x68, 0x9c, 0xf1, 0x60, 0xe2, 0xba, 0x7b, 0x82,
+	0xf5, 0xc0, 0x6a, 0xdc, 0x5e, 0x3b, 0x34, 0xef, 0x42, 0xfd, 0x05, 0x19, 0xbc, 0xef, 0xb0, 0xb5,
+	0x01, 0xbd, 0x2d, 0xfb, 0x04, 0xe0, 0x95, 0x89, 0xf1, 0xc0, 0x51, 0xb7, 0xa6, 0x2e, 0x78, 0xb0,
+	0x09, 0xea, 0x12, 0x3f, 0x86, 0x86, 0x73, 0x10, 0x56, 0xfc, 0x6d, 0x3f, 0x05, 0x87, 0x03, 0xf7,
+	0xda, 0x0c, 0x96, 0xaf, 0xcd, 0xe0, 0x33, 0xfb, 0xda, 0xe0, 0x10, 0x80, 0x3b, 0xc5, 0x4d, 0x42,
+	0xe1, 0xd6, 0x6e, 0x76, 0x3f, 0x78, 0xb8, 0x85, 0xd1, 0x25, 0x7e, 0x05, 0x5d, 0xe7, 0xb0, 0xa5,
+	0xb9, 0xf0, 0xd1, 0x52, 0xfc, 0xa6, 0x09, 0x0a, 0x8e, 0x77, 0xb0, 0xba, 0xc4, 0x73, 0xc0, 0xcd,
+	0xce, 0x61, 0xcf, 0x2d, 0xda, 0x6e, 0x93, 0xe0, 0xf1, 0xbf, 0x28, 0x74, 0xf9, 0xec, 0xde, 0xef,
+	0x37, 0x27, 0xde, 0x1f, 0x37, 0x27, 0xde, 0x5f, 0x37, 0x27, 0xde, 0x2f, 0x7f, 0x9f, 0xbc, 0x35,
+	0x6a, 0xf0, 0x75, 0x7c, 0xf8, 0x4f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc0, 0x1a, 0x87, 0x99, 0xac,
+	0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -957,11 +887,10 @@ const _ = grpc.SupportPackageIsVersion4
 type AdminServiceClient interface {
 	Create(ctx context.Context, in *Admin, opts ...grpc.CallOption) (*Admin, error)
 	Update(ctx context.Context, in *Admin, opts ...grpc.CallOption) (*Admin, error)
-	Get(ctx context.Context, in *GetAdminReqById, opts ...grpc.CallOption) (*Admin, error)
+	Get(ctx context.Context, in *GetAdminReq, opts ...grpc.CallOption) (*Admin, error)
 	ListAdmins(ctx context.Context, in *ListAdminsReq, opts ...grpc.CallOption) (*ListAdminsResp, error)
 	Delete(ctx context.Context, in *DeleteAdminReq, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CheckField(ctx context.Context, in *CheckAdminFieldReq, opts ...grpc.CallOption) (*CheckAdminFieldResp, error)
-	IfExists(ctx context.Context, in *IfAdminExistsReq, opts ...grpc.CallOption) (*IfAdminExistsResp, error)
 	ChangePassword(ctx context.Context, in *ChangeAdminPasswordReq, opts ...grpc.CallOption) (*ChangeAdminPasswordResp, error)
 	UpdateRefreshToken(ctx context.Context, in *UpdateRefreshTokenAdminReq, opts ...grpc.CallOption) (*UpdateRefreshTokenAdminResp, error)
 }
@@ -992,7 +921,7 @@ func (c *adminServiceClient) Update(ctx context.Context, in *Admin, opts ...grpc
 	return out, nil
 }
 
-func (c *adminServiceClient) Get(ctx context.Context, in *GetAdminReqById, opts ...grpc.CallOption) (*Admin, error) {
+func (c *adminServiceClient) Get(ctx context.Context, in *GetAdminReq, opts ...grpc.CallOption) (*Admin, error) {
 	out := new(Admin)
 	err := c.cc.Invoke(ctx, "/user.AdminService/Get", in, out, opts...)
 	if err != nil {
@@ -1028,15 +957,6 @@ func (c *adminServiceClient) CheckField(ctx context.Context, in *CheckAdminField
 	return out, nil
 }
 
-func (c *adminServiceClient) IfExists(ctx context.Context, in *IfAdminExistsReq, opts ...grpc.CallOption) (*IfAdminExistsResp, error) {
-	out := new(IfAdminExistsResp)
-	err := c.cc.Invoke(ctx, "/user.AdminService/IfExists", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *adminServiceClient) ChangePassword(ctx context.Context, in *ChangeAdminPasswordReq, opts ...grpc.CallOption) (*ChangeAdminPasswordResp, error) {
 	out := new(ChangeAdminPasswordResp)
 	err := c.cc.Invoke(ctx, "/user.AdminService/ChangePassword", in, out, opts...)
@@ -1059,11 +979,10 @@ func (c *adminServiceClient) UpdateRefreshToken(ctx context.Context, in *UpdateR
 type AdminServiceServer interface {
 	Create(context.Context, *Admin) (*Admin, error)
 	Update(context.Context, *Admin) (*Admin, error)
-	Get(context.Context, *GetAdminReqById) (*Admin, error)
+	Get(context.Context, *GetAdminReq) (*Admin, error)
 	ListAdmins(context.Context, *ListAdminsReq) (*ListAdminsResp, error)
 	Delete(context.Context, *DeleteAdminReq) (*emptypb.Empty, error)
 	CheckField(context.Context, *CheckAdminFieldReq) (*CheckAdminFieldResp, error)
-	IfExists(context.Context, *IfAdminExistsReq) (*IfAdminExistsResp, error)
 	ChangePassword(context.Context, *ChangeAdminPasswordReq) (*ChangeAdminPasswordResp, error)
 	UpdateRefreshToken(context.Context, *UpdateRefreshTokenAdminReq) (*UpdateRefreshTokenAdminResp, error)
 }
@@ -1078,7 +997,7 @@ func (*UnimplementedAdminServiceServer) Create(ctx context.Context, req *Admin) 
 func (*UnimplementedAdminServiceServer) Update(ctx context.Context, req *Admin) (*Admin, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (*UnimplementedAdminServiceServer) Get(ctx context.Context, req *GetAdminReqById) (*Admin, error) {
+func (*UnimplementedAdminServiceServer) Get(ctx context.Context, req *GetAdminReq) (*Admin, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (*UnimplementedAdminServiceServer) ListAdmins(ctx context.Context, req *ListAdminsReq) (*ListAdminsResp, error) {
@@ -1089,9 +1008,6 @@ func (*UnimplementedAdminServiceServer) Delete(ctx context.Context, req *DeleteA
 }
 func (*UnimplementedAdminServiceServer) CheckField(ctx context.Context, req *CheckAdminFieldReq) (*CheckAdminFieldResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckField not implemented")
-}
-func (*UnimplementedAdminServiceServer) IfExists(ctx context.Context, req *IfAdminExistsReq) (*IfAdminExistsResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IfExists not implemented")
 }
 func (*UnimplementedAdminServiceServer) ChangePassword(ctx context.Context, req *ChangeAdminPasswordReq) (*ChangeAdminPasswordResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
@@ -1141,7 +1057,7 @@ func _AdminService_Update_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _AdminService_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAdminReqById)
+	in := new(GetAdminReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1153,7 +1069,7 @@ func _AdminService_Get_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: "/user.AdminService/Get",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).Get(ctx, req.(*GetAdminReqById))
+		return srv.(AdminServiceServer).Get(ctx, req.(*GetAdminReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1208,24 +1124,6 @@ func _AdminService_CheckField_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AdminServiceServer).CheckField(ctx, req.(*CheckAdminFieldReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AdminService_IfExists_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IfAdminExistsReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AdminServiceServer).IfExists(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/user.AdminService/IfExists",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminServiceServer).IfExists(ctx, req.(*IfAdminExistsReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1293,10 +1191,6 @@ var _AdminService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckField",
 			Handler:    _AdminService_CheckField_Handler,
-		},
-		{
-			MethodName: "IfExists",
-			Handler:    _AdminService_IfExists_Handler,
 		},
 		{
 			MethodName: "ChangePassword",
@@ -1474,7 +1368,7 @@ func (m *Admin) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *IfAdminExistsReq) Marshal() (dAtA []byte, err error) {
+func (m *GetAdminReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1484,12 +1378,12 @@ func (m *IfAdminExistsReq) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *IfAdminExistsReq) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetAdminReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *IfAdminExistsReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetAdminReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1498,51 +1392,27 @@ func (m *IfAdminExistsReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if len(m.Email) > 0 {
-		i -= len(m.Email)
-		copy(dAtA[i:], m.Email)
-		i = encodeVarintAdmin(dAtA, i, uint64(len(m.Email)))
+	if m.IsActive {
+		i--
+		if m.IsActive {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x18
+	}
+	if len(m.Value) > 0 {
+		i -= len(m.Value)
+		copy(dAtA[i:], m.Value)
+		i = encodeVarintAdmin(dAtA, i, uint64(len(m.Value)))
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.PhoneNumber) > 0 {
-		i -= len(m.PhoneNumber)
-		copy(dAtA[i:], m.PhoneNumber)
-		i = encodeVarintAdmin(dAtA, i, uint64(len(m.PhoneNumber)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *GetAdminReqById) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *GetAdminReqById) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *GetAdminReqById) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	if len(m.AdminId) > 0 {
-		i -= len(m.AdminId)
-		copy(dAtA[i:], m.AdminId)
-		i = encodeVarintAdmin(dAtA, i, uint64(len(m.AdminId)))
+	if len(m.Field) > 0 {
+		i -= len(m.Field)
+		copy(dAtA[i:], m.Field)
+		i = encodeVarintAdmin(dAtA, i, uint64(len(m.Field)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1573,6 +1443,13 @@ func (m *ListAdminsReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
+	if len(m.OrderBy) > 0 {
+		i -= len(m.OrderBy)
+		copy(dAtA[i:], m.OrderBy)
+		i = encodeVarintAdmin(dAtA, i, uint64(len(m.OrderBy)))
+		i--
+		dAtA[i] = 0x32
+	}
 	if len(m.Field) > 0 {
 		i -= len(m.Field)
 		copy(dAtA[i:], m.Field)
@@ -1587,32 +1464,23 @@ func (m *ListAdminsReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x22
 	}
-	if len(m.Filter) > 0 {
-		for k := range m.Filter {
-			v := m.Filter[k]
-			baseI := i
-			i -= len(v)
-			copy(dAtA[i:], v)
-			i = encodeVarintAdmin(dAtA, i, uint64(len(v)))
-			i--
-			dAtA[i] = 0x12
-			i -= len(k)
-			copy(dAtA[i:], k)
-			i = encodeVarintAdmin(dAtA, i, uint64(len(k)))
-			i--
-			dAtA[i] = 0xa
-			i = encodeVarintAdmin(dAtA, i, uint64(baseI-i))
-			i--
-			dAtA[i] = 0x1a
-		}
-	}
-	if m.Offset != 0 {
-		i = encodeVarintAdmin(dAtA, i, uint64(m.Offset))
+	if m.IsActive {
 		i--
-		dAtA[i] = 0x10
+		if m.IsActive {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x18
 	}
 	if m.Limit != 0 {
 		i = encodeVarintAdmin(dAtA, i, uint64(m.Limit))
+		i--
+		dAtA[i] = 0x10
+	}
+	if m.Page != 0 {
+		i = encodeVarintAdmin(dAtA, i, uint64(m.Page))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -1737,10 +1605,27 @@ func (m *DeleteAdminReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if len(m.AdminId) > 0 {
-		i -= len(m.AdminId)
-		copy(dAtA[i:], m.AdminId)
-		i = encodeVarintAdmin(dAtA, i, uint64(len(m.AdminId)))
+	if m.IsActive {
+		i--
+		if m.IsActive {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x18
+	}
+	if len(m.Value) > 0 {
+		i -= len(m.Value)
+		copy(dAtA[i:], m.Value)
+		i = encodeVarintAdmin(dAtA, i, uint64(len(m.Value)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Field) > 0 {
+		i -= len(m.Field)
+		copy(dAtA[i:], m.Field)
+		i = encodeVarintAdmin(dAtA, i, uint64(len(m.Field)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1808,17 +1693,17 @@ func (m *CheckAdminFieldReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if len(m.Field) > 0 {
-		i -= len(m.Field)
-		copy(dAtA[i:], m.Field)
-		i = encodeVarintAdmin(dAtA, i, uint64(len(m.Field)))
-		i--
-		dAtA[i] = 0x12
-	}
 	if len(m.Value) > 0 {
 		i -= len(m.Value)
 		copy(dAtA[i:], m.Value)
 		i = encodeVarintAdmin(dAtA, i, uint64(len(m.Value)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Field) > 0 {
+		i -= len(m.Field)
+		copy(dAtA[i:], m.Field)
+		i = encodeVarintAdmin(dAtA, i, uint64(len(m.Field)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1852,43 +1737,6 @@ func (m *CheckAdminFieldResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	if m.Status {
 		i--
 		if m.Status {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i--
-		dAtA[i] = 0x8
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *IfAdminExistsResp) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *IfAdminExistsResp) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *IfAdminExistsResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	if m.IsExists {
-		i--
-		if m.IsExists {
 			dAtA[i] = 1
 		} else {
 			dAtA[i] = 0
@@ -2073,35 +1921,22 @@ func (m *Admin) Size() (n int) {
 	return n
 }
 
-func (m *IfAdminExistsReq) Size() (n int) {
+func (m *GetAdminReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.PhoneNumber)
+	l = len(m.Field)
 	if l > 0 {
 		n += 1 + l + sovAdmin(uint64(l))
 	}
-	l = len(m.Email)
+	l = len(m.Value)
 	if l > 0 {
 		n += 1 + l + sovAdmin(uint64(l))
 	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *GetAdminReqById) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.AdminId)
-	if l > 0 {
-		n += 1 + l + sovAdmin(uint64(l))
+	if m.IsActive {
+		n += 2
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -2115,25 +1950,24 @@ func (m *ListAdminsReq) Size() (n int) {
 	}
 	var l int
 	_ = l
+	if m.Page != 0 {
+		n += 1 + sovAdmin(uint64(m.Page))
+	}
 	if m.Limit != 0 {
 		n += 1 + sovAdmin(uint64(m.Limit))
 	}
-	if m.Offset != 0 {
-		n += 1 + sovAdmin(uint64(m.Offset))
-	}
-	if len(m.Filter) > 0 {
-		for k, v := range m.Filter {
-			_ = k
-			_ = v
-			mapEntrySize := 1 + len(k) + sovAdmin(uint64(len(k))) + 1 + len(v) + sovAdmin(uint64(len(v)))
-			n += mapEntrySize + 1 + sovAdmin(uint64(mapEntrySize))
-		}
+	if m.IsActive {
+		n += 2
 	}
 	l = len(m.Value)
 	if l > 0 {
 		n += 1 + l + sovAdmin(uint64(l))
 	}
 	l = len(m.Field)
+	if l > 0 {
+		n += 1 + l + sovAdmin(uint64(l))
+	}
+	l = len(m.OrderBy)
 	if l > 0 {
 		n += 1 + l + sovAdmin(uint64(l))
 	}
@@ -2194,9 +2028,16 @@ func (m *DeleteAdminReq) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.AdminId)
+	l = len(m.Field)
 	if l > 0 {
 		n += 1 + l + sovAdmin(uint64(l))
+	}
+	l = len(m.Value)
+	if l > 0 {
+		n += 1 + l + sovAdmin(uint64(l))
+	}
+	if m.IsActive {
+		n += 2
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -2225,11 +2066,11 @@ func (m *CheckAdminFieldReq) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Value)
+	l = len(m.Field)
 	if l > 0 {
 		n += 1 + l + sovAdmin(uint64(l))
 	}
-	l = len(m.Field)
+	l = len(m.Value)
 	if l > 0 {
 		n += 1 + l + sovAdmin(uint64(l))
 	}
@@ -2246,21 +2087,6 @@ func (m *CheckAdminFieldResp) Size() (n int) {
 	var l int
 	_ = l
 	if m.Status {
-		n += 2
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *IfAdminExistsResp) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.IsExists {
 		n += 2
 	}
 	if m.XXX_unrecognized != nil {
@@ -2922,7 +2748,7 @@ func (m *Admin) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *IfAdminExistsReq) Unmarshal(dAtA []byte) error {
+func (m *GetAdminReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2945,15 +2771,15 @@ func (m *IfAdminExistsReq) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: IfAdminExistsReq: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetAdminReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: IfAdminExistsReq: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetAdminReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PhoneNumber", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Field", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -2981,11 +2807,11 @@ func (m *IfAdminExistsReq) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.PhoneNumber = string(dAtA[iNdEx:postIndex])
+			m.Field = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -3013,64 +2839,13 @@ func (m *IfAdminExistsReq) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Email = string(dAtA[iNdEx:postIndex])
+			m.Value = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipAdmin(dAtA[iNdEx:])
-			if err != nil {
-				return err
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IsActive", wireType)
 			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthAdmin
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *GetAdminReqById) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowAdmin
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: GetAdminReqById: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetAdminReqById: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field AdminId", wireType)
-			}
-			var stringLen uint64
+			var v int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAdmin
@@ -3080,24 +2855,12 @@ func (m *GetAdminReqById) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				v |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthAdmin
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthAdmin
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.AdminId = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
+			m.IsActive = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipAdmin(dAtA[iNdEx:])
@@ -3151,6 +2914,25 @@ func (m *ListAdminsReq) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Page", wireType)
+			}
+			m.Page = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAdmin
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Page |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Limit", wireType)
 			}
 			m.Limit = 0
@@ -3168,30 +2950,11 @@ func (m *ListAdminsReq) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Offset", wireType)
-			}
-			m.Offset = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowAdmin
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Offset |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Filter", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IsActive", wireType)
 			}
-			var msglen int
+			var v int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowAdmin
@@ -3201,119 +2964,12 @@ func (m *ListAdminsReq) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				v |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
-				return ErrInvalidLengthAdmin
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthAdmin
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Filter == nil {
-				m.Filter = make(map[string]string)
-			}
-			var mapkey string
-			var mapvalue string
-			for iNdEx < postIndex {
-				entryPreIndex := iNdEx
-				var wire uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return ErrIntOverflowAdmin
-					}
-					if iNdEx >= l {
-						return io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					wire |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				fieldNum := int32(wire >> 3)
-				if fieldNum == 1 {
-					var stringLenmapkey uint64
-					for shift := uint(0); ; shift += 7 {
-						if shift >= 64 {
-							return ErrIntOverflowAdmin
-						}
-						if iNdEx >= l {
-							return io.ErrUnexpectedEOF
-						}
-						b := dAtA[iNdEx]
-						iNdEx++
-						stringLenmapkey |= uint64(b&0x7F) << shift
-						if b < 0x80 {
-							break
-						}
-					}
-					intStringLenmapkey := int(stringLenmapkey)
-					if intStringLenmapkey < 0 {
-						return ErrInvalidLengthAdmin
-					}
-					postStringIndexmapkey := iNdEx + intStringLenmapkey
-					if postStringIndexmapkey < 0 {
-						return ErrInvalidLengthAdmin
-					}
-					if postStringIndexmapkey > l {
-						return io.ErrUnexpectedEOF
-					}
-					mapkey = string(dAtA[iNdEx:postStringIndexmapkey])
-					iNdEx = postStringIndexmapkey
-				} else if fieldNum == 2 {
-					var stringLenmapvalue uint64
-					for shift := uint(0); ; shift += 7 {
-						if shift >= 64 {
-							return ErrIntOverflowAdmin
-						}
-						if iNdEx >= l {
-							return io.ErrUnexpectedEOF
-						}
-						b := dAtA[iNdEx]
-						iNdEx++
-						stringLenmapvalue |= uint64(b&0x7F) << shift
-						if b < 0x80 {
-							break
-						}
-					}
-					intStringLenmapvalue := int(stringLenmapvalue)
-					if intStringLenmapvalue < 0 {
-						return ErrInvalidLengthAdmin
-					}
-					postStringIndexmapvalue := iNdEx + intStringLenmapvalue
-					if postStringIndexmapvalue < 0 {
-						return ErrInvalidLengthAdmin
-					}
-					if postStringIndexmapvalue > l {
-						return io.ErrUnexpectedEOF
-					}
-					mapvalue = string(dAtA[iNdEx:postStringIndexmapvalue])
-					iNdEx = postStringIndexmapvalue
-				} else {
-					iNdEx = entryPreIndex
-					skippy, err := skipAdmin(dAtA[iNdEx:])
-					if err != nil {
-						return err
-					}
-					if (skippy < 0) || (iNdEx+skippy) < 0 {
-						return ErrInvalidLengthAdmin
-					}
-					if (iNdEx + skippy) > postIndex {
-						return io.ErrUnexpectedEOF
-					}
-					iNdEx += skippy
-				}
-			}
-			m.Filter[mapkey] = mapvalue
-			iNdEx = postIndex
+			m.IsActive = bool(v != 0)
 		case 4:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
@@ -3377,6 +3033,38 @@ func (m *ListAdminsReq) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Field = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OrderBy", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAdmin
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthAdmin
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthAdmin
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OrderBy = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -3682,7 +3370,7 @@ func (m *DeleteAdminReq) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field AdminId", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Field", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -3710,8 +3398,60 @@ func (m *DeleteAdminReq) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.AdminId = string(dAtA[iNdEx:postIndex])
+			m.Field = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAdmin
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthAdmin
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthAdmin
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Value = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IsActive", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAdmin
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IsActive = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipAdmin(dAtA[iNdEx:])
@@ -3836,38 +3576,6 @@ func (m *CheckAdminFieldReq) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowAdmin
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthAdmin
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthAdmin
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Value = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Field", wireType)
 			}
 			var stringLen uint64
@@ -3897,6 +3605,38 @@ func (m *CheckAdminFieldReq) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Field = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAdmin
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthAdmin
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthAdmin
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Value = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -3969,77 +3709,6 @@ func (m *CheckAdminFieldResp) Unmarshal(dAtA []byte) error {
 				}
 			}
 			m.Status = bool(v != 0)
-		default:
-			iNdEx = preIndex
-			skippy, err := skipAdmin(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthAdmin
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *IfAdminExistsResp) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowAdmin
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: IfAdminExistsResp: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: IfAdminExistsResp: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field IsExists", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowAdmin
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.IsExists = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipAdmin(dAtA[iNdEx:])

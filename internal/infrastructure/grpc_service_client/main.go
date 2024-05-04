@@ -13,6 +13,7 @@ type ServiceClient interface {
 	BookingService() BookingServiceI
 	HealthcareService() HealthcareServiceI
 	UserService() UserServiceI
+	SessionService() SessionServiceI
 	Close()
 }
 
@@ -20,6 +21,7 @@ type serviceClient struct {
 	bookingService    BookingServiceI
 	healthcareService HealthcareServiceI
 	userService       UserServiceI
+	sessionService    SessionServiceI
 	connections       []*grpc.ClientConn
 }
 
@@ -54,10 +56,21 @@ func New(cfg *config.Config) (ServiceClient, error) {
 		return nil, err
 	}
 
+	connSessionService, err := grpc.Dial(
+		fmt.Sprintf("%s%s", cfg.SessionService.Host, cfg.SessionService.Port),
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithUnaryInterceptor(otelgrpc.UnaryClientInterceptor()),
+		grpc.WithStreamInterceptor(otelgrpc.StreamClientInterceptor()),
+	)
+	if err != nil {
+		return nil, err
+	}
+
 	return &serviceClient{
 		bookingService:    NewBookingService(connBookingService),
 		healthcareService: NewHealthcareService(connHealthcareService),
 		userService:       NewUserService(connUserService),
+		sessionService:    NewSessionService(connSessionService),
 		connections:       []*grpc.ClientConn{connBookingService, connHealthcareService, connUserService},
 	}, nil
 }
@@ -72,6 +85,10 @@ func (s *serviceClient) HealthcareService() HealthcareServiceI {
 
 func (s *serviceClient) UserService() UserServiceI {
 	return s.userService
+}
+
+func (s *serviceClient) SessionService() SessionServiceI {
+	return s.sessionService
 }
 
 func (s *serviceClient) Close() {
