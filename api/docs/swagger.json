@@ -7,9 +7,9 @@
     },
     "host": "localhost:9050",
     "paths": {
-        "/v1/auth/forger_password": {
+        "/v1/auth/forget_password": {
             "get": {
-                "description": "ForgerPassword - Api for registering users",
+                "description": "ForgetPassword - Api for registering users",
                 "consumes": [
                     "application/json"
                 ],
@@ -19,7 +19,7 @@
                 "tags": [
                     "Register"
                 ],
-                "summary": "ForgerPassword",
+                "summary": "ForgetPassword",
                 "parameters": [
                     {
                         "type": "string",
@@ -51,9 +51,9 @@
                 }
             }
         },
-        "/v1/auth/forger_password_verify": {
+        "/v1/auth/forget_password_verify": {
             "post": {
-                "description": "ForgerPasswordVerify - Api for registering users",
+                "description": "ForgetPasswordVerify - Api for registering users",
                 "consumes": [
                     "application/json"
                 ],
@@ -63,7 +63,7 @@
                 "tags": [
                     "Register"
                 ],
-                "summary": "ForgerPasswordVerify",
+                "summary": "ForgetPasswordVerify",
                 "parameters": [
                     {
                         "description": "RegisterModelReq",
@@ -263,13 +263,15 @@
             "type": "object",
             "properties": {
                 "cade": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 7777
                 },
                 "new_password": {
                     "type": "string"
                 },
                 "phone_number": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "+998950230605"
                 }
             }
         },
@@ -312,7 +314,7 @@
                 },
                 "first_name": {
                     "type": "string",
-                    "example": "John"
+                    "example": "Ali"
                 },
                 "gender": {
                     "type": "string",
@@ -320,7 +322,7 @@
                 },
                 "last_name": {
                     "type": "string",
-                    "example": "Doe"
+                    "example": "Jo'raxonov'"
                 },
                 "password": {
                     "type": "string",

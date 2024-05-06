@@ -15,9 +15,9 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/v1/auth/forger_password": {
+        "/v1/auth/forget_password": {
             "get": {
-                "description": "ForgerPassword - Api for registering users",
+                "description": "ForgetPassword - Api for registering users",
                 "consumes": [
                     "application/json"
                 ],
@@ -27,7 +27,7 @@ const docTemplate = `{
                 "tags": [
                     "Register"
                 ],
-                "summary": "ForgerPassword",
+                "summary": "ForgetPassword",
                 "parameters": [
                     {
                         "type": "string",
@@ -59,9 +59,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/auth/forger_password_verify": {
+        "/v1/auth/forget_password_verify": {
             "post": {
-                "description": "ForgerPasswordVerify - Api for registering users",
+                "description": "ForgetPasswordVerify - Api for registering users",
                 "consumes": [
                     "application/json"
                 ],
@@ -71,7 +71,7 @@ const docTemplate = `{
                 "tags": [
                     "Register"
                 ],
-                "summary": "ForgerPasswordVerify",
+                "summary": "ForgetPasswordVerify",
                 "parameters": [
                     {
                         "description": "RegisterModelReq",
@@ -271,13 +271,15 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "cade": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 7777
                 },
                 "new_password": {
                     "type": "string"
                 },
                 "phone_number": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "+998950230605"
                 }
             }
         },
@@ -320,7 +322,7 @@ const docTemplate = `{
                 },
                 "first_name": {
                     "type": "string",
-                    "example": "John"
+                    "example": "Ali"
                 },
                 "gender": {
                     "type": "string",
@@ -328,7 +330,7 @@ const docTemplate = `{
                 },
                 "last_name": {
                     "type": "string",
-                    "example": "Doe"
+                    "example": "Jo'raxonov'"
                 },
                 "password": {
                     "type": "string",

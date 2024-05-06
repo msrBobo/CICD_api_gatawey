@@ -4,6 +4,7 @@ import (
 	"context"
 	e "dennic_api_gateway/api/handlers/regtool"
 	"dennic_api_gateway/api/models/model_user_service"
+	ps "dennic_api_gateway/genproto/session_service"
 	pb "dennic_api_gateway/genproto/user_service"
 	"encoding/json"
 	"errors"
@@ -75,6 +76,8 @@ func (h *HandlerV1) Register(c *gin.Context) {
 
 	// TODO A method that sends a code to a number
 	body.Code = 7777
+
+	body.Id = uuid.New().String()
 
 	byteDate, err := json.Marshal(&body)
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Register") {
@@ -148,41 +151,36 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 		return
 	}
 
-	err = rdb.Del(ctx, body.PhoneNumber).Err()
+	sessions, err := h.serviceManager.SessionService().SessionService().GetUserSessions(ctx, &ps.StrUserReq{
+		UserId: user.Id,
+	})
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
 		return
 	}
 
-	//sessions, err := h.serviceManager.SessionService().SessionService().GetUserSessions(ctx, &ps.StrUserReq{
-	//	UserId: user.Id,
-	//})
-	//
-	//if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
-	//	return
-	//}
+	if sessions != nil {
+		if sessions.Count >= 3 {
+			err = errors.New("the number of devices has exceeded the limit")
+			_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Verify")
+			return
+		}
+	}
 
-	//if sessions.Count >= 3 {
-	//	err = errors.New("the number of devices has exceeded the limit")
-	//	_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Verify")
-	//}
+	sessionId := uuid.New().String()
 
-	//sessionId := uuid.New().String()
-	//
-	//_, err = h.serviceManager.SessionService().SessionService().CreateSession(ctx, &ps.SessionRequests{
-	//	Id:           sessionId,
-	//	IpAddress:    c.RemoteIP(),
-	//	UserId:       user.Id,
-	//	FcmToken:     body.FcmToken,
-	//	PlatformName: body.PlatformName,
-	//	PlatformType: body.PlatformType,
-	//})
-	//
-	//if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
-	//	return
-	//}
+	_, err = h.serviceManager.SessionService().SessionService().CreateSession(ctx, &ps.SessionRequests{
+		Id:           sessionId,
+		IpAddress:    c.RemoteIP(),
+		UserId:       user.Id,
+		FcmToken:     body.FcmToken,
+		PlatformName: body.PlatformName,
+		PlatformType: body.PlatformType,
+	})
 
-	user.Id = uuid.New().String()
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+		return
+	}
 
 	user.Password, err = e.HashPassword(user.Password)
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
@@ -210,6 +208,12 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 		return
 	}
 
+	err = rdb.Del(ctx, body.PhoneNumber).Err()
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+		return
+	}
+
 	c.JSON(http.StatusOK, &model_user_service.Response{
 		FirstName:   user.FirstName,
 		LastName:    user.LastName,
@@ -221,9 +225,9 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 
 }
 
-// ForgerPassword ...
-// @Summary ForgerPassword
-// @Description ForgerPassword - Api for registering users
+// ForgetPassword ...
+// @Summary ForgetPassword
+// @Description ForgetPassword - Api for registering users
 // @Tags Register
 // @Accept json
 // @Produce json
@@ -231,8 +235,8 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 // @Success 200 {object} model_user_service.MessageRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/auth/forger_password [get]
-func (h *HandlerV1) ForgerPassword(c *gin.Context) {
+// @Router /v1/auth/forget_password [get]
+func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 	rdb := redis.NewClient(&redis.Options{
 		Addr: "localhost:6379",
 	})
@@ -240,18 +244,32 @@ func (h *HandlerV1) ForgerPassword(c *gin.Context) {
 
 	if len(phoneNumber) != 13 && !govalidator.IsNumeric(phoneNumber) {
 		err := errors.New("invalid phone number")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Register")
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPassword")
 		return
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
+	existsPhone, err := h.serviceManager.UserService().UserService().CheckField(ctx, &pb.CheckFieldUserReq{
+		Field: "phone_number",
+		Value: phoneNumber,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPassword") {
+		return
+	}
+	if !existsPhone.Status {
+		err = errors.New("you haven't registered before")
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPassword")
+		return
+	}
+
 	// TODO A method that sends a code to a number
 	code := 7777
 
-	err := rdb.Set(ctx, phoneNumber, code, time.Minute*h.ContextTimeout).Err()
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Register") {
+	err = rdb.Set(ctx, phoneNumber, code, time.Minute*h.ContextTimeout).Err()
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPassword") {
 		return
 	}
 
@@ -260,9 +278,9 @@ func (h *HandlerV1) ForgerPassword(c *gin.Context) {
 	})
 }
 
-// ForgerPasswordVerify ...
-// @Summary ForgerPasswordVerify
-// @Description ForgerPasswordVerify - Api for registering users
+// ForgetPasswordVerify ...
+// @Summary ForgetPasswordVerify
+// @Description ForgetPasswordVerify - Api for registering users
 // @Tags Register
 // @Accept json
 // @Produce json
@@ -270,8 +288,8 @@ func (h *HandlerV1) ForgerPassword(c *gin.Context) {
 // @Failure 200 {object} model_user_service.MessageRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/auth/forger_password_verify [post]
-func (h *HandlerV1) ForgerPasswordVerify(c *gin.Context) {
+// @Router /v1/auth/forget_password_verify [post]
+func (h *HandlerV1) ForgetPasswordVerify(c *gin.Context) {
 	rdb := redis.NewClient(&redis.Options{
 		Addr: "localhost:6379",
 	})
@@ -290,37 +308,37 @@ func (h *HandlerV1) ForgerPasswordVerify(c *gin.Context) {
 
 	if len(body.PhoneNumber) != 13 && !govalidator.IsNumeric(body.PhoneNumber) {
 		err = errors.New("invalid phone number")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Register")
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPasswordVerify")
 		return
 	}
 
 	if !e.ValidatePassword(body.NewPassword) {
 		err = errors.New("invalid password")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Register")
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPasswordVerify")
 		return
 	}
 
 	redisRes, err := rdb.Get(ctx, body.PhoneNumber).Result()
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
 		return
 	}
 
 	err = rdb.Del(ctx, body.PhoneNumber).Err()
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
 		return
 	}
 
 	err = json.Unmarshal([]byte(redisRes), &code)
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
 		return
 	}
 
 	if body.Code != code {
 		err = errors.New("invalid code")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Register")
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPasswordVerify")
 		return
 	}
 
@@ -363,7 +381,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&body)
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Login") {
 		return
 	}
 
@@ -388,11 +406,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 		IsActive: false,
 	})
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
-		return
-	}
-
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Login") {
 		return
 	}
 
@@ -402,37 +416,44 @@ func (h *HandlerV1) Login(c *gin.Context) {
 		return
 	}
 
-	//sessions, err := h.serviceManager.SessionService().SessionService().GetUserSessions(ctx, &ps.StrUserReq{
-	//	UserId: user.Id,
-	//})
-	//
-	//if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
-	//	return
-	//}
-	//
-	//if sessions.Count >= 3 {
-	//	err = errors.New("the number of devices has exceeded the limit")
-	//	_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Verify")
-	//}
-	//
-	//sessionId := uuid.New().String()
-	//
-	//_, err = h.serviceManager.SessionService().SessionService().CreateSession(ctx, &ps.SessionRequests{
-	//	Id:           sessionId,
-	//	IpAddress:    c.RemoteIP(),
-	//	UserId:       user.Id,
-	//	FcmToken:     body.FcmToken,
-	//	PlatformName: body.PlatformName,
-	//	PlatformType: body.PlatformType,
-	//})
+	sessions, err := h.serviceManager.SessionService().SessionService().GetUserSessions(ctx, &ps.StrUserReq{
+		UserId: user.Id,
+	})
 
-	//if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
-	//	return
-	//}
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Login") {
+		return
+	}
 
-	access, _, err := h.jwthandler.GenerateAuthJWT(user.PhoneNumber, user.Id, "user")
+	if sessions.Count >= 3 {
+		err = errors.New("the number of devices has exceeded the limit")
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Login")
+	}
 
-	// TODO Update Refresh Token by User Id
+	sessionId := uuid.New().String()
+
+	_, err = h.serviceManager.SessionService().SessionService().CreateSession(ctx, &ps.SessionRequests{
+		Id:           sessionId,
+		IpAddress:    c.RemoteIP(),
+		UserId:       user.Id,
+		FcmToken:     body.FcmToken,
+		PlatformName: body.PlatformName,
+		PlatformType: body.PlatformType,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Login") {
+		return
+	}
+
+	access, refresh, err := h.jwthandler.GenerateAuthJWT(user.PhoneNumber, user.Id, "user")
+
+	_, err = h.serviceManager.UserService().UserService().UpdateRefreshToken(ctx, &pb.UpdateRefreshTokenUserReq{
+		Id:           user.Id,
+		RefreshToken: refresh,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Login") {
+		return
+	}
 
 	c.JSON(http.StatusOK, model_user_service.Response{
 		FirstName:   user.FirstName,

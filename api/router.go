@@ -71,8 +71,8 @@ func NewRoute(option RouteOption) *gin.Engine {
 	auth := api.Group("/auth")
 	auth.POST("/register", HandlerV1.Register)
 	auth.POST("/verify", HandlerV1.Verify)
-	auth.GET("/forger_password", HandlerV1.ForgerPassword)
-	auth.POST("/forger_password_verify", HandlerV1.ForgerPasswordVerify)
+	auth.GET("/forget_password", HandlerV1.ForgetPassword)
+	auth.POST("/forget_password_verify", HandlerV1.ForgetPasswordVerify)
 	auth.POST("/login", HandlerV1.Login)
 
 	url := ginSwagger.URL("swagger/doc.json")

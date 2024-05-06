@@ -1,0 +1,64 @@
+2024-05-06T17:07:17.407+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-06T17:07:25.464+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-06T17:07:25.465+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-06T17:07:36.487+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-06T17:08:32.894+0500	WARN	regtool/handle_error.go:20	context deadline exceeded
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Verify
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:136
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api/middleware.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-06T17:08:59.036+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-06T17:08:59.038+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-06T17:08:59.046+0500	WARN	regtool/handle_error.go:20	rpc error: code = Internal desc = runtime error: invalid memory address or nil pointer dereference
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Verify
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:179
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api/middleware.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039

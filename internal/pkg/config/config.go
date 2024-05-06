@@ -73,7 +73,7 @@ func NewConfig() (*Config, error) {
 	var config Config
 
 	// general configuration
-	config.APP = getEnv("APP", "app")
+	config.APP = getEnv("APP", "dennic_api_gateway")
 	config.Environment = getEnv("ENVIRONMENT", "develop")
 	config.LogLevel = getEnv("LOG_LEVEL", "debug")
 	config.Context.Timeout = cast.ToInt(getEnv("CONTEXT_TIMEOUT", "2"))
@@ -105,11 +105,11 @@ func NewConfig() (*Config, error) {
 	config.HealthcareService.Host = getEnv("HEALTHCARE_SERVICE_GRPC_HOST", "localhost")
 	config.HealthcareService.Port = getEnv("HEALTHCARE_SERVICE_GRPC_PORT", ":9080")
 
-	config.UserService.Host = getEnv("USER_SERVICE_GRPC_HOST", "localhost")
-	config.UserService.Port = getEnv("USER_SERVICE_GRPC_PORT", ":9070")
-
 	config.SessionService.Host = getEnv("SESSION_SERVICE_GRPC_HOST", "localhost")
 	config.SessionService.Port = getEnv("SESSION_SERVICE_GRPC_PORT", ":9060")
+
+	config.UserService.Host = getEnv("USER_SERVICE_GRPC_HOST", "localhost")
+	config.UserService.Port = getEnv("USER_SERVICE_GRPC_PORT", ":9070")
 
 	// token configuration
 	config.Token.Secret = getEnv("TOKEN_SECRET", "token_secret")
@@ -128,7 +128,8 @@ func NewConfig() (*Config, error) {
 	config.Token.RefreshTTL = refreshTTL
 
 	// otlp collector configuration
-	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "localhost")
+	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "localhost"+
+		"")
 	config.OTLPCollector.Port = getEnv("OTLP_COLLECTOR_PORT", ":4317")
 
 	// kafka configuration

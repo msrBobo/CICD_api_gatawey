@@ -3,8 +3,8 @@ package model_user_service
 type User struct {
 	Id           string `json:"-"`
 	UserOrder    string `json:"-"`
-	FirstName    string `json:"first_name" example:"John"`
-	LastName     string `json:"last_name" example:"Doe"`
+	FirstName    string `json:"first_name" example:"Ali"`
+	LastName     string `json:"last_name" example:"Jo'raxonov'"`
 	BrithDate    string `json:"birth_date" example:"2000-01-01"`
 	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
 	Password     string `json:"password" example:"password"`
@@ -19,8 +19,8 @@ type Users struct {
 
 type RegisterRequest struct {
 	Id           string `json:"-"`
-	FirstName    string `json:"first_name" example:"John"`
-	LastName     string `json:"last_name" example:"Doe"`
+	FirstName    string `json:"first_name" example:"Ali"`
+	LastName     string `json:"last_name" example:"Jo'raxonov'"`
 	BrithDate    string `json:"birth_date" example:"2000-01-01"`
 	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
 	Password     string `json:"password" example:"password"`
@@ -31,8 +31,8 @@ type RegisterRequest struct {
 
 type Redis struct {
 	Id           string `json:"id"`
-	FirstName    string `json:"first_name" example:"John"`
-	LastName     string `json:"last_name" example:"Doe"`
+	FirstName    string `json:"first_name" example:"Ali"`
+	LastName     string `json:"last_name" example:"Jo'raxonov'"`
 	BrithDate    string `json:"birth_date" example:"2000-01-01"`
 	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
 	Password     string `json:"password" example:"password"`
@@ -46,8 +46,8 @@ type MessageRes struct {
 }
 
 type ForgetPasswordVerify struct {
-	PhoneNumber string `json:"phone_number"`
-	Code        int    `json:"cade"`
+	PhoneNumber string `json:"phone_number" example:"+998950230605"`
+	Code        int    `json:"cade" example:"7777"`
 	NewPassword string `json:"new_password"`
 }
 

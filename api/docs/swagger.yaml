@@ -16,10 +16,12 @@ definitions:
   model_user_service.ForgetPasswordVerify:
     properties:
       cade:
+        example: 7777
         type: integer
       new_password:
         type: string
       phone_number:
+        example: "+998950230605"
         type: string
     type: object
   model_user_service.LoginReq:
@@ -48,13 +50,13 @@ definitions:
         example: "2000-01-01"
         type: string
       first_name:
-        example: John
+        example: Ali
         type: string
       gender:
         example: male
         type: string
       last_name:
-        example: Doe
+        example: Jo'raxonov'
         type: string
       password:
         example: password
@@ -99,11 +101,11 @@ info:
   title: Admin API
   version: "1.7"
 paths:
-  /v1/auth/forger_password:
+  /v1/auth/forget_password:
     get:
       consumes:
       - application/json
-      description: ForgerPassword - Api for registering users
+      description: ForgetPassword - Api for registering users
       parameters:
       - description: phone_number
         in: query
@@ -125,14 +127,14 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ForgerPassword
+      summary: ForgetPassword
       tags:
       - Register
-  /v1/auth/forger_password_verify:
+  /v1/auth/forget_password_verify:
     post:
       consumes:
       - application/json
-      description: ForgerPasswordVerify - Api for registering users
+      description: ForgetPasswordVerify - Api for registering users
       parameters:
       - description: RegisterModelReq
         in: body
@@ -155,7 +157,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ForgerPasswordVerify
+      summary: ForgetPasswordVerify
       tags:
       - Register
   /v1/auth/login:
