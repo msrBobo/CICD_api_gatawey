@@ -9,6 +9,7 @@ import (
 
 const (
 	OtpSecret = "some_secret"
+	SignKey   = "dennic_key"
 )
 
 type webAddress struct {

@@ -3,6 +3,7 @@ package api
 import (
 	// "github.com/casbin/casbin/v2"
 	_ "dennic_api_gateway/api/docs"
+	"dennic_api_gateway/api/middleware/casbin"
 	"dennic_api_gateway/internal/pkg/redis"
 	"time"
 
@@ -63,7 +64,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 
 	router.Use(middleware.GinTracing())
 
-	//router.Use(casbin.NewAuthorizer())
+	router.Use(casbin.NewAuthorizer())
 
 	api := router.Group("/v1")
 

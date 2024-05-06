@@ -95,14 +95,14 @@ func (jwtHandler *JWTHandler) ExtractClaims() (jwt.MapClaims, error) {
 }
 
 // ExtractClaim extracts claims from given token
-func ExtractClaim(tokenStr string) (jwt.MapClaims, error) {
+func ExtractClaim(tokenStr, key string) (jwt.MapClaims, error) {
 	var (
 		token *jwt.Token
 		err   error
 	)
 	token, err = jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
 		// check token signing method etc
-		return []byte("dennic"), nil
+		return []byte(key), nil
 	})
 	if err != nil {
 		return nil, err

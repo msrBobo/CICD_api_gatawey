@@ -1,8 +1,8 @@
 package casbin
 
 import (
-	"admin_api-gateway/internal/pkg/config"
-	jwt "admin_api-gateway/internal/pkg/tokens"
+	"dennic_api_gateway/internal/pkg/config"
+	jwt "dennic_api_gateway/internal/pkg/tokens"
 	"fmt"
 	"github.com/casbin/casbin/v2"
 	"github.com/gin-gonic/gin"
@@ -32,7 +32,7 @@ func NewAuthorizer() gin.HandlerFunc {
 			}
 		}
 
-		claims, err := jwt.ExtractClaim(token1, []byte(config.Token()))
+		claims, err := jwt.ExtractClaim(token1, config.SignKey)
 		if err != nil {
 			ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 				"message": err.Error(),
