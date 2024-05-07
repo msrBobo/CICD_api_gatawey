@@ -19,6 +19,7 @@ definitions:
         example: 7777
         type: integer
       new_password:
+        example: new_password
         type: string
       phone_number:
         example: "+998950230605"
@@ -37,11 +38,18 @@ definitions:
       platform_name:
         type: string
       platform_type:
+        example: mobile
         type: string
     type: object
   model_user_service.MessageRes:
     properties:
       message:
+        type: string
+    type: object
+  model_user_service.PhoneNumberReq:
+    properties:
+      phone_number:
+        example: "+998950230605"
         type: string
     type: object
   model_user_service.RegisterRequest:
@@ -93,25 +101,27 @@ definitions:
       platform_name:
         type: string
       platform_type:
+        example: mobile
         type: string
     type: object
 host: localhost:9050
 info:
   contact: {}
-  title: Admin API
+  title: API
   version: "1.7"
 paths:
-  /v1/auth/forget_password:
-    get:
+  /v1/customer/forget_password:
+    post:
       consumes:
       - application/json
       description: ForgetPassword - Api for registering users
       parameters:
-      - description: phone_number
-        in: query
-        name: phone_number
+      - description: RegisterModelReq
+        in: body
+        name: ForgetPassword
         required: true
-        type: string
+        schema:
+          $ref: '#/definitions/model_user_service.PhoneNumberReq'
       produces:
       - application/json
       responses:
@@ -129,8 +139,8 @@ paths:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: ForgetPassword
       tags:
-      - Register
-  /v1/auth/forget_password_verify:
+      - customer
+  /v1/customer/forget_password_verify:
     post:
       consumes:
       - application/json
@@ -159,8 +169,8 @@ paths:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: ForgetPasswordVerify
       tags:
-      - Register
-  /v1/auth/login:
+      - customer
+  /v1/customer/login:
     post:
       consumes:
       - application/json
@@ -189,8 +199,33 @@ paths:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: Login
       tags:
-      - Register
-  /v1/auth/register/:
+      - customer
+  /v1/customer/logout:
+    get:
+      consumes:
+      - application/json
+      description: LogOut - Api for registering users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.MessageRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      security:
+      - ApiKeycustomer: []
+      summary: LogOut
+      tags:
+      - customer
+  /v1/customer/register:
     post:
       consumes:
       - application/json
@@ -219,12 +254,12 @@ paths:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: Register
       tags:
-      - Register
-  /v1/auth/verify:
+      - customer
+  /v1/customer/verify:
     post:
       consumes:
       - application/json
-      description: Authorization - Api for registering users
+      description: customer - Api for registering users
       parameters:
       - description: RegisterModelReq
         in: body
@@ -238,7 +273,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_user_service.Verify'
+            $ref: '#/definitions/model_user_service.Response'
         "400":
           description: Bad Request
           schema:
@@ -249,10 +284,10 @@ paths:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: Verify
       tags:
-      - Register
+      - customer
 securityDefinitions:
-  ApiKeyAuth:
+  ApiKeycustomer:
     in: header
-    name: Authorization
+    name: customerorization
     type: apiKey
 swagger: "2.0"

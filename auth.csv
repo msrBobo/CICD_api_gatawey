@@ -1,0 +1,17 @@
+p, unauthorized, /v1/swagger/*, GET
+p, unauthorized, /v1/swagger/index.html, GET
+p, unauthorized, /v1/swagger/index.html, POST
+p, unauthorized, /v1/swagger/swagger-ui.css, GET
+p, unauthorized, /v1/swagger/swagger-ui-bundle.js, GET
+p, unauthorized, /v1/swagger/swagger-ui-standalone-preset.js, GET
+p, unauthorized, /v1/swagger/favicon-32x32.png, GET
+p, unauthorized, /v1/swagger/swagger/doc.json, GET
+
+p, unauthorized, /v1/customer/register, POST
+p, unauthorized, /v1/customer/verify, POST
+p, unauthorized, /v1/customer/forget_password, POST
+p, unauthorized, /v1/customer/forget_password_verify, POST
+p, unauthorized, /v1/customer/login, POST
+
+
+p, user, /v1/customer/logout, GET

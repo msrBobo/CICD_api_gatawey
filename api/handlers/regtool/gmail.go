@@ -14,7 +14,7 @@ package v1
 //	smtpHost := "smtp.gmail.com"
 //	smtpPort := "587"
 //
-//	auth := smtp.PlainAuth("test", email, password, smtpHost)
+//	customer := smtp.Plaincustomer("test", email, password, smtpHost)
 //
 //	randomNumber := RadomGenerator()
 //	randomNumberString := strconv.Itoa(randomNumber)
@@ -22,7 +22,7 @@ package v1
 //	to := []string{user.Email}
 //	msg := []byte(randomNumberString)
 //
-//	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, email, to, msg)
+//	err := smtp.SendMail(smtpHost+":"+smtpPort, customer, email, to, msg)
 //	if err != nil {
 //		return "", err
 //	}

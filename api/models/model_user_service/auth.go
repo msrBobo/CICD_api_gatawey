@@ -48,22 +48,22 @@ type MessageRes struct {
 type ForgetPasswordVerify struct {
 	PhoneNumber string `json:"phone_number" example:"+998950230605"`
 	Code        int    `json:"cade" example:"7777"`
-	NewPassword string `json:"new_password"`
+	NewPassword string `json:"new_password" example:"new_password"`
 }
 
 type Verify struct {
 	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
 	Code         int64  `json:"code" example:"7777"`
 	PlatformName string `json:"platform_name"`
-	PlatformType string `json:"platform_type"`
+	PlatformType string `json:"platform_type" example:"mobile"`
 	FcmToken     string `json:"fcm_token"`
 }
 
 type LoginReq struct {
 	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
 	Password     string `json:"password" example:"password"`
-	PlatformName string `json:"platform_name"`
-	PlatformType string `json:"platform_type"`
+	PlatformName string `json:"platform_name" `
+	PlatformType string `json:"platform_type" example:"mobile"`
 	FcmToken     string `json:"fcm_token"`
 }
 
@@ -74,4 +74,8 @@ type Response struct {
 	PhoneNumber string `json:"phone_number" `
 	Gender      string `json:"gender"`
 	AccessToken string `json:"access_token"`
+}
+
+type PhoneNumberReq struct {
+	PhoneNumber string `json:"phone_number" example:"+998950230605"`
 }

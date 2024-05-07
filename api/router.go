@@ -30,14 +30,14 @@ type RouteOption struct {
 
 }
 
-// @title Admin API
+// @title API
 // @version 1.7
 // @host localhost:9050
 
 // NewRoute
-// @securityDefinitions.apikey ApiKeyAuth
+// @securityDefinitions.apikey ApiKeycustomer
 // @in header
-// @name Authorization
+// @name customerorization
 func NewRoute(option RouteOption) *gin.Engine {
 	router := gin.New()
 
@@ -68,13 +68,14 @@ func NewRoute(option RouteOption) *gin.Engine {
 
 	api := router.Group("/v1")
 
-	// AUTH
-	auth := api.Group("/auth")
-	auth.POST("/register", HandlerV1.Register)
-	auth.POST("/verify", HandlerV1.Verify)
-	auth.GET("/forget_password", HandlerV1.ForgetPassword)
-	auth.POST("/forget_password_verify", HandlerV1.ForgetPasswordVerify)
-	auth.POST("/login", HandlerV1.Login)
+	// customer
+	customer := api.Group("/customer")
+	customer.POST("/register", HandlerV1.Register)
+	customer.POST("/verify", HandlerV1.Verify)
+	customer.POST("/forget_password", HandlerV1.ForgetPassword)
+	customer.POST("/forget_password_verify", HandlerV1.ForgetPasswordVerify)
+	customer.POST("/login", HandlerV1.Login)
+	customer.GET("/logout", HandlerV1.LogOut)
 
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))

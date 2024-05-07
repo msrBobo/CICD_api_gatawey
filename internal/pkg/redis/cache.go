@@ -7,7 +7,7 @@ import (
 )
 
 type RedisDB struct {
-	Client redis.Client
+	Client *redis.Client
 }
 
 func New(cfg *config.Config) (*RedisDB, error) {
@@ -20,5 +20,5 @@ func New(cfg *config.Config) (*RedisDB, error) {
 		Password: cfg.Redis.Password,
 		DB:       db,
 	})
-	return &RedisDB{Client: *rdb}, nil
+	return &RedisDB{Client: rdb}, nil
 }

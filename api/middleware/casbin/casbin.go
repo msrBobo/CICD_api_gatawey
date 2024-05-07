@@ -24,7 +24,7 @@ func NewAuthorizer() gin.HandlerFunc {
 			sub := "unauthorized"
 			obj := ctx.Request.URL.Path
 			etc := ctx.Request.Method
-			e, _ := casbin.NewEnforcer("auth.conf", "auth.csv")
+			e, _ := casbin.NewEnforcer(`auth.conf`, `auth.csv`)
 			t, _ := e.Enforce(sub, obj, etc)
 			if t {
 				ctx.Next()
@@ -32,7 +32,7 @@ func NewAuthorizer() gin.HandlerFunc {
 			}
 		}
 
-		claims, err := jwt.ExtractClaim(token1, config.SignKey)
+		claims, err := jwt.ExtractClaim(token1)
 		if err != nil {
 			ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 				"message": err.Error(),
@@ -44,7 +44,7 @@ func NewAuthorizer() gin.HandlerFunc {
 		obj := ctx.Request.URL.Path
 		etc := ctx.Request.Method
 
-		e, err := casbin.NewEnforcer("auth.conf", "auth.csv")
+		e, err := casbin.NewEnforcer(`auth.conf`, `auth.csv`)
 
 		if err != nil {
 			log.Fatal(err)

@@ -6,12 +6,13 @@ import (
 	"dennic_api_gateway/api/models/model_user_service"
 	ps "dennic_api_gateway/genproto/session_service"
 	pb "dennic_api_gateway/genproto/user_service"
+	jwt "dennic_api_gateway/internal/pkg/tokens"
 	"encoding/json"
 	"errors"
 	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/redis/go-redis/v9"
+	"github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
 	"net/http"
 	"time"
@@ -20,18 +21,18 @@ import (
 // Register ...
 // @Summary Register
 // @Description Register - Api for registering users
-// @Tags Register
+// @Tags customer
 // @Accept json
 // @Produce json
 // @Param Register body model_user_service.RegisterRequest true "RegisterRequest"
 // @Success 200 {object} model_user_service.MessageRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/auth/register/ [post]
+// @Router /v1/customer/register [post]
 func (h *HandlerV1) Register(c *gin.Context) {
-	rdb := redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
-	})
+	//rdb := redis.NewClient(&redis.Options{
+	//	Addr: "redisdb:6379",
+	//})
 
 	var (
 		body        model_user_service.Redis
@@ -84,7 +85,7 @@ func (h *HandlerV1) Register(c *gin.Context) {
 		return
 	}
 
-	err = rdb.Set(ctx, body.PhoneNumber, byteDate, time.Minute*h.ContextTimeout).Err()
+	err = h.redis.Client.Set(ctx, body.PhoneNumber, byteDate, time.Minute*h.ContextTimeout).Err()
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Register") {
 		return
 	}
@@ -96,19 +97,19 @@ func (h *HandlerV1) Register(c *gin.Context) {
 
 // Verify ...
 // @Summary Verify
-// @Description Authorization - Api for registering users
-// @Tags Register
+// @Description customer - Api for registering users
+// @Tags customer
 // @Accept json
 // @Produce json
 // @Param Verify body model_user_service.Verify true "RegisterModelReq"
-// @Failure 200 {object} model_user_service.Verify
+// @Failure 200 {object} model_user_service.Response
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/auth/verify [post]
+// @Router /v1/customer/verify [post]
 func (h *HandlerV1) Verify(c *gin.Context) {
-	rdb := redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
-	})
+	//rdb := redis.NewClient(&redis.Options{
+	//	Addr: "redisdb:6379",
+	//})
 
 	var (
 		body        model_user_service.Verify
@@ -133,7 +134,7 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 		return
 	}
 
-	redisRes, err := rdb.Get(ctx, body.PhoneNumber).Result()
+	redisRes, err := h.redis.Client.Get(ctx, body.PhoneNumber).Result()
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
 		return
@@ -169,7 +170,7 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 
 	sessionId := uuid.New().String()
 
-	_, err = h.serviceManager.SessionService().SessionService().CreateSession(ctx, &ps.SessionRequests{
+	session, err := h.serviceManager.SessionService().SessionService().CreateSession(ctx, &ps.SessionRequests{
 		Id:           sessionId,
 		IpAddress:    c.RemoteIP(),
 		UserId:       user.Id,
@@ -177,17 +178,17 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 		PlatformName: body.PlatformName,
 		PlatformType: body.PlatformType,
 	})
-
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
 		return
 	}
 
 	user.Password, err = e.HashPassword(user.Password)
+
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
 		return
 	}
 
-	access, refresh, err := h.jwthandler.GenerateAuthJWT(user.PhoneNumber, user.Id, "user")
+	access, refresh, err := h.jwthandler.GenerateAuthJWT(user.PhoneNumber, user.Id, session.Id, "user")
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
 		return
@@ -208,7 +209,7 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 		return
 	}
 
-	err = rdb.Del(ctx, body.PhoneNumber).Err()
+	err = h.redis.Client.Del(ctx, body.PhoneNumber).Err()
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
 		return
@@ -228,21 +229,29 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 // ForgetPassword ...
 // @Summary ForgetPassword
 // @Description ForgetPassword - Api for registering users
-// @Tags Register
+// @Tags customer
 // @Accept json
 // @Produce json
-// @Param phone_number query string true "phone_number"
+// @Param ForgetPassword body model_user_service.PhoneNumberReq true "RegisterModelReq"
 // @Success 200 {object} model_user_service.MessageRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/auth/forget_password [get]
+// @Router /v1/customer/forget_password [post]
 func (h *HandlerV1) ForgetPassword(c *gin.Context) {
-	rdb := redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
-	})
-	phoneNumber := c.Query("phone_number")
+	var (
+		body        model_user_service.PhoneNumberReq
+		jsonMarshal protojson.MarshalOptions
+	)
 
-	if len(phoneNumber) != 13 && !govalidator.IsNumeric(phoneNumber) {
+	jsonMarshal.UseProtoNames = true
+
+	err := c.ShouldBindJSON(&body)
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
+		return
+	}
+
+	if len(body.PhoneNumber) != 13 && !govalidator.IsNumeric(body.PhoneNumber) {
 		err := errors.New("invalid phone number")
 		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPassword")
 		return
@@ -253,7 +262,7 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 
 	existsPhone, err := h.serviceManager.UserService().UserService().CheckField(ctx, &pb.CheckFieldUserReq{
 		Field: "phone_number",
-		Value: phoneNumber,
+		Value: body.PhoneNumber,
 	})
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPassword") {
@@ -268,7 +277,7 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 	// TODO A method that sends a code to a number
 	code := 7777
 
-	err = rdb.Set(ctx, phoneNumber, code, time.Minute*h.ContextTimeout).Err()
+	err = h.redis.Client.Set(ctx, body.PhoneNumber, code, time.Minute*h.ContextTimeout).Err()
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPassword") {
 		return
 	}
@@ -281,18 +290,15 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 // ForgetPasswordVerify ...
 // @Summary ForgetPasswordVerify
 // @Description ForgetPasswordVerify - Api for registering users
-// @Tags Register
+// @Tags customer
 // @Accept json
 // @Produce json
 // @Param Verify body model_user_service.ForgetPasswordVerify true "RegisterModelReq"
 // @Failure 200 {object} model_user_service.MessageRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/auth/forget_password_verify [post]
+// @Router /v1/customer/forget_password_verify [post]
 func (h *HandlerV1) ForgetPasswordVerify(c *gin.Context) {
-	rdb := redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
-	})
 	var (
 		body        model_user_service.ForgetPasswordVerify
 		code        int
@@ -302,6 +308,10 @@ func (h *HandlerV1) ForgetPasswordVerify(c *gin.Context) {
 	jsonMarshal.UseProtoNames = true
 
 	err := c.ShouldBindJSON(&body)
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
+		return
+	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
@@ -318,13 +328,13 @@ func (h *HandlerV1) ForgetPasswordVerify(c *gin.Context) {
 		return
 	}
 
-	redisRes, err := rdb.Get(ctx, body.PhoneNumber).Result()
+	redisRes, err := h.redis.Client.Get(ctx, body.PhoneNumber).Result()
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
 		return
 	}
 
-	err = rdb.Del(ctx, body.PhoneNumber).Err()
+	err = h.redis.Client.Del(ctx, body.PhoneNumber).Err()
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
 		return
@@ -363,14 +373,14 @@ func (h *HandlerV1) ForgetPasswordVerify(c *gin.Context) {
 // Login ...
 // @Summary Login
 // @Description Login - Api for registering users
-// @Tags Register
+// @Tags customer
 // @Accept json
 // @Produce json
 // @Param Login body model_user_service.LoginReq true "Login Req"
 // @Success 200 {object} model_user_service.Response
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/auth/login [post]
+// @Router /v1/customer/login [post]
 func (h *HandlerV1) Login(c *gin.Context) {
 	var (
 		body        model_user_service.LoginReq
@@ -417,16 +427,20 @@ func (h *HandlerV1) Login(c *gin.Context) {
 	}
 
 	sessions, err := h.serviceManager.SessionService().SessionService().GetUserSessions(ctx, &ps.StrUserReq{
-		UserId: user.Id,
+		UserId:   user.Id,
+		IsActive: false,
 	})
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Login") {
 		return
 	}
 
-	if sessions.Count >= 3 {
-		err = errors.New("the number of devices has exceeded the limit")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Login")
+	if sessions != nil {
+		if sessions.Count >= 3 {
+			err = errors.New("the number of devices has exceeded the limit")
+			_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Verify")
+			return
+		}
 	}
 
 	sessionId := uuid.New().String()
@@ -444,7 +458,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 		return
 	}
 
-	access, refresh, err := h.jwthandler.GenerateAuthJWT(user.PhoneNumber, user.Id, "user")
+	access, refresh, err := h.jwthandler.GenerateAuthJWT(user.PhoneNumber, user.Id, sessionId, "user")
 
 	_, err = h.serviceManager.UserService().UserService().UpdateRefreshToken(ctx, &pb.UpdateRefreshTokenUserReq{
 		Id:           user.Id,
@@ -463,4 +477,37 @@ func (h *HandlerV1) Login(c *gin.Context) {
 		Gender:      user.Gender,
 		AccessToken: access,
 	})
+}
+
+// LogOut ...
+// @Summary LogOut
+// @Description LogOut - Api for registering users
+// @Tags customer
+// @Security ApiKeycustomer
+// @Accept json
+// @Produce json
+// @Success 200 {object} model_user_service.MessageRes
+// @Failure 400 {object} model_common.StandardErrorModel
+// @Failure 500 {object} model_common.StandardErrorModel
+// @Router /v1/customer/logout [get]
+func (h *HandlerV1) LogOut(c *gin.Context) {
+	token := c.GetHeader("Authorization")
+	claims, err := jwt.ExtractClaim(token)
+
+	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "Logout") {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
+	defer cancel()
+
+	_, err = h.serviceManager.SessionService().SessionService().DeleteSessionById(ctx, &ps.StrReq{
+		Id: cast.ToString(claims["session_id"]),
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "LogOut") {
+		return
+	}
+
+	c.JSON(http.StatusOK, &model_user_service.MessageRes{Message: "Log out done!"})
 }

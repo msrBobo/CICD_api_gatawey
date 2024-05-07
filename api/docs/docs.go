@@ -15,8 +15,8 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/v1/auth/forget_password": {
-            "get": {
+        "/v1/customer/forget_password": {
+            "post": {
                 "description": "ForgetPassword - Api for registering users",
                 "consumes": [
                     "application/json"
@@ -25,16 +25,18 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Register"
+                    "customer"
                 ],
                 "summary": "ForgetPassword",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "phone_number",
-                        "name": "phone_number",
-                        "in": "query",
-                        "required": true
+                        "description": "RegisterModelReq",
+                        "name": "ForgetPassword",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.PhoneNumberReq"
+                        }
                     }
                 ],
                 "responses": {
@@ -59,7 +61,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/auth/forget_password_verify": {
+        "/v1/customer/forget_password_verify": {
             "post": {
                 "description": "ForgetPasswordVerify - Api for registering users",
                 "consumes": [
@@ -69,7 +71,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Register"
+                    "customer"
                 ],
                 "summary": "ForgetPasswordVerify",
                 "parameters": [
@@ -105,7 +107,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/auth/login": {
+        "/v1/customer/login": {
             "post": {
                 "description": "Login - Api for registering users",
                 "consumes": [
@@ -115,7 +117,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Register"
+                    "customer"
                 ],
                 "summary": "Login",
                 "parameters": [
@@ -151,7 +153,47 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/auth/register/": {
+        "/v1/customer/logout": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeycustomer": []
+                    }
+                ],
+                "description": "LogOut - Api for registering users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "customer"
+                ],
+                "summary": "LogOut",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.MessageRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/customer/register": {
             "post": {
                 "description": "Register - Api for registering users",
                 "consumes": [
@@ -161,7 +203,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Register"
+                    "customer"
                 ],
                 "summary": "Register",
                 "parameters": [
@@ -197,9 +239,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/auth/verify": {
+        "/v1/customer/verify": {
             "post": {
-                "description": "Authorization - Api for registering users",
+                "description": "customer - Api for registering users",
                 "consumes": [
                     "application/json"
                 ],
@@ -207,7 +249,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Register"
+                    "customer"
                 ],
                 "summary": "Verify",
                 "parameters": [
@@ -225,7 +267,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_user_service.Verify"
+                            "$ref": "#/definitions/model_user_service.Response"
                         }
                     },
                     "400": {
@@ -275,7 +317,8 @@ const docTemplate = `{
                     "example": 7777
                 },
                 "new_password": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "new_password"
                 },
                 "phone_number": {
                     "type": "string",
@@ -301,7 +344,8 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "platform_type": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "mobile"
                 }
             }
         },
@@ -310,6 +354,15 @@ const docTemplate = `{
             "properties": {
                 "message": {
                     "type": "string"
+                }
+            }
+        },
+        "model_user_service.PhoneNumberReq": {
+            "type": "object",
+            "properties": {
+                "phone_number": {
+                    "type": "string",
+                    "example": "+998950230605"
                 }
             }
         },
@@ -383,15 +436,16 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "platform_type": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "mobile"
                 }
             }
         }
     },
     "securityDefinitions": {
-        "ApiKeyAuth": {
+        "ApiKeycustomer": {
             "type": "apiKey",
-            "name": "Authorization",
+            "name": "customerorization",
             "in": "header"
         }
     }
@@ -403,7 +457,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:9050",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "Admin API",
+	Title:            "API",
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

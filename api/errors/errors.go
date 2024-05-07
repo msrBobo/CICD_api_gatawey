@@ -11,9 +11,9 @@ import (
 )
 
 var (
-	ErrInvalidArgument  = errors.New("invalid argument")
-	ErrAuthDataNotFound = ErrAuthData(errors.New("failed to fetch authentication data"))
-	ErrNotFound         = &ErrResponse{HTTPStatusCode: 404, ErrorText: "resource not found."}
+	ErrInvalidArgument      = errors.New("invalid argument")
+	ErrcustomerDataNotFound = ErrcustomerData(errors.New("failed to fetch customerentication data"))
+	ErrNotFound             = &ErrResponse{HTTPStatusCode: 404, ErrorText: "resource not found."}
 )
 
 type ErrResponse struct {
@@ -56,7 +56,7 @@ func IsNotFound(err error) bool {
 	return st.Code() == codes.NotFound
 }
 
-func ErrAuthData(err error) render.Renderer {
+func ErrcustomerData(err error) render.Renderer {
 	return &ErrResponse{
 		Err:            err,
 		HTTPStatusCode: 401,
