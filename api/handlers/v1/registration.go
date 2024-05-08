@@ -459,6 +459,9 @@ func (h *HandlerV1) Login(c *gin.Context) {
 	}
 
 	access, refresh, err := h.jwthandler.GenerateAuthJWT(user.PhoneNumber, user.Id, sessionId, "user")
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Login") {
+		return
+	}
 
 	_, err = h.serviceManager.UserService().UserService().UpdateRefreshToken(ctx, &pb.UpdateRefreshTokenUserReq{
 		Id:           user.Id,

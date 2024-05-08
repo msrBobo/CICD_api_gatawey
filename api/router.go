@@ -79,6 +79,13 @@ func NewRoute(option RouteOption) *gin.Engine {
 	customer.POST("/login", HandlerV1.Login)
 	customer.POST("/logout", HandlerV1.LogOut)
 
+	// user
+	user := api.Group("/user")
+	user.GET("/get", HandlerV1.GetUser)
+	user.GET("/", HandlerV1.ListUsers)
+	user.PUT("/", HandlerV1.UpdateUser)
+	user.DELETE("/", HandlerV1.DeleteUser)
+
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 
