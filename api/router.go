@@ -77,7 +77,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	customer.POST("/forget_password", HandlerV1.ForgetPassword)
 	customer.POST("/forget_password_verify", HandlerV1.ForgetPasswordVerify)
 	customer.POST("/login", HandlerV1.Login)
-	customer.GET("/logout", HandlerV1.LogOut)
+	customer.POST("/logout", HandlerV1.LogOut)
 
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))

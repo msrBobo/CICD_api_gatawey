@@ -17,4 +17,4 @@ p, unauthorized, /v1/customer/login, POST
 p, unauthorized, /v1/file-upload, POST
 
 
-p, user, /v1/customer/logout, GET
+p, user, /v1/customer/logout, POST

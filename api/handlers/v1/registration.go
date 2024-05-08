@@ -489,7 +489,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 // @Success 200 {object} model_user_service.MessageRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/customer/logout [get]
+// @Router /v1/customer/logout [post]
 func (h *HandlerV1) LogOut(c *gin.Context) {
 	token := c.GetHeader("Authorization")
 	claims, err := jwt.ExtractClaim(token)
