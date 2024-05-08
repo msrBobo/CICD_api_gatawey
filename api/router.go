@@ -35,9 +35,9 @@ type RouteOption struct {
 // @host localhost:9050
 
 // NewRoute
-// @securityDefinitions.apikey ApiKeycustomer
+// @securityDefinitions.apikey ApiKeyAuth
 // @in header
-// @name customerorization
+// @name Authorization
 func NewRoute(option RouteOption) *gin.Engine {
 	router := gin.New()
 
@@ -67,6 +67,8 @@ func NewRoute(option RouteOption) *gin.Engine {
 	router.Use(casbin.NewAuthorizer())
 
 	api := router.Group("/v1")
+
+	api.POST("/file-upload", HandlerV1.UploadFile)
 
 	// customer
 	customer := api.Group("/customer")

@@ -13,6 +13,11 @@ definitions:
       error:
         $ref: '#/definitions/model_common.ResponseError'
     type: object
+  model_minio.MinioURL:
+    properties:
+      url:
+        type: string
+    type: object
   model_user_service.ForgetPasswordVerify:
     properties:
       cade:
@@ -221,7 +226,7 @@ paths:
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
       security:
-      - ApiKeycustomer: []
+      - ApiKeyAuth: []
       summary: LogOut
       tags:
       - customer
@@ -285,9 +290,38 @@ paths:
       summary: Verify
       tags:
       - customer
+  /v1/file-upload:
+    post:
+      consumes:
+      - image/png
+      description: Upload image
+      parameters:
+      - description: file
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_minio.MinioURL'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: Upload image
+      tags:
+      - upload-file
 securityDefinitions:
-  ApiKeycustomer:
+  ApiKeyAuth:
     in: header
-    name: customerorization
+    name: Authorization
     type: apiKey
 swagger: "2.0"

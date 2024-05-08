@@ -483,7 +483,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 // @Summary LogOut
 // @Description LogOut - Api for registering users
 // @Tags customer
-// @Security ApiKeycustomer
+// @Security ApiKeyAuth
 // @Accept json
 // @Produce json
 // @Success 200 {object} model_user_service.MessageRes

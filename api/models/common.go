@@ -3,7 +3,7 @@ package models
 type FieldValueReq struct {
 	Field        string `json:"field"`
 	Value        string `json:"value"`
-	DeleteStatus bool   `json:"delete_status"`
+	DeleteStatus bool   `json:"-"`
 }
 
 type ListReq struct {

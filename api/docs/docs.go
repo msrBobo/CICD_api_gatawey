@@ -157,7 +157,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "ApiKeycustomer": []
+                        "ApiKeyAuth": []
                     }
                 ],
                 "description": "LogOut - Api for registering users",
@@ -284,6 +284,50 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/v1/file-upload": {
+            "post": {
+                "description": "Upload image",
+                "consumes": [
+                    "image/png"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "upload-file"
+                ],
+                "summary": "Upload image",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "file",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_minio.MinioURL"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -306,6 +350,14 @@ const docTemplate = `{
             "properties": {
                 "error": {
                     "$ref": "#/definitions/model_common.ResponseError"
+                }
+            }
+        },
+        "model_minio.MinioURL": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
                 }
             }
         },
@@ -443,9 +495,9 @@ const docTemplate = `{
         }
     },
     "securityDefinitions": {
-        "ApiKeycustomer": {
+        "ApiKeyAuth": {
             "type": "apiKey",
-            "name": "customerorization",
+            "name": "Authorization",
             "in": "header"
         }
     }

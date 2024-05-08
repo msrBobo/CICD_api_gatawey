@@ -2,7 +2,6 @@ package token
 
 import (
 	"dennic_api_gateway/internal/pkg/config"
-	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"go.uber.org/zap"
 	"time"
@@ -89,7 +88,6 @@ func (jwtHandler *JWTHandler) ExtractClaims() (jwt.MapClaims, error) {
 
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !(ok && token.Valid) {
-		fmt.Println(err)
 		return nil, err
 	}
 	return claims, nil
@@ -110,6 +108,7 @@ func ExtractClaim(tokenStr string) (jwt.MapClaims, error) {
 	}
 
 	claims, ok := token.Claims.(jwt.MapClaims)
+
 	if !(ok && token.Valid) {
 		return nil, err
 	}

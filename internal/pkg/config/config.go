@@ -17,6 +17,13 @@ type webAddress struct {
 	Port string
 }
 
+type minio struct {
+	Endpoint   string
+	AccessKey  string
+	SecretKey  string
+	BucketName string
+}
+
 type Config struct {
 	APP         string
 	Environment string
@@ -68,6 +75,8 @@ type Config struct {
 	UserService       webAddress
 	SessionService    webAddress
 	OTLPCollector     webAddress
+
+	MinioService minio
 }
 
 func NewConfig() (*Config, error) {
@@ -136,6 +145,12 @@ func NewConfig() (*Config, error) {
 	// kafka configuration
 	config.Kafka.Address = strings.Split(getEnv("KAFKA_ADDRESS", "localhost:29092"), ",")
 	config.Kafka.Topic.InvestmentPaymentTransaction = getEnv("KAFKA_TOPIC_INVESTMENT_PAYMENT_TRANSACTION", "investment.payment.transaction")
+
+	// model_minio configuration
+	config.MinioService.Endpoint = getEnv("MINIO_SERVICE_ENDPOINT", "localhost:9000")
+	config.MinioService.AccessKey = getEnv("MINIO_SERVICE_ACCESS_KEY", "jeG8haxwCfKSdgvi")
+	config.MinioService.SecretKey = getEnv("MINIO_SERVICE_SECRET_KEY", "Ucu7bxBBjnio96loEEfCGzVSK97nk9ul")
+	config.MinioService.BucketName = getEnv("MINIO_SERVICE_BUCKET_NAME", "dennic")
 
 	return &config, nil
 }

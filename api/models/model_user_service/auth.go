@@ -13,8 +13,8 @@ type User struct {
 }
 
 type Users struct {
-	Count uint64
-	Users []*User
+	Count uint64  `json:"count"`
+	Users []*User `json:"users"`
 }
 
 type RegisterRequest struct {
