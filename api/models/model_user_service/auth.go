@@ -47,7 +47,7 @@ type MessageRes struct {
 
 type ForgetPasswordVerify struct {
 	PhoneNumber string `json:"phone_number" example:"+998950230605"`
-	Code        int    `json:"cade" example:"7777"`
+	Code        int    `json:"code" example:"7777"`
 	NewPassword string `json:"new_password" example:"new_password"`
 }
 

@@ -2,11 +2,11 @@ package v1
 
 import (
 	"context"
+	e "dennic_api_gateway/api/handlers/regtool"
 	"dennic_api_gateway/api/models/model_user_service"
 	pb "dennic_api_gateway/genproto/user_service"
 	"dennic_api_gateway/internal/pkg/logger"
 	"net/http"
-	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -88,40 +88,28 @@ func (h *HandlerV1) ListUsers(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
-	Page := c.Query("Page")
-	Limit := c.Query("Limit")
-	Field := c.Query("Field")
-	Value := c.Query("Value")
-	OrderBy := c.Query("OrderBy")
+	page := c.Query("Page")
+	limit := c.Query("Limit")
+	field := c.Query("Field")
+	value := c.Query("Value")
+	orderBy := c.Query("OrderBy")
 
-	IntPage, err := strconv.Atoi(Page)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error(),
-		})
-		h.log.Error("failed to list users", logger.Error(err))
+	pageInt, limitInt, err := e.ParseQueryParams(page, limit)
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
 		return
 	}
 
-	IntLimit, err := strconv.Atoi(Limit)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error(),
-		})
-		h.log.Error("failed to list users", logger.Error(err))
-		return
-	}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	response, err := h.serviceManager.UserService().UserService().ListUsers(
 		ctx, &pb.ListUsersReq{
-			Page:     uint64(IntPage),
-			Limit:    uint64(IntLimit),
+			Page:     pageInt,
+			Limit:    limitInt,
 			IsActive: false,
-			Value:    Value,
-			Field:    Field,
-			OrderBy:  OrderBy,
+			Value:    value,
+			Field:    field,
+			OrderBy:  orderBy,
 		})
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -233,16 +221,16 @@ func (h *HandlerV1) DeleteUser(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
-	Field := c.Query("Field")
-	Value := c.Query("Value")
+	field := c.Query("Field")
+	value := c.Query("Value")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	response, err := h.serviceManager.UserService().UserService().Delete(
 		ctx, &pb.DeleteUserReq{
-			Field:    Field,
-			Value:    Value,
+			Field:    field,
+			Value:    value,
 			IsActive: false,
 		})
 
