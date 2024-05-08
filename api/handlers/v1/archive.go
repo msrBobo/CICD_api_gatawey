@@ -22,7 +22,7 @@ import (
 // @Success 200 {object} model_booking_service.Archive
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/booking/archive [post]
+// @Router /v1/archive [post]
 func (h *HandlerV1) CreateArchive(c *gin.Context) {
 	var (
 		body        model_booking_service.CreateArchiveReq
@@ -32,7 +32,7 @@ func (h *HandlerV1) CreateArchive(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&body)
 
-	if e.HandleError(c, err, h.log, http.StatusBadRequest, "Register") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "CreateArchive") {
 		return
 	}
 
@@ -75,7 +75,7 @@ func (h *HandlerV1) CreateArchive(c *gin.Context) {
 // @Success 200 {object} model_booking_service.Archive
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/booking/archive [get]
+// @Router /v1/archive [get]
 func (h *HandlerV1) GetArchive(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -89,7 +89,7 @@ func (h *HandlerV1) GetArchive(c *gin.Context) {
 		IsActive: false,
 	})
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "GetArchive") {
 		return
 	}
 
@@ -115,7 +115,7 @@ func (h *HandlerV1) GetArchive(c *gin.Context) {
 // @Success 200 {object} model_booking_service.ArchivesType
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/booking/archive/get [get]
+// @Router /v1/archive/get [get]
 func (h *HandlerV1) ListArchive(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -124,7 +124,7 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 	orderBy := c.Query("orderBy")
 
 	pageInt, limitInt, err := e.ParseQueryParams(page, limit)
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListArchive") {
 		return
 	}
 
@@ -140,7 +140,7 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 		OrderBy:  orderBy,
 	})
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListArchive") {
 		return
 	}
 
@@ -174,7 +174,7 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 // @Success 200 {object} model_booking_service.Archive
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/booking/archive [put]
+// @Router /v1/archive [put]
 func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 	var (
 		body        model_booking_service.UpdateArchiveReq
@@ -184,7 +184,7 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&body)
 
-	if e.HandleError(c, err, h.log, http.StatusBadRequest, "Register") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "UpdateArchive") {
 		return
 	}
 
@@ -203,7 +203,7 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 		PaymentAmount:        float32(body.PaymentAmount),
 	})
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "UpdateArchive") {
 		return
 	}
 
@@ -229,7 +229,7 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 // @Success 200 {object} models.StatusRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/booking/archive [delete]
+// @Router /v1/archive [delete]
 func (h *HandlerV1) DeleteArchive(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -243,7 +243,7 @@ func (h *HandlerV1) DeleteArchive(c *gin.Context) {
 		IsActive: false,
 	})
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "DeleteArchive") {
 		return
 	}
 

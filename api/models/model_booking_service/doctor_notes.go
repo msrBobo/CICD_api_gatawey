@@ -6,6 +6,8 @@ type DoctorNote struct {
 	DoctorId      string `json:"doctor_id"`
 	PatientId     string `json:"patient_id"`
 	Prescription  string `json:"prescription"`
+	CreatedAt     string `json:"created_at"`
+	UpdatedAt     string `json:"updated_at"`
 }
 
 type DoctorNotesType struct {
