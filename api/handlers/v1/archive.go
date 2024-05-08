@@ -3,6 +3,7 @@ package v1
 import (
 	"context"
 	e "dennic_api_gateway/api/handlers/regtool"
+	"dennic_api_gateway/api/models"
 	"dennic_api_gateway/api/models/model_booking_service"
 	pb "dennic_api_gateway/genproto/booking_service"
 	"github.com/gin-gonic/gin"
@@ -122,6 +123,11 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 	page := c.Query("page")
 	orderBy := c.Query("orderBy")
 
+	pageInt, limitInt, err := e.ParseQueryParams(page, limit)
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
+		return
+	}
+
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
@@ -129,24 +135,32 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 		Field:    field,
 		Value:    value,
 		IsActive: false,
-		Page:     ,
-		Limit:    0,
-		OrderBy:  "",
+		Page:     pageInt,
+		Limit:    limitInt,
+		OrderBy:  orderBy,
 	})
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
 		return
 	}
 
-	for _, archiveRes := range archives {
+	var archivesRes model_booking_service.ArchivesType
+	for _, archiveRes := range archives.Archives {
 		var archive model_booking_service.Archive
-		archive.Id = archiveRes
-
+		archive.Id = archiveRes.Id
+		archive.DoctorAvailabilityId = archiveRes.DoctorAvailabilityId
+		archive.StartTime = archiveRes.StartTime
+		archive.EndTime = archiveRes.EndTime
+		archive.PatientProblem = archiveRes.PatientProblem
+		archive.Status = archiveRes.Status
+		archive.PaymentType = archiveRes.PaymentType
+		archive.PaymentAmount = float64(archiveRes.PaymentAmount)
+		archivesRes.Archives = append(archivesRes.Archives, &archive)
 	}
 
 	c.JSON(http.StatusOK, model_booking_service.ArchivesType{
-		Count:    0,
-		Archives: nil,
+		Count:    archives.Count,
+		Archives: archivesRes.Archives,
 	})
 }
 
@@ -203,4 +217,35 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 		PaymentType:          archive.PaymentType,
 		PaymentAmount:        float64(archive.PaymentAmount),
 	})
+}
+
+// DeleteArchive ...
+// @Summary DeleteArchive
+// @Description DeleteArchive - Api for delete archive
+// @Tags Booking Archive
+// @Accept json
+// @Produce json
+// @Param DeleteArchiveReq query models.FieldValueReq true "FieldValueReq"
+// @Success 200 {object} models.StatusRes
+// @Failure 400 {object} model_common.StandardErrorModel
+// @Failure 500 {object} model_common.StandardErrorModel
+// @Router /v1/booking/archive [delete]
+func (h *HandlerV1) DeleteArchive(c *gin.Context) {
+	field := c.Query("field")
+	value := c.Query("value")
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
+	defer cancel()
+
+	status, err := h.serviceManager.BookingService().ArchiveService().DeleteArchive(ctx, &pb.ArchiveFieldValueReq{
+		Field:    field,
+		Value:    value,
+		IsActive: false,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
+		return
+	}
+
+	c.JSON(http.StatusOK, models.StatusRes{Status: status.Status})
 }
