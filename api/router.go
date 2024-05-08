@@ -86,6 +86,22 @@ func NewRoute(option RouteOption) *gin.Engine {
 	user.PUT("/", HandlerV1.UpdateUser)
 	user.DELETE("/", HandlerV1.DeleteUser)
 
+	// archive
+	archive := api.Group("/archive")
+	archive.POST("/", HandlerV1.CreateArchive)
+	archive.GET("/get", HandlerV1.GetArchive)
+	archive.GET("/", HandlerV1.ListArchive)
+	archive.PUT("/", HandlerV1.UpdateArchive)
+	archive.DELETE("/", HandlerV1.DeleteArchive)
+
+	// doctor notes
+	doctorNote := api.Group("/doctor-notes")
+	doctorNote.POST("/", HandlerV1.CreateDoctorNote)
+	doctorNote.GET("/get", HandlerV1.GetDoctorNote)
+	doctorNote.GET("/", HandlerV1.ListDoctorNotes)
+	doctorNote.PUT("/", HandlerV1.UpdateDoctorNote)
+	doctorNote.DELETE("/", HandlerV1.DeleteDoctorNote)
+
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 
