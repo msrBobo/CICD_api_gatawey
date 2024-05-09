@@ -131,6 +131,49 @@ definitions:
       error:
         $ref: '#/definitions/model_common.ResponseError'
     type: object
+  model_healthcare_service.DepartmentReq:
+    properties:
+      description:
+        type: string
+      floor_number:
+        type: integer
+      image_url:
+        type: string
+      name:
+        type: string
+      short_description:
+        type: string
+    type: object
+  model_healthcare_service.DepartmentRes:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      floor_number:
+        type: integer
+      id:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      order:
+        type: integer
+      short_description:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model_healthcare_service.ListDepartments:
+    properties:
+      count:
+        type: integer
+      departments:
+        items:
+          $ref: '#/definitions/model_healthcare_service.DepartmentRes'
+        type: array
+    type: object
   model_minio.MinioURL:
     properties:
       url:
@@ -611,6 +654,170 @@ paths:
       summary: Verify
       tags:
       - customer
+  /v1/department:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteDepartment - Api for delete department
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteDepartment
+      tags:
+      - Department
+    get:
+      consumes:
+      - application/json
+      description: GetDepartment - Api for get department
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DepartmentRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetDepartment
+      tags:
+      - Department
+    post:
+      consumes:
+      - application/json
+      description: CreateDepartment - Api for crete department
+      parameters:
+      - description: DepartmentReq
+        in: body
+        name: DepartmentReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DepartmentReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DepartmentRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateDepartment
+      tags:
+      - Department
+    put:
+      consumes:
+      - application/json
+      description: UpdateDepartment - Api for update department
+      parameters:
+      - description: UpdateDepartmentReq
+        in: body
+        name: UpdateDepartmentReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DepartmentReq'
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DepartmentReq'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateDepartment
+      tags:
+      - Department
+  /v1/department/get:
+    get:
+      consumes:
+      - application/json
+      description: ListDepartments - Api for list department
+      parameters:
+      - in: query
+        name: delete_status
+        type: boolean
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListDepartments'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListDepartments
+      tags:
+      - Department
   /v1/doctor-notes:
     delete:
       consumes:
