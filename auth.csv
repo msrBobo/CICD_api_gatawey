@@ -13,11 +13,11 @@ p, unauthorized, /v1/customer/forget_password, POST
 p, unauthorized, /v1/customer/forget_password_verify, POST
 p, unauthorized, /v1/customer/login, POST
 
-p, unauthorized, /v1/department, POST
-p, unauthorized, /v1/department, GET
+p, unauthorized, /v1/department/, POST
+p, unauthorized, /v1/department/, GET
 p, unauthorized, /v1/department/get, GET
-p, unauthorized, /v1/department, PUT
-p, unauthorized, /v1/department, DELETE
+p, unauthorized, /v1/department/, PUT
+p, unauthorized, /v1/department/, DELETE
 
 p, unauthorized, /v1/file-upload, POST
 

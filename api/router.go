@@ -95,7 +95,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	archive.DELETE("/", HandlerV1.DeleteArchive)
 
 	// doctor notes
-	doctorNote := api.Group("/departments")
+	doctorNote := api.Group("/doctor-notes")
 	doctorNote.POST("/", HandlerV1.CreateDoctorNote)
 	doctorNote.GET("/get", HandlerV1.GetDoctorNote)
 	doctorNote.GET("/", HandlerV1.ListDoctorNotes)
@@ -105,8 +105,8 @@ func NewRoute(option RouteOption) *gin.Engine {
 	// department
 	department := api.Group("/department")
 	department.POST("/", HandlerV1.CreateDepartment)
-	department.GET("/get", HandlerV1.GetDepartment)
-	department.GET("/", HandlerV1.ListDepartments)
+	department.GET("/", HandlerV1.GetDepartment)
+	department.GET("/get", HandlerV1.ListDepartments)
 	department.PUT("/", HandlerV1.UpdateDepartment)
 	department.DELETE("/", HandlerV1.DeleteDepartment)
 

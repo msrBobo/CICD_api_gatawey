@@ -6,6 +6,7 @@ import (
 	"dennic_api_gateway/api/models"
 	"dennic_api_gateway/api/models/model_healthcare_service"
 	pb "dennic_api_gateway/genproto/healthcare-service"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -79,7 +80,6 @@ func (h *HandlerV1) CreateDepartment(c *gin.Context) {
 func (h *HandlerV1) GetDepartment(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
-
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
@@ -143,18 +143,19 @@ func (h *HandlerV1) ListDepartments(c *gin.Context) {
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListDepartments") {
 		return
 	}
-
+	fmt.Println(departments)
 	var departmentsRes model_healthcare_service.ListDepartments
 	for _, departmentRes := range departments.Departments {
-		var department model_healthcare_service.DepartmentRes
-		department.Id = departmentRes.Id
-		department.Name = departmentRes.Name
-		department.Description = departmentRes.Description
-		department.ImageUrl = departmentRes.ImageUrl
-		department.FloorNumber = departmentRes.FloorNumber
-		department.ShortDescription = departmentRes.ShortDescription
-		department.CreatedAt = departmentRes.CreatedAt
-		department.UpdatedAt = departmentRes.UpdatedAt
+		departmentsRes.Departments = append(departmentsRes.Departments, &model_healthcare_service.DepartmentRes{
+			Id:               departmentRes.Id,
+			Name:             departmentRes.Name,
+			Description:      departmentRes.Description,
+			ImageUrl:         departmentRes.ImageUrl,
+			FloorNumber:      departmentRes.FloorNumber,
+			ShortDescription: departmentRes.ShortDescription,
+			CreatedAt:        departmentRes.CreatedAt,
+			UpdatedAt:        departmentRes.UpdatedAt,
+		})
 	}
 
 	c.JSON(http.StatusOK, model_healthcare_service.ListDepartments{
