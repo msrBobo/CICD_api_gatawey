@@ -6,7 +6,6 @@ import (
 	"dennic_api_gateway/api/models"
 	"dennic_api_gateway/api/models/model_healthcare_service"
 	pb "dennic_api_gateway/genproto/healthcare-service"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -181,7 +180,6 @@ func (h *HandlerV1) ListDoctors(c *gin.Context) {
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListDoctors") {
 		return
 	}
-	fmt.Println(doctors)
 	var doctorsRes model_healthcare_service.ListDoctors
 	for _, doctorRes := range doctors.Doctors {
 		doctorsRes.Doctors = append(doctorsRes.Doctors, &model_healthcare_service.DoctorRes{

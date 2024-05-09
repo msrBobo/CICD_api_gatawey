@@ -6,7 +6,6 @@ import (
 	"dennic_api_gateway/api/models"
 	"dennic_api_gateway/api/models/model_healthcare_service"
 	pb "dennic_api_gateway/genproto/healthcare-service"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -16,7 +15,7 @@ import (
 
 // CreateDoctorService ...
 // @Summary CreateDoctorService
-// @Description CreateDoctorService - Api for crete doctorServices
+// @Description CreateDoctorService - Api for crete doctor_services
 // @Tags Doctor Services
 // @Accept json
 // @Produce json
@@ -24,7 +23,7 @@ import (
 // @Success 200 {object} model_healthcare_service.DoctorServicesRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctorServices [post]
+// @Router /v1/doctor_services [post]
 func (h *HandlerV1) CreateDoctorService(c *gin.Context) {
 	var (
 		body        model_healthcare_service.DoctorServicesReq
@@ -71,7 +70,7 @@ func (h *HandlerV1) CreateDoctorService(c *gin.Context) {
 
 // GetDoctorService ...
 // @Summary GetDoctorService
-// @Description GetDoctorService - Api for get doctorServices
+// @Description GetDoctorService - Api for get doctor_services
 // @Tags Doctor Services
 // @Accept json
 // @Produce json
@@ -79,7 +78,7 @@ func (h *HandlerV1) CreateDoctorService(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.DoctorServicesRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctorServices [get]
+// @Router /v1/doctor_services [get]
 func (h *HandlerV1) GetDoctorService(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -112,7 +111,7 @@ func (h *HandlerV1) GetDoctorService(c *gin.Context) {
 
 // ListDoctorServices ...
 // @Summary ListDoctorServices
-// @Description ListDoctorServices - Api for list doctorServices
+// @Description ListDoctorServices - Api for list doctor_services
 // @Tags Doctor Services
 // @Accept json
 // @Produce json
@@ -120,7 +119,7 @@ func (h *HandlerV1) GetDoctorService(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.ListDoctorServices
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctorServices/get [get]
+// @Router /v1/doctor_services/get [get]
 func (h *HandlerV1) ListDoctorServices(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -148,7 +147,6 @@ func (h *HandlerV1) ListDoctorServices(c *gin.Context) {
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListDoctorServices") {
 		return
 	}
-	fmt.Println(doctorServicess)
 	var doctorServicessRes model_healthcare_service.ListDoctorServices
 	for _, doctorServicesRes := range doctorServicess.DoctorServices {
 		doctorServicessRes.DoctorServices = append(doctorServicessRes.DoctorServices, &model_healthcare_service.DoctorServicesRes{
@@ -173,7 +171,7 @@ func (h *HandlerV1) ListDoctorServices(c *gin.Context) {
 
 // UpdateDoctorServices ...
 // @Summary UpdateDoctorServices
-// @Description UpdateDoctorServices - Api for update doctorServices
+// @Description UpdateDoctorServices - Api for update doctor_services
 // @Tags Doctor Services
 // @Accept json
 // @Produce json
@@ -182,7 +180,7 @@ func (h *HandlerV1) ListDoctorServices(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.DoctorServicesRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctorServices [put]
+// @Router /v1/doctor_services [put]
 func (h *HandlerV1) UpdateDoctorServices(c *gin.Context) {
 	var (
 		body        model_healthcare_service.DoctorServicesReq
@@ -239,7 +237,7 @@ func (h *HandlerV1) UpdateDoctorServices(c *gin.Context) {
 // @Success 200 {object} models.StatusRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctorServices [delete]
+// @Router /v1/doctor_services [delete]
 func (h *HandlerV1) DeleteDoctorService(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")

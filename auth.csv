@@ -31,11 +31,23 @@ p, unauthorized, /v1/specialization/get, GET
 p, unauthorized, /v1/specialization/, PUT
 p, unauthorized, /v1/specialization/, DELETE
 
-p, unauthorized, /v1/doctorServices/, POST
-p, unauthorized, /v1/doctorServices/, GET
-p, unauthorized, /v1/doctorServices/get, GET
-p, unauthorized, /v1/doctorServices/, PUT
-p, unauthorized, /v1/doctorServices/, DELETE
+p, unauthorized, /v1/doctor_services/, POST
+p, unauthorized, /v1/doctor_services/, GET
+p, unauthorized, /v1/doctor_services/get, GET
+p, unauthorized, /v1/doctor_services/, PUT
+p, unauthorized, /v1/doctor_services/, DELETE
+
+p, unauthorized, /v1/doctor_working_hours/, POST
+p, unauthorized, /v1/doctor_working_hours/, GET
+p, unauthorized, /v1/doctor_working_hours/get, GET
+p, unauthorized, /v1/doctor_working_hours/, PUT
+p, unauthorized, /v1/doctor_working_hours/, DELETE
+
+p, unauthorized, /v1/reasons/, POST
+p, unauthorized, /v1/reasons/, GET
+p, unauthorized, /v1/reasons/get, GET
+p, unauthorized, /v1/reasons/, PUT
+p, unauthorized, /v1/reasons/, DELETE
 
 p, unauthorized, /v1/file-upload, POST
 
