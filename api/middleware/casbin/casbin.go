@@ -1,8 +1,8 @@
 package casbin
 
 import (
-	"admin_api-gateway/internal/pkg/config"
-	jwt "admin_api-gateway/internal/pkg/tokens"
+	"dennic_api_gateway/internal/pkg/config"
+	jwt "dennic_api_gateway/internal/pkg/tokens"
 	"fmt"
 	"github.com/casbin/casbin/v2"
 	"github.com/gin-gonic/gin"
@@ -24,15 +24,16 @@ func NewAuthorizer() gin.HandlerFunc {
 			sub := "unauthorized"
 			obj := ctx.Request.URL.Path
 			etc := ctx.Request.Method
-			e, _ := casbin.NewEnforcer("auth.conf", "auth.csv")
+			e, _ := casbin.NewEnforcer(`auth.conf`, `auth.csv`)
 			t, _ := e.Enforce(sub, obj, etc)
 			if t {
 				ctx.Next()
 				return
 			}
+			fmt.Println(sub, obj, etc, t)
 		}
 
-		claims, err := jwt.ExtractClaim(token1, []byte(config.Token()))
+		claims, err := jwt.ExtractClaim(token1)
 		if err != nil {
 			ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 				"message": err.Error(),
@@ -44,7 +45,7 @@ func NewAuthorizer() gin.HandlerFunc {
 		obj := ctx.Request.URL.Path
 		etc := ctx.Request.Method
 
-		e, err := casbin.NewEnforcer("auth.conf", "auth.csv")
+		e, err := casbin.NewEnforcer(`auth.conf`, `auth.csv`)
 
 		if err != nil {
 			log.Fatal(err)

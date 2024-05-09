@@ -1,7 +1,7 @@
 package token
 
 import (
-	"fmt"
+	"dennic_api_gateway/internal/pkg/config"
 	"github.com/dgrijalva/jwt-go"
 	"go.uber.org/zap"
 	"time"
@@ -9,32 +9,32 @@ import (
 
 // JWTHandler ...
 type JWTHandler struct {
-	Id      string
-	Phone   string
-	Sub     string
-	Exp     string
-	Iat     string
-	Aud     []string
-	Role    string
-	SignKey string
-	Log     *zap.Logger
-	Token   string
-	Timout  time.Duration
+	Id        string
+	Phone     string
+	SessionId string
+	Exp       string
+	Iat       string
+	Aud       []string
+	Role      string
+	SignKey   string
+	Log       *zap.Logger
+	Token     string
+	Timout    time.Duration
 }
 
 type CustomClaims struct {
 	*jwt.Token
-	Sub      string   `json:"sub"`
-	UserName string   `json:"user_name"`
-	Id       string   `json:"id"`
-	Exp      float64  `json:"exp"`
-	Iat      float64  `json:"iat"`
-	Aud      []string `json:"aud"`
-	Role     string   `json:"role"`
+	SessionId string   `json:"session_id"`
+	UserName  string   `json:"user_name"`
+	Id        string   `json:"id"`
+	Exp       float64  `json:"exp"`
+	Iat       float64  `json:"iat"`
+	Aud       []string `json:"aud"`
+	Role      string   `json:"role"`
 }
 
 // GenerateAuthJWT ...
-func (jwtHandler *JWTHandler) GenerateAuthJWT(phone, id, role string) (access, refresh string, err error) {
+func (jwtHandler *JWTHandler) GenerateAuthJWT(phone, id, sessionId, role string) (access, refresh string, err error) {
 	var (
 		accessToken  *jwt.Token
 		refreshToken *jwt.Token
@@ -47,11 +47,11 @@ func (jwtHandler *JWTHandler) GenerateAuthJWT(phone, id, role string) (access, r
 	claims = accessToken.Claims.(jwt.MapClaims)
 	claims["id"] = id
 	claims["phone"] = phone
-	claims["sub"] = jwtHandler.Sub
+	claims["session_id"] = sessionId
 	claims["exp"] = time.Now().Add(time.Minute * jwtHandler.Timout).Unix()
 	claims["iat"] = time.Now().Unix()
 	claims["role"] = role
-	access, err = accessToken.SignedString([]byte("dennic"))
+	access, err = accessToken.SignedString([]byte(config.SignKey))
 	if err != nil {
 		jwtHandler.Log.Log(1, err.Error())
 		return
@@ -60,11 +60,11 @@ func (jwtHandler *JWTHandler) GenerateAuthJWT(phone, id, role string) (access, r
 	rtClaims = refreshToken.Claims.(jwt.MapClaims)
 	rtClaims["id"] = id
 	rtClaims["phone"] = phone
-	rtClaims["sub"] = jwtHandler.Sub
+	rtClaims["session_id"] = sessionId
 	rtClaims["exp"] = time.Now().Add(time.Minute * jwtHandler.Timout).Unix()
 	rtClaims["iat"] = time.Now().Unix()
 	rtClaims["role"] = role
-	refresh, err = refreshToken.SignedString([]byte("dennic"))
+	refresh, err = refreshToken.SignedString([]byte(config.SignKey))
 	if err != nil {
 		jwtHandler.Log.Log(1, err.Error())
 		return
@@ -88,7 +88,6 @@ func (jwtHandler *JWTHandler) ExtractClaims() (jwt.MapClaims, error) {
 
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !(ok && token.Valid) {
-		fmt.Println(err)
 		return nil, err
 	}
 	return claims, nil
@@ -102,13 +101,14 @@ func ExtractClaim(tokenStr string) (jwt.MapClaims, error) {
 	)
 	token, err = jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
 		// check token signing method etc
-		return []byte("dennic"), nil
+		return []byte(config.SignKey), nil
 	})
 	if err != nil {
 		return nil, err
 	}
 
 	claims, ok := token.Claims.(jwt.MapClaims)
+
 	if !(ok && token.Valid) {
 		return nil, err
 	}

@@ -29,7 +29,10 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 type GetAllDepartment struct {
 	Page                 int64    `protobuf:"varint,1,opt,name=page,proto3" json:"page"`
 	Limit                int64    `protobuf:"varint,2,opt,name=limit,proto3" json:"limit"`
-	Search               string   `protobuf:"bytes,3,opt,name=search,proto3" json:"search"`
+	Field                string   `protobuf:"bytes,3,opt,name=field,proto3" json:"field"`
+	Value                string   `protobuf:"bytes,4,opt,name=value,proto3" json:"value"`
+	OrderBy              string   `protobuf:"bytes,5,opt,name=order_by,json=orderBy,proto3" json:"order_by"`
+	IsActive             bool     `protobuf:"varint,6,opt,name=is_active,json=isActive,proto3" json:"is_active"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -82,11 +85,32 @@ func (m *GetAllDepartment) GetLimit() int64 {
 	return 0
 }
 
-func (m *GetAllDepartment) GetSearch() string {
+func (m *GetAllDepartment) GetField() string {
 	if m != nil {
-		return m.Search
+		return m.Field
 	}
 	return ""
+}
+
+func (m *GetAllDepartment) GetValue() string {
+	if m != nil {
+		return m.Value
+	}
+	return ""
+}
+
+func (m *GetAllDepartment) GetOrderBy() string {
+	if m != nil {
+		return m.OrderBy
+	}
+	return ""
+}
+
+func (m *GetAllDepartment) GetIsActive() bool {
+	if m != nil {
+		return m.IsActive
+	}
+	return false
 }
 
 type ListDepartments struct {
@@ -198,9 +222,10 @@ type Department struct {
 	Description          string   `protobuf:"bytes,4,opt,name=description,proto3" json:"description"`
 	ImageUrl             string   `protobuf:"bytes,5,opt,name=image_url,json=imageUrl,proto3" json:"image_url"`
 	FloorNumber          int32    `protobuf:"varint,6,opt,name=floor_number,json=floorNumber,proto3" json:"floor_number"`
-	CreatedAt            string   `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
-	UpdatedAt            string   `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
-	DeletedAt            string   `protobuf:"bytes,9,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
+	ShortDescription     string   `protobuf:"bytes,7,opt,name=short_description,json=shortDescription,proto3" json:"short_description"`
+	CreatedAt            string   `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt            string   `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	DeletedAt            string   `protobuf:"bytes,10,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -281,6 +306,13 @@ func (m *Department) GetFloorNumber() int32 {
 	return 0
 }
 
+func (m *Department) GetShortDescription() string {
+	if m != nil {
+		return m.ShortDescription
+	}
+	return ""
+}
+
 func (m *Department) GetCreatedAt() string {
 	if m != nil {
 		return m.CreatedAt
@@ -303,9 +335,9 @@ func (m *Department) GetDeletedAt() string {
 }
 
 type GetReqStrDepartment struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	IsActive             bool     `protobuf:"varint,2,opt,name=is_active,json=isActive,proto3" json:"is_active"`
-	IsHardDeleted        bool     `protobuf:"varint,3,opt,name=is_hard_deleted,json=isHardDeleted,proto3" json:"is_hard_deleted"`
+	Field                string   `protobuf:"bytes,1,opt,name=field,proto3" json:"field"`
+	Value                string   `protobuf:"bytes,2,opt,name=value,proto3" json:"value"`
+	IsActive             bool     `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3" json:"is_active"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -344,9 +376,16 @@ func (m *GetReqStrDepartment) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetReqStrDepartment proto.InternalMessageInfo
 
-func (m *GetReqStrDepartment) GetId() string {
+func (m *GetReqStrDepartment) GetField() string {
 	if m != nil {
-		return m.Id
+		return m.Field
+	}
+	return ""
+}
+
+func (m *GetReqStrDepartment) GetValue() string {
+	if m != nil {
+		return m.Value
 	}
 	return ""
 }
@@ -354,13 +393,6 @@ func (m *GetReqStrDepartment) GetId() string {
 func (m *GetReqStrDepartment) GetIsActive() bool {
 	if m != nil {
 		return m.IsActive
-	}
-	return false
-}
-
-func (m *GetReqStrDepartment) GetIsHardDeleted() bool {
-	if m != nil {
-		return m.IsHardDeleted
 	}
 	return false
 }
@@ -378,39 +410,41 @@ func init() {
 }
 
 var fileDescriptor_28b27ef028e04df4 = []byte{
-	// 500 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x54, 0xcd, 0x6e, 0xd3, 0x40,
-	0x10, 0xc6, 0x4e, 0x13, 0xec, 0x09, 0x50, 0x77, 0x41, 0x95, 0xd5, 0x42, 0x08, 0x46, 0x42, 0x11,
-	0x12, 0x41, 0x2a, 0x17, 0xae, 0x09, 0x95, 0x02, 0x52, 0x55, 0x09, 0x87, 0x9e, 0xad, 0xad, 0x77,
-	0x68, 0x16, 0xf9, 0x8f, 0xdd, 0x75, 0x25, 0x1e, 0x80, 0x1b, 0x0f, 0xc0, 0x23, 0x71, 0xe4, 0x11,
-	0x50, 0x78, 0x11, 0xe4, 0xb1, 0xc1, 0x4e, 0xd4, 0xc2, 0x81, 0x9b, 0xe7, 0xfb, 0x46, 0xdf, 0x7e,
-	0xdf, 0xec, 0xac, 0xe1, 0xf1, 0x0a, 0x79, 0x62, 0x56, 0x31, 0x57, 0xf8, 0x4c, 0xa3, 0xba, 0x94,
-	0x31, 0x3e, 0x17, 0x58, 0x70, 0x65, 0x52, 0xcc, 0xcc, 0xb4, 0x50, 0xb9, 0xc9, 0x19, 0xb4, 0x4d,
-	0xc1, 0x3b, 0xf0, 0x16, 0x68, 0x66, 0x49, 0x72, 0xfc, 0xa7, 0x8b, 0x31, 0xd8, 0x29, 0xf8, 0x05,
-	0xfa, 0xd6, 0xd8, 0x9a, 0xf4, 0x42, 0xfa, 0x66, 0xf7, 0xa0, 0x9f, 0xc8, 0x54, 0x1a, 0xdf, 0x26,
-	0xb0, 0x2e, 0xd8, 0x3e, 0x0c, 0x34, 0x72, 0x15, 0xaf, 0xfc, 0xde, 0xd8, 0x9a, 0xb8, 0x61, 0x53,
-	0x05, 0x1c, 0x76, 0x4f, 0xa4, 0x36, 0xad, 0xa6, 0xae, 0x04, 0xe2, 0xbc, 0xcc, 0x4c, 0xa3, 0x5a,
-	0x17, 0xec, 0x25, 0x0c, 0x5b, 0x7b, 0xda, 0xb7, 0xc7, 0xbd, 0xc9, 0xf0, 0x68, 0x7f, 0xda, 0x1a,
-	0x9c, 0xb6, 0x1a, 0x61, 0xb7, 0x35, 0x78, 0x0a, 0xde, 0xd2, 0x70, 0x53, 0xea, 0x8e, 0xf1, 0xca,
-	0x0e, 0x61, 0x74, 0x88, 0x13, 0x36, 0x55, 0xf0, 0xd9, 0x06, 0xe8, 0xb4, 0xdd, 0x01, 0x5b, 0x0a,
-	0x6a, 0x71, 0x43, 0x5b, 0x8a, 0xca, 0x5a, 0xae, 0x04, 0x2a, 0xca, 0xd6, 0x0f, 0xeb, 0xa2, 0x9a,
-	0x42, 0xc6, 0x53, 0x6c, 0x92, 0xd1, 0x37, 0x1b, 0x57, 0x76, 0x75, 0xac, 0x64, 0x61, 0x64, 0x9e,
-	0xf9, 0x3b, 0x44, 0x75, 0x21, 0x76, 0x08, 0xae, 0x4c, 0xf9, 0x05, 0x46, 0xa5, 0x4a, 0xfc, 0x3e,
-	0xf1, 0x0e, 0x01, 0x67, 0x2a, 0x61, 0x8f, 0xe0, 0xd6, 0xfb, 0x24, 0xcf, 0x55, 0x94, 0x95, 0xe9,
-	0x39, 0x2a, 0x7f, 0x40, 0xe7, 0x0d, 0x09, 0x3b, 0x25, 0x88, 0x3d, 0x00, 0x88, 0x15, 0x72, 0x83,
-	0x22, 0xe2, 0xc6, 0xbf, 0x49, 0x02, 0x6e, 0x83, 0xcc, 0x4c, 0x45, 0x97, 0x85, 0xf8, 0x4d, 0x3b,
-	0x35, 0xdd, 0x20, 0x35, 0x2d, 0x30, 0xc1, 0x86, 0x76, 0x6b, 0xba, 0x41, 0x66, 0x26, 0xf8, 0x00,
-	0x77, 0x17, 0x68, 0x42, 0xfc, 0xb8, 0x34, 0xea, 0x2f, 0xf3, 0xa8, 0x32, 0xe8, 0x88, 0xc7, 0x46,
-	0x5e, 0x22, 0xcd, 0xc4, 0x09, 0x1d, 0xa9, 0x67, 0x54, 0xb3, 0x27, 0xb0, 0x2b, 0x75, 0xb4, 0xe2,
-	0x4a, 0x44, 0x8d, 0x30, 0x4d, 0xc8, 0x09, 0x6f, 0x4b, 0xfd, 0x9a, 0x2b, 0x71, 0x5c, 0x83, 0x47,
-	0x5f, 0x7a, 0xb0, 0xd7, 0x9e, 0xb1, 0xac, 0x77, 0x91, 0xcd, 0xc1, 0x7b, 0x45, 0x61, 0xba, 0xb7,
-	0x76, 0xf5, 0x75, 0x1f, 0x5c, 0x83, 0xb3, 0x13, 0xd8, 0x5b, 0x60, 0x67, 0xb7, 0xe6, 0x9f, 0xde,
-	0x08, 0xf6, 0xb0, 0xdb, 0x7c, 0x45, 0xc8, 0x6b, 0xd5, 0x4e, 0x49, 0x6d, 0xe3, 0x01, 0x68, 0x76,
-	0x7f, 0x4b, 0x6d, 0x83, 0x3e, 0x38, 0xec, 0xb2, 0xdb, 0x7b, 0x3e, 0x07, 0xef, 0x8c, 0xee, 0xe3,
-	0x3f, 0x12, 0xbe, 0x05, 0xaf, 0x1e, 0x63, 0x07, 0xfb, 0x67, 0xc0, 0x0d, 0xcf, 0xdb, 0x4f, 0x63,
-	0xee, 0x7d, 0x5b, 0x8f, 0xac, 0xef, 0xeb, 0x91, 0xf5, 0x63, 0x3d, 0xb2, 0xbe, 0xfe, 0x1c, 0xdd,
-	0x38, 0x1f, 0xd0, 0xcf, 0xe0, 0xc5, 0xaf, 0x00, 0x00, 0x00, 0xff, 0xff, 0xe8, 0x05, 0x24, 0x5e,
-	0x33, 0x04, 0x00, 0x00,
+	// 536 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x54, 0xc1, 0x6e, 0xd3, 0x4c,
+	0x10, 0xfe, 0xed, 0x34, 0xa9, 0x33, 0xf9, 0x05, 0xce, 0x82, 0x2a, 0xd3, 0x42, 0x08, 0xe1, 0x12,
+	0x81, 0x08, 0x52, 0xb9, 0x70, 0x4d, 0x88, 0x14, 0x21, 0x55, 0x95, 0x70, 0xd4, 0x2b, 0xd6, 0xc6,
+	0x9e, 0x36, 0x2b, 0x6d, 0xe2, 0xb0, 0xbb, 0x8e, 0x94, 0x77, 0xe0, 0x01, 0x38, 0xf2, 0x0c, 0x3c,
+	0x05, 0x47, 0x1e, 0x01, 0x85, 0x17, 0x41, 0x1e, 0x9b, 0x7a, 0x13, 0xa5, 0xe2, 0xc0, 0xcd, 0xf3,
+	0x7d, 0xa3, 0xd9, 0xf9, 0xbe, 0xfd, 0xd6, 0xf0, 0x7c, 0x8e, 0x5c, 0x9a, 0x79, 0xcc, 0x15, 0xbe,
+	0xd2, 0xa8, 0xd6, 0x22, 0xc6, 0xd7, 0x09, 0xae, 0xb8, 0x32, 0x0b, 0x5c, 0x9a, 0xc1, 0x4a, 0xa5,
+	0x26, 0x65, 0x50, 0x35, 0xf5, 0xbe, 0x3a, 0xe0, 0x4f, 0xd0, 0x0c, 0xa5, 0x1c, 0xdf, 0xb6, 0x31,
+	0x06, 0x47, 0x2b, 0x7e, 0x83, 0x81, 0xd3, 0x75, 0xfa, 0xb5, 0x90, 0xbe, 0xd9, 0x43, 0xa8, 0x4b,
+	0xb1, 0x10, 0x26, 0x70, 0x09, 0x2c, 0x8a, 0x1c, 0xbd, 0x16, 0x28, 0x93, 0xa0, 0xd6, 0x75, 0xfa,
+	0xcd, 0xb0, 0x28, 0x72, 0x74, 0xcd, 0x65, 0x86, 0xc1, 0x51, 0x81, 0x52, 0xc1, 0x1e, 0x81, 0x97,
+	0xaa, 0x04, 0x55, 0x34, 0xdb, 0x04, 0x75, 0x22, 0x8e, 0xa9, 0x1e, 0x6d, 0xd8, 0x19, 0x34, 0x85,
+	0x8e, 0x78, 0x6c, 0xc4, 0x1a, 0x83, 0x46, 0xd7, 0xe9, 0x7b, 0xa1, 0x27, 0xf4, 0x90, 0xea, 0x1e,
+	0x87, 0xfb, 0x17, 0x42, 0x9b, 0x6a, 0x3f, 0x9d, 0x1f, 0x10, 0xa7, 0xd9, 0xd2, 0x94, 0x1b, 0x16,
+	0x05, 0x7b, 0x0b, 0xad, 0x4a, 0xab, 0x0e, 0xdc, 0x6e, 0xad, 0xdf, 0x3a, 0x3f, 0x19, 0x54, 0x6a,
+	0x07, 0xd5, 0x8c, 0xd0, 0x6e, 0xed, 0xbd, 0x00, 0x7f, 0x6a, 0xb8, 0xc9, 0xb4, 0x65, 0xc2, 0x09,
+	0x34, 0x34, 0x61, 0x74, 0x88, 0x17, 0x96, 0x55, 0xef, 0x9b, 0x0b, 0x60, 0xb5, 0xdd, 0x03, 0x57,
+	0x24, 0xd4, 0xd2, 0x0c, 0x5d, 0x41, 0xda, 0x49, 0x15, 0xf9, 0x54, 0x0f, 0x8b, 0x22, 0x77, 0x74,
+	0xc9, 0x17, 0x58, 0xda, 0x44, 0xdf, 0xac, 0x9b, 0xaf, 0xab, 0x63, 0x25, 0x56, 0x46, 0xa4, 0xcb,
+	0xd2, 0x2b, 0x1b, 0x22, 0x5b, 0x16, 0xfc, 0x06, 0xa3, 0x4c, 0xc9, 0xd2, 0x32, 0x8f, 0x80, 0x2b,
+	0x25, 0xd9, 0x33, 0xf8, 0xff, 0x5a, 0xa6, 0xa9, 0x8a, 0x96, 0xd9, 0x62, 0x86, 0x8a, 0x6c, 0xab,
+	0x87, 0x2d, 0xc2, 0x2e, 0x09, 0x62, 0x2f, 0xa1, 0xad, 0xe7, 0xa9, 0x32, 0x91, 0x7d, 0xce, 0x31,
+	0xcd, 0xf1, 0x89, 0x18, 0x5b, 0x87, 0x3d, 0x01, 0x88, 0x15, 0x72, 0x83, 0x49, 0xc4, 0x4d, 0xe0,
+	0x51, 0x57, 0xb3, 0x44, 0x86, 0x26, 0xa7, 0xb3, 0x55, 0xf2, 0x87, 0x6e, 0x16, 0x74, 0x89, 0x14,
+	0x74, 0x82, 0x12, 0x4b, 0x1a, 0x0a, 0xba, 0x44, 0x86, 0xa6, 0xf7, 0x11, 0x1e, 0x4c, 0xd0, 0x84,
+	0xf8, 0x69, 0x6a, 0x94, 0x65, 0xde, 0x6d, 0x7c, 0x9c, 0x83, 0xf1, 0x71, 0xed, 0xf8, 0xec, 0x64,
+	0xa4, 0xb6, 0x9b, 0x91, 0xf3, 0xcf, 0x35, 0x68, 0x57, 0x73, 0xa7, 0x45, 0xf2, 0xd9, 0x08, 0xfc,
+	0x77, 0x24, 0xc0, 0xbe, 0xd6, 0xc3, 0x79, 0x38, 0xbd, 0x03, 0x67, 0x17, 0xd0, 0x9e, 0xa0, 0x15,
+	0xbe, 0xd1, 0xe6, 0x7d, 0xc2, 0x9e, 0xda, 0xcd, 0x07, 0x84, 0xdd, 0x39, 0xed, 0x92, 0xa6, 0xed,
+	0xbc, 0x36, 0xcd, 0x1e, 0xef, 0x4d, 0xdb, 0xa1, 0x4f, 0xcf, 0x6c, 0x76, 0xff, 0x21, 0x8c, 0xc0,
+	0xbf, 0xa2, 0x3b, 0xf8, 0x07, 0x85, 0x1f, 0xc0, 0x1f, 0xd3, 0x45, 0x59, 0xd8, 0x5f, 0x05, 0xee,
+	0xec, 0xbc, 0xff, 0x76, 0x46, 0xfe, 0xf7, 0x6d, 0xc7, 0xf9, 0xb1, 0xed, 0x38, 0x3f, 0xb7, 0x1d,
+	0xe7, 0xcb, 0xaf, 0xce, 0x7f, 0xb3, 0x06, 0xfd, 0x7a, 0xde, 0xfc, 0x0e, 0x00, 0x00, 0xff, 0xff,
+	0xfe, 0xd9, 0x4f, 0x2d, 0xa1, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -661,10 +695,34 @@ func (m *GetAllDepartment) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if len(m.Search) > 0 {
-		i -= len(m.Search)
-		copy(dAtA[i:], m.Search)
-		i = encodeVarintDepartment(dAtA, i, uint64(len(m.Search)))
+	if m.IsActive {
+		i--
+		if m.IsActive {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x30
+	}
+	if len(m.OrderBy) > 0 {
+		i -= len(m.OrderBy)
+		copy(dAtA[i:], m.OrderBy)
+		i = encodeVarintDepartment(dAtA, i, uint64(len(m.OrderBy)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Value) > 0 {
+		i -= len(m.Value)
+		copy(dAtA[i:], m.Value)
+		i = encodeVarintDepartment(dAtA, i, uint64(len(m.Value)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Field) > 0 {
+		i -= len(m.Field)
+		copy(dAtA[i:], m.Field)
+		i = encodeVarintDepartment(dAtA, i, uint64(len(m.Field)))
 		i--
 		dAtA[i] = 0x1a
 	}
@@ -793,19 +851,26 @@ func (m *Department) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.DeletedAt)
 		i = encodeVarintDepartment(dAtA, i, uint64(len(m.DeletedAt)))
 		i--
-		dAtA[i] = 0x4a
+		dAtA[i] = 0x52
 	}
 	if len(m.UpdatedAt) > 0 {
 		i -= len(m.UpdatedAt)
 		copy(dAtA[i:], m.UpdatedAt)
 		i = encodeVarintDepartment(dAtA, i, uint64(len(m.UpdatedAt)))
 		i--
-		dAtA[i] = 0x42
+		dAtA[i] = 0x4a
 	}
 	if len(m.CreatedAt) > 0 {
 		i -= len(m.CreatedAt)
 		copy(dAtA[i:], m.CreatedAt)
 		i = encodeVarintDepartment(dAtA, i, uint64(len(m.CreatedAt)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.ShortDescription) > 0 {
+		i -= len(m.ShortDescription)
+		copy(dAtA[i:], m.ShortDescription)
+		i = encodeVarintDepartment(dAtA, i, uint64(len(m.ShortDescription)))
 		i--
 		dAtA[i] = 0x3a
 	}
@@ -874,16 +939,6 @@ func (m *GetReqStrDepartment) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if m.IsHardDeleted {
-		i--
-		if m.IsHardDeleted {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i--
-		dAtA[i] = 0x18
-	}
 	if m.IsActive {
 		i--
 		if m.IsActive {
@@ -892,12 +947,19 @@ func (m *GetReqStrDepartment) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0
 		}
 		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0x18
 	}
-	if len(m.Id) > 0 {
-		i -= len(m.Id)
-		copy(dAtA[i:], m.Id)
-		i = encodeVarintDepartment(dAtA, i, uint64(len(m.Id)))
+	if len(m.Value) > 0 {
+		i -= len(m.Value)
+		copy(dAtA[i:], m.Value)
+		i = encodeVarintDepartment(dAtA, i, uint64(len(m.Value)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Field) > 0 {
+		i -= len(m.Field)
+		copy(dAtA[i:], m.Field)
+		i = encodeVarintDepartment(dAtA, i, uint64(len(m.Field)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -927,9 +989,20 @@ func (m *GetAllDepartment) Size() (n int) {
 	if m.Limit != 0 {
 		n += 1 + sovDepartment(uint64(m.Limit))
 	}
-	l = len(m.Search)
+	l = len(m.Field)
 	if l > 0 {
 		n += 1 + l + sovDepartment(uint64(l))
+	}
+	l = len(m.Value)
+	if l > 0 {
+		n += 1 + l + sovDepartment(uint64(l))
+	}
+	l = len(m.OrderBy)
+	if l > 0 {
+		n += 1 + l + sovDepartment(uint64(l))
+	}
+	if m.IsActive {
+		n += 2
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -1001,6 +1074,10 @@ func (m *Department) Size() (n int) {
 	if m.FloorNumber != 0 {
 		n += 1 + sovDepartment(uint64(m.FloorNumber))
 	}
+	l = len(m.ShortDescription)
+	if l > 0 {
+		n += 1 + l + sovDepartment(uint64(l))
+	}
 	l = len(m.CreatedAt)
 	if l > 0 {
 		n += 1 + l + sovDepartment(uint64(l))
@@ -1025,14 +1102,15 @@ func (m *GetReqStrDepartment) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Id)
+	l = len(m.Field)
+	if l > 0 {
+		n += 1 + l + sovDepartment(uint64(l))
+	}
+	l = len(m.Value)
 	if l > 0 {
 		n += 1 + l + sovDepartment(uint64(l))
 	}
 	if m.IsActive {
-		n += 2
-	}
-	if m.IsHardDeleted {
 		n += 2
 	}
 	if m.XXX_unrecognized != nil {
@@ -1116,7 +1194,7 @@ func (m *GetAllDepartment) Unmarshal(dAtA []byte) error {
 			}
 		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Search", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Field", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1144,8 +1222,92 @@ func (m *GetAllDepartment) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Search = string(dAtA[iNdEx:postIndex])
+			m.Field = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDepartment
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDepartment
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDepartment
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Value = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OrderBy", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDepartment
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDepartment
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDepartment
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OrderBy = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IsActive", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDepartment
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IsActive = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipDepartment(dAtA[iNdEx:])
@@ -1540,6 +1702,38 @@ func (m *Department) Unmarshal(dAtA []byte) error {
 			}
 		case 7:
 			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ShortDescription", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDepartment
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDepartment
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDepartment
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ShortDescription = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
 			}
 			var stringLen uint64
@@ -1570,7 +1764,7 @@ func (m *Department) Unmarshal(dAtA []byte) error {
 			}
 			m.CreatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 8:
+		case 9:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field UpdatedAt", wireType)
 			}
@@ -1602,7 +1796,7 @@ func (m *Department) Unmarshal(dAtA []byte) error {
 			}
 			m.UpdatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 9:
+		case 10:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field DeletedAt", wireType)
 			}
@@ -1687,7 +1881,7 @@ func (m *GetReqStrDepartment) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Field", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1715,9 +1909,41 @@ func (m *GetReqStrDepartment) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Id = string(dAtA[iNdEx:postIndex])
+			m.Field = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDepartment
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDepartment
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDepartment
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Value = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field IsActive", wireType)
 			}
@@ -1737,26 +1963,6 @@ func (m *GetReqStrDepartment) Unmarshal(dAtA []byte) error {
 				}
 			}
 			m.IsActive = bool(v != 0)
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field IsHardDeleted", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowDepartment
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.IsHardDeleted = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipDepartment(dAtA[iNdEx:])

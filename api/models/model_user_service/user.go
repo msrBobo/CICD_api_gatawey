@@ -1,77 +1,60 @@
 package model_user_service
 
-type User struct {
-	Id           string `json:"-"`
-	UserOrder    string `json:"-"`
-	FirstName    string `json:"first_name" example:"John"`
-	LastName     string `json:"last_name" example:"Doe"`
-	BrithDate    string `json:"birth_date" example:"2000-01-01"`
-	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
-	Password     string `json:"password" example:"password"`
-	Gender       string `json:"gender" example:"male"`
-	RefreshToken string `json:"-"`
-}
-
-type Users struct {
-	Count uint64
-	Users []*User
-}
-
-type RegisterRequest struct {
-	Id           string `json:"-"`
-	FirstName    string `json:"first_name" example:"John"`
-	LastName     string `json:"last_name" example:"Doe"`
-	BrithDate    string `json:"birth_date" example:"2000-01-01"`
-	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
-	Password     string `json:"password" example:"password"`
-	Gender       string `json:"gender" example:"male"`
-	RefreshToken string `json:"-"`
-	Code         int64  `json:"-"`
-}
-
-type Redis struct {
-	Id           string `json:"id"`
-	FirstName    string `json:"first_name" example:"John"`
-	LastName     string `json:"last_name" example:"Doe"`
-	BrithDate    string `json:"birth_date" example:"2000-01-01"`
-	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
-	Password     string `json:"password" example:"password"`
-	Gender       string `json:"gender" example:"male"`
-	RefreshToken string `json:"refresh_token"`
-	Code         int64  `json:"code"`
-}
-
-type MessageRes struct {
-	Message string `json:"message"`
-}
-
-type ForgetPasswordVerify struct {
+type GetUserResp struct {
+	Id          string `json:"id"`
+	UserOrder   uint64 `json:"user_order"`
+	FirstName   string `json:"first_name"`
+	LastName    string `json:"last_name"`
+	BrithDate   string `json:"birth_date"`
 	PhoneNumber string `json:"phone_number"`
-	Code        int    `json:"cade"`
-	NewPassword string `json:"new_password"`
-}
-
-type Verify struct {
-	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
-	Code         int64  `json:"code" example:"7777"`
-	PlatformName string `json:"platform_name"`
-	PlatformType string `json:"platform_type"`
-	FcmToken     string `json:"fcm_token"`
-}
-
-type LoginReq struct {
-	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
-	Password     string `json:"password" example:"password"`
-	PlatformName string `json:"platform_name"`
-	PlatformType string `json:"platform_type"`
-	FcmToken     string `json:"fcm_token"`
-}
-
-type Response struct {
-	FirstName   string `json:"first_name" `
-	LastName    string `json:"last_name" `
-	BrithDate   string `json:"birth_date" `
-	PhoneNumber string `json:"phone_number" `
+	Password    string `json:"password"`
 	Gender      string `json:"gender"`
-	AccessToken string `json:"access_token"`
+	CreatedAt   string `json:"created_at"`
+	UpdatedAt   string `json:"updated_at"`
 }
+
+type ListUserResp struct {
+	Users []GetUserResp `json:"users"`
+	Count uint64        `json:"count"`
+}
+
+type UpdUserReq struct {
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	BrithDate string `json:"birth_date"`
+	Gender    string `json:"gender"`
+}
+
+type UpdUserResp struct {
+	Id        string `json:"id"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	BrithDate string `json:"birth_date"`
+	Gender    string `json:"gender"`
+	UpdatedAt string `json:"updated_at"`
+}
+
+type GetAllReq struct {
+	Page    uint64 `json:"page"`
+	Limit   uint64 `json:"limit"`
+	Field   string `json:"field"`
+	Value   string `json:"value"`
+	OrderBy string `json:"order_by"`
+}
+
+type GetUserReq struct {
+	Field    string `json:"field"`
+	Value    string `json:"value"`
+	IsActive bool   `json:"is_active"`
+}
+
+type DeleteUserReq struct {
+	Field        string `json:"field"`
+	Value        string `json:"value"`
+	DeleteStatus bool   `json:"delete_status"`
+}
+
+type CheckUserFieldResp struct {
+	Status bool `json:"status"`
+}
+

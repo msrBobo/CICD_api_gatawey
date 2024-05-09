@@ -32,6 +32,7 @@ type Specializations struct {
 	Name                 string   `protobuf:"bytes,3,opt,name=name,proto3" json:"name"`
 	Description          string   `protobuf:"bytes,4,opt,name=description,proto3" json:"description"`
 	DepartmentId         string   `protobuf:"bytes,5,opt,name=department_id,json=departmentId,proto3" json:"department_id"`
+	ImageUrl             string   `protobuf:"bytes,6,opt,name=image_url,json=imageUrl,proto3" json:"image_url"`
 	CreatedAt            string   `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
 	UpdatedAt            string   `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 	DeletedAt            string   `protobuf:"bytes,9,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
@@ -108,6 +109,13 @@ func (m *Specializations) GetDepartmentId() string {
 	return ""
 }
 
+func (m *Specializations) GetImageUrl() string {
+	if m != nil {
+		return m.ImageUrl
+	}
+	return ""
+}
+
 func (m *Specializations) GetCreatedAt() string {
 	if m != nil {
 		return m.CreatedAt
@@ -130,9 +138,9 @@ func (m *Specializations) GetDeletedAt() string {
 }
 
 type GetReqStrSpecialization struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	IsActive             bool     `protobuf:"varint,2,opt,name=is_active,json=isActive,proto3" json:"is_active"`
-	IsHardDeleted        bool     `protobuf:"varint,3,opt,name=is_hard_deleted,json=isHardDeleted,proto3" json:"is_hard_deleted"`
+	Field                string   `protobuf:"bytes,1,opt,name=field,proto3" json:"field"`
+	Value                string   `protobuf:"bytes,2,opt,name=value,proto3" json:"value"`
+	IsActive             bool     `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3" json:"is_active"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -171,9 +179,16 @@ func (m *GetReqStrSpecialization) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetReqStrSpecialization proto.InternalMessageInfo
 
-func (m *GetReqStrSpecialization) GetId() string {
+func (m *GetReqStrSpecialization) GetField() string {
 	if m != nil {
-		return m.Id
+		return m.Field
+	}
+	return ""
+}
+
+func (m *GetReqStrSpecialization) GetValue() string {
+	if m != nil {
+		return m.Value
 	}
 	return ""
 }
@@ -185,15 +200,8 @@ func (m *GetReqStrSpecialization) GetIsActive() bool {
 	return false
 }
 
-func (m *GetReqStrSpecialization) GetIsHardDeleted() bool {
-	if m != nil {
-		return m.IsHardDeleted
-	}
-	return false
-}
-
 type ListSpecializations struct {
-	Count                int64              `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
+	Count                int32              `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	Specializations      []*Specializations `protobuf:"bytes,2,rep,name=specializations,proto3" json:"specializations"`
 	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
 	XXX_unrecognized     []byte             `json:"-"`
@@ -233,7 +241,7 @@ func (m *ListSpecializations) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ListSpecializations proto.InternalMessageInfo
 
-func (m *ListSpecializations) GetCount() int64 {
+func (m *ListSpecializations) GetCount() int32 {
 	if m != nil {
 		return m.Count
 	}
@@ -295,9 +303,12 @@ func (m *StatusSpecialization) GetStatus() bool {
 }
 
 type GetAllSpecialization struct {
-	Page                 int64    `protobuf:"varint,1,opt,name=page,proto3" json:"page"`
-	Limit                int64    `protobuf:"varint,2,opt,name=limit,proto3" json:"limit"`
-	Search               string   `protobuf:"bytes,3,opt,name=search,proto3" json:"search"`
+	Page                 int32    `protobuf:"varint,1,opt,name=page,proto3" json:"page"`
+	Limit                int32    `protobuf:"varint,2,opt,name=limit,proto3" json:"limit"`
+	IsActive             bool     `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3" json:"is_active"`
+	Field                string   `protobuf:"bytes,4,opt,name=field,proto3" json:"field"`
+	Value                string   `protobuf:"bytes,5,opt,name=value,proto3" json:"value"`
+	OrderBy              string   `protobuf:"bytes,6,opt,name=order_by,json=orderBy,proto3" json:"order_by"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -336,23 +347,44 @@ func (m *GetAllSpecialization) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetAllSpecialization proto.InternalMessageInfo
 
-func (m *GetAllSpecialization) GetPage() int64 {
+func (m *GetAllSpecialization) GetPage() int32 {
 	if m != nil {
 		return m.Page
 	}
 	return 0
 }
 
-func (m *GetAllSpecialization) GetLimit() int64 {
+func (m *GetAllSpecialization) GetLimit() int32 {
 	if m != nil {
 		return m.Limit
 	}
 	return 0
 }
 
-func (m *GetAllSpecialization) GetSearch() string {
+func (m *GetAllSpecialization) GetIsActive() bool {
 	if m != nil {
-		return m.Search
+		return m.IsActive
+	}
+	return false
+}
+
+func (m *GetAllSpecialization) GetField() string {
+	if m != nil {
+		return m.Field
+	}
+	return ""
+}
+
+func (m *GetAllSpecialization) GetValue() string {
+	if m != nil {
+		return m.Value
+	}
+	return ""
+}
+
+func (m *GetAllSpecialization) GetOrderBy() string {
+	if m != nil {
+		return m.OrderBy
 	}
 	return ""
 }
@@ -370,38 +402,40 @@ func init() {
 }
 
 var fileDescriptor_8df9db489869b4c3 = []byte{
-	// 491 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xdd, 0x8a, 0xd3, 0x40,
-	0x14, 0x36, 0xfd, 0x59, 0xd3, 0xb3, 0xae, 0x95, 0x31, 0xab, 0x61, 0x17, 0x6b, 0xc8, 0x82, 0xf6,
-	0xc6, 0x0a, 0xeb, 0x13, 0x74, 0x55, 0xea, 0x82, 0x17, 0x4b, 0x8a, 0xa0, 0x82, 0x84, 0x31, 0x73,
-	0xb0, 0x03, 0x69, 0x12, 0x67, 0x4e, 0x17, 0xf4, 0x49, 0x7c, 0x24, 0x2f, 0xf5, 0x0d, 0xa4, 0x3e,
-	0x80, 0xaf, 0x20, 0x3d, 0x89, 0xb4, 0x49, 0xd7, 0xe2, 0x85, 0x77, 0x39, 0xdf, 0xf7, 0xcd, 0x37,
-	0x73, 0xbe, 0x73, 0x08, 0x3c, 0x9c, 0xa1, 0x4c, 0x69, 0x96, 0x48, 0x83, 0x8f, 0x2c, 0x9a, 0x4b,
-	0x9d, 0xe0, 0x63, 0x5b, 0x60, 0xa2, 0x65, 0xaa, 0x3f, 0x4b, 0xd2, 0x79, 0x36, 0x2a, 0x4c, 0x4e,
-	0xb9, 0x80, 0xb5, 0x30, 0xfc, 0xe5, 0x40, 0x7f, 0x5a, 0x13, 0x59, 0x71, 0x13, 0x5a, 0x5a, 0xf9,
-	0x4e, 0xe0, 0x0c, 0x7b, 0x51, 0x4b, 0x2b, 0xe1, 0x41, 0x37, 0x37, 0x0a, 0x8d, 0xdf, 0x0a, 0x9c,
-	0x61, 0x37, 0x2a, 0x0b, 0x21, 0xa0, 0x93, 0xc9, 0x39, 0xfa, 0x6d, 0xd6, 0xf1, 0xb7, 0x08, 0x60,
-	0x5f, 0xa1, 0x4d, 0x8c, 0x2e, 0x56, 0x4e, 0x7e, 0x87, 0xa9, 0x4d, 0x48, 0x9c, 0xc0, 0x81, 0xc2,
-	0x42, 0x1a, 0x9a, 0x63, 0x46, 0xb1, 0x56, 0x7e, 0x97, 0x35, 0x37, 0xd6, 0xe0, 0xb9, 0x12, 0xf7,
-	0x00, 0x12, 0x83, 0x92, 0x50, 0xc5, 0x92, 0xfc, 0xeb, 0xac, 0xe8, 0x55, 0xc8, 0x98, 0x56, 0xf4,
-	0xa2, 0x50, 0x7f, 0x68, 0xb7, 0xa4, 0x2b, 0xa4, 0xa4, 0x15, 0xa6, 0x58, 0xd1, 0xbd, 0x92, 0xae,
-	0x90, 0x31, 0x85, 0x19, 0xdc, 0x9d, 0x20, 0x45, 0xf8, 0x71, 0x4a, 0xa6, 0xde, 0xf9, 0x56, 0xe3,
-	0xc7, 0xd0, 0xd3, 0x36, 0x96, 0x09, 0xe9, 0x4b, 0xe4, 0xe6, 0xdd, 0xc8, 0xd5, 0x76, 0xcc, 0xb5,
-	0x78, 0x00, 0x7d, 0x6d, 0xe3, 0x99, 0x34, 0x2a, 0xae, 0xcc, 0x39, 0x0a, 0x37, 0x3a, 0xd0, 0xf6,
-	0x85, 0x34, 0xea, 0x59, 0x09, 0x86, 0x06, 0x6e, 0xbf, 0xd4, 0x96, 0x9a, 0x21, 0x7b, 0xd0, 0x4d,
-	0xf2, 0x45, 0x46, 0x7c, 0x5d, 0x3b, 0x2a, 0x0b, 0xf1, 0x1c, 0xfa, 0xf5, 0x91, 0x59, 0xbf, 0x15,
-	0xb4, 0x87, 0xfb, 0xa7, 0xc7, 0xa3, 0xf5, 0xd0, 0x46, 0x0d, 0xaf, 0xa8, 0x79, 0x26, 0x1c, 0x81,
-	0x37, 0x25, 0x49, 0x0b, 0xdb, 0x68, 0xf0, 0x0e, 0xec, 0x59, 0xc6, 0xf9, 0x56, 0x37, 0xaa, 0xaa,
-	0xf0, 0x35, 0x78, 0x13, 0xa4, 0x71, 0x9a, 0x36, 0xf4, 0x02, 0x3a, 0x85, 0xfc, 0x80, 0xd5, 0x1b,
-	0xf9, 0x7b, 0xf5, 0xf0, 0x54, 0xcf, 0x35, 0x71, 0x20, 0xed, 0xa8, 0x2c, 0xd8, 0x19, 0xa5, 0x49,
-	0x66, 0xd5, 0x3e, 0x54, 0xd5, 0xe9, 0xf7, 0x36, 0x1c, 0xd6, 0x4d, 0xa7, 0xe5, 0x6a, 0x8a, 0x0b,
-	0xf0, 0x9e, 0xf2, 0x48, 0x1b, 0x77, 0xee, 0xea, 0xf4, 0x68, 0x17, 0x29, 0xde, 0xc0, 0xe1, 0x04,
-	0x1b, 0x41, 0x9f, 0x7d, 0x3a, 0x57, 0xe2, 0x64, 0xf3, 0xd4, 0x5f, 0x86, 0xbf, 0xdb, 0xfa, 0x2d,
-	0x5b, 0x6f, 0x05, 0x64, 0x45, 0xd0, 0xb0, 0xde, 0x92, 0x1c, 0xdd, 0xdf, 0x54, 0x5c, 0xb5, 0x09,
-	0x17, 0xe0, 0xbd, 0xe2, 0xe5, 0xfd, 0x6f, 0x41, 0xbc, 0x03, 0xaf, 0xdc, 0xbe, 0x86, 0xe3, 0x3f,
-	0xe5, 0x50, 0xeb, 0xe8, 0xaa, 0x2d, 0x3a, 0xbb, 0xf5, 0x75, 0x39, 0x70, 0xbe, 0x2d, 0x07, 0xce,
-	0x8f, 0xe5, 0xc0, 0xf9, 0xf2, 0x73, 0x70, 0xed, 0xfd, 0x1e, 0xff, 0x58, 0x9e, 0xfc, 0x0e, 0x00,
-	0x00, 0xff, 0xff, 0x14, 0x8d, 0xa0, 0xb3, 0x83, 0x04, 0x00, 0x00,
+	// 522 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xd1, 0x8e, 0xd2, 0x4c,
+	0x18, 0xfd, 0x0b, 0x94, 0x2d, 0xdf, 0xfe, 0xba, 0x66, 0xec, 0x6a, 0xdd, 0x8d, 0x48, 0xd8, 0x0b,
+	0xb9, 0x11, 0x93, 0xf5, 0x09, 0x40, 0x0d, 0xd9, 0xc4, 0x8b, 0x4d, 0xc9, 0x5e, 0x68, 0x62, 0xc8,
+	0xd0, 0xf9, 0xdc, 0x9d, 0x64, 0xa0, 0x75, 0x66, 0x4a, 0x82, 0xcf, 0xe0, 0x03, 0xf8, 0x00, 0x3e,
+	0x8c, 0x97, 0xfa, 0x06, 0x06, 0x5f, 0xc4, 0xf4, 0x6b, 0x09, 0xb4, 0x8b, 0xc4, 0x0b, 0xef, 0xe6,
+	0x9c, 0xf3, 0xcd, 0x61, 0xe6, 0xcc, 0xa1, 0xf0, 0xf4, 0x06, 0xb9, 0xb2, 0x37, 0x11, 0xd7, 0xf8,
+	0xcc, 0xa0, 0x5e, 0xc8, 0x08, 0x9f, 0x9b, 0x04, 0x23, 0xc9, 0x95, 0xfc, 0xc4, 0xad, 0x8c, 0xe7,
+	0xfd, 0x44, 0xc7, 0x36, 0x66, 0xb0, 0x19, 0xec, 0x7e, 0xae, 0xc1, 0xd1, 0xb8, 0x34, 0x64, 0xd8,
+	0x5d, 0xa8, 0x49, 0x11, 0x38, 0x1d, 0xa7, 0xd7, 0x0a, 0x6b, 0x52, 0x30, 0x1f, 0xdc, 0x58, 0x0b,
+	0xd4, 0x41, 0xad, 0xe3, 0xf4, 0xdc, 0x30, 0x07, 0x8c, 0x41, 0x63, 0xce, 0x67, 0x18, 0xd4, 0x69,
+	0x8e, 0xd6, 0xac, 0x03, 0x87, 0x02, 0x4d, 0xa4, 0x65, 0x92, 0x39, 0x05, 0x0d, 0x92, 0xb6, 0x29,
+	0x76, 0x06, 0x77, 0x04, 0x26, 0x5c, 0xdb, 0x19, 0xce, 0xed, 0x44, 0x8a, 0xc0, 0xa5, 0x99, 0xff,
+	0x37, 0xe4, 0x85, 0x60, 0xa7, 0xd0, 0x92, 0x33, 0x7e, 0x8d, 0x93, 0x54, 0xab, 0xa0, 0x49, 0x03,
+	0x1e, 0x11, 0x57, 0x5a, 0xb1, 0xc7, 0x00, 0x91, 0x46, 0x6e, 0x51, 0x4c, 0xb8, 0x0d, 0x0e, 0x48,
+	0x6d, 0x15, 0xcc, 0xc0, 0x66, 0x72, 0x9a, 0x88, 0xb5, 0xec, 0xe5, 0x72, 0xc1, 0xe4, 0xb2, 0x40,
+	0x85, 0x85, 0xdc, 0xca, 0xe5, 0x82, 0x19, 0xd8, 0xee, 0x14, 0x1e, 0x8e, 0xd0, 0x86, 0xf8, 0x71,
+	0x6c, 0x75, 0x39, 0x96, 0x2c, 0x85, 0x0f, 0x12, 0xd5, 0x3a, 0x98, 0x1c, 0x64, 0xec, 0x82, 0xab,
+	0x14, 0x29, 0x9b, 0x56, 0x98, 0x03, 0xba, 0x80, 0x99, 0xf0, 0xc8, 0xca, 0x45, 0x1e, 0x90, 0x17,
+	0x7a, 0xd2, 0x0c, 0x08, 0x77, 0x35, 0xdc, 0x7f, 0x23, 0x8d, 0xad, 0xa6, 0xee, 0x83, 0x1b, 0xc5,
+	0xe9, 0xdc, 0x92, 0xbf, 0x1b, 0xe6, 0x80, 0xbd, 0x86, 0xa3, 0xf2, 0x1b, 0x9a, 0xa0, 0xd6, 0xa9,
+	0xf7, 0x0e, 0xcf, 0x4f, 0xfb, 0x9b, 0x57, 0xec, 0x57, 0xbc, 0xc2, 0xea, 0x9e, 0x6e, 0x1f, 0xfc,
+	0xb1, 0xe5, 0x36, 0x35, 0x95, 0x4b, 0x3d, 0x80, 0xa6, 0x21, 0x9e, 0x7e, 0xd5, 0x0b, 0x0b, 0xd4,
+	0xfd, 0xea, 0x80, 0x3f, 0x42, 0x3b, 0x50, 0xaa, 0xb2, 0x81, 0x41, 0x23, 0xe1, 0xd7, 0x58, 0x1c,
+	0x92, 0xd6, 0xd9, 0xc9, 0x95, 0x9c, 0x49, 0xbb, 0xee, 0x07, 0x81, 0xbd, 0x19, 0x6c, 0xc2, 0x6c,
+	0xec, 0x0c, 0xd3, 0xdd, 0x0e, 0xf3, 0x11, 0x78, 0xd4, 0xb8, 0xc9, 0x74, 0x59, 0x94, 0xe1, 0x80,
+	0xf0, 0x70, 0x79, 0xfe, 0xa3, 0x0e, 0xc7, 0xe5, 0x03, 0x8e, 0xf3, 0xe2, 0xb3, 0x4b, 0xf0, 0x5f,
+	0x52, 0x27, 0x2a, 0xe7, 0xdf, 0x17, 0xdb, 0xc9, 0x3e, 0x91, 0xbd, 0x85, 0xe3, 0x11, 0x56, 0x5e,
+	0x6d, 0xb8, 0xbc, 0x10, 0xec, 0x6c, 0x7b, 0xd7, 0x1f, 0xda, 0xb3, 0xdf, 0xfa, 0x1d, 0x59, 0xdf,
+	0x0a, 0xdb, 0xb0, 0x4e, 0xc5, 0xfa, 0xd6, 0xc8, 0xc9, 0x93, 0xed, 0x89, 0x5d, 0xb5, 0xba, 0x04,
+	0xff, 0x8a, 0xda, 0xff, 0xcf, 0x82, 0x78, 0x0f, 0xfe, 0x2b, 0xfa, 0xc3, 0x54, 0x1c, 0xff, 0x2a,
+	0x87, 0xd2, 0x8d, 0x76, 0x55, 0x72, 0x78, 0xef, 0xdb, 0xaa, 0xed, 0x7c, 0x5f, 0xb5, 0x9d, 0x9f,
+	0xab, 0xb6, 0xf3, 0xe5, 0x57, 0xfb, 0xbf, 0x69, 0x93, 0x3e, 0x5b, 0x2f, 0x7e, 0x07, 0x00, 0x00,
+	0xff, 0xff, 0x73, 0x5c, 0x05, 0x11, 0xe1, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -673,6 +707,13 @@ func (m *Specializations) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x3a
 	}
+	if len(m.ImageUrl) > 0 {
+		i -= len(m.ImageUrl)
+		copy(dAtA[i:], m.ImageUrl)
+		i = encodeVarintSpecialization(dAtA, i, uint64(len(m.ImageUrl)))
+		i--
+		dAtA[i] = 0x32
+	}
 	if len(m.DepartmentId) > 0 {
 		i -= len(m.DepartmentId)
 		copy(dAtA[i:], m.DepartmentId)
@@ -733,16 +774,6 @@ func (m *GetReqStrSpecialization) MarshalToSizedBuffer(dAtA []byte) (int, error)
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if m.IsHardDeleted {
-		i--
-		if m.IsHardDeleted {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i--
-		dAtA[i] = 0x18
-	}
 	if m.IsActive {
 		i--
 		if m.IsActive {
@@ -751,12 +782,19 @@ func (m *GetReqStrSpecialization) MarshalToSizedBuffer(dAtA []byte) (int, error)
 			dAtA[i] = 0
 		}
 		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0x18
 	}
-	if len(m.Id) > 0 {
-		i -= len(m.Id)
-		copy(dAtA[i:], m.Id)
-		i = encodeVarintSpecialization(dAtA, i, uint64(len(m.Id)))
+	if len(m.Value) > 0 {
+		i -= len(m.Value)
+		copy(dAtA[i:], m.Value)
+		i = encodeVarintSpecialization(dAtA, i, uint64(len(m.Value)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Field) > 0 {
+		i -= len(m.Field)
+		copy(dAtA[i:], m.Field)
+		i = encodeVarintSpecialization(dAtA, i, uint64(len(m.Field)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -870,12 +908,36 @@ func (m *GetAllSpecialization) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if len(m.Search) > 0 {
-		i -= len(m.Search)
-		copy(dAtA[i:], m.Search)
-		i = encodeVarintSpecialization(dAtA, i, uint64(len(m.Search)))
+	if len(m.OrderBy) > 0 {
+		i -= len(m.OrderBy)
+		copy(dAtA[i:], m.OrderBy)
+		i = encodeVarintSpecialization(dAtA, i, uint64(len(m.OrderBy)))
 		i--
-		dAtA[i] = 0x1a
+		dAtA[i] = 0x32
+	}
+	if len(m.Value) > 0 {
+		i -= len(m.Value)
+		copy(dAtA[i:], m.Value)
+		i = encodeVarintSpecialization(dAtA, i, uint64(len(m.Value)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Field) > 0 {
+		i -= len(m.Field)
+		copy(dAtA[i:], m.Field)
+		i = encodeVarintSpecialization(dAtA, i, uint64(len(m.Field)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if m.IsActive {
+		i--
+		if m.IsActive {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x18
 	}
 	if m.Limit != 0 {
 		i = encodeVarintSpecialization(dAtA, i, uint64(m.Limit))
@@ -926,6 +988,10 @@ func (m *Specializations) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovSpecialization(uint64(l))
 	}
+	l = len(m.ImageUrl)
+	if l > 0 {
+		n += 1 + l + sovSpecialization(uint64(l))
+	}
 	l = len(m.CreatedAt)
 	if l > 0 {
 		n += 1 + l + sovSpecialization(uint64(l))
@@ -950,14 +1016,15 @@ func (m *GetReqStrSpecialization) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Id)
+	l = len(m.Field)
+	if l > 0 {
+		n += 1 + l + sovSpecialization(uint64(l))
+	}
+	l = len(m.Value)
 	if l > 0 {
 		n += 1 + l + sovSpecialization(uint64(l))
 	}
 	if m.IsActive {
-		n += 2
-	}
-	if m.IsHardDeleted {
 		n += 2
 	}
 	if m.XXX_unrecognized != nil {
@@ -1014,7 +1081,18 @@ func (m *GetAllSpecialization) Size() (n int) {
 	if m.Limit != 0 {
 		n += 1 + sovSpecialization(uint64(m.Limit))
 	}
-	l = len(m.Search)
+	if m.IsActive {
+		n += 2
+	}
+	l = len(m.Field)
+	if l > 0 {
+		n += 1 + l + sovSpecialization(uint64(l))
+	}
+	l = len(m.Value)
+	if l > 0 {
+		n += 1 + l + sovSpecialization(uint64(l))
+	}
+	l = len(m.OrderBy)
 	if l > 0 {
 		n += 1 + l + sovSpecialization(uint64(l))
 	}
@@ -1206,6 +1284,38 @@ func (m *Specializations) Unmarshal(dAtA []byte) error {
 			}
 			m.DepartmentId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ImageUrl", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSpecialization
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthSpecialization
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthSpecialization
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ImageUrl = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		case 7:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
@@ -1355,7 +1465,7 @@ func (m *GetReqStrSpecialization) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Field", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1383,9 +1493,41 @@ func (m *GetReqStrSpecialization) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Id = string(dAtA[iNdEx:postIndex])
+			m.Field = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSpecialization
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthSpecialization
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthSpecialization
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Value = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field IsActive", wireType)
 			}
@@ -1405,26 +1547,6 @@ func (m *GetReqStrSpecialization) Unmarshal(dAtA []byte) error {
 				}
 			}
 			m.IsActive = bool(v != 0)
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field IsHardDeleted", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowSpecialization
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.IsHardDeleted = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipSpecialization(dAtA[iNdEx:])
@@ -1490,7 +1612,7 @@ func (m *ListSpecializations) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Count |= int64(b&0x7F) << shift
+				m.Count |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1665,7 +1787,7 @@ func (m *GetAllSpecialization) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Page |= int64(b&0x7F) << shift
+				m.Page |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1684,14 +1806,34 @@ func (m *GetAllSpecialization) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Limit |= int64(b&0x7F) << shift
+				m.Limit |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
 		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IsActive", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSpecialization
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IsActive = bool(v != 0)
+		case 4:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Search", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Field", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1719,7 +1861,71 @@ func (m *GetAllSpecialization) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Search = string(dAtA[iNdEx:postIndex])
+			m.Field = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSpecialization
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthSpecialization
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthSpecialization
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Value = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OrderBy", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSpecialization
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthSpecialization
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthSpecialization
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OrderBy = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
