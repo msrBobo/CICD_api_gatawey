@@ -36,4 +36,25 @@ p, unauthorized, /v1/doctor-notes/, PUT
 p, unauthorized, /v1/doctor-notes/, DELETE
 
 
+p, unauthorized, /v1/doctor-time/, POST
+p, unauthorized, /v1/doctor-time/get, GET
+p, unauthorized, /v1/doctor-time/, GET
+p, unauthorized, /v1/doctor-time/, PUT
+p, unauthorized, /v1/doctor-time/, DELETE
+
+
+p, unauthorized, /v1/patient/, POST
+p, unauthorized, /v1/patient/get, GET
+p, unauthorized, /v1/patient/, GET
+p, unauthorized, /v1/patient/, PUT
+p, unauthorized, /v1/patient/, DELETE
+
+
+p, unauthorized, /v1/appointment/, POST
+p, unauthorized, /v1/appointment/get, GET
+p, unauthorized, /v1/appointment/, GET
+p, unauthorized, /v1/appointment/, PUT
+p, unauthorized, /v1/appointment/, DELETE
+
+
 p, user, /v1/customer/logout, POST

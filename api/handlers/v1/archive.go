@@ -15,7 +15,7 @@ import (
 // CreateArchive ...
 // @Summary CreateArchive
 // @Description CreateArchive - Api for crete archive
-// @Tags Booking Archive
+// @Tags Archive
 // @Accept json
 // @Produce json
 // @Param CreateArchiveReq body model_booking_service.CreateArchiveReq true "CreateArchiveReq"
@@ -68,7 +68,7 @@ func (h *HandlerV1) CreateArchive(c *gin.Context) {
 // GetArchive ...
 // @Summary GetArchive
 // @Description GetArchive - Api for get archive
-// @Tags Booking Archive
+// @Tags Archive
 // @Accept json
 // @Produce json
 // @Param GetArchiveReq query models.FieldValueReq true "FieldValueReq"
@@ -108,7 +108,7 @@ func (h *HandlerV1) GetArchive(c *gin.Context) {
 // ListArchive ...
 // @Summary ListArchive
 // @Description ListArchive - Api for list archive
-// @Tags Booking Archive
+// @Tags Archive
 // @Accept json
 // @Produce json
 // @Param ListReq query models.ListReq false "ListReq"
@@ -167,7 +167,7 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 // UpdateArchive ...
 // @Summary UpdateArchive
 // @Description UpdateArchive - Api for update archive
-// @Tags Booking Archive
+// @Tags Archive
 // @Accept json
 // @Produce json
 // @Param UpdateArchiveReq body model_booking_service.UpdateArchiveReq true "UpdateArchiveReq"
@@ -222,7 +222,7 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 // DeleteArchive ...
 // @Summary DeleteArchive
 // @Description DeleteArchive - Api for delete archive
-// @Tags Booking Archive
+// @Tags Archive
 // @Accept json
 // @Produce json
 // @Param DeleteArchiveReq query models.FieldValueReq true "FieldValueReq"

@@ -102,6 +102,30 @@ func NewRoute(option RouteOption) *gin.Engine {
 	doctorNote.PUT("/", HandlerV1.UpdateDoctorNote)
 	doctorNote.DELETE("/", HandlerV1.DeleteDoctorNote)
 
+	// doctor time
+	doctorTime := api.Group("/doctor-time")
+	doctorTime.POST("/", HandlerV1.CreateDoctorTimes)
+	doctorTime.GET("/get", HandlerV1.GetDoctorTimes)
+	doctorTime.GET("/", HandlerV1.ListDoctorTimes)
+	doctorTime.PUT("/", HandlerV1.UpdateDoctorTimes)
+	doctorTime.DELETE("/", HandlerV1.DeleteDoctorTimes)
+
+	// patient
+	patient := api.Group("/patient")
+	patient.POST("/", HandlerV1.CreatePatient)
+	patient.GET("/get", HandlerV1.GetPatient)
+	patient.GET("/", HandlerV1.ListPatient)
+	patient.PUT("/", HandlerV1.UpdatePatient)
+	patient.DELETE("/", HandlerV1.DeletePatient)
+
+	// appointment
+	appointment := api.Group("/appointment")
+	appointment.POST("/", HandlerV1.CreateBookedAppointment)
+	appointment.GET("/get", HandlerV1.GetBookedAppointment)
+	appointment.GET("/", HandlerV1.ListBookedAppointments)
+	appointment.PUT("/", HandlerV1.UpdateBookedAppointment)
+	appointment.DELETE("/", HandlerV1.DeleteBookedAppointment)
+
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 

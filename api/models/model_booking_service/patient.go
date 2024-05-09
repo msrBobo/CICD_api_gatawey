@@ -14,7 +14,7 @@ type Patient struct {
 	PatientProblem string `json:"patient_problem"`
 }
 
-type Patients struct {
+type PatientsType struct {
 	Count    int64      `json:"count"`
 	Patients []*Patient `json:"patients"`
 }
