@@ -19,6 +19,24 @@ p, unauthorized, /v1/department/get, GET
 p, unauthorized, /v1/department/, PUT
 p, unauthorized, /v1/department/, DELETE
 
+p, unauthorized, /v1/doctor/, POST
+p, unauthorized, /v1/doctor/, GET
+p, unauthorized, /v1/doctor/get, GET
+p, unauthorized, /v1/doctor/, PUT
+p, unauthorized, /v1/doctor/, DELETE
+
+p, unauthorized, /v1/specialization/, POST
+p, unauthorized, /v1/specialization/, GET
+p, unauthorized, /v1/specialization/get, GET
+p, unauthorized, /v1/specialization/, PUT
+p, unauthorized, /v1/specialization/, DELETE
+
+p, unauthorized, /v1/doctorServices/, POST
+p, unauthorized, /v1/doctorServices/, GET
+p, unauthorized, /v1/doctorServices/get, GET
+p, unauthorized, /v1/doctorServices/, PUT
+p, unauthorized, /v1/doctorServices/, DELETE
+
 p, unauthorized, /v1/file-upload, POST
 
 

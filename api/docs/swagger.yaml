@@ -165,6 +165,126 @@ definitions:
       updated_at:
         type: string
     type: object
+  model_healthcare_service.DoctorReq:
+    properties:
+      address:
+        type: string
+      bio:
+        type: string
+      birth_date:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      department_id:
+        type: string
+      email:
+        type: string
+      end_work_date:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string
+      phone_number:
+        type: string
+      room_number:
+        type: integer
+      salary:
+        type: number
+      start_work_date:
+        type: string
+      work_years:
+        type: integer
+    type: object
+  model_healthcare_service.DoctorRes:
+    properties:
+      address:
+        type: string
+      bio:
+        type: string
+      birth_date:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      created_at:
+        type: string
+      department_id:
+        type: string
+      email:
+        type: string
+      end_work_date:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      order:
+        type: integer
+      password:
+        type: string
+      phone_number:
+        type: string
+      room_number:
+        type: integer
+      salary:
+        type: number
+      start_work_date:
+        type: string
+      updated_at:
+        type: string
+      work_years:
+        type: integer
+    type: object
+  model_healthcare_service.DoctorServicesReq:
+    properties:
+      doctorId:
+        type: string
+      duration:
+        type: string
+      name:
+        type: string
+      offlinePrice:
+        type: number
+      onlinePrice:
+        type: number
+      specializationId:
+        type: string
+    type: object
+  model_healthcare_service.DoctorServicesRes:
+    properties:
+      createdAt:
+        type: string
+      doctorId:
+        type: string
+      duration:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      offlinePrice:
+        type: number
+      onlinePrice:
+        type: number
+      order:
+        type: integer
+      specializationId:
+        type: string
+      updatedAt:
+        type: string
+    type: object
   model_healthcare_service.ListDepartments:
     properties:
       count:
@@ -173,6 +293,63 @@ definitions:
         items:
           $ref: '#/definitions/model_healthcare_service.DepartmentRes'
         type: array
+    type: object
+  model_healthcare_service.ListDoctorServices:
+    properties:
+      count:
+        type: integer
+      doctorServices:
+        items:
+          $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
+        type: array
+    type: object
+  model_healthcare_service.ListDoctors:
+    properties:
+      count:
+        type: integer
+      doctors:
+        items:
+          $ref: '#/definitions/model_healthcare_service.DoctorRes'
+        type: array
+    type: object
+  model_healthcare_service.ListSpecializations:
+    properties:
+      count:
+        type: integer
+      specializations:
+        items:
+          $ref: '#/definitions/model_healthcare_service.SpecializationRes'
+        type: array
+    type: object
+  model_healthcare_service.SpecializationReq:
+    properties:
+      department_id:
+        type: string
+      description:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+    type: object
+  model_healthcare_service.SpecializationRes:
+    properties:
+      created_at:
+        type: string
+      department_id:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      order:
+        type: integer
+      updated_at:
+        type: string
     type: object
   model_minio.MinioURL:
     properties:
@@ -818,6 +995,128 @@ paths:
       summary: ListDepartments
       tags:
       - Department
+  /v1/doctor:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteDoctor - Api for delete doctor
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteDoctor
+      tags:
+      - Doctor
+    get:
+      consumes:
+      - application/json
+      description: GetDoctor - Api for get doctor
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetDoctor
+      tags:
+      - Doctor
+    post:
+      consumes:
+      - application/json
+      description: CreateDoctor - Api for crete doctor
+      parameters:
+      - description: DoctorReq
+        in: body
+        name: DoctorReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DoctorReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateDoctor
+      tags:
+      - Doctor
+    put:
+      consumes:
+      - application/json
+      description: UpdateDoctor - Api for update doctor
+      parameters:
+      - description: UpdateDoctorReq
+        in: body
+        name: UpdateDoctorReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DoctorReq'
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateDoctor
+      tags:
+      - Doctor
   /v1/doctor-notes:
     delete:
       consumes:
@@ -947,6 +1246,212 @@ paths:
       summary: UpdateDoctorNote
       tags:
       - Doctor Note
+  /v1/doctor/get:
+    get:
+      consumes:
+      - application/json
+      description: ListDoctors - Api for list doctor
+      parameters:
+      - in: query
+        name: delete_status
+        type: boolean
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListDoctors'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListDoctors
+      tags:
+      - Doctor
+  /v1/doctorServices:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteDoctorService - Api for delete doctorServices
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteDoctorService
+      tags:
+      - Doctor Services
+    get:
+      consumes:
+      - application/json
+      description: GetDoctorService - Api for get doctorServices
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetDoctorService
+      tags:
+      - Doctor Services
+    post:
+      consumes:
+      - application/json
+      description: CreateDoctorService - Api for crete doctorServices
+      parameters:
+      - description: DoctorServiceReq
+        in: body
+        name: DoctorServiceReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DoctorServicesReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateDoctorService
+      tags:
+      - Doctor Services
+    put:
+      consumes:
+      - application/json
+      description: UpdateDoctorServices - Api for update doctorServices
+      parameters:
+      - description: UpdateDoctorServicesReq
+        in: body
+        name: UpdateDoctorServicesReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DoctorServicesReq'
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateDoctorServices
+      tags:
+      - Doctor Services
+  /v1/doctorServices/get:
+    get:
+      consumes:
+      - application/json
+      description: ListDoctorServices - Api for list doctorServices
+      parameters:
+      - in: query
+        name: delete_status
+        type: boolean
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListDoctorServices'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListDoctorServices
+      tags:
+      - Doctor Services
   /v1/file-upload:
     post:
       consumes:
@@ -976,6 +1481,170 @@ paths:
       summary: Upload image
       tags:
       - upload-file
+  /v1/specialization:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteSpecialization - Api for delete specialization
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteSpecialization
+      tags:
+      - Specialization
+    get:
+      consumes:
+      - application/json
+      description: GetSpecialization - Api for get specialization
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.SpecializationRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetSpecialization
+      tags:
+      - Specialization
+    post:
+      consumes:
+      - application/json
+      description: CreateSpecialization - Api for crete specialization
+      parameters:
+      - description: SpecializationReq
+        in: body
+        name: SpecializationReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.SpecializationReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.SpecializationRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateSpecialization
+      tags:
+      - Specialization
+    put:
+      consumes:
+      - application/json
+      description: UpdateSpecialization - Api for update specialization
+      parameters:
+      - description: UpdateSpecializationReq
+        in: body
+        name: UpdateSpecializationReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.SpecializationReq'
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.SpecializationRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateSpecialization
+      tags:
+      - Specialization
+  /v1/specialization/get:
+    get:
+      consumes:
+      - application/json
+      description: ListSpecializations - Api for list specialization
+      parameters:
+      - in: query
+        name: delete_status
+        type: boolean
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListSpecializations'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListSpecializations
+      tags:
+      - Specialization
   /v1/user:
     delete:
       consumes:
