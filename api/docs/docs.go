@@ -17,7 +17,7 @@ const docTemplate = `{
     "paths": {
         "/v1/archive": {
             "get": {
-                "description": "GetArchive - Api for get archive",
+                "description": "ListArchive - Api for list archive",
                 "consumes": [
                     "application/json"
                 ],
@@ -27,11 +27,31 @@ const docTemplate = `{
                 "tags": [
                     "Booking Archive"
                 ],
-                "summary": "GetArchive",
+                "summary": "ListArchive",
                 "parameters": [
+                    {
+                        "type": "boolean",
+                        "name": "delete_status",
+                        "in": "query"
+                    },
                     {
                         "type": "string",
                         "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -44,7 +64,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_booking_service.Archive"
+                            "$ref": "#/definitions/model_booking_service.ArchivesType"
                         }
                     },
                     "400": {
@@ -197,7 +217,7 @@ const docTemplate = `{
         },
         "/v1/archive/get": {
             "get": {
-                "description": "ListArchive - Api for list archive",
+                "description": "GetArchive - Api for get archive",
                 "consumes": [
                     "application/json"
                 ],
@@ -207,31 +227,11 @@ const docTemplate = `{
                 "tags": [
                     "Booking Archive"
                 ],
-                "summary": "ListArchive",
+                "summary": "GetArchive",
                 "parameters": [
-                    {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "order_by",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -244,7 +244,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_booking_service.ArchivesType"
+                            "$ref": "#/definitions/model_booking_service.Archive"
                         }
                     },
                     "400": {
@@ -401,7 +401,7 @@ const docTemplate = `{
             }
         },
         "/v1/customer/logout": {
-            "get": {
+            "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
@@ -732,6 +732,53 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/doctor-notes/get": {
+            "get": {
+                "description": "GetDoctorNote - API to get doctor note by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Note"
+                ],
+                "summary": "GetDoctorNote",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.DoctorNote"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/file-upload": {
             "post": {
                 "description": "Upload image",
@@ -778,11 +825,6 @@ const docTemplate = `{
         },
         "/v1/user": {
             "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
                 "description": "Api for ListUsers",
                 "consumes": [
                     "application/json"
@@ -850,11 +892,6 @@ const docTemplate = `{
                 }
             },
             "put": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
                 "description": "Api for UpdateUser",
                 "consumes": [
                     "application/json"
@@ -906,11 +943,6 @@ const docTemplate = `{
                 }
             },
             "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
                 "description": "Api for DeleteUser",
                 "consumes": [
                     "application/json"
@@ -962,11 +994,6 @@ const docTemplate = `{
         },
         "/v1/user/get": {
             "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
                 "description": "Api for GetUser",
                 "consumes": [
                     "application/json"
@@ -1240,7 +1267,7 @@ const docTemplate = `{
         "model_user_service.ForgetPasswordVerify": {
             "type": "object",
             "properties": {
-                "cade": {
+                "code": {
                     "type": "integer",
                     "example": 7777
                 },

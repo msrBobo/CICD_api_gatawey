@@ -16,5 +16,24 @@ p, unauthorized, /v1/customer/login, POST
 
 p, unauthorized, /v1/file-upload, POST
 
+p, unauthorized, /v1/user/get, GET
+p, unauthorized, /v1/user/, GET
+p, unauthorized, /v1/user/, PUT
+p, unauthorized, /v1/user/, DELETE
+
+
+p, unauthorized, /v1/archive/, POST
+p, unauthorized, /v1/archive/get, GET
+p, unauthorized, /v1/archive/, GET
+p, unauthorized, /v1/archive/, PUT
+p, unauthorized, /v1/archive/, DELETE
+
+
+p, unauthorized, /v1/doctor-notes/, POST
+p, unauthorized, /v1/doctor-notes/get, GET
+p, unauthorized, /v1/doctor-notes/, GET
+p, unauthorized, /v1/doctor-notes/, PUT
+p, unauthorized, /v1/doctor-notes/, DELETE
+
 
 p, user, /v1/customer/logout, POST

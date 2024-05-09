@@ -72,7 +72,7 @@ func (h *HandlerV1) CreateDoctorNote(c *gin.Context) {
 // @Success 200 {object} model_booking_service.DoctorNote
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctor-notes [get]
+// @Router /v1/doctor-notes/get [get]
 func (h *HandlerV1) GetDoctorNote(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")

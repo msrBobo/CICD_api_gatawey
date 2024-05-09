@@ -148,8 +148,8 @@ func NewConfig() (*Config, error) {
 
 	// model_minio configuration
 	config.MinioService.Endpoint = getEnv("MINIO_SERVICE_ENDPOINT", "localhost:9000")
-	config.MinioService.AccessKey = getEnv("MINIO_SERVICE_ACCESS_KEY", "jeG8haxwCfKSdgvi")
-	config.MinioService.SecretKey = getEnv("MINIO_SERVICE_SECRET_KEY", "Ucu7bxBBjnio96loEEfCGzVSK97nk9ul")
+	config.MinioService.AccessKey = getEnv("MINIO_SERVICE_ACCESS_KEY", "53B17RC5vDChanAQ")
+	config.MinioService.SecretKey = getEnv("MINIO_SERVICE_SECRET_KEY", "0Fkmzb3uyTh41xKHImLc4l8fE9YIV7w4")
 	config.MinioService.BucketName = getEnv("MINIO_SERVICE_BUCKET_NAME", "dennic")
 
 	return &config, nil

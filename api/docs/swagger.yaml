@@ -143,7 +143,7 @@ definitions:
     type: object
   model_user_service.ForgetPasswordVerify:
     properties:
-      cade:
+      code:
         example: 7777
         type: integer
       new_password:
@@ -310,11 +310,23 @@ paths:
     get:
       consumes:
       - application/json
-      description: GetArchive - Api for get archive
+      description: ListArchive - Api for list archive
       parameters:
+      - in: query
+        name: delete_status
+        type: boolean
       - in: query
         name: field
         type: string
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: integer
       - in: query
         name: value
         type: string
@@ -324,7 +336,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_booking_service.Archive'
+            $ref: '#/definitions/model_booking_service.ArchivesType'
         "400":
           description: Bad Request
           schema:
@@ -333,7 +345,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: GetArchive
+      summary: ListArchive
       tags:
       - Booking Archive
     post:
@@ -398,23 +410,11 @@ paths:
     get:
       consumes:
       - application/json
-      description: ListArchive - Api for list archive
+      description: GetArchive - Api for get archive
       parameters:
-      - in: query
-        name: delete_status
-        type: boolean
       - in: query
         name: field
         type: string
-      - in: query
-        name: limit
-        type: integer
-      - in: query
-        name: order_by
-        type: string
-      - in: query
-        name: page
-        type: integer
       - in: query
         name: value
         type: string
@@ -424,7 +424,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_booking_service.ArchivesType'
+            $ref: '#/definitions/model_booking_service.Archive'
         "400":
           description: Bad Request
           schema:
@@ -433,7 +433,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ListArchive
+      summary: GetArchive
       tags:
       - Booking Archive
   /v1/customer/forget_password:
@@ -527,7 +527,7 @@ paths:
       tags:
       - customer
   /v1/customer/logout:
-    get:
+    post:
       consumes:
       - application/json
       description: LogOut - Api for registering users
@@ -740,6 +740,36 @@ paths:
       summary: UpdateDoctorNote
       tags:
       - Doctor Note
+  /v1/doctor-notes/get:
+    get:
+      consumes:
+      - application/json
+      description: GetDoctorNote - API to get doctor note by ID
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.DoctorNote'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetDoctorNote
+      tags:
+      - Doctor Note
   /v1/file-upload:
     post:
       consumes:
@@ -800,8 +830,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      security:
-      - ApiKeyAuth: []
       summary: DeleteUser
       tags:
       - User
@@ -847,8 +875,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      security:
-      - ApiKeyAuth: []
       summary: ListUsers
       tags:
       - User
@@ -883,8 +909,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      security:
-      - ApiKeyAuth: []
       summary: UpdateUser
       tags:
       - User
@@ -919,8 +943,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      security:
-      - ApiKeyAuth: []
       summary: GetUser
       tags:
       - User

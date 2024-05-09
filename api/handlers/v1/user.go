@@ -19,7 +19,6 @@ import (
 // @Tags User
 // @Accept json
 // @Produce json
-// @Security ApiKeyAuth
 // @Param Field query string true "Field"
 // @Param Value query string true "Value"
 // @Success 200 {object} model_user_service.GetUserResp
@@ -74,7 +73,6 @@ func (h *HandlerV1) GetUser(c *gin.Context) {
 // @Tags User
 // @Accept json
 // @Produce json
-// @Security ApiKeyAuth
 // @Param Page  query string true "Page"
 // @Param Limit query string true "Limit"
 // @Param Field query string false "Field"
@@ -148,7 +146,6 @@ func (h *HandlerV1) ListUsers(c *gin.Context) {
 // @Tags User
 // @Accept json
 // @Produce json
-// @Security ApiKeyAuth
 // @Param UserId  query string true "UserId"
 // @Param UpdUserReq body model_user_service.UpdUserReq true "UpdUserReq"
 // @Success 200 {object} model_user_service.GetUserResp
@@ -210,7 +207,6 @@ func (h *HandlerV1) UpdateUser(c *gin.Context) {
 // @Tags User
 // @Accept json
 // @Produce json
-// @Security ApiKeyAuth
 // @Param Field query string true "Field"
 // @Param Value query string true "Value"
 // @Success 200 {object} model_user_service.CheckUserFieldResp
