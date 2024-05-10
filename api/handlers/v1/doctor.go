@@ -100,7 +100,7 @@ func (h *HandlerV1) CreateDoctor(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.DoctorRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctor [get]
+// @Router /v1/doctor/get [get]
 func (h *HandlerV1) GetDoctor(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -152,7 +152,7 @@ func (h *HandlerV1) GetDoctor(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.ListDoctors
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctor/get [get]
+// @Router /v1/doctor [get]
 func (h *HandlerV1) ListDoctors(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")

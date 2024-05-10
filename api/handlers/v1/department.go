@@ -55,6 +55,7 @@ func (h *HandlerV1) CreateDepartment(c *gin.Context) {
 
 	c.JSON(http.StatusOK, model_healthcare_service.DepartmentRes{
 		Id:               department.Id,
+		Order:            department.Order,
 		Name:             department.Name,
 		Description:      department.Description,
 		ImageUrl:         department.ImageUrl,
@@ -94,6 +95,7 @@ func (h *HandlerV1) GetDepartment(c *gin.Context) {
 
 	c.JSON(http.StatusOK, model_healthcare_service.DepartmentRes{
 		Id:               department.Id,
+		Order:            department.Order,
 		Name:             department.Name,
 		Description:      department.Description,
 		ImageUrl:         department.ImageUrl,
@@ -114,7 +116,7 @@ func (h *HandlerV1) GetDepartment(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.ListDepartments
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/department/get [get]
+// @Router /v1/department [get]
 func (h *HandlerV1) ListDepartments(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -173,7 +175,7 @@ func (h *HandlerV1) ListDepartments(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.DepartmentReq
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/department [put]
+// @Router /v1/department/get [put]
 func (h *HandlerV1) UpdateDepartment(c *gin.Context) {
 	var (
 		body        model_healthcare_service.DepartmentReq
@@ -207,6 +209,7 @@ func (h *HandlerV1) UpdateDepartment(c *gin.Context) {
 
 	c.JSON(http.StatusOK, model_healthcare_service.DepartmentRes{
 		Id:               department.Id,
+		Order:            department.Order,
 		Name:             department.Name,
 		Description:      department.Description,
 		ImageUrl:         department.ImageUrl,

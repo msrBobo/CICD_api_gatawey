@@ -1590,3 +1590,8 @@ net/http.(*conn).serve
 2024-05-10T19:03:19.906+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
 main.main.func1
 	/home/bobur/GolandProjects/dennic_api_gateway/cmd/app/main.go:32
+2024-05-10T21:37:40.713+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-10T21:49:14.559+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-10T21:49:14.560+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobur/GolandProjects/dennic_api_gateway/cmd/app/main.go:32

@@ -131,32 +131,32 @@ func NewRoute(option RouteOption) *gin.Engine {
 	// department
 	department := api.Group("/department")
 	department.POST("/", HandlerV1.CreateDepartment)
-	department.GET("/", HandlerV1.GetDepartment)
-	department.GET("/get", HandlerV1.ListDepartments)
+	department.GET("/get", HandlerV1.GetDepartment)
+	department.GET("/", HandlerV1.ListDepartments)
 	department.PUT("/", HandlerV1.UpdateDepartment)
 	department.DELETE("/", HandlerV1.DeleteDepartment)
 
 	// doctor
 	doctor := api.Group("/doctor")
 	doctor.POST("/", HandlerV1.CreateDoctor)
-	doctor.GET("/", HandlerV1.GetDoctor)
-	doctor.GET("/get", HandlerV1.ListDoctors)
+	doctor.GET("/get", HandlerV1.GetDoctor)
+	doctor.GET("/", HandlerV1.ListDoctors)
 	doctor.PUT("/", HandlerV1.UpdateDoctor)
 	doctor.DELETE("/", HandlerV1.DeleteDoctor)
 
 	// specialization
 	specialization := api.Group("/specialization")
 	specialization.POST("/", HandlerV1.CreateSpecialization)
-	specialization.GET("/", HandlerV1.GetSpecialization)
-	specialization.GET("/get", HandlerV1.ListSpecializations)
+	specialization.GET("/get", HandlerV1.GetSpecialization)
+	specialization.GET("/", HandlerV1.ListSpecializations)
 	specialization.PUT("/", HandlerV1.UpdateSpecialization)
 	specialization.DELETE("/", HandlerV1.DeleteSpecialization)
 
 	// doctorServices
 	doctorServices := api.Group("/doctor-services")
 	doctorServices.POST("/", HandlerV1.CreateDoctorService)
-	doctorServices.GET("/", HandlerV1.GetDoctorService)
-	doctorServices.GET("/get", HandlerV1.ListDoctorServices)
+	doctorServices.GET("/get", HandlerV1.GetDoctorService)
+	doctorServices.GET("/", HandlerV1.ListDoctorServices)
 	doctorServices.PUT("/", HandlerV1.UpdateDoctorServices)
 	doctorServices.DELETE("/", HandlerV1.DeleteDoctorService)
 
@@ -164,16 +164,16 @@ func NewRoute(option RouteOption) *gin.Engine {
 
 	doctorWorkingHours := api.Group("/doctor-working-hours")
 	doctorWorkingHours.POST("/", HandlerV1.CreateDoctorWorkingHours)
-	doctorWorkingHours.GET("/", HandlerV1.GetDoctorWorkingHours)
-	doctorWorkingHours.GET("/get", HandlerV1.ListDoctorWorkingHours)
+	doctorWorkingHours.GET("/get", HandlerV1.GetDoctorWorkingHours)
+	doctorWorkingHours.GET("/", HandlerV1.ListDoctorWorkingHours)
 	doctorWorkingHours.PUT("/", HandlerV1.UpdateDoctorWorkingHours)
 	doctorWorkingHours.DELETE("/", HandlerV1.DeleteDoctorWorkingHours)
 
 	// reasons
 	reasons := api.Group("/reasons")
 	reasons.POST("/", HandlerV1.CreateReasons)
-	reasons.GET("/", HandlerV1.GetReasons)
-	reasons.GET("/get", HandlerV1.ListReasons)
+	reasons.GET("/get", HandlerV1.GetReasons)
+	reasons.GET("/", HandlerV1.ListReasons)
 	reasons.PUT("/", HandlerV1.UpdateReasons)
 	reasons.DELETE("/", HandlerV1.DeleteReasons)
 
