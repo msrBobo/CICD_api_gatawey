@@ -3226,15 +3226,13 @@ const docTemplate = `{
                         "type": "string",
                         "description": "Page",
                         "name": "Page",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     },
                     {
                         "type": "string",
                         "description": "Limit",
                         "name": "Limit",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     },
                     {
                         "type": "string",

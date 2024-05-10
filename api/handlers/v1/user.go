@@ -46,7 +46,7 @@ func (h *HandlerV1) GetUser(c *gin.Context) {
 		})
 
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
 		h.log.Error("failed to get user", logger.Error(err))
@@ -76,8 +76,8 @@ func (h *HandlerV1) GetUser(c *gin.Context) {
 // @Tags User
 // @Accept json
 // @Produce json
-// @Param Page  query string true "Page"
-// @Param Limit query string true "Limit"
+// @Param Page  query string false "Page"
+// @Param Limit query string false "Limit"
 // @Param Field query string false "Field"
 // @Param Value query string false "Value"
 // @Param OrderBy query string false "OrderBy"
@@ -96,7 +96,7 @@ func (h *HandlerV1) ListUsers(c *gin.Context) {
 	orderBy := c.Query("OrderBy")
 
 	pageInt, limitInt, err := e.ParseQueryParams(page, limit)
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "failed to list users") {
 		return
 	}
 

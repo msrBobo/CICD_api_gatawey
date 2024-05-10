@@ -33,7 +33,6 @@ type RouteOption struct {
 // @title API
 // @version 1.7
 // @host localhost:9050
-
 // NewRoute
 // @securityDefinitions.apikey ApiKeyAuth
 // @in header

@@ -14,8 +14,8 @@ type GetUserResp struct {
 }
 
 type ListUserResp struct {
-	Users []GetUserResp `json:"users"`
 	Count uint64        `json:"count"`
+	Users []GetUserResp `json:"users"`
 }
 
 type UpdUserReq struct {

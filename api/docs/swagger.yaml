@@ -2900,12 +2900,10 @@ paths:
       - description: Page
         in: query
         name: Page
-        required: true
         type: string
       - description: Limit
         in: query
         name: Limit
-        required: true
         type: string
       - description: Field
         in: query
