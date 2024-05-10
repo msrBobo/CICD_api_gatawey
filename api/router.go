@@ -126,21 +126,21 @@ func NewRoute(option RouteOption) *gin.Engine {
 	specialization.PUT("/", HandlerV1.UpdateSpecialization)
 	specialization.DELETE("/", HandlerV1.DeleteSpecialization)
 
-	// doctor_services
-	doctor_services := api.Group("/doctor_services")
-	doctor_services.POST("/", HandlerV1.CreateDoctorService)
-	doctor_services.GET("/", HandlerV1.GetDoctorService)
-	doctor_services.GET("/get", HandlerV1.ListDoctorServices)
-	doctor_services.PUT("/", HandlerV1.UpdateDoctorServices)
-	doctor_services.DELETE("/", HandlerV1.DeleteDoctorService)
+	// doctorServices
+	doctorServices := api.Group("/doctor_services")
+	doctorServices.POST("/", HandlerV1.CreateDoctorService)
+	doctorServices.GET("/", HandlerV1.GetDoctorService)
+	doctorServices.GET("/get", HandlerV1.ListDoctorServices)
+	doctorServices.PUT("/", HandlerV1.UpdateDoctorServices)
+	doctorServices.DELETE("/", HandlerV1.DeleteDoctorService)
 
-	// doctor_working_hours
-	doctor_working_hours := api.Group("/doctor_working_hours")
-	doctor_working_hours.POST("/", HandlerV1.CreateDoctorWorkingHours)
-	doctor_working_hours.GET("/", HandlerV1.GetDoctorWorkingHours)
-	doctor_working_hours.GET("/get", HandlerV1.ListDoctorWorkingHours)
-	doctor_working_hours.PUT("/", HandlerV1.UpdateDoctorWorkingHours)
-	doctor_working_hours.DELETE("/", HandlerV1.DeleteDoctorWorkingHours)
+	// doctorWorkingHours
+	doctorWorkingHours := api.Group("/doctor_working_hours")
+	doctorWorkingHours.POST("/", HandlerV1.CreateDoctorWorkingHours)
+	doctorWorkingHours.GET("/", HandlerV1.GetDoctorWorkingHours)
+	doctorWorkingHours.GET("/get", HandlerV1.ListDoctorWorkingHours)
+	doctorWorkingHours.PUT("/", HandlerV1.UpdateDoctorWorkingHours)
+	doctorWorkingHours.DELETE("/", HandlerV1.DeleteDoctorWorkingHours)
 
 	// reasons
 	reasons := api.Group("/reasons")
@@ -149,6 +149,11 @@ func NewRoute(option RouteOption) *gin.Engine {
 	reasons.GET("/get", HandlerV1.ListReasons)
 	reasons.PUT("/", HandlerV1.UpdateReasons)
 	reasons.DELETE("/", HandlerV1.DeleteReasons)
+
+	// session
+	session := api.Group("session")
+	session.GET("/", HandlerV1.GetUserSessions)
+	session.DELETE("/", HandlerV1.DeleteSessionById)
 
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))

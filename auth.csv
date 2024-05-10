@@ -49,6 +49,9 @@ p, unauthorized, /v1/reasons/get, GET
 p, unauthorized, /v1/reasons/, PUT
 p, unauthorized, /v1/reasons/, DELETE
 
+p, unauthorized, /v1/session/, GET
+p, unauthorized, /v1/session/, DELETE
+
 p, unauthorized, /v1/file-upload, POST
 
 
