@@ -145,6 +145,7 @@ func (h *HandlerV1) ListDepartments(c *gin.Context) {
 	for _, departmentRes := range departments.Departments {
 		departmentsRes.Departments = append(departmentsRes.Departments, &model_healthcare_service.DepartmentRes{
 			Id:               departmentRes.Id,
+			Order:            departmentRes.Order,
 			Name:             departmentRes.Name,
 			Description:      departmentRes.Description,
 			ImageUrl:         departmentRes.ImageUrl,

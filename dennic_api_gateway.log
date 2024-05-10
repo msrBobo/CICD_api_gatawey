@@ -1456,3 +1456,137 @@ main.main.func1
 2024-05-10T14:23:45.685+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
 main.main.func1
 	/home/bobur/GolandProjects/dennic_api_gateway/cmd/app/main.go:32
+2024-05-10T18:45:42.032+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-10T18:47:44.650+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unknown desc = no rows in result set
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/bobur/GolandProjects/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).GetDepartment
+	/home/bobur/GolandProjects/dennic_api_gateway/api/handlers/v1/department.go:91
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/bobur/GolandProjects/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/bobur/GolandProjects/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/bobur/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.linux-amd64/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/bobur/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.linux-amd64/src/net/http/server.go:2039
+2024-05-10T18:49:11.533+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unknown desc = no rows in result set
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/bobur/GolandProjects/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).GetDepartment
+	/home/bobur/GolandProjects/dennic_api_gateway/api/handlers/v1/department.go:91
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/bobur/GolandProjects/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/bobur/GolandProjects/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/bobur/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.linux-amd64/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/bobur/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.linux-amd64/src/net/http/server.go:2039
+2024-05-10T18:52:53.714+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unknown desc = no rows in result set
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/bobur/GolandProjects/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).GetDepartment
+	/home/bobur/GolandProjects/dennic_api_gateway/api/handlers/v1/department.go:91
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/bobur/GolandProjects/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/bobur/GolandProjects/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/bobur/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.linux-amd64/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/bobur/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.linux-amd64/src/net/http/server.go:2039
+2024-05-10T19:01:13.969+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-10T19:01:13.970+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobur/GolandProjects/dennic_api_gateway/cmd/app/main.go:32
+2024-05-10T19:01:16.142+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-10T19:02:17.917+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9090: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/bobur/GolandProjects/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).ListPatient
+	/home/bobur/GolandProjects/dennic_api_gateway/api/handlers/v1/patient.go:158
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/bobur/GolandProjects/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/bobur/GolandProjects/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/bobur/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/bobur/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.linux-amd64/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/bobur/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.2.linux-amd64/src/net/http/server.go:2039
+2024-05-10T19:03:19.906+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-10T19:03:19.906+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobur/GolandProjects/dennic_api_gateway/cmd/app/main.go:32
