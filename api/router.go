@@ -153,7 +153,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	specialization.DELETE("/", HandlerV1.DeleteSpecialization)
 
 	// doctorServices
-	doctorServices := api.Group("/doctor_services")
+	doctorServices := api.Group("/doctor-services")
 	doctorServices.POST("/", HandlerV1.CreateDoctorService)
 	doctorServices.GET("/", HandlerV1.GetDoctorService)
 	doctorServices.GET("/get", HandlerV1.ListDoctorServices)
@@ -161,7 +161,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	doctorServices.DELETE("/", HandlerV1.DeleteDoctorService)
 
 	// doctorWorkingHours
-	doctorWorkingHours := api.Group("/doctor_working_hours")
+	doctorWorkingHours := api.Group("/doctor-working-hours")
 	doctorWorkingHours.POST("/", HandlerV1.CreateDoctorWorkingHours)
 	doctorWorkingHours.GET("/", HandlerV1.GetDoctorWorkingHours)
 	doctorWorkingHours.GET("/get", HandlerV1.ListDoctorWorkingHours)

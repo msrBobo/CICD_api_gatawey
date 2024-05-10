@@ -42,18 +42,18 @@ p, unauthorized, /v1/specialization/, PUT
 p, unauthorized, /v1/specialization/, DELETE
 
 # doctorServices
-p, unauthorized, /v1/doctor_services/, POST
-p, unauthorized, /v1/doctor_services/, GET
-p, unauthorized, /v1/doctor_services/get, GET
-p, unauthorized, /v1/doctor_services/, PUT
-p, unauthorized, /v1/doctor_services/, DELETE
+p, unauthorized, /v1/doctor-services/, POST
+p, unauthorized, /v1/doctor-services/, GET
+p, unauthorized, /v1/doctor-services/get, GET
+p, unauthorized, /v1/doctor-services/, PUT
+p, unauthorized, /v1/doctor-services/, DELETE
 
 # doctorWorkingHours
-p, unauthorized, /v1/doctor_working_hours/, POST
-p, unauthorized, /v1/doctor_working_hours/, GET
-p, unauthorized, /v1/doctor_working_hours/get, GET
-p, unauthorized, /v1/doctor_working_hours/, PUT
-p, unauthorized, /v1/doctor_working_hours/, DELETE
+p, unauthorized, /v1/doctor-working-hours/, POST
+p, unauthorized, /v1/doctor-working-hours/, GET
+p, unauthorized, /v1/doctor-working-hours/get, GET
+p, unauthorized, /v1/doctor-working-hours/, PUT
+p, unauthorized, /v1/doctor-working-hours/, DELETE
 
 # reasons
 p, unauthorized, /v1/reasons/, POST
@@ -97,6 +97,7 @@ p, unauthorized, /v1/appointment/get, GET
 p, unauthorized, /v1/appointment/, GET
 p, unauthorized, /v1/appointment/, PUT
 p, unauthorized, /v1/appointment/, DELETE
+
 
 p, unauthorized, /v1/file-upload, POST
 

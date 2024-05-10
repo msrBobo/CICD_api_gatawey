@@ -1471,6 +1471,255 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/doctor-services": {
+            "get": {
+                "description": "GetDoctorService - Api for get doctor_services",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Services"
+                ],
+                "summary": "GetDoctorService",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "UpdateDoctorServices - Api for update doctor_services",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Services"
+                ],
+                "summary": "UpdateDoctorServices",
+                "parameters": [
+                    {
+                        "description": "UpdateDoctorServicesReq",
+                        "name": "UpdateDoctorServicesReq",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesReq"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "CreateDoctorService - Api for crete doctor_services",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Services"
+                ],
+                "summary": "CreateDoctorService",
+                "parameters": [
+                    {
+                        "description": "DoctorServiceReq",
+                        "name": "DoctorServiceReq",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "DeleteDoctorService - Api for delete doctorServices",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Services"
+                ],
+                "summary": "DeleteDoctorService",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.StatusRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor-services/get": {
+            "get": {
+                "description": "ListDoctorServices - Api for list doctor_services",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Services"
+                ],
+                "summary": "ListDoctorServices",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_healthcare_service.ListDoctorServices"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/doctor-time": {
             "get": {
                 "description": "ListDoctorTimes - Api for list doctor time",
@@ -1720,318 +1969,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/doctor/get": {
-            "get": {
-                "description": "ListDoctors - Api for list doctor",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Doctor"
-                ],
-                "summary": "ListDoctors",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "order_by",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.ListDoctors"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/doctor_services": {
-            "get": {
-                "description": "GetDoctorService - Api for get doctor_services",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Doctor Services"
-                ],
-                "summary": "GetDoctorService",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesRes"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "UpdateDoctorServices - Api for update doctor_services",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Doctor Services"
-                ],
-                "summary": "UpdateDoctorServices",
-                "parameters": [
-                    {
-                        "description": "UpdateDoctorServicesReq",
-                        "name": "UpdateDoctorServicesReq",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesReq"
-                        }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesRes"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "CreateDoctorService - Api for crete doctor_services",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Doctor Services"
-                ],
-                "summary": "CreateDoctorService",
-                "parameters": [
-                    {
-                        "description": "DoctorServiceReq",
-                        "name": "DoctorServiceReq",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesReq"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesRes"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "DeleteDoctorService - Api for delete doctorServices",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Doctor Services"
-                ],
-                "summary": "DeleteDoctorService",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.StatusRes"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/doctor_services/get": {
-            "get": {
-                "description": "ListDoctorServices - Api for list doctor_services",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Doctor Services"
-                ],
-                "summary": "ListDoctorServices",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "order_by",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.ListDoctorServices"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/doctor_working_hours": {
+        "/v1/doctor-working-hours": {
             "get": {
                 "description": "GetDoctorWorkingHours - Api for get doctor_working_hours",
                 "consumes": [
@@ -2218,7 +2156,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/doctor_working_hours/get": {
+        "/v1/doctor-working-hours/get": {
             "get": {
                 "description": "ListDoctorWorkingHours - Api for list doctor_working_hours",
                 "consumes": [
@@ -2263,6 +2201,68 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.ListDoctorWorkingHours"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor/get": {
+            "get": {
+                "description": "ListDoctors - Api for list doctor",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "ListDoctors",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_healthcare_service.ListDoctors"
                         }
                     },
                     "400": {
@@ -4561,6 +4561,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
 func init() {
