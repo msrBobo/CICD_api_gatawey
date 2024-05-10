@@ -1,6 +1,6 @@
 package model_healthcare_service
 
-type DoctorWorkingHoursReq struct {
+type DoctorWorkingHoursRes struct {
 	Id         int32  `json:"id"`
 	DoctorId   string `json:"doctorId"`
 	DayOfWeek  string `json:"dayOfWeek"`
@@ -10,7 +10,7 @@ type DoctorWorkingHoursReq struct {
 	UpdatedAt  string `json:"updatedAt"`
 }
 
-type DoctorWorkingHoursRes struct {
+type DoctorWorkingHoursReq struct {
 	DoctorId   string `json:"doctorId"`
 	DayOfWeek  string `json:"dayOfWeek"`
 	StartTime  string `json:"startTime"`

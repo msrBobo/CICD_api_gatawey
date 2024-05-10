@@ -8,6 +8,7 @@ import (
 	"github.com/google/uuid"
 	"io"
 	"net/http"
+	"path/filepath"
 )
 
 // UploadFile ...
@@ -22,7 +23,7 @@ import (
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/file-upload [post]
 func (h *HandlerV1) UploadFile(c *gin.Context) {
-	file, _, err := c.Request.FormFile("file")
+	file, header, err := c.Request.FormFile("file")
 	if e.HandleError(c, err, h.log, http.StatusBadRequest, "UploadFile") {
 		return
 	}
@@ -34,7 +35,7 @@ func (h *HandlerV1) UploadFile(c *gin.Context) {
 		return
 	}
 
-	id := uuid.New().String()
+	id := uuid.New().String() + filepath.Ext(header.Filename)
 
 	objectURL, err := minio.UploadToMinio(h.cfg, id, fileBytes, int64(len(fileBytes)))
 

@@ -15,7 +15,7 @@ import (
 // CreateArchive ...
 // @Summary CreateArchive
 // @Description CreateArchive - Api for crete archive
-// @Tags Booking Archive
+// @Tags Archive
 // @Accept json
 // @Produce json
 // @Param CreateArchiveReq body model_booking_service.CreateArchiveReq true "CreateArchiveReq"
@@ -62,20 +62,22 @@ func (h *HandlerV1) CreateArchive(c *gin.Context) {
 		Status:               archive.Status,
 		PaymentType:          archive.PaymentType,
 		PaymentAmount:        float64(archive.PaymentAmount),
+		CreatedAt:            archive.CreatedAt,
+		UpdatedAt:            archive.UpdatedAt,
 	})
 }
 
 // GetArchive ...
 // @Summary GetArchive
 // @Description GetArchive - Api for get archive
-// @Tags Booking Archive
+// @Tags Archive
 // @Accept json
 // @Produce json
 // @Param GetArchiveReq query models.FieldValueReq true "FieldValueReq"
 // @Success 200 {object} model_booking_service.Archive
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/archive [get]
+// @Router /v1/archive/get [get]
 func (h *HandlerV1) GetArchive(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -102,20 +104,22 @@ func (h *HandlerV1) GetArchive(c *gin.Context) {
 		Status:               archive.Status,
 		PaymentType:          archive.PaymentType,
 		PaymentAmount:        float64(archive.PaymentAmount),
+		CreatedAt:            archive.CreatedAt,
+		UpdatedAt:            archive.UpdatedAt,
 	})
 }
 
 // ListArchive ...
 // @Summary ListArchive
 // @Description ListArchive - Api for list archive
-// @Tags Booking Archive
+// @Tags Archive
 // @Accept json
 // @Produce json
 // @Param ListReq query models.ListReq false "ListReq"
 // @Success 200 {object} model_booking_service.ArchivesType
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/archive/get [get]
+// @Router /v1/archive [get]
 func (h *HandlerV1) ListArchive(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -155,6 +159,8 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 		archive.Status = archiveRes.Status
 		archive.PaymentType = archiveRes.PaymentType
 		archive.PaymentAmount = float64(archiveRes.PaymentAmount)
+		archive.CreatedAt = archiveRes.CreatedAt
+		archive.UpdatedAt = archiveRes.UpdatedAt
 		archivesRes.Archives = append(archivesRes.Archives, &archive)
 	}
 
@@ -167,15 +173,17 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 // UpdateArchive ...
 // @Summary UpdateArchive
 // @Description UpdateArchive - Api for update archive
-// @Tags Booking Archive
+// @Tags Archive
 // @Accept json
 // @Produce json
+// @Param archive_id  query string true "archive_id"
 // @Param UpdateArchiveReq body model_booking_service.UpdateArchiveReq true "UpdateArchiveReq"
 // @Success 200 {object} model_booking_service.Archive
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/archive [put]
 func (h *HandlerV1) UpdateArchive(c *gin.Context) {
+	id := c.Query("archive_id")
 	var (
 		body        model_booking_service.UpdateArchiveReq
 		jsonMarshal protojson.MarshalOptions
@@ -192,8 +200,8 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 	defer cancel()
 
 	archive, err := h.serviceManager.BookingService().ArchiveService().UpdateArchive(ctx, &pb.UpdateArchiveReq{
-		Field:                body.Field,
-		Value:                body.Value,
+		Field:                "id",
+		Value:                id,
 		DoctorAvailabilityId: body.DoctorAvailabilityId,
 		StartTime:            body.StartTime,
 		EndTime:              body.EndTime,
@@ -216,13 +224,15 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 		Status:               archive.Status,
 		PaymentType:          archive.PaymentType,
 		PaymentAmount:        float64(archive.PaymentAmount),
+		CreatedAt:            archive.CreatedAt,
+		UpdatedAt:            archive.UpdatedAt,
 	})
 }
 
 // DeleteArchive ...
 // @Summary DeleteArchive
 // @Description DeleteArchive - Api for delete archive
-// @Tags Booking Archive
+// @Tags Archive
 // @Accept json
 // @Produce json
 // @Param DeleteArchiveReq query models.FieldValueReq true "FieldValueReq"

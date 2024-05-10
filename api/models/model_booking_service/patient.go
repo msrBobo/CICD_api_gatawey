@@ -12,9 +12,11 @@ type Patient struct {
 	City           string `json:"city"`
 	Country        string `json:"country"`
 	PatientProblem string `json:"patient_problem"`
+	CreatedAt      string `json:"created_at"`
+	UpdatedAt      string `json:"updated_at"`
 }
 
-type Patients struct {
+type PatientsType struct {
 	Count    int64      `json:"count"`
 	Patients []*Patient `json:"patients"`
 }
@@ -33,8 +35,6 @@ type CreatePatientReq struct {
 }
 
 type UpdatePatientReq struct {
-	Field          string `json:"field"`
-	Value          string `json:"value"`
 	FirstName      string `json:"first_name"`
 	LastName       string `json:"last_name"`
 	BirthDate      string `json:"birth_date"`

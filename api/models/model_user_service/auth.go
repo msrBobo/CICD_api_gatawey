@@ -45,10 +45,9 @@ type MessageRes struct {
 	Message string `json:"message"`
 }
 
-type ForgetPasswordVerify struct {
+type VerifyOtpCodeReq struct {
 	PhoneNumber string `json:"phone_number" example:"+998950230605"`
-	Code        int    `json:"cade" example:"7777"`
-	NewPassword string `json:"new_password" example:"new_password"`
+	Code        int    `json:"code" example:"7777"`
 }
 
 type Verify struct {

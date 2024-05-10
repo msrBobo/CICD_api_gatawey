@@ -6,7 +6,6 @@ import (
 	"dennic_api_gateway/api/models"
 	"dennic_api_gateway/api/models/model_healthcare_service"
 	pb "dennic_api_gateway/genproto/healthcare-service"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -139,15 +138,14 @@ func (h *HandlerV1) ListDepartments(c *gin.Context) {
 		Limit:    int64(limitInt),
 		OrderBy:  orderBy,
 	})
-
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListDepartments") {
 		return
 	}
-	fmt.Println(departments)
 	var departmentsRes model_healthcare_service.ListDepartments
 	for _, departmentRes := range departments.Departments {
 		departmentsRes.Departments = append(departmentsRes.Departments, &model_healthcare_service.DepartmentRes{
 			Id:               departmentRes.Id,
+			Order:            departmentRes.Order,
 			Name:             departmentRes.Name,
 			Description:      departmentRes.Description,
 			ImageUrl:         departmentRes.ImageUrl,
