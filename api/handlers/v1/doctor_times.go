@@ -60,6 +60,8 @@ func (h *HandlerV1) CreateDoctorTimes(c *gin.Context) {
 		StartTime:    res.StartTime,
 		EndTime:      res.EndTime,
 		Status:       res.Status,
+		CreatedAt:    res.CreatedAt,
+		UpdatedAt:    res.UpdatedAt,
 	})
 }
 
@@ -99,6 +101,8 @@ func (h *HandlerV1) GetDoctorTimes(c *gin.Context) {
 		StartTime:    res.StartTime,
 		EndTime:      res.EndTime,
 		Status:       res.Status,
+		CreatedAt:    res.CreatedAt,
+		UpdatedAt:    res.UpdatedAt,
 	})
 }
 
@@ -151,6 +155,8 @@ func (h *HandlerV1) ListDoctorTimes(c *gin.Context) {
 		doctorTime.StartTime = times.StartTime
 		doctorTime.EndTime = times.EndTime
 		doctorTime.Status = times.Status
+		doctorTime.CreatedAt = times.CreatedAt
+		doctorTime.UpdatedAt = times.UpdatedAt
 		doctorTimes.DoctorTimes = append(doctorTimes.DoctorTimes, &doctorTime)
 	}
 
@@ -166,12 +172,14 @@ func (h *HandlerV1) ListDoctorTimes(c *gin.Context) {
 // @Tags Doctor Time
 // @Accept json
 // @Produce json
+// @Param doctor_time_id query string true "doctor_time_id"
 // @Param UpdateDoctorTimeReq body model_booking_service.UpdateDoctorTimeReq true "UpdateDoctorTimeReq"
 // @Success 200 {object} model_booking_service.DoctorTime
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/doctor-time [put]
 func (h *HandlerV1) UpdateDoctorTimes(c *gin.Context) {
+	id := c.Query("doctor_time_id")
 	var (
 		body        model_booking_service.UpdateDoctorTimeReq
 		jsonMarshal protojson.MarshalOptions
@@ -188,8 +196,8 @@ func (h *HandlerV1) UpdateDoctorTimes(c *gin.Context) {
 	defer cancel()
 
 	res, err := h.serviceManager.BookingService().DoctorTimes().UpdateDoctorTime(ctx, &pb.UpdateDoctorTimeReq{
-		Field:        body.Field,
-		Value:        body.Value,
+		Field:        "id",
+		Value:        id,
 		DepartmentId: body.DepartmentId,
 		DoctorId:     body.DoctorId,
 		DoctorDate:   body.DoctorDate,
@@ -210,6 +218,8 @@ func (h *HandlerV1) UpdateDoctorTimes(c *gin.Context) {
 		StartTime:    res.StartTime,
 		EndTime:      res.EndTime,
 		Status:       res.Status,
+		CreatedAt:    res.CreatedAt,
+		UpdatedAt:    res.UpdatedAt,
 	})
 }
 

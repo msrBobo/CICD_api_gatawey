@@ -30,6 +30,7 @@ func NewAuthorizer() gin.HandlerFunc {
 				ctx.Next()
 				return
 			}
+			fmt.Println(sub, obj, etc, t)
 		}
 
 		claims, err := jwt.ExtractClaim(token1)

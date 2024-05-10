@@ -5,6 +5,8 @@ definitions:
         type: string
       appointment_time:
         type: string
+      created_at:
+        type: string
       department_id:
         type: string
       doctor_id:
@@ -21,9 +23,13 @@ definitions:
         type: string
       patient_status:
         type: boolean
+      updated_at:
+        type: string
     type: object
   model_booking_service.Archive:
     properties:
+      created_at:
+        type: string
       doctor_availability_id:
         type: integer
       end_time:
@@ -39,6 +45,8 @@ definitions:
       start_time:
         type: string
       status:
+        type: string
+      updated_at:
         type: string
     type: object
   model_booking_service.ArchivesType:
@@ -165,6 +173,8 @@ definitions:
     type: object
   model_booking_service.DoctorTime:
     properties:
+      created_at:
+        type: string
       department_id:
         type: string
       doctor_date:
@@ -178,6 +188,8 @@ definitions:
       start_time:
         type: string
       status:
+        type: string
+      updated_at:
         type: string
     type: object
   model_booking_service.DoctorTimesType:
@@ -201,6 +213,8 @@ definitions:
         type: string
       country:
         type: string
+      created_at:
+        type: string
       first_name:
         type: string
       gender:
@@ -212,6 +226,8 @@ definitions:
       patient_problem:
         type: string
       phone_number:
+        type: string
+      updated_at:
         type: string
     type: object
   model_booking_service.PatientsType:
@@ -233,22 +249,16 @@ definitions:
         type: integer
       expires_at:
         type: string
-      field:
-        type: string
       key:
         type: string
       patient_status:
         type: boolean
-      value:
-        type: string
     type: object
   model_booking_service.UpdateArchiveReq:
     properties:
       doctor_availability_id:
         type: integer
       end_time:
-        type: string
-      field:
         type: string
       patient_problem:
         type: string
@@ -260,8 +270,6 @@ definitions:
         type: string
       status:
         type: string
-      value:
-        type: string
     type: object
   model_booking_service.UpdateDoctorNoteReq:
     properties:
@@ -269,13 +277,9 @@ definitions:
         type: integer
       doctor_id:
         type: string
-      field:
-        type: string
       patient_id:
         type: string
       prescription:
-        type: string
-      value:
         type: string
     type: object
   model_booking_service.UpdateDoctorTimeReq:
@@ -288,13 +292,9 @@ definitions:
         type: string
       end_time:
         type: string
-      field:
-        type: string
       start_time:
         type: string
       status:
-        type: string
-      value:
         type: string
     type: object
   model_booking_service.UpdatePatientReq:
@@ -309,8 +309,6 @@ definitions:
         type: string
       country:
         type: string
-      field:
-        type: string
       first_name:
         type: string
       gender:
@@ -320,8 +318,6 @@ definitions:
       patient_problem:
         type: string
       phone_number:
-        type: string
-      value:
         type: string
     type: object
   model_common.ResponseError:
@@ -338,6 +334,296 @@ definitions:
       error:
         $ref: '#/definitions/model_common.ResponseError'
     type: object
+  model_healthcare_service.DepartmentReq:
+    properties:
+      description:
+        type: string
+      floor_number:
+        type: integer
+      image_url:
+        type: string
+      name:
+        type: string
+      short_description:
+        type: string
+    type: object
+  model_healthcare_service.DepartmentRes:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      floor_number:
+        type: integer
+      id:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      order:
+        type: integer
+      short_description:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model_healthcare_service.DoctorReq:
+    properties:
+      address:
+        type: string
+      bio:
+        type: string
+      birth_date:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      department_id:
+        type: string
+      email:
+        type: string
+      end_work_date:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string
+      phone_number:
+        type: string
+      room_number:
+        type: integer
+      salary:
+        type: number
+      start_work_date:
+        type: string
+      work_years:
+        type: integer
+    type: object
+  model_healthcare_service.DoctorRes:
+    properties:
+      address:
+        type: string
+      bio:
+        type: string
+      birth_date:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      created_at:
+        type: string
+      department_id:
+        type: string
+      email:
+        type: string
+      end_work_date:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      order:
+        type: integer
+      password:
+        type: string
+      phone_number:
+        type: string
+      room_number:
+        type: integer
+      salary:
+        type: number
+      start_work_date:
+        type: string
+      updated_at:
+        type: string
+      work_years:
+        type: integer
+    type: object
+  model_healthcare_service.DoctorServicesReq:
+    properties:
+      doctorId:
+        type: string
+      duration:
+        type: string
+      name:
+        type: string
+      offlinePrice:
+        type: number
+      onlinePrice:
+        type: number
+      specializationId:
+        type: string
+    type: object
+  model_healthcare_service.DoctorServicesRes:
+    properties:
+      createdAt:
+        type: string
+      doctorId:
+        type: string
+      duration:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      offlinePrice:
+        type: number
+      onlinePrice:
+        type: number
+      order:
+        type: integer
+      specializationId:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  model_healthcare_service.DoctorWorkingHoursReq:
+    properties:
+      dayOfWeek:
+        type: string
+      doctorId:
+        type: string
+      finishTime:
+        type: string
+      startTime:
+        type: string
+    type: object
+  model_healthcare_service.DoctorWorkingHoursRes:
+    properties:
+      createdAt:
+        type: string
+      dayOfWeek:
+        type: string
+      doctorId:
+        type: string
+      finishTime:
+        type: string
+      id:
+        type: integer
+      startTime:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  model_healthcare_service.ListDepartments:
+    properties:
+      count:
+        type: integer
+      departments:
+        items:
+          $ref: '#/definitions/model_healthcare_service.DepartmentRes'
+        type: array
+    type: object
+  model_healthcare_service.ListDoctorServices:
+    properties:
+      count:
+        type: integer
+      doctorServices:
+        items:
+          $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
+        type: array
+    type: object
+  model_healthcare_service.ListDoctorWorkingHours:
+    properties:
+      count:
+        type: integer
+      doctor_working_hours:
+        items:
+          $ref: '#/definitions/model_healthcare_service.DoctorWorkingHoursRes'
+        type: array
+    type: object
+  model_healthcare_service.ListDoctors:
+    properties:
+      count:
+        type: integer
+      doctors:
+        items:
+          $ref: '#/definitions/model_healthcare_service.DoctorRes'
+        type: array
+    type: object
+  model_healthcare_service.ListReasons:
+    properties:
+      count:
+        type: integer
+      reasons:
+        items:
+          $ref: '#/definitions/model_healthcare_service.ReasonsRes'
+        type: array
+    type: object
+  model_healthcare_service.ListSpecializations:
+    properties:
+      count:
+        type: integer
+      specializations:
+        items:
+          $ref: '#/definitions/model_healthcare_service.SpecializationRes'
+        type: array
+    type: object
+  model_healthcare_service.ReasonsReq:
+    properties:
+      imageUrl:
+        type: string
+      name:
+        type: string
+      specializationId:
+        type: string
+    type: object
+  model_healthcare_service.ReasonsRes:
+    properties:
+      createdAt:
+        type: string
+      id:
+        type: string
+      imageUrl:
+        type: string
+      name:
+        type: string
+      specializationId:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  model_healthcare_service.SpecializationReq:
+    properties:
+      department_id:
+        type: string
+      description:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+    type: object
+  model_healthcare_service.SpecializationRes:
+    properties:
+      created_at:
+        type: string
+      department_id:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      order:
+        type: integer
+      updated_at:
+        type: string
+    type: object
   model_minio.MinioURL:
     properties:
       url:
@@ -347,18 +633,6 @@ definitions:
     properties:
       status:
         type: boolean
-    type: object
-  model_user_service.ForgetPasswordVerify:
-    properties:
-      code:
-        example: 7777
-        type: integer
-      new_password:
-        example: new_password
-        type: string
-      phone_number:
-        example: "+998950230605"
-        type: string
     type: object
   model_user_service.GetUserResp:
     properties:
@@ -524,13 +798,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -586,6 +860,11 @@ paths:
       - application/json
       description: UpdateDoctorNote - API to update appointment
       parameters:
+      - description: appointment_id
+        in: query
+        name: appointment_id
+        required: true
+        type: string
       - description: UpdateAppointmentReq
         in: body
         name: UpdateAppointmentReq
@@ -680,13 +959,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -742,6 +1021,11 @@ paths:
       - application/json
       description: UpdateArchive - Api for update archive
       parameters:
+      - description: archive_id
+        in: query
+        name: archive_id
+        required: true
+        type: string
       - description: UpdateArchiveReq
         in: body
         name: UpdateArchiveReq
@@ -796,7 +1080,7 @@ paths:
       summary: GetArchive
       tags:
       - Archive
-  /v1/customer/forget_password:
+  /v1/customer/forget-password:
     post:
       consumes:
       - application/json
@@ -824,36 +1108,6 @@ paths:
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: ForgetPassword
-      tags:
-      - customer
-  /v1/customer/forget_password_verify:
-    post:
-      consumes:
-      - application/json
-      description: ForgetPasswordVerify - Api for registering users
-      parameters:
-      - description: RegisterModelReq
-        in: body
-        name: Verify
-        required: true
-        schema:
-          $ref: '#/definitions/model_user_service.ForgetPasswordVerify'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model_user_service.MessageRes'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/model_common.StandardErrorModel'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ForgetPasswordVerify
       tags:
       - customer
   /v1/customer/login:
@@ -971,6 +1225,321 @@ paths:
       summary: Verify
       tags:
       - customer
+  /v1/customer/verify-otp-code:
+    post:
+      consumes:
+      - application/json
+      description: VerifyOtpCode - Api for Verify Otp Code users
+      parameters:
+      - example: 7777
+        in: query
+        name: code
+        type: integer
+      - example: "+998950230605"
+        in: query
+        name: phone_number
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.MessageRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: VerifyOtpCode
+      tags:
+      - customer
+  /v1/department:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteDepartment - Api for delete department
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteDepartment
+      tags:
+      - Department
+    get:
+      consumes:
+      - application/json
+      description: GetDepartment - Api for get department
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DepartmentRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetDepartment
+      tags:
+      - Department
+    post:
+      consumes:
+      - application/json
+      description: CreateDepartment - Api for crete department
+      parameters:
+      - description: DepartmentReq
+        in: body
+        name: DepartmentReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DepartmentReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DepartmentRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateDepartment
+      tags:
+      - Department
+    put:
+      consumes:
+      - application/json
+      description: UpdateDepartment - Api for update department
+      parameters:
+      - description: UpdateDepartmentReq
+        in: body
+        name: UpdateDepartmentReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DepartmentReq'
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DepartmentReq'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateDepartment
+      tags:
+      - Department
+  /v1/department/get:
+    get:
+      consumes:
+      - application/json
+      description: ListDepartments - Api for list department
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListDepartments'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListDepartments
+      tags:
+      - Department
+  /v1/doctor:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteDoctor - Api for delete doctor
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteDoctor
+      tags:
+      - Doctor
+    get:
+      consumes:
+      - application/json
+      description: GetDoctor - Api for get doctor
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetDoctor
+      tags:
+      - Doctor
+    post:
+      consumes:
+      - application/json
+      description: CreateDoctor - Api for crete doctor
+      parameters:
+      - description: DoctorReq
+        in: body
+        name: DoctorReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DoctorReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateDoctor
+      tags:
+      - Doctor
+    put:
+      consumes:
+      - application/json
+      description: UpdateDoctor - Api for update doctor
+      parameters:
+      - description: UpdateDoctorReq
+        in: body
+        name: UpdateDoctorReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DoctorReq'
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateDoctor
+      tags:
+      - Doctor
   /v1/doctor-notes:
     delete:
       consumes:
@@ -1011,13 +1580,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -1073,6 +1642,11 @@ paths:
       - application/json
       description: UpdateDoctorNote - API to update a doctor note
       parameters:
+      - description: notes_id
+        in: query
+        name: notes_id
+        required: true
+        type: string
       - description: UpdateDoctorNoteReq
         in: body
         name: UpdateDoctorNoteReq
@@ -1167,13 +1741,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -1229,6 +1803,11 @@ paths:
       - application/json
       description: UpdateDoctorTimes - Api for update doctor time
       parameters:
+      - description: doctor_time_id
+        in: query
+        name: doctor_time_id
+        required: true
+        type: string
       - description: UpdateDoctorTimeReq
         in: body
         name: UpdateDoctorTimeReq
@@ -1283,6 +1862,367 @@ paths:
       summary: GetDoctorTimes
       tags:
       - Doctor Time
+  /v1/doctor/get:
+    get:
+      consumes:
+      - application/json
+      description: ListDoctors - Api for list doctor
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListDoctors'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListDoctors
+      tags:
+      - Doctor
+  /v1/doctor_services:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteDoctorService - Api for delete doctorServices
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteDoctorService
+      tags:
+      - Doctor Services
+    get:
+      consumes:
+      - application/json
+      description: GetDoctorService - Api for get doctor_services
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetDoctorService
+      tags:
+      - Doctor Services
+    post:
+      consumes:
+      - application/json
+      description: CreateDoctorService - Api for crete doctor_services
+      parameters:
+      - description: DoctorServiceReq
+        in: body
+        name: DoctorServiceReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DoctorServicesReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateDoctorService
+      tags:
+      - Doctor Services
+    put:
+      consumes:
+      - application/json
+      description: UpdateDoctorServices - Api for update doctor_services
+      parameters:
+      - description: UpdateDoctorServicesReq
+        in: body
+        name: UpdateDoctorServicesReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DoctorServicesReq'
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateDoctorServices
+      tags:
+      - Doctor Services
+  /v1/doctor_services/get:
+    get:
+      consumes:
+      - application/json
+      description: ListDoctorServices - Api for list doctor_services
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListDoctorServices'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListDoctorServices
+      tags:
+      - Doctor Services
+  /v1/doctor_working_hours:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteDoctorWorkingHours - Api for delete doctor_working_hours
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteDoctorWorkingHours
+      tags:
+      - Doctor Working Hours
+    get:
+      consumes:
+      - application/json
+      description: GetDoctorWorkingHours - Api for get doctor_working_hours
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorWorkingHoursRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetDoctorWorkingHours
+      tags:
+      - Doctor Working Hours
+    post:
+      consumes:
+      - application/json
+      description: CreateDoctorWorkingHours - Api for crete doctor_working_hours
+      parameters:
+      - description: DoctorServiceReq
+        in: body
+        name: DoctorWorkingHoursReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DoctorWorkingHoursReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorWorkingHoursRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateDoctorWorkingHours
+      tags:
+      - Doctor Working Hours
+    put:
+      consumes:
+      - application/json
+      description: UpdateDoctorWorkingHours - Api for update doctor_working_hours
+      parameters:
+      - description: UpdateDoctorWorkingHoursReq
+        in: body
+        name: UpdateDoctorWorkingHoursReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.DoctorWorkingHoursReq'
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorWorkingHoursRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateDoctorWorkingHours
+      tags:
+      - Doctor Working Hours
+  /v1/doctor_working_hours/get:
+    get:
+      consumes:
+      - application/json
+      description: ListDoctorWorkingHours - Api for list doctor_working_hours
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListDoctorWorkingHours'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListDoctorWorkingHours
+      tags:
+      - Doctor Working Hours
   /v1/file-upload:
     post:
       consumes:
@@ -1352,13 +2292,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -1414,6 +2354,11 @@ paths:
       - application/json
       description: UpdatePatient - Api for update patient
       parameters:
+      - description: patient_id
+        in: query
+        name: patient_id
+        required: true
+        type: string
       - description: UpdatePatientReq
         in: body
         name: UpdatePatientReq
@@ -1468,6 +2413,362 @@ paths:
       summary: GetPatient
       tags:
       - Patient
+  /v1/patient/phone:
+    put:
+      consumes:
+      - application/json
+      description: UpdatePhonePatient - Api for update phone patient
+      parameters:
+      - description: phone_number
+        in: query
+        name: phone_number
+        required: true
+        type: string
+      - description: new_phone_number
+        in: query
+        name: new_phone_number
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.Patient'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdatePhonePatient
+      tags:
+      - Patient
+  /v1/reasons:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteReasons - Api for delete reasons
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteReasons
+      tags:
+      - Reasons
+    get:
+      consumes:
+      - application/json
+      description: GetReasons - Api for get reasons
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ReasonsRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetReasons
+      tags:
+      - Reasons
+    post:
+      consumes:
+      - application/json
+      description: CreateReasons - Api for crete reasons
+      parameters:
+      - description: DoctorServiceReq
+        in: body
+        name: DoctorWorkingHoursReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.ReasonsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ReasonsRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateReasons
+      tags:
+      - Reasons
+    put:
+      consumes:
+      - application/json
+      description: UpdateReasons - Api for update reasons
+      parameters:
+      - description: UpdateReasonsReq
+        in: body
+        name: UpdateReasonsReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.ReasonsReq'
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ReasonsRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateReasons
+      tags:
+      - Reasons
+  /v1/reasons/get:
+    get:
+      consumes:
+      - application/json
+      description: ListReasons - Api for list reasons
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListReasons'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListReasons
+      tags:
+      - Reasons
+  /v1/specialization:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteSpecialization - Api for delete specialization
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteSpecialization
+      tags:
+      - Specialization
+    get:
+      consumes:
+      - application/json
+      description: GetSpecialization - Api for get specialization
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.SpecializationRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetSpecialization
+      tags:
+      - Specialization
+    post:
+      consumes:
+      - application/json
+      description: CreateSpecialization - Api for crete specialization
+      parameters:
+      - description: SpecializationReq
+        in: body
+        name: SpecializationReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.SpecializationReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.SpecializationRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateSpecialization
+      tags:
+      - Specialization
+    put:
+      consumes:
+      - application/json
+      description: UpdateSpecialization - Api for update specialization
+      parameters:
+      - description: UpdateSpecializationReq
+        in: body
+        name: UpdateSpecializationReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_healthcare_service.SpecializationReq'
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.SpecializationRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateSpecialization
+      tags:
+      - Specialization
+  /v1/specialization/get:
+    get:
+      consumes:
+      - application/json
+      description: ListSpecializations - Api for list specialization
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListSpecializations'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListSpecializations
+      tags:
+      - Specialization
   /v1/user:
     delete:
       consumes:
@@ -1613,6 +2914,37 @@ paths:
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: GetUser
+      tags:
+      - User
+  /v1/user/update-password:
+    put:
+      consumes:
+      - application/json
+      description: Api for UpdatePassword
+      parameters:
+      - description: NewPassword
+        in: query
+        name: NewPassword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.GetUserResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      security:
+      - ApiKeyAuth: []
+      summary: UpdatePassword
       tags:
       - User
 securityDefinitions:

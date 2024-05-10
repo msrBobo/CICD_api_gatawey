@@ -70,6 +70,8 @@ func (h *HandlerV1) CreatePatient(c *gin.Context) {
 		City:           res.City,
 		Country:        res.Country,
 		PatientProblem: res.PatientProblem,
+		CreatedAt:      res.CreatedAt,
+		UpdatedAt:      res.UpdatedAt,
 	})
 }
 
@@ -113,6 +115,8 @@ func (h *HandlerV1) GetPatient(c *gin.Context) {
 		City:           res.City,
 		Country:        res.Country,
 		PatientProblem: res.PatientProblem,
+		CreatedAt:      res.CreatedAt,
+		UpdatedAt:      res.UpdatedAt,
 	})
 }
 
@@ -169,6 +173,8 @@ func (h *HandlerV1) ListPatient(c *gin.Context) {
 		patientRes.City = patient.City
 		patientRes.Country = patient.Country
 		patientRes.PatientProblem = patient.PatientProblem
+		patientRes.CreatedAt = patient.CreatedAt
+		patientRes.UpdatedAt = patient.UpdatedAt
 		patients.Patients = append(patients.Patients, &patientRes)
 	}
 
@@ -184,12 +190,14 @@ func (h *HandlerV1) ListPatient(c *gin.Context) {
 // @Tags Patient
 // @Accept json
 // @Produce json
+// @Param patient_id query string true "patient_id"
 // @Param UpdatePatientReq body model_booking_service.UpdatePatientReq true "UpdatePatientReq"
 // @Success 200 {object} model_booking_service.Patient
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/patient [put]
 func (h *HandlerV1) UpdatePatient(c *gin.Context) {
+	id := c.Query("patient_id")
 	var (
 		body        model_booking_service.Patient
 		jsonMarshal protojson.MarshalOptions
@@ -207,7 +215,7 @@ func (h *HandlerV1) UpdatePatient(c *gin.Context) {
 
 	res, err := h.serviceManager.BookingService().PatientService().UpdatePatient(ctx, &pb.UpdatePatientReq{
 		Field:          "id",
-		Value:          body.Id,
+		Value:          id,
 		FirstName:      body.FirstName,
 		LastName:       body.LastName,
 		BirthDate:      body.BirthDate,
@@ -235,7 +243,41 @@ func (h *HandlerV1) UpdatePatient(c *gin.Context) {
 		City:           res.City,
 		Country:        res.Country,
 		PatientProblem: res.PatientProblem,
+		CreatedAt:      res.CreatedAt,
+		UpdatedAt:      res.UpdatedAt,
 	})
+}
+
+// UpdatePhonePatient ...
+// @Summary UpdatePhonePatient
+// @Description UpdatePhonePatient - Api for update phone patient
+// @Tags Patient
+// @Accept json
+// @Produce json
+// @Param phone_number query string true "phone_number"
+// @Param new_phone_number query string true "new_phone_number"
+// @Success 200 {object} model_booking_service.Patient
+// @Failure 400 {object} model_common.StandardErrorModel
+// @Failure 500 {object} model_common.StandardErrorModel
+// @Router /v1/patient/phone [put]
+func (h *HandlerV1) UpdatePhonePatient(c *gin.Context) {
+	phone := c.Query("phone_number")
+	newPhone := c.Query("new_phone_number")
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
+	defer cancel()
+
+	res, err := h.serviceManager.BookingService().PatientService().UpdatePhonePatient(ctx, &pb.UpdatePhoneNumber{
+		Field:       "phone_number",
+		Value:       phone,
+		PhoneNumber: newPhone,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "UpdatePhonePatient") {
+		return
+	}
+
+	c.JSON(http.StatusOK, models.StatusRes{Status: res.Status})
 }
 
 // DeletePatient ...

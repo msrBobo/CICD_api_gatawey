@@ -67,6 +67,8 @@ func (h *HandlerV1) CreateBookedAppointment(c *gin.Context) {
 		Key:             res.Key,
 		ExpiresAt:       res.ExpiresAt,
 		PatientStatus:   res.PatientStatus,
+		CreatedAt:       res.CreatedAt,
+		UpdatedAt:       res.UpdatedAt,
 	})
 }
 
@@ -109,6 +111,8 @@ func (h *HandlerV1) GetBookedAppointment(c *gin.Context) {
 		Key:             res.Key,
 		ExpiresAt:       res.ExpiresAt,
 		PatientStatus:   res.PatientStatus,
+		CreatedAt:       res.CreatedAt,
+		UpdatedAt:       res.UpdatedAt,
 	})
 }
 
@@ -164,12 +168,14 @@ func (h *HandlerV1) ListBookedAppointments(c *gin.Context) {
 		app.Key = appointment.Key
 		app.ExpiresAt = appointment.ExpiresAt
 		app.PatientStatus = appointment.PatientStatus
+		app.CreatedAt = appointment.CreatedAt
+		app.UpdatedAt = appointment.UpdatedAt
 		response.Appointments = append(response.Appointments, &app)
 	}
 
 	c.JSON(http.StatusOK, &model_booking_service.AppointmentsType{
 		Appointments: response.Appointments,
-		Count:        response.Count,
+		Count:        res.Count,
 	})
 }
 
@@ -179,12 +185,14 @@ func (h *HandlerV1) ListBookedAppointments(c *gin.Context) {
 // @Tags Appointment
 // @Accept json
 // @Produce json
+// @Param appointment_id  query string true "appointment_id"
 // @Param UpdateAppointmentReq body model_booking_service.UpdateAppointmentReq true "UpdateAppointmentReq"
 // @Success 200 {object} model_booking_service.Appointment
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/appointment [put]
 func (h *HandlerV1) UpdateBookedAppointment(c *gin.Context) {
+	id := c.Query("appointment_id")
 	var (
 		body        model_booking_service.UpdateAppointmentReq
 		jsonMarshal protojson.MarshalOptions
@@ -207,8 +215,8 @@ func (h *HandlerV1) UpdateBookedAppointment(c *gin.Context) {
 		Key:             body.Key,
 		ExpiresAt:       body.ExpiresAt,
 		PatientStatus:   body.PatientStatus,
-		Field:           body.Field,
-		Value:           body.Value,
+		Field:           "id",
+		Value:           id,
 	})
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "UpdateBookedAppointment") {
@@ -226,6 +234,8 @@ func (h *HandlerV1) UpdateBookedAppointment(c *gin.Context) {
 		Key:             res.Key,
 		ExpiresAt:       res.ExpiresAt,
 		PatientStatus:   res.PatientStatus,
+		CreatedAt:       res.CreatedAt,
+		UpdatedAt:       res.UpdatedAt,
 	})
 }
 

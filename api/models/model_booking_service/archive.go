@@ -9,6 +9,8 @@ type Archive struct {
 	Status               string  `json:"status"`
 	PaymentType          string  `json:"payment_type"`
 	PaymentAmount        float64 `json:"payment_amount"`
+	CreatedAt            string  `json:"created_at"`
+	UpdatedAt            string  `json:"updated_at"`
 }
 
 type ArchivesType struct {
@@ -27,8 +29,6 @@ type CreateArchiveReq struct {
 }
 
 type UpdateArchiveReq struct {
-	Field                string  `json:"field"`
-	Value                string  `json:"value"`
 	DoctorAvailabilityId int64   `json:"doctor_availability_id"`
 	StartTime            string  `json:"start_time"`
 	EndTime              string  `json:"end_time"`

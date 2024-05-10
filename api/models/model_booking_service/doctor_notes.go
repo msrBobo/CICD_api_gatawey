@@ -23,8 +23,6 @@ type CreateDoctorNotesReq struct {
 }
 
 type UpdateDoctorNoteReq struct {
-	Field         string `json:"field"`
-	Value         string `json:"value"`
 	AppointmentId int64  `json:"appointment_id"`
 	DoctorId      string `json:"doctor_id"`
 	PatientId     string `json:"patient_id"`

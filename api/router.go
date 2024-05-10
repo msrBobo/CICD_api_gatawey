@@ -74,8 +74,8 @@ func NewRoute(option RouteOption) *gin.Engine {
 	customer := api.Group("/customer")
 	customer.POST("/register", HandlerV1.Register)
 	customer.POST("/verify", HandlerV1.Verify)
-	customer.POST("/forget_password", HandlerV1.ForgetPassword)
-	customer.POST("/forget_password_verify", HandlerV1.ForgetPasswordVerify)
+	customer.POST("/forget-password", HandlerV1.ForgetPassword)
+	customer.POST("/verify-otp-code", HandlerV1.VerifyOtpCode)
 	customer.POST("/login", HandlerV1.Login)
 	customer.POST("/logout", HandlerV1.LogOut)
 
@@ -84,6 +84,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	user.GET("/get", HandlerV1.GetUser)
 	user.GET("/", HandlerV1.ListUsers)
 	user.PUT("/", HandlerV1.UpdateUser)
+	user.PUT("/update-password", HandlerV1.UpdatePassword)
 	user.DELETE("/", HandlerV1.DeleteUser)
 
 	// archive
@@ -102,7 +103,15 @@ func NewRoute(option RouteOption) *gin.Engine {
 	doctorNote.PUT("/", HandlerV1.UpdateDoctorNote)
 	doctorNote.DELETE("/", HandlerV1.DeleteDoctorNote)
 
-	// doctor time
+	// appointment
+	appointment := api.Group("/appointment")
+	appointment.POST("/", HandlerV1.CreateBookedAppointment)
+	appointment.GET("/get", HandlerV1.GetBookedAppointment)
+	appointment.GET("/", HandlerV1.ListBookedAppointments)
+	appointment.PUT("/", HandlerV1.UpdateBookedAppointment)
+	appointment.DELETE("/", HandlerV1.DeleteBookedAppointment)
+
+	// doctorTime
 	doctorTime := api.Group("/doctor-time")
 	doctorTime.POST("/", HandlerV1.CreateDoctorTimes)
 	doctorTime.GET("/get", HandlerV1.GetDoctorTimes)
@@ -116,15 +125,56 @@ func NewRoute(option RouteOption) *gin.Engine {
 	patient.GET("/get", HandlerV1.GetPatient)
 	patient.GET("/", HandlerV1.ListPatient)
 	patient.PUT("/", HandlerV1.UpdatePatient)
+	patient.PUT("/phone", HandlerV1.UpdatePhonePatient)
 	patient.DELETE("/", HandlerV1.DeletePatient)
 
-	// appointment
-	appointment := api.Group("/appointment")
-	appointment.POST("/", HandlerV1.CreateBookedAppointment)
-	appointment.GET("/get", HandlerV1.GetBookedAppointment)
-	appointment.GET("/", HandlerV1.ListBookedAppointments)
-	appointment.PUT("/", HandlerV1.UpdateBookedAppointment)
-	appointment.DELETE("/", HandlerV1.DeleteBookedAppointment)
+	// department
+	department := api.Group("/department")
+	department.POST("/", HandlerV1.CreateDepartment)
+	department.GET("/", HandlerV1.GetDepartment)
+	department.GET("/get", HandlerV1.ListDepartments)
+	department.PUT("/", HandlerV1.UpdateDepartment)
+	department.DELETE("/", HandlerV1.DeleteDepartment)
+
+	// doctor
+	doctor := api.Group("/doctor")
+	doctor.POST("/", HandlerV1.CreateDoctor)
+	doctor.GET("/", HandlerV1.GetDoctor)
+	doctor.GET("/get", HandlerV1.ListDoctors)
+	doctor.PUT("/", HandlerV1.UpdateDoctor)
+	doctor.DELETE("/", HandlerV1.DeleteDoctor)
+
+	// specialization
+	specialization := api.Group("/specialization")
+	specialization.POST("/", HandlerV1.CreateSpecialization)
+	specialization.GET("/", HandlerV1.GetSpecialization)
+	specialization.GET("/get", HandlerV1.ListSpecializations)
+	specialization.PUT("/", HandlerV1.UpdateSpecialization)
+	specialization.DELETE("/", HandlerV1.DeleteSpecialization)
+
+	// doctorServices
+	doctorServices := api.Group("/doctor_services")
+	doctorServices.POST("/", HandlerV1.CreateDoctorService)
+	doctorServices.GET("/", HandlerV1.GetDoctorService)
+	doctorServices.GET("/get", HandlerV1.ListDoctorServices)
+	doctorServices.PUT("/", HandlerV1.UpdateDoctorServices)
+	doctorServices.DELETE("/", HandlerV1.DeleteDoctorService)
+
+	// doctorWorkingHours
+	doctorWorkingHours := api.Group("/doctor_working_hours")
+	doctorWorkingHours.POST("/", HandlerV1.CreateDoctorWorkingHours)
+	doctorWorkingHours.GET("/", HandlerV1.GetDoctorWorkingHours)
+	doctorWorkingHours.GET("/get", HandlerV1.ListDoctorWorkingHours)
+	doctorWorkingHours.PUT("/", HandlerV1.UpdateDoctorWorkingHours)
+	doctorWorkingHours.DELETE("/", HandlerV1.DeleteDoctorWorkingHours)
+
+	// reasons
+	reasons := api.Group("/reasons")
+	reasons.POST("/", HandlerV1.CreateReasons)
+	reasons.GET("/", HandlerV1.GetReasons)
+	reasons.GET("/get", HandlerV1.ListReasons)
+	reasons.PUT("/", HandlerV1.UpdateReasons)
+	reasons.DELETE("/", HandlerV1.DeleteReasons)
 
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))

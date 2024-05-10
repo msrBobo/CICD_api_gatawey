@@ -12,6 +12,7 @@ type HealthcareServiceI interface {
 	DoctorsService() healthcare.DoctorsServiceClient
 	DoctorWorkingHoursService() healthcare.DoctorWorkingHoursServiceClient
 	SpecializationService() healthcare.SpecializationServiceClient
+	ReasonsService() healthcare.ReasonsServiceClient
 }
 
 type HealthcareService struct {
@@ -20,6 +21,7 @@ type HealthcareService struct {
 	doctorsService            healthcare.DoctorsServiceClient
 	doctorWorkingHoursService healthcare.DoctorWorkingHoursServiceClient
 	specializationService     healthcare.SpecializationServiceClient
+	reasonsService            healthcare.ReasonsServiceClient
 }
 
 func NewHealthcareService(conn *grpc.ClientConn) *HealthcareService {
@@ -29,6 +31,7 @@ func NewHealthcareService(conn *grpc.ClientConn) *HealthcareService {
 		doctorsService:            healthcare.NewDoctorsServiceClient(conn),
 		doctorWorkingHoursService: healthcare.NewDoctorWorkingHoursServiceClient(conn),
 		specializationService:     healthcare.NewSpecializationServiceClient(conn),
+		reasonsService:            healthcare.NewReasonsServiceClient(conn),
 	}
 }
 
@@ -50,4 +53,8 @@ func (s *HealthcareService) DoctorWorkingHoursService() healthcare.DoctorWorking
 
 func (s *HealthcareService) SpecializationService() healthcare.SpecializationServiceClient {
 	return s.specializationService
+}
+
+func (s *HealthcareService) ReasonsService() healthcare.ReasonsServiceClient {
+	return s.reasonsService
 }
