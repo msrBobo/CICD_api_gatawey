@@ -138,7 +138,6 @@ func (h *HandlerV1) ListDepartments(c *gin.Context) {
 		Limit:    int64(limitInt),
 		OrderBy:  orderBy,
 	})
-
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListDepartments") {
 		return
 	}

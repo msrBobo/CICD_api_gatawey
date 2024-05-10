@@ -7,7 +7,7 @@ import (
 
 func ParseQueryParams(page string, limit string) (uint64, uint64, error) {
 	if len(page) < 1 && len(limit) < 1 {
-		return 0, 0, nil
+		return 1, 10, nil
 	}
 	pageInt, err := strconv.Atoi(page)
 	if err != nil {
