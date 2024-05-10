@@ -723,9 +723,6 @@ paths:
       description: ListArchive - Api for list archive
       parameters:
       - in: query
-        name: delete_status
-        type: boolean
-      - in: query
         name: field
         type: string
       - in: query
@@ -1062,9 +1059,6 @@ paths:
       description: ListDepartments - Api for list department
       parameters:
       - in: query
-        name: delete_status
-        type: boolean
-      - in: query
         name: field
         type: string
       - in: query
@@ -1255,9 +1249,6 @@ paths:
       description: ListDoctorNotes - API to list doctor notes
       parameters:
       - in: query
-        name: delete_status
-        type: boolean
-      - in: query
         name: field
         type: string
       - in: query
@@ -1354,9 +1345,6 @@ paths:
       - application/json
       description: ListDoctors - Api for list doctor
       parameters:
-      - in: query
-        name: delete_status
-        type: boolean
       - in: query
         name: field
         type: string
@@ -1519,9 +1507,6 @@ paths:
       description: ListDoctorServices - Api for list doctor_services
       parameters:
       - in: query
-        name: delete_status
-        type: boolean
-      - in: query
         name: field
         type: string
       - in: query
@@ -1682,9 +1667,6 @@ paths:
       - application/json
       description: ListDoctorWorkingHours - Api for list doctor_working_hours
       parameters:
-      - in: query
-        name: delete_status
-        type: boolean
       - in: query
         name: field
         type: string
@@ -1875,9 +1857,6 @@ paths:
       - application/json
       description: ListReasons - Api for list reasons
       parameters:
-      - in: query
-        name: delete_status
-        type: boolean
       - in: query
         name: field
         type: string
@@ -2096,9 +2075,6 @@ paths:
       - application/json
       description: ListSpecializations - Api for list specialization
       parameters:
-      - in: query
-        name: delete_status
-        type: boolean
       - in: query
         name: field
         type: string

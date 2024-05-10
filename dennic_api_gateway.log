@@ -1456,3 +1456,18 @@ main.main.func1
 2024-05-10T14:23:45.685+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
 main.main.func1
 	/home/bobur/GolandProjects/dennic_api_gateway/cmd/app/main.go:32
+2024-05-10T14:31:12.009+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-10T14:31:13.039+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-10T14:31:13.040+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobur/GolandProjects/dennic_api_gateway/cmd/app/main.go:32
+2024-05-10T17:12:11.526+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-10T17:13:55.334+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-10T17:13:55.336+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobur/GolandProjects/dennic_api_gateway/cmd/app/main.go:32
+2024-05-10T17:14:08.810+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-10T17:14:31.730+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-10T17:14:31.731+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobur/GolandProjects/dennic_api_gateway/cmd/app/main.go:32

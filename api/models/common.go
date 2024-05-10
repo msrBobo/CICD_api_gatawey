@@ -12,7 +12,7 @@ type ListReq struct {
 	OrderBy      string `json:"order_by"`
 	Field        string `json:"field"`
 	Value        string `json:"value"`
-	DeleteStatus bool   `json:"delete_status"`
+	DeleteStatus bool   `json:"-"`
 }
 
 type StatusRes struct {

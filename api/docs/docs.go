@@ -210,11 +210,6 @@ const docTemplate = `{
                 "summary": "ListArchive",
                 "parameters": [
                     {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
-                    {
                         "type": "string",
                         "name": "field",
                         "in": "query"
@@ -734,11 +729,6 @@ const docTemplate = `{
                 "summary": "ListDepartments",
                 "parameters": [
                     {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
-                    {
                         "type": "string",
                         "name": "field",
                         "in": "query"
@@ -988,11 +978,6 @@ const docTemplate = `{
                 "summary": "ListDoctorNotes",
                 "parameters": [
                     {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
-                    {
                         "type": "string",
                         "name": "field",
                         "in": "query"
@@ -1187,11 +1172,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListDoctors",
                 "parameters": [
-                    {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "field",
@@ -1442,11 +1422,6 @@ const docTemplate = `{
                 "summary": "ListDoctorServices",
                 "parameters": [
                     {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
-                    {
                         "type": "string",
                         "name": "field",
                         "in": "query"
@@ -1695,11 +1670,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListDoctorWorkingHours",
                 "parameters": [
-                    {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "field",
@@ -1993,11 +1963,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListReasons",
                 "parameters": [
-                    {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "field",
@@ -2333,11 +2298,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListSpecializations",
                 "parameters": [
-                    {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "field",

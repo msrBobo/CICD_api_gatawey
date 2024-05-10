@@ -202,11 +202,6 @@
                 "summary": "ListArchive",
                 "parameters": [
                     {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
-                    {
                         "type": "string",
                         "name": "field",
                         "in": "query"
@@ -726,11 +721,6 @@
                 "summary": "ListDepartments",
                 "parameters": [
                     {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
-                    {
                         "type": "string",
                         "name": "field",
                         "in": "query"
@@ -980,11 +970,6 @@
                 "summary": "ListDoctorNotes",
                 "parameters": [
                     {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
-                    {
                         "type": "string",
                         "name": "field",
                         "in": "query"
@@ -1179,11 +1164,6 @@
                 ],
                 "summary": "ListDoctors",
                 "parameters": [
-                    {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "field",
@@ -1434,11 +1414,6 @@
                 "summary": "ListDoctorServices",
                 "parameters": [
                     {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
-                    {
                         "type": "string",
                         "name": "field",
                         "in": "query"
@@ -1687,11 +1662,6 @@
                 ],
                 "summary": "ListDoctorWorkingHours",
                 "parameters": [
-                    {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "field",
@@ -1985,11 +1955,6 @@
                 ],
                 "summary": "ListReasons",
                 "parameters": [
-                    {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "field",
@@ -2325,11 +2290,6 @@
                 ],
                 "summary": "ListSpecializations",
                 "parameters": [
-                    {
-                        "type": "boolean",
-                        "name": "delete_status",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "field",
