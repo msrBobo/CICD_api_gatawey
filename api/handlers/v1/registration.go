@@ -123,7 +123,7 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&body)
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "Verify") {
 		return
 	}
 
@@ -138,7 +138,7 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 
 	redisRes, err := h.redis.Client.Get(ctx, body.PhoneNumber).Result()
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "Verify") {
 		return
 	}
 
@@ -463,6 +463,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, model_user_service.Response{
+		Id:          user.Id,
 		FirstName:   user.FirstName,
 		LastName:    user.LastName,
 		BrithDate:   user.BirthDate,

@@ -11,7 +11,6 @@ func ParseQueryParams(page string, limit string) (uint64, uint64, error) {
 	}
 	pageInt, err := strconv.Atoi(page)
 	if err != nil {
-		fmt.Println(err, "================")
 		return 0, 0, err
 	}
 	if pageInt < 0 {

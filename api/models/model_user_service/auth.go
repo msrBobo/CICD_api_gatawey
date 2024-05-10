@@ -47,7 +47,7 @@ type MessageRes struct {
 
 type VerifyOtpCodeReq struct {
 	PhoneNumber string `json:"phone_number" example:"+998950230605"`
-	Code        int    `json:"code" example:"7777"`
+	Code        int64  `json:"code" example:"7777"`
 }
 
 type Verify struct {
@@ -67,6 +67,7 @@ type LoginReq struct {
 }
 
 type Response struct {
+	Id          string `json:"id"`
 	FirstName   string `json:"first_name" `
 	LastName    string `json:"last_name" `
 	BrithDate   string `json:"birth_date" `
