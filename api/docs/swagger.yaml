@@ -629,6 +629,38 @@ definitions:
       url:
         type: string
     type: object
+  model_session_service.ListSessions:
+    properties:
+      count:
+        type: integer
+      sessions:
+        items:
+          $ref: '#/definitions/model_session_service.SessionRes'
+        type: array
+    type: object
+  model_session_service.SessionRes:
+    properties:
+      created_at:
+        type: string
+      fcm_token:
+        type: string
+      id:
+        type: string
+      ip_address:
+        type: string
+      login_at:
+        type: string
+      order:
+        type: integer
+      platform_name:
+        type: string
+      platform_type:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
   model_user_service.CheckUserFieldResp:
     properties:
       status:
@@ -2608,6 +2640,63 @@ paths:
       summary: ListReasons
       tags:
       - Reasons
+  /v1/session:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteSessionById - Api for delete session
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteSessionById
+      tags:
+      - Session
+    get:
+      consumes:
+      - application/json
+      description: GetUserSessions - Api for get session
+      parameters:
+      - description: user_id
+        in: query
+        name: user_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_session_service.ListSessions'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetUserSessions
+      tags:
+      - Session
   /v1/specialization:
     delete:
       consumes:

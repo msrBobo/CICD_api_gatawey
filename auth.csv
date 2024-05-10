@@ -98,6 +98,8 @@ p, unauthorized, /v1/appointment/, GET
 p, unauthorized, /v1/appointment/, PUT
 p, unauthorized, /v1/appointment/, DELETE
 
+p, unauthorized, /v1/session/, GET
+p, unauthorized, /v1/session/, DELETE
 
 p, unauthorized, /v1/file-upload, POST
 

@@ -161,6 +161,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	doctorServices.DELETE("/", HandlerV1.DeleteDoctorService)
 
 	// doctorWorkingHours
+
 	doctorWorkingHours := api.Group("/doctor-working-hours")
 	doctorWorkingHours.POST("/", HandlerV1.CreateDoctorWorkingHours)
 	doctorWorkingHours.GET("/", HandlerV1.GetDoctorWorkingHours)
@@ -175,6 +176,11 @@ func NewRoute(option RouteOption) *gin.Engine {
 	reasons.GET("/get", HandlerV1.ListReasons)
 	reasons.PUT("/", HandlerV1.UpdateReasons)
 	reasons.DELETE("/", HandlerV1.DeleteReasons)
+
+	// session
+	session := api.Group("session")
+	session.GET("/", HandlerV1.GetUserSessions)
+	session.DELETE("/", HandlerV1.DeleteSessionById)
 
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
