@@ -41,7 +41,9 @@ func (jwtHandler *JWTHandler) GenerateAuthJWT(phone, id, sessionId, role string)
 		claims       jwt.MapClaims
 		rtClaims     jwt.MapClaims
 	)
-	jwtHandler.Timout = 60
+
+	jwtHandler.Timout = 360
+
 	accessToken = jwt.New(jwt.SigningMethodHS256)
 	refreshToken = jwt.New(jwt.SigningMethodHS256)
 	claims = accessToken.Claims.(jwt.MapClaims)
@@ -70,6 +72,30 @@ func (jwtHandler *JWTHandler) GenerateAuthJWT(phone, id, sessionId, role string)
 		return
 	}
 	return access, refresh, nil
+}
+
+// GenerateJWT ...
+func (jwtHandler *JWTHandler) GenerateJWT(phone, id, role string) (access string, err error) {
+	var (
+		accessToken *jwt.Token
+		claims      jwt.MapClaims
+	)
+
+	jwtHandler.Timout = 60
+
+	accessToken = jwt.New(jwt.SigningMethodHS256)
+	claims = accessToken.Claims.(jwt.MapClaims)
+	claims["id"] = id
+	claims["phone"] = phone
+	claims["exp"] = time.Now().Add(time.Minute * jwtHandler.Timout).Unix()
+	claims["iat"] = time.Now().Unix()
+	claims["role"] = role
+	access, err = accessToken.SignedString([]byte(config.SignKey))
+	if err != nil {
+		jwtHandler.Log.Log(1, err.Error())
+		return
+	}
+	return access, nil
 }
 
 // ExtractClaims ...

@@ -1,6 +1,35 @@
 definitions:
+  model_booking_service.Appointment:
+    properties:
+      appointment_date:
+        type: string
+      appointment_time:
+        type: string
+      created_at:
+        type: string
+      department_id:
+        type: string
+      doctor_id:
+        type: string
+      duration:
+        type: integer
+      expires_at:
+        type: string
+      id:
+        type: integer
+      key:
+        type: string
+      patient_id:
+        type: string
+      patient_status:
+        type: boolean
+      updated_at:
+        type: string
+    type: object
   model_booking_service.Archive:
     properties:
+      created_at:
+        type: string
       doctor_availability_id:
         type: integer
       end_time:
@@ -17,6 +46,8 @@ definitions:
         type: string
       status:
         type: string
+      updated_at:
+        type: string
     type: object
   model_booking_service.ArchivesType:
     properties:
@@ -26,6 +57,27 @@ definitions:
         type: array
       count:
         type: integer
+    type: object
+  model_booking_service.CreateAppointmentReq:
+    properties:
+      appointment_date:
+        type: string
+      appointment_time:
+        type: string
+      department_id:
+        type: string
+      doctor_id:
+        type: string
+      duration:
+        type: integer
+      expires_at:
+        type: string
+      key:
+        type: string
+      patient_id:
+        type: string
+      patient_status:
+        type: boolean
     type: object
   model_booking_service.CreateArchiveReq:
     properties:
@@ -55,6 +107,44 @@ definitions:
       prescription:
         type: string
     type: object
+  model_booking_service.CreateDoctorTimeReq:
+    properties:
+      department_id:
+        type: string
+      doctor_date:
+        type: string
+      doctor_id:
+        type: string
+      end_time:
+        type: string
+      start_time:
+        type: string
+      status:
+        type: string
+    type: object
+  model_booking_service.CreatePatientReq:
+    properties:
+      address:
+        type: string
+      birth_date:
+        type: string
+      blood_group:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      last_name:
+        type: string
+      patient_problem:
+        type: string
+      phone_number:
+        type: string
+    type: object
   model_booking_service.DoctorNote:
     properties:
       appointment_id:
@@ -81,13 +171,94 @@ definitions:
           $ref: '#/definitions/model_booking_service.DoctorNote'
         type: array
     type: object
+  model_booking_service.DoctorTime:
+    properties:
+      created_at:
+        type: string
+      department_id:
+        type: string
+      doctor_date:
+        type: string
+      doctor_id:
+        type: string
+      end_time:
+        type: string
+      id:
+        type: integer
+      start_time:
+        type: string
+      status:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model_booking_service.DoctorTimesType:
+    properties:
+      count:
+        type: integer
+      doctor_times:
+        items:
+          $ref: '#/definitions/model_booking_service.DoctorTime'
+        type: array
+    type: object
+  model_booking_service.Patient:
+    properties:
+      address:
+        type: string
+      birth_date:
+        type: string
+      blood_group:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      created_at:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      patient_problem:
+        type: string
+      phone_number:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model_booking_service.PatientsType:
+    properties:
+      count:
+        type: integer
+      patients:
+        items:
+          $ref: '#/definitions/model_booking_service.Patient'
+        type: array
+    type: object
+  model_booking_service.UpdateAppointmentReq:
+    properties:
+      appointment_date:
+        type: string
+      appointment_time:
+        type: string
+      duration:
+        type: integer
+      expires_at:
+        type: string
+      key:
+        type: string
+      patient_status:
+        type: boolean
+    type: object
   model_booking_service.UpdateArchiveReq:
     properties:
       doctor_availability_id:
         type: integer
       end_time:
-        type: string
-      field:
         type: string
       patient_problem:
         type: string
@@ -99,8 +270,6 @@ definitions:
         type: string
       status:
         type: string
-      value:
-        type: string
     type: object
   model_booking_service.UpdateDoctorNoteReq:
     properties:
@@ -108,13 +277,47 @@ definitions:
         type: integer
       doctor_id:
         type: string
-      field:
-        type: string
       patient_id:
         type: string
       prescription:
         type: string
-      value:
+    type: object
+  model_booking_service.UpdateDoctorTimeReq:
+    properties:
+      department_id:
+        type: string
+      doctor_date:
+        type: string
+      doctor_id:
+        type: string
+      end_time:
+        type: string
+      start_time:
+        type: string
+      status:
+        type: string
+    type: object
+  model_booking_service.UpdatePatientReq:
+    properties:
+      address:
+        type: string
+      birth_date:
+        type: string
+      blood_group:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      last_name:
+        type: string
+      patient_problem:
+        type: string
+      phone_number:
         type: string
     type: object
   model_common.ResponseError:
@@ -463,18 +666,6 @@ definitions:
       status:
         type: boolean
     type: object
-  model_user_service.ForgetPasswordVerify:
-    properties:
-      cade:
-        example: 7777
-        type: integer
-      new_password:
-        example: new_password
-        type: string
-      phone_number:
-        example: "+998950230605"
-        type: string
-    type: object
   model_user_service.GetUserResp:
     properties:
       birth_date:
@@ -599,6 +790,167 @@ info:
   title: API
   version: "1.7"
 paths:
+  /v1/appointment:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteBookedAppointment - API to delete a appointment
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteBookedAppointment
+      tags:
+      - Appointment
+    get:
+      consumes:
+      - application/json
+      description: ListBookedAppointments - API to list doctor notes
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.Appointment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListBookedAppointments
+      tags:
+      - Appointment
+    post:
+      consumes:
+      - application/json
+      description: CreateBookedAppointment - Api for create booked appointment
+      parameters:
+      - description: CreateAppointmentReq
+        in: body
+        name: CreateAppointmentReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_booking_service.CreateAppointmentReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.Appointment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateBookedAppointment
+      tags:
+      - Appointment
+    put:
+      consumes:
+      - application/json
+      description: UpdateDoctorNote - API to update appointment
+      parameters:
+      - description: appointment_id
+        in: query
+        name: appointment_id
+        required: true
+        type: string
+      - description: UpdateAppointmentReq
+        in: body
+        name: UpdateAppointmentReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_booking_service.UpdateAppointmentReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.Appointment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateBookedAppointment
+      tags:
+      - Appointment
+  /v1/appointment/get:
+    get:
+      consumes:
+      - application/json
+      description: GetBookedAppointment - API to get Booked appointment by ID
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.Appointment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetBookedAppointment
+      tags:
+      - Appointment
   /v1/archive:
     delete:
       consumes:
@@ -628,14 +980,23 @@ paths:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: DeleteArchive
       tags:
-      - Booking Archive
+      - Archive
     get:
       consumes:
       - application/json
-      description: GetArchive - Api for get archive
+      description: ListArchive - Api for list archive
       parameters:
       - in: query
         name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
         type: string
       - in: query
         name: value
@@ -646,7 +1007,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_booking_service.Archive'
+            $ref: '#/definitions/model_booking_service.ArchivesType'
         "400":
           description: Bad Request
           schema:
@@ -655,9 +1016,9 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: GetArchive
+      summary: ListArchive
       tags:
-      - Booking Archive
+      - Archive
     post:
       consumes:
       - application/json
@@ -686,12 +1047,17 @@ paths:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: CreateArchive
       tags:
-      - Booking Archive
+      - Archive
     put:
       consumes:
       - application/json
       description: UpdateArchive - Api for update archive
       parameters:
+      - description: archive_id
+        in: query
+        name: archive_id
+        required: true
+        type: string
       - description: UpdateArchiveReq
         in: body
         name: UpdateArchiveReq
@@ -715,25 +1081,16 @@ paths:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: UpdateArchive
       tags:
-      - Booking Archive
+      - Archive
   /v1/archive/get:
     get:
       consumes:
       - application/json
-      description: ListArchive - Api for list archive
+      description: GetArchive - Api for get archive
       parameters:
       - in: query
         name: field
         type: string
-      - in: query
-        name: limit
-        type: integer
-      - in: query
-        name: order_by
-        type: string
-      - in: query
-        name: page
-        type: integer
       - in: query
         name: value
         type: string
@@ -743,7 +1100,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_booking_service.ArchivesType'
+            $ref: '#/definitions/model_booking_service.Archive'
         "400":
           description: Bad Request
           schema:
@@ -752,10 +1109,10 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ListArchive
+      summary: GetArchive
       tags:
-      - Booking Archive
-  /v1/customer/forget_password:
+      - Archive
+  /v1/customer/forget-password:
     post:
       consumes:
       - application/json
@@ -783,36 +1140,6 @@ paths:
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: ForgetPassword
-      tags:
-      - customer
-  /v1/customer/forget_password_verify:
-    post:
-      consumes:
-      - application/json
-      description: ForgetPasswordVerify - Api for registering users
-      parameters:
-      - description: RegisterModelReq
-        in: body
-        name: Verify
-        required: true
-        schema:
-          $ref: '#/definitions/model_user_service.ForgetPasswordVerify'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model_user_service.MessageRes'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/model_common.StandardErrorModel'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ForgetPasswordVerify
       tags:
       - customer
   /v1/customer/login:
@@ -846,7 +1173,7 @@ paths:
       tags:
       - customer
   /v1/customer/logout:
-    get:
+    post:
       consumes:
       - application/json
       description: LogOut - Api for registering users
@@ -928,6 +1255,38 @@ paths:
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: Verify
+      tags:
+      - customer
+  /v1/customer/verify-otp-code:
+    post:
+      consumes:
+      - application/json
+      description: VerifyOtpCode - Api for Verify Otp Code users
+      parameters:
+      - example: 7777
+        in: query
+        name: code
+        type: integer
+      - example: "+998950230605"
+        in: query
+        name: phone_number
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.MessageRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: VerifyOtpCode
       tags:
       - customer
   /v1/department:
@@ -1063,13 +1422,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -1253,13 +1612,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -1315,6 +1674,11 @@ paths:
       - application/json
       description: UpdateDoctorNote - API to update a doctor note
       parameters:
+      - description: notes_id
+        in: query
+        name: notes_id
+        required: true
+        type: string
       - description: UpdateDoctorNoteReq
         in: body
         name: UpdateDoctorNoteReq
@@ -1339,24 +1703,15 @@ paths:
       summary: UpdateDoctorNote
       tags:
       - Doctor Note
-  /v1/doctor/get:
+  /v1/doctor-notes/get:
     get:
       consumes:
       - application/json
-      description: ListDoctors - Api for list doctor
+      description: GetDoctorNote - API to get doctor note by ID
       parameters:
       - in: query
         name: field
         type: string
-      - in: query
-        name: limit
-        type: integer
-      - in: query
-        name: order_by
-        type: string
-      - in: query
-        name: page
-        type: integer
       - in: query
         name: value
         type: string
@@ -1366,7 +1721,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.ListDoctors'
+            $ref: '#/definitions/model_booking_service.DoctorNote'
         "400":
           description: Bad Request
           schema:
@@ -1375,10 +1730,10 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ListDoctors
+      summary: GetDoctorNote
       tags:
-      - Doctor
-  /v1/doctor_services:
+      - Doctor Note
+  /v1/doctor-services:
     delete:
       consumes:
       - application/json
@@ -1500,7 +1855,7 @@ paths:
       summary: UpdateDoctorServices
       tags:
       - Doctor Services
-  /v1/doctor_services/get:
+  /v1/doctor-services/get:
     get:
       consumes:
       - application/json
@@ -1511,13 +1866,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -1539,7 +1894,168 @@ paths:
       summary: ListDoctorServices
       tags:
       - Doctor Services
-  /v1/doctor_working_hours:
+  /v1/doctor-time:
+    delete:
+      consumes:
+      - application/json
+      description: DeleteDoctorTimes - Api for delete Doctor time
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeleteDoctorTimes
+      tags:
+      - Doctor Time
+    get:
+      consumes:
+      - application/json
+      description: ListDoctorTimes - Api for list doctor time
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.DoctorTimesType'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListDoctorTimes
+      tags:
+      - Doctor Time
+    post:
+      consumes:
+      - application/json
+      description: CreateDoctorTimes - Api for crete doctor time
+      parameters:
+      - description: CreateDoctorTimeReq
+        in: body
+        name: CreateDoctorTimeReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_booking_service.CreateDoctorTimeReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.DoctorTime'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreateDoctorTimes
+      tags:
+      - Doctor Time
+    put:
+      consumes:
+      - application/json
+      description: UpdateDoctorTimes - Api for update doctor time
+      parameters:
+      - description: doctor_time_id
+        in: query
+        name: doctor_time_id
+        required: true
+        type: string
+      - description: UpdateDoctorTimeReq
+        in: body
+        name: UpdateDoctorTimeReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_booking_service.UpdateDoctorTimeReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.DoctorTime'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdateDoctorTimes
+      tags:
+      - Doctor Time
+  /v1/doctor-time/get:
+    get:
+      consumes:
+      - application/json
+      description: GetDoctorTimes - Api for get doctor time
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.DoctorTime'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetDoctorTimes
+      tags:
+      - Doctor Time
+  /v1/doctor-working-hours:
     delete:
       consumes:
       - application/json
@@ -1661,7 +2177,7 @@ paths:
       summary: UpdateDoctorWorkingHours
       tags:
       - Doctor Working Hours
-  /v1/doctor_working_hours/get:
+  /v1/doctor-working-hours/get:
     get:
       consumes:
       - application/json
@@ -1672,13 +2188,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -1700,6 +2216,45 @@ paths:
       summary: ListDoctorWorkingHours
       tags:
       - Doctor Working Hours
+  /v1/doctor/get:
+    get:
+      consumes:
+      - application/json
+      description: ListDoctors - Api for list doctor
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.ListDoctors'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListDoctors
+      tags:
+      - Doctor
   /v1/file-upload:
     post:
       consumes:
@@ -1729,6 +2284,201 @@ paths:
       summary: Upload image
       tags:
       - upload-file
+  /v1/patient:
+    delete:
+      consumes:
+      - application/json
+      description: DeletePatient - Api for delete patient
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.StatusRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: DeletePatient
+      tags:
+      - Patient
+    get:
+      consumes:
+      - application/json
+      description: ListPatient - Api for list patient
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.PatientsType'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: ListPatient
+      tags:
+      - Patient
+    post:
+      consumes:
+      - application/json
+      description: CreatePatient - Api for crete patient
+      parameters:
+      - description: CreatePatientReq
+        in: body
+        name: CreatePatientReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_booking_service.CreatePatientReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.Patient'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: CreatePatient
+      tags:
+      - Patient
+    put:
+      consumes:
+      - application/json
+      description: UpdatePatient - Api for update patient
+      parameters:
+      - description: patient_id
+        in: query
+        name: patient_id
+        required: true
+        type: string
+      - description: UpdatePatientReq
+        in: body
+        name: UpdatePatientReq
+        required: true
+        schema:
+          $ref: '#/definitions/model_booking_service.UpdatePatientReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.Patient'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdatePatient
+      tags:
+      - Patient
+  /v1/patient/get:
+    get:
+      consumes:
+      - application/json
+      description: GetPatient - Api for get patient
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.Patient'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetPatient
+      tags:
+      - Patient
+  /v1/patient/phone:
+    put:
+      consumes:
+      - application/json
+      description: UpdatePhonePatient - Api for update phone patient
+      parameters:
+      - description: phone_number
+        in: query
+        name: phone_number
+        required: true
+        type: string
+      - description: new_phone_number
+        in: query
+        name: new_phone_number
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_booking_service.Patient'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: UpdatePhonePatient
+      tags:
+      - Patient
   /v1/reasons:
     delete:
       consumes:
@@ -1862,13 +2612,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -2080,13 +2830,13 @@ paths:
         type: string
       - in: query
         name: limit
-        type: integer
+        type: string
       - in: query
         name: order_by
         type: string
       - in: query
         name: page
-        type: integer
+        type: string
       - in: query
         name: value
         type: string
@@ -2139,8 +2889,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      security:
-      - ApiKeyAuth: []
       summary: DeleteUser
       tags:
       - User
@@ -2186,8 +2934,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      security:
-      - ApiKeyAuth: []
       summary: ListUsers
       tags:
       - User
@@ -2222,8 +2968,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      security:
-      - ApiKeyAuth: []
       summary: UpdateUser
       tags:
       - User
@@ -2258,9 +3002,38 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetUser
+      tags:
+      - User
+  /v1/user/update-password:
+    put:
+      consumes:
+      - application/json
+      description: Api for UpdatePassword
+      parameters:
+      - description: NewPassword
+        in: query
+        name: NewPassword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.GetUserResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
       security:
       - ApiKeyAuth: []
-      summary: GetUser
+      summary: UpdatePassword
       tags:
       - User
 securityDefinitions:

@@ -2,11 +2,14 @@ package v1
 
 import (
 	"context"
+	e "dennic_api_gateway/api/handlers/regtool"
+	"dennic_api_gateway/api/models"
 	"dennic_api_gateway/api/models/model_user_service"
 	pb "dennic_api_gateway/genproto/user_service"
 	"dennic_api_gateway/internal/pkg/logger"
+	jwt "dennic_api_gateway/internal/pkg/tokens"
+	"github.com/spf13/cast"
 	"net/http"
-	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -19,7 +22,6 @@ import (
 // @Tags User
 // @Accept json
 // @Produce json
-// @Security ApiKeyAuth
 // @Param Field query string true "Field"
 // @Param Value query string true "Value"
 // @Success 200 {object} model_user_service.GetUserResp
@@ -74,7 +76,6 @@ func (h *HandlerV1) GetUser(c *gin.Context) {
 // @Tags User
 // @Accept json
 // @Produce json
-// @Security ApiKeyAuth
 // @Param Page  query string true "Page"
 // @Param Limit query string true "Limit"
 // @Param Field query string false "Field"
@@ -88,40 +89,28 @@ func (h *HandlerV1) ListUsers(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
-	Page := c.Query("Page")
-	Limit := c.Query("Limit")
-	Field := c.Query("Field")
-	Value := c.Query("Value")
-	OrderBy := c.Query("OrderBy")
+	page := c.Query("Page")
+	limit := c.Query("Limit")
+	field := c.Query("Field")
+	value := c.Query("Value")
+	orderBy := c.Query("OrderBy")
 
-	IntPage, err := strconv.Atoi(Page)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error(),
-		})
-		h.log.Error("failed to list users", logger.Error(err))
+	pageInt, limitInt, err := e.ParseQueryParams(page, limit)
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "CreateArchive") {
 		return
 	}
 
-	IntLimit, err := strconv.Atoi(Limit)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error(),
-		})
-		h.log.Error("failed to list users", logger.Error(err))
-		return
-	}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	response, err := h.serviceManager.UserService().UserService().ListUsers(
 		ctx, &pb.ListUsersReq{
-			Page:     uint64(IntPage),
-			Limit:    uint64(IntLimit),
+			Page:     pageInt,
+			Limit:    limitInt,
 			IsActive: false,
-			Value:    Value,
-			Field:    Field,
-			OrderBy:  OrderBy,
+			Value:    value,
+			Field:    field,
+			OrderBy:  orderBy,
 		})
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -160,7 +149,6 @@ func (h *HandlerV1) ListUsers(c *gin.Context) {
 // @Tags User
 // @Accept json
 // @Produce json
-// @Security ApiKeyAuth
 // @Param UserId  query string true "UserId"
 // @Param UpdUserReq body model_user_service.UpdUserReq true "UpdUserReq"
 // @Success 200 {object} model_user_service.GetUserResp
@@ -216,13 +204,65 @@ func (h *HandlerV1) UpdateUser(c *gin.Context) {
 	c.JSON(http.StatusOK, resp)
 }
 
+// UpdatePassword
+// @Summary UpdatePassword
+// @Description Api for UpdatePassword
+// @Tags User
+// @Security ApiKeyAuth
+// @Accept json
+// @Produce json
+// @Param NewPassword  query string true "NewPassword"
+// @Success 200 {object} model_user_service.GetUserResp
+// @Failure 400 {object} model_common.StandardErrorModel
+// @Failure 500 {object} model_common.StandardErrorModel
+// @Router /v1/user/update-password [PUT]
+func (h *HandlerV1) UpdatePassword(c *gin.Context) {
+	newPassword := c.Query("NewPassword")
+	token := c.GetHeader("Authorization")
+
+	claims, err := jwt.ExtractClaim(token)
+
+	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "ChangePasswordUser") {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
+	defer cancel()
+
+	user, err := h.serviceManager.UserService().UserService().Get(ctx, &pb.GetUserReq{
+		Field:    "id",
+		Value:    cast.ToString(claims["id"]),
+		IsActive: false,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+		return
+	}
+
+	hashPass, err := e.HashPassword(newPassword)
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+		return
+	}
+
+	response, err := h.serviceManager.UserService().UserService().ChangePassword(ctx, &pb.ChangeUserPasswordReq{
+		PhoneNumber: user.PhoneNumber,
+		Password:    hashPass,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+		return
+	}
+
+	c.JSON(http.StatusOK, &models.StatusRes{Status: response.Status})
+}
+
 // DeleteUser
 // @Summary DeleteUser
 // @Description Api for DeleteUser
 // @Tags User
 // @Accept json
 // @Produce json
-// @Security ApiKeyAuth
 // @Param Field query string true "Field"
 // @Param Value query string true "Value"
 // @Success 200 {object} model_user_service.CheckUserFieldResp
@@ -233,16 +273,16 @@ func (h *HandlerV1) DeleteUser(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
-	Field := c.Query("Field")
-	Value := c.Query("Value")
+	field := c.Query("Field")
+	value := c.Query("Value")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	response, err := h.serviceManager.UserService().UserService().Delete(
 		ctx, &pb.DeleteUserReq{
-			Field:    Field,
-			Value:    Value,
+			Field:    field,
+			Value:    value,
 			IsActive: false,
 		})
 

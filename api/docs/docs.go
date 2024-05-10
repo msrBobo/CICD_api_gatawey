@@ -15,9 +15,9 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/v1/archive": {
+        "/v1/appointment": {
             "get": {
-                "description": "GetArchive - Api for get archive",
+                "description": "ListBookedAppointments - API to list doctor notes",
                 "consumes": [
                     "application/json"
                 ],
@@ -25,9 +25,164 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Booking Archive"
+                    "Appointment"
                 ],
-                "summary": "GetArchive",
+                "summary": "ListBookedAppointments",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.Appointment"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "UpdateDoctorNote - API to update appointment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "UpdateBookedAppointment",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "appointment_id",
+                        "name": "appointment_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "description": "UpdateAppointmentReq",
+                        "name": "UpdateAppointmentReq",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.UpdateAppointmentReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.Appointment"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "CreateBookedAppointment - Api for create booked appointment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "CreateBookedAppointment",
+                "parameters": [
+                    {
+                        "description": "CreateAppointmentReq",
+                        "name": "CreateAppointmentReq",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.CreateAppointmentReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.Appointment"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "DeleteBookedAppointment - API to delete a appointment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "DeleteBookedAppointment",
                 "parameters": [
                     {
                         "type": "string",
@@ -44,7 +199,116 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_booking_service.Archive"
+                            "$ref": "#/definitions/models.StatusRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/appointment/get": {
+            "get": {
+                "description": "GetBookedAppointment - API to get Booked appointment by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "GetBookedAppointment",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.Appointment"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/archive": {
+            "get": {
+                "description": "ListArchive - Api for list archive",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Archive"
+                ],
+                "summary": "ListArchive",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.ArchivesType"
                         }
                     },
                     "400": {
@@ -70,10 +334,17 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Booking Archive"
+                    "Archive"
                 ],
                 "summary": "UpdateArchive",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "archive_id",
+                        "name": "archive_id",
+                        "in": "query",
+                        "required": true
+                    },
                     {
                         "description": "UpdateArchiveReq",
                         "name": "UpdateArchiveReq",
@@ -114,7 +385,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Booking Archive"
+                    "Archive"
                 ],
                 "summary": "CreateArchive",
                 "parameters": [
@@ -158,7 +429,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Booking Archive"
+                    "Archive"
                 ],
                 "summary": "DeleteArchive",
                 "parameters": [
@@ -197,7 +468,7 @@ const docTemplate = `{
         },
         "/v1/archive/get": {
             "get": {
-                "description": "ListArchive - Api for list archive",
+                "description": "GetArchive - Api for get archive",
                 "consumes": [
                     "application/json"
                 ],
@@ -205,28 +476,13 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Booking Archive"
+                    "Archive"
                 ],
-                "summary": "ListArchive",
+                "summary": "GetArchive",
                 "parameters": [
                     {
                         "type": "string",
                         "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "order_by",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -239,7 +495,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_booking_service.ArchivesType"
+                            "$ref": "#/definitions/model_booking_service.Archive"
                         }
                     },
                     "400": {
@@ -257,7 +513,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/customer/forget_password": {
+        "/v1/customer/forget-password": {
             "post": {
                 "description": "ForgetPassword - Api for registering users",
                 "consumes": [
@@ -278,52 +534,6 @@ const docTemplate = `{
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/model_user_service.PhoneNumberReq"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model_user_service.MessageRes"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/customer/forget_password_verify": {
-            "post": {
-                "description": "ForgetPasswordVerify - Api for registering users",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "customer"
-                ],
-                "summary": "ForgetPasswordVerify",
-                "parameters": [
-                    {
-                        "description": "RegisterModelReq",
-                        "name": "Verify",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/model_user_service.ForgetPasswordVerify"
                         }
                     }
                 ],
@@ -396,7 +606,7 @@ const docTemplate = `{
             }
         },
         "/v1/customer/logout": {
-            "get": {
+            "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
@@ -510,6 +720,55 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/model_user_service.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/customer/verify-otp-code": {
+            "post": {
+                "description": "VerifyOtpCode - Api for Verify Otp Code users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "customer"
+                ],
+                "summary": "VerifyOtpCode",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "example": 7777,
+                        "name": "code",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "example": "+998950230605",
+                        "name": "phone_number",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.MessageRes"
                         }
                     },
                     "400": {
@@ -734,7 +993,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -744,7 +1003,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "page",
                         "in": "query"
                     },
@@ -983,7 +1242,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -993,7 +1252,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "page",
                         "in": "query"
                     },
@@ -1037,6 +1296,13 @@ const docTemplate = `{
                 ],
                 "summary": "UpdateDoctorNote",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "notes_id",
+                        "name": "notes_id",
+                        "in": "query",
+                        "required": true
+                    },
                     {
                         "description": "UpdateDoctorNoteReq",
                         "name": "UpdateDoctorNoteReq",
@@ -1158,9 +1424,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/doctor/get": {
+        "/v1/doctor-notes/get": {
             "get": {
-                "description": "ListDoctors - Api for list doctor",
+                "description": "GetDoctorNote - API to get doctor note by ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -1168,28 +1434,13 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Doctor"
+                    "Doctor Note"
                 ],
-                "summary": "ListDoctors",
+                "summary": "GetDoctorNote",
                 "parameters": [
                     {
                         "type": "string",
                         "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "order_by",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -1202,7 +1453,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.ListDoctors"
+                            "$ref": "#/definitions/model_booking_service.DoctorNote"
                         }
                     },
                     "400": {
@@ -1220,7 +1471,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/doctor_services": {
+        "/v1/doctor-services": {
             "get": {
                 "description": "GetDoctorService - Api for get doctor_services",
                 "consumes": [
@@ -1407,7 +1658,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/doctor_services/get": {
+        "/v1/doctor-services/get": {
             "get": {
                 "description": "ListDoctorServices - Api for list doctor_services",
                 "consumes": [
@@ -1427,7 +1678,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -1437,7 +1688,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "page",
                         "in": "query"
                     },
@@ -1469,7 +1720,256 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/doctor_working_hours": {
+        "/v1/doctor-time": {
+            "get": {
+                "description": "ListDoctorTimes - Api for list doctor time",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Time"
+                ],
+                "summary": "ListDoctorTimes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.DoctorTimesType"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "UpdateDoctorTimes - Api for update doctor time",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Time"
+                ],
+                "summary": "UpdateDoctorTimes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "doctor_time_id",
+                        "name": "doctor_time_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "description": "UpdateDoctorTimeReq",
+                        "name": "UpdateDoctorTimeReq",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.UpdateDoctorTimeReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.DoctorTime"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "CreateDoctorTimes - Api for crete doctor time",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Time"
+                ],
+                "summary": "CreateDoctorTimes",
+                "parameters": [
+                    {
+                        "description": "CreateDoctorTimeReq",
+                        "name": "CreateDoctorTimeReq",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.CreateDoctorTimeReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.DoctorTime"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "DeleteDoctorTimes - Api for delete Doctor time",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Time"
+                ],
+                "summary": "DeleteDoctorTimes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.StatusRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor-time/get": {
+            "get": {
+                "description": "GetDoctorTimes - Api for get doctor time",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor Time"
+                ],
+                "summary": "GetDoctorTimes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.DoctorTime"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor-working-hours": {
             "get": {
                 "description": "GetDoctorWorkingHours - Api for get doctor_working_hours",
                 "consumes": [
@@ -1656,7 +2156,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/doctor_working_hours/get": {
+        "/v1/doctor-working-hours/get": {
             "get": {
                 "description": "ListDoctorWorkingHours - Api for list doctor_working_hours",
                 "consumes": [
@@ -1676,7 +2176,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -1686,7 +2186,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "page",
                         "in": "query"
                     },
@@ -1701,6 +2201,68 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.ListDoctorWorkingHours"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor/get": {
+            "get": {
+                "description": "ListDoctors - Api for list doctor",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "ListDoctors",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_healthcare_service.ListDoctors"
                         }
                     },
                     "400": {
@@ -1745,6 +2307,306 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/model_minio.MinioURL"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patient": {
+            "get": {
+                "description": "ListPatient - Api for list patient",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "ListPatient",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.PatientsType"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "UpdatePatient - Api for update patient",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "UpdatePatient",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "patient_id",
+                        "name": "patient_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "description": "UpdatePatientReq",
+                        "name": "UpdatePatientReq",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.UpdatePatientReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.Patient"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "CreatePatient - Api for crete patient",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "CreatePatient",
+                "parameters": [
+                    {
+                        "description": "CreatePatientReq",
+                        "name": "CreatePatientReq",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.CreatePatientReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.Patient"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "DeletePatient - Api for delete patient",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "DeletePatient",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.StatusRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patient/get": {
+            "get": {
+                "description": "GetPatient - Api for get patient",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "GetPatient",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.Patient"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/patient/phone": {
+            "put": {
+                "description": "UpdatePhonePatient - Api for update phone patient",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "UpdatePhonePatient",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "phone_number",
+                        "name": "phone_number",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "new_phone_number",
+                        "name": "new_phone_number",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_booking_service.Patient"
                         }
                     },
                     "400": {
@@ -1969,7 +2831,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -1979,7 +2841,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "page",
                         "in": "query"
                     },
@@ -2304,7 +3166,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -2314,7 +3176,7 @@ const docTemplate = `{
                         "in": "query"
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "name": "page",
                         "in": "query"
                     },
@@ -2348,11 +3210,6 @@ const docTemplate = `{
         },
         "/v1/user": {
             "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
                 "description": "Api for ListUsers",
                 "consumes": [
                     "application/json"
@@ -2420,11 +3277,6 @@ const docTemplate = `{
                 }
             },
             "put": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
                 "description": "Api for UpdateUser",
                 "consumes": [
                     "application/json"
@@ -2476,11 +3328,6 @@ const docTemplate = `{
                 }
             },
             "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
                 "description": "Api for DeleteUser",
                 "consumes": [
                     "application/json"
@@ -2532,11 +3379,6 @@ const docTemplate = `{
         },
         "/v1/user/get": {
             "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
                 "description": "Api for GetUser",
                 "consumes": [
                     "application/json"
@@ -2585,12 +3427,105 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/v1/user/update-password": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for UpdatePassword",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "UpdatePassword",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "NewPassword",
+                        "name": "NewPassword",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.GetUserResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "model_booking_service.Appointment": {
+            "type": "object",
+            "properties": {
+                "appointment_date": {
+                    "type": "string"
+                },
+                "appointment_time": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "department_id": {
+                    "type": "string"
+                },
+                "doctor_id": {
+                    "type": "string"
+                },
+                "duration": {
+                    "type": "integer"
+                },
+                "expires_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "patient_id": {
+                    "type": "string"
+                },
+                "patient_status": {
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
         "model_booking_service.Archive": {
             "type": "object",
             "properties": {
+                "created_at": {
+                    "type": "string"
+                },
                 "doctor_availability_id": {
                     "type": "integer"
                 },
@@ -2614,6 +3549,9 @@ const docTemplate = `{
                 },
                 "status": {
                     "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
                 }
             }
         },
@@ -2628,6 +3566,38 @@ const docTemplate = `{
                 },
                 "count": {
                     "type": "integer"
+                }
+            }
+        },
+        "model_booking_service.CreateAppointmentReq": {
+            "type": "object",
+            "properties": {
+                "appointment_date": {
+                    "type": "string"
+                },
+                "appointment_time": {
+                    "type": "string"
+                },
+                "department_id": {
+                    "type": "string"
+                },
+                "doctor_id": {
+                    "type": "string"
+                },
+                "duration": {
+                    "type": "integer"
+                },
+                "expires_at": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "patient_id": {
+                    "type": "string"
+                },
+                "patient_status": {
+                    "type": "boolean"
                 }
             }
         },
@@ -2674,6 +3644,64 @@ const docTemplate = `{
                 }
             }
         },
+        "model_booking_service.CreateDoctorTimeReq": {
+            "type": "object",
+            "properties": {
+                "department_id": {
+                    "type": "string"
+                },
+                "doctor_date": {
+                    "type": "string"
+                },
+                "doctor_id": {
+                    "type": "string"
+                },
+                "end_time": {
+                    "type": "string"
+                },
+                "start_time": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "model_booking_service.CreatePatientReq": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "birth_date": {
+                    "type": "string"
+                },
+                "blood_group": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "patient_problem": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                }
+            }
+        },
         "model_booking_service.DoctorNote": {
             "type": "object",
             "properties": {
@@ -2714,6 +3742,133 @@ const docTemplate = `{
                 }
             }
         },
+        "model_booking_service.DoctorTime": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "department_id": {
+                    "type": "string"
+                },
+                "doctor_date": {
+                    "type": "string"
+                },
+                "doctor_id": {
+                    "type": "string"
+                },
+                "end_time": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "start_time": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "model_booking_service.DoctorTimesType": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "doctor_times": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model_booking_service.DoctorTime"
+                    }
+                }
+            }
+        },
+        "model_booking_service.Patient": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "birth_date": {
+                    "type": "string"
+                },
+                "blood_group": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "patient_problem": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "model_booking_service.PatientsType": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "patients": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model_booking_service.Patient"
+                    }
+                }
+            }
+        },
+        "model_booking_service.UpdateAppointmentReq": {
+            "type": "object",
+            "properties": {
+                "appointment_date": {
+                    "type": "string"
+                },
+                "appointment_time": {
+                    "type": "string"
+                },
+                "duration": {
+                    "type": "integer"
+                },
+                "expires_at": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "patient_status": {
+                    "type": "boolean"
+                }
+            }
+        },
         "model_booking_service.UpdateArchiveReq": {
             "type": "object",
             "properties": {
@@ -2721,9 +3876,6 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "end_time": {
-                    "type": "string"
-                },
-                "field": {
                     "type": "string"
                 },
                 "patient_problem": {
@@ -2740,9 +3892,6 @@ const docTemplate = `{
                 },
                 "status": {
                     "type": "string"
-                },
-                "value": {
-                    "type": "string"
                 }
             }
         },
@@ -2755,16 +3904,68 @@ const docTemplate = `{
                 "doctor_id": {
                     "type": "string"
                 },
-                "field": {
-                    "type": "string"
-                },
                 "patient_id": {
                     "type": "string"
                 },
                 "prescription": {
                     "type": "string"
+                }
+            }
+        },
+        "model_booking_service.UpdateDoctorTimeReq": {
+            "type": "object",
+            "properties": {
+                "department_id": {
+                    "type": "string"
                 },
-                "value": {
+                "doctor_date": {
+                    "type": "string"
+                },
+                "doctor_id": {
+                    "type": "string"
+                },
+                "end_time": {
+                    "type": "string"
+                },
+                "start_time": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "model_booking_service.UpdatePatientReq": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "birth_date": {
+                    "type": "string"
+                },
+                "blood_group": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "patient_problem": {
+                    "type": "string"
+                },
+                "phone_number": {
                     "type": "string"
                 }
             }
@@ -3300,23 +4501,6 @@ const docTemplate = `{
                 }
             }
         },
-        "model_user_service.ForgetPasswordVerify": {
-            "type": "object",
-            "properties": {
-                "cade": {
-                    "type": "integer",
-                    "example": 7777
-                },
-                "new_password": {
-                    "type": "string",
-                    "example": "new_password"
-                },
-                "phone_number": {
-                    "type": "string",
-                    "example": "+998950230605"
-                }
-            }
-        },
         "model_user_service.GetUserResp": {
             "type": "object",
             "properties": {
@@ -3512,6 +4696,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
 func init() {

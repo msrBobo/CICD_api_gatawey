@@ -7,52 +7,101 @@ p, unauthorized, /v1/swagger/swagger-ui-standalone-preset.js, GET
 p, unauthorized, /v1/swagger/favicon-32x32.png, GET
 p, unauthorized, /v1/swagger/swagger/doc.json, GET
 
+# customer
 p, unauthorized, /v1/customer/register, POST
 p, unauthorized, /v1/customer/verify, POST
-p, unauthorized, /v1/customer/forget_password, POST
-p, unauthorized, /v1/customer/forget_password_verify, POST
+p, unauthorized, /v1/customer/forget-password, POST
+p, unauthorized, /v1/customer/verify-otp-code, POST
 p, unauthorized, /v1/customer/login, POST
 
+# user
+p, unauthorized, /v1/user/get, GET
+p, unauthorized, /v1/user/, GET
+p, unauthorized, /v1/user/, PUT
+p, unauthorized, /v1/user/, DELETE
+
+# department
 p, unauthorized, /v1/department/, POST
 p, unauthorized, /v1/department/, GET
 p, unauthorized, /v1/department/get, GET
 p, unauthorized, /v1/department/, PUT
 p, unauthorized, /v1/department/, DELETE
 
+# doctor
 p, unauthorized, /v1/doctor/, POST
 p, unauthorized, /v1/doctor/, GET
 p, unauthorized, /v1/doctor/get, GET
 p, unauthorized, /v1/doctor/, PUT
 p, unauthorized, /v1/doctor/, DELETE
 
+# specialization
 p, unauthorized, /v1/specialization/, POST
 p, unauthorized, /v1/specialization/, GET
 p, unauthorized, /v1/specialization/get, GET
 p, unauthorized, /v1/specialization/, PUT
 p, unauthorized, /v1/specialization/, DELETE
 
-p, unauthorized, /v1/doctor_services/, POST
-p, unauthorized, /v1/doctor_services/, GET
-p, unauthorized, /v1/doctor_services/get, GET
-p, unauthorized, /v1/doctor_services/, PUT
-p, unauthorized, /v1/doctor_services/, DELETE
+# doctorServices
+p, unauthorized, /v1/doctor-services/, POST
+p, unauthorized, /v1/doctor-services/, GET
+p, unauthorized, /v1/doctor-services/get, GET
+p, unauthorized, /v1/doctor-services/, PUT
+p, unauthorized, /v1/doctor-services/, DELETE
 
-p, unauthorized, /v1/doctor_working_hours/, POST
-p, unauthorized, /v1/doctor_working_hours/, GET
-p, unauthorized, /v1/doctor_working_hours/get, GET
-p, unauthorized, /v1/doctor_working_hours/, PUT
-p, unauthorized, /v1/doctor_working_hours/, DELETE
+# doctorWorkingHours
+p, unauthorized, /v1/doctor-working-hours/, POST
+p, unauthorized, /v1/doctor-working-hours/, GET
+p, unauthorized, /v1/doctor-working-hours/get, GET
+p, unauthorized, /v1/doctor-working-hours/, PUT
+p, unauthorized, /v1/doctor-working-hours/, DELETE
 
+# reasons
 p, unauthorized, /v1/reasons/, POST
 p, unauthorized, /v1/reasons/, GET
 p, unauthorized, /v1/reasons/get, GET
 p, unauthorized, /v1/reasons/, PUT
 p, unauthorized, /v1/reasons/, DELETE
 
+# archive
+p, unauthorized, /v1/archive/, POST
+p, unauthorized, /v1/archive/get, GET
+p, unauthorized, /v1/archive/, GET
+p, unauthorized, /v1/archive/, PUT
+p, unauthorized, /v1/archive/, DELETE
+
+# doctor notes
+p, unauthorized, /v1/doctor-notes/, POST
+p, unauthorized, /v1/doctor-notes/get, GET
+p, unauthorized, /v1/doctor-notes/, GET
+p, unauthorized, /v1/doctor-notes/, PUT
+p, unauthorized, /v1/doctor-notes/, DELETE
+
+# doctorTime
+p, unauthorized, /v1/doctor-time/, POST
+p, unauthorized, /v1/doctor-time/get, GET
+p, unauthorized, /v1/doctor-time/, GET
+p, unauthorized, /v1/doctor-time/, PUT
+p, unauthorized, /v1/doctor-time/, DELETE
+
+# patient
+p, unauthorized, /v1/patient/, POST
+p, unauthorized, /v1/patient/get, GET
+p, unauthorized, /v1/patient/, GET
+p, unauthorized, /v1/patient/, PUT
+p, unauthorized, /v1/patient/phone, PUT
+p, unauthorized, /v1/patient/, DELETE
+
+# appointment
+p, unauthorized, /v1/appointment/, POST
+p, unauthorized, /v1/appointment/get, GET
+p, unauthorized, /v1/appointment/, GET
+p, unauthorized, /v1/appointment/, PUT
+p, unauthorized, /v1/appointment/, DELETE
+
 p, unauthorized, /v1/session/, GET
 p, unauthorized, /v1/session/, DELETE
 
 p, unauthorized, /v1/file-upload, POST
 
-
-p, user, /v1/customer/logout, GET
+p, user, /v1/user/update-password, PUT
+p, user, /v1/customer/logout, POST

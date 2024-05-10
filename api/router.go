@@ -74,16 +74,17 @@ func NewRoute(option RouteOption) *gin.Engine {
 	customer := api.Group("/customer")
 	customer.POST("/register", HandlerV1.Register)
 	customer.POST("/verify", HandlerV1.Verify)
-	customer.POST("/forget_password", HandlerV1.ForgetPassword)
-	customer.POST("/forget_password_verify", HandlerV1.ForgetPasswordVerify)
+	customer.POST("/forget-password", HandlerV1.ForgetPassword)
+	customer.POST("/verify-otp-code", HandlerV1.VerifyOtpCode)
 	customer.POST("/login", HandlerV1.Login)
-	customer.GET("/logout", HandlerV1.LogOut)
+	customer.POST("/logout", HandlerV1.LogOut)
 
 	// user
 	user := api.Group("/user")
 	user.GET("/get", HandlerV1.GetUser)
 	user.GET("/", HandlerV1.ListUsers)
 	user.PUT("/", HandlerV1.UpdateUser)
+	user.PUT("/update-password", HandlerV1.UpdatePassword)
 	user.DELETE("/", HandlerV1.DeleteUser)
 
 	// archive
@@ -101,6 +102,31 @@ func NewRoute(option RouteOption) *gin.Engine {
 	doctorNote.GET("/", HandlerV1.ListDoctorNotes)
 	doctorNote.PUT("/", HandlerV1.UpdateDoctorNote)
 	doctorNote.DELETE("/", HandlerV1.DeleteDoctorNote)
+
+	// appointment
+	appointment := api.Group("/appointment")
+	appointment.POST("/", HandlerV1.CreateBookedAppointment)
+	appointment.GET("/get", HandlerV1.GetBookedAppointment)
+	appointment.GET("/", HandlerV1.ListBookedAppointments)
+	appointment.PUT("/", HandlerV1.UpdateBookedAppointment)
+	appointment.DELETE("/", HandlerV1.DeleteBookedAppointment)
+
+	// doctorTime
+	doctorTime := api.Group("/doctor-time")
+	doctorTime.POST("/", HandlerV1.CreateDoctorTimes)
+	doctorTime.GET("/get", HandlerV1.GetDoctorTimes)
+	doctorTime.GET("/", HandlerV1.ListDoctorTimes)
+	doctorTime.PUT("/", HandlerV1.UpdateDoctorTimes)
+	doctorTime.DELETE("/", HandlerV1.DeleteDoctorTimes)
+
+	// patient
+	patient := api.Group("/patient")
+	patient.POST("/", HandlerV1.CreatePatient)
+	patient.GET("/get", HandlerV1.GetPatient)
+	patient.GET("/", HandlerV1.ListPatient)
+	patient.PUT("/", HandlerV1.UpdatePatient)
+	patient.PUT("/phone", HandlerV1.UpdatePhonePatient)
+	patient.DELETE("/", HandlerV1.DeletePatient)
 
 	// department
 	department := api.Group("/department")
@@ -127,7 +153,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	specialization.DELETE("/", HandlerV1.DeleteSpecialization)
 
 	// doctorServices
-	doctorServices := api.Group("/doctor_services")
+	doctorServices := api.Group("/doctor-services")
 	doctorServices.POST("/", HandlerV1.CreateDoctorService)
 	doctorServices.GET("/", HandlerV1.GetDoctorService)
 	doctorServices.GET("/get", HandlerV1.ListDoctorServices)
@@ -135,7 +161,8 @@ func NewRoute(option RouteOption) *gin.Engine {
 	doctorServices.DELETE("/", HandlerV1.DeleteDoctorService)
 
 	// doctorWorkingHours
-	doctorWorkingHours := api.Group("/doctor_working_hours")
+
+	doctorWorkingHours := api.Group("/doctor-working-hours")
 	doctorWorkingHours.POST("/", HandlerV1.CreateDoctorWorkingHours)
 	doctorWorkingHours.GET("/", HandlerV1.GetDoctorWorkingHours)
 	doctorWorkingHours.GET("/get", HandlerV1.ListDoctorWorkingHours)

@@ -3,12 +3,14 @@ package v1
 import (
 	"context"
 	e "dennic_api_gateway/api/handlers/regtool"
+	"dennic_api_gateway/api/models"
 	"dennic_api_gateway/api/models/model_user_service"
 	ps "dennic_api_gateway/genproto/session_service"
 	pb "dennic_api_gateway/genproto/user_service"
 	jwt "dennic_api_gateway/internal/pkg/tokens"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -236,7 +238,7 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 // @Success 200 {object} model_user_service.MessageRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/customer/forget_password [post]
+// @Router /v1/customer/forget-password [post]
 func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 	var (
 		body        model_user_service.PhoneNumberReq
@@ -287,86 +289,74 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 	})
 }
 
-// ForgetPasswordVerify ...
-// @Summary ForgetPasswordVerify
-// @Description ForgetPasswordVerify - Api for registering users
+// VerifyOtpCode ...
+// @Summary VerifyOtpCode
+// @Description VerifyOtpCode - Api for Verify Otp Code users
 // @Tags customer
 // @Accept json
 // @Produce json
-// @Param Verify body model_user_service.ForgetPasswordVerify true "RegisterModelReq"
+// @Param VerifyOtpCode query model_user_service.VerifyOtpCodeReq true "VerifyOtpCode"
 // @Failure 200 {object} model_user_service.MessageRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/customer/forget_password_verify [post]
-func (h *HandlerV1) ForgetPasswordVerify(c *gin.Context) {
-	var (
-		body        model_user_service.ForgetPasswordVerify
-		code        int
-		jsonMarshal protojson.MarshalOptions
-	)
+// @Router /v1/customer/verify-otp-code [post]
+func (h *HandlerV1) VerifyOtpCode(c *gin.Context) {
+	phoneNumber := c.Query("phone_number")
+	code := c.Query("code")
 
-	jsonMarshal.UseProtoNames = true
-
-	err := c.ShouldBindJSON(&body)
-
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
-		return
-	}
+	reqCode := cast.ToInt64(code)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
-	if len(body.PhoneNumber) != 13 && !govalidator.IsNumeric(body.PhoneNumber) {
-		err = errors.New("invalid phone number")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPasswordVerify")
+	if len(phoneNumber) != 13 && !govalidator.IsNumeric(phoneNumber) {
+		err := errors.New("invalid phone number")
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "VerifyOtpCode")
 		return
 	}
 
-	if !e.ValidatePassword(body.NewPassword) {
-		err = errors.New("invalid password")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPasswordVerify")
+	redisRes, err := h.redis.Client.Get(ctx, phoneNumber).Result()
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "VerifyOtpCode") {
 		return
 	}
 
-	redisRes, err := h.redis.Client.Get(ctx, body.PhoneNumber).Result()
+	var redisCode int64
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
+	err = json.Unmarshal([]byte(redisRes), &redisCode)
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "VerifyOtpCode") {
 		return
 	}
 
-	err = h.redis.Client.Del(ctx, body.PhoneNumber).Err()
-
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
-		return
-	}
-
-	err = json.Unmarshal([]byte(redisRes), &code)
-
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
-		return
-	}
-
-	if body.Code != code {
+	if reqCode != redisCode {
 		err = errors.New("invalid code")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPasswordVerify")
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "VerifyOtpCode")
 		return
 	}
 
-	body.NewPassword, err = e.HashPassword(body.NewPassword)
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+	err = h.redis.Client.Del(ctx, phoneNumber).Err()
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "VerifyOtpCode") {
 		return
 	}
 
-	_, err = h.serviceManager.UserService().UserService().ChangePassword(ctx, &pb.ChangeUserPasswordReq{
-		PhoneNumber: body.PhoneNumber,
-		Password:    body.NewPassword,
+	user, err := h.serviceManager.UserService().UserService().Get(ctx, &pb.GetUserReq{
+		Field:    "phone_number",
+		Value:    phoneNumber,
+		IsActive: false,
 	})
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "VerifyOtpCode") {
 		return
 	}
 
-	c.JSON(http.StatusOK, &model_user_service.MessageRes{Message: "Password changed successfully"})
+	access, err := h.jwthandler.GenerateJWT(user.PhoneNumber, user.Id, "user")
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "VerifyOtpCode") {
+		return
+	}
+
+	c.JSON(http.StatusOK, &models.AccessToken{Token: access})
 
 }
 
@@ -492,7 +482,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 // @Success 200 {object} model_user_service.MessageRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/customer/logout [get]
+// @Router /v1/customer/logout [post]
 func (h *HandlerV1) LogOut(c *gin.Context) {
 	token := c.GetHeader("Authorization")
 	claims, err := jwt.ExtractClaim(token)
@@ -507,6 +497,8 @@ func (h *HandlerV1) LogOut(c *gin.Context) {
 	_, err = h.serviceManager.SessionService().SessionService().DeleteSessionById(ctx, &ps.StrReq{
 		Id: cast.ToString(claims["session_id"]),
 	})
+
+	fmt.Println(cast.ToString(claims["session_id"]))
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "LogOut") {
 		return

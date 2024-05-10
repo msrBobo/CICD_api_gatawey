@@ -7,8 +7,8 @@ type FieldValueReq struct {
 }
 
 type ListReq struct {
-	Page         uint64 `json:"page"`
-	Limit        uint64 `json:"limit"`
+	Page         string `json:"page"`
+	Limit        string `json:"limit"`
 	OrderBy      string `json:"order_by"`
 	Field        string `json:"field"`
 	Value        string `json:"value"`
