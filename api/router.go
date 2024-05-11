@@ -30,7 +30,7 @@ type RouteOption struct {
 
 }
 
-// @title API
+// @title Dennic Project
 // @version 1.7
 // @host localhost:9050
 // NewRoute
@@ -74,6 +74,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	customer.POST("/register", HandlerV1.Register)
 	customer.POST("/verify", HandlerV1.Verify)
 	customer.POST("/forget-password", HandlerV1.ForgetPassword)
+	customer.PUT("/update-password", HandlerV1.UpdatePassword)
 	customer.POST("/verify-otp-code", HandlerV1.VerifyOtpCode)
 	customer.POST("/login", HandlerV1.Login)
 	customer.POST("/logout", HandlerV1.LogOut)
@@ -83,7 +84,6 @@ func NewRoute(option RouteOption) *gin.Engine {
 	user.GET("/get", HandlerV1.GetUserByID)
 	user.GET("/", HandlerV1.ListUsers)
 	user.PUT("/", HandlerV1.UpdateUser)
-	user.PUT("/update-password", HandlerV1.UpdatePassword)
 	user.PUT("/update-refresh-token", HandlerV1.UpdateRefreshToken)
 	user.DELETE("/", HandlerV1.DeleteUser)
 

@@ -107,5 +107,5 @@ p, unauthorized, /v1/session/, DELETE
 
 p, unauthorized, /v1/file-upload, POST
 
-p, user, /v1/user/update-password, PUT
+p, user, /v1/customer/update-password, PUT
 p, user, /v1/customer/logout, POST

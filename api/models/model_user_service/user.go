@@ -19,11 +19,11 @@ type ListUserResp struct {
 }
 
 type UpdUserReq struct {
-	Id        string `json:"id"`
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	BrithDate string `json:"birth_date"`
-	Gender    string `json:"gender"`
+	Id        string `json:"id" example:"UUID"`
+	FirstName string `json:"first_name" example:"To'rahon"`
+	LastName  string `json:"last_name" example:"To'rayevich"`
+	BrithDate string `json:"birth_date" example:"1990-01-01"`
+	Gender    string `json:"gender" example:"male"`
 }
 
 type UpdUserResp struct {
@@ -57,18 +57,4 @@ type DeleteUserReq struct {
 
 type CheckUserFieldResp struct {
 	Status bool `json:"status"`
-}
-
-type UpdateRefreshTokenUserResp struct {
-	AccessToken string `json:"access_token"`
-	RefreshToken string `json:"refresh_token"`
-}
-
-type Tokens struct {
-	AccessToken string `json:"access_token"`
-	RefreshToken string `json:"refresh_token"`
-}
-
-type RefreshToken  struct {
-	RefreshToken string `json:"refresh_token"`
 }

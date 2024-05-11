@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "API",
+        "title": "Dennic Project",
         "contact": {},
         "version": "1.7"
     },
@@ -666,6 +666,55 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/model_user_service.MessageRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/customer/update-password": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for UpdatePassword",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "customer"
+                ],
+                "summary": "UpdatePassword",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "NewPassword",
+                        "name": "NewPassword",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.GetUserResp"
                         }
                     },
                     "400": {
@@ -3435,55 +3484,6 @@
                 }
             }
         },
-        "/v1/user/update-password": {
-            "put": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Api for UpdatePassword",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "User"
-                ],
-                "summary": "UpdatePassword",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "NewPassword",
-                        "name": "NewPassword",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model_user_service.GetUserResp"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    }
-                }
-            }
-        },
         "/v1/user/update-refresh-token": {
             "put": {
                 "description": "Update the refresh token of the user",
@@ -4633,7 +4633,8 @@
             "type": "object",
             "properties": {
                 "refresh_token": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "RefreshToken"
                 }
             }
         },
@@ -4689,6 +4690,9 @@
                 },
                 "phone_number": {
                     "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
                 }
             }
         },
@@ -4707,19 +4711,24 @@
             "type": "object",
             "properties": {
                 "birth_date": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "1990-01-01"
                 },
                 "first_name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "To'rahon"
                 },
                 "gender": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "male"
                 },
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "UUID"
                 },
                 "last_name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "To'rayevich"
                 }
             }
         },

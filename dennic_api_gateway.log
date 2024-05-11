@@ -1514,3 +1514,79 @@ net/http.(*conn).serve
 2024-05-12T01:10:49.991+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
 main.main.func1
 	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T01:39:53.453+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T01:41:10.151+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T01:41:10.152+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T01:41:29.488+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T01:43:10.552+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/bobo/go/src/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).UpdatePassword
+	/home/bobo/go/src/dennic_api_gateway/api/handlers/v1/registration.go:326
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/bobo/go/src/dennic_api_gateway/api/middleware/casbin/casbin.go:61
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/bobo/go/src/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-12T02:02:04.236+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T02:02:04.237+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T02:02:17.207+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T02:20:55.173+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T02:20:55.174+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T02:21:07.744+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T02:22:15.805+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T02:22:15.806+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T02:22:26.014+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T02:23:26.861+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T02:23:26.862+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T02:23:29.266+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T02:23:29.564+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T02:23:29.565+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T02:23:39.419+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T02:24:37.140+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T02:24:37.141+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T02:24:52.019+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T02:25:54.591+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T02:25:54.592+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T02:26:04.797+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T02:59:31.721+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T02:59:31.722+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32

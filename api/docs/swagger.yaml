@@ -719,6 +719,7 @@ definitions:
   model_user_service.RefreshToken:
     properties:
       refresh_token:
+        example: RefreshToken
         type: string
     type: object
   model_user_service.RegisterRequest:
@@ -758,6 +759,8 @@ definitions:
         type: string
       phone_number:
         type: string
+      refresh_token:
+        type: string
     type: object
   model_user_service.Tokens:
     properties:
@@ -769,14 +772,19 @@ definitions:
   model_user_service.UpdUserReq:
     properties:
       birth_date:
+        example: "1990-01-01"
         type: string
       first_name:
+        example: To'rahon
         type: string
       gender:
+        example: male
         type: string
       id:
+        example: UUID
         type: string
       last_name:
+        example: To'rayevich
         type: string
     type: object
   model_user_service.UpdateRefreshTokenUserResp:
@@ -810,7 +818,7 @@ definitions:
 host: localhost:9050
 info:
   contact: {}
-  title: API
+  title: Dennic Project
   version: "1.7"
 paths:
   /v1/appointment:
@@ -1248,6 +1256,37 @@ paths:
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: Register
+      tags:
+      - customer
+  /v1/customer/update-password:
+    put:
+      consumes:
+      - application/json
+      description: Api for UpdatePassword
+      parameters:
+      - description: NewPassword
+        in: query
+        name: NewPassword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.GetUserResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      security:
+      - ApiKeyAuth: []
+      summary: UpdatePassword
       tags:
       - customer
   /v1/customer/verify:
@@ -3033,37 +3072,6 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: GetUserByID
-      tags:
-      - User
-  /v1/user/update-password:
-    put:
-      consumes:
-      - application/json
-      description: Api for UpdatePassword
-      parameters:
-      - description: NewPassword
-        in: query
-        name: NewPassword
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model_user_service.GetUserResp'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/model_common.StandardErrorModel'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/model_common.StandardErrorModel'
-      security:
-      - ApiKeyAuth: []
-      summary: UpdatePassword
       tags:
       - User
   /v1/user/update-refresh-token:

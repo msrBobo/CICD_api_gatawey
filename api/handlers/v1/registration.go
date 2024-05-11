@@ -292,6 +292,59 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 	})
 }
 
+// UpdatePassword
+// @Summary UpdatePassword
+// @Description Api for UpdatePassword
+// @Tags customer
+// @Security ApiKeyAuth
+// @Accept json
+// @Produce json
+// @Param NewPassword  query string true "NewPassword"
+// @Success 200 {object} model_user_service.GetUserResp
+// @Failure 400 {object} model_common.StandardErrorModel
+// @Failure 500 {object} model_common.StandardErrorModel
+// @Router /v1/customer/update-password [PUT]
+func (h *HandlerV1) UpdatePassword(c *gin.Context) {
+	newPassword := c.Query("NewPassword")
+	token := c.GetHeader("Authorization")
+
+	claims, err := jwt.ExtractClaim(token)
+
+	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "ChangePasswordUser") {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
+	defer cancel()
+
+	user, err := h.serviceManager.UserService().UserService().Get(ctx, &pb.GetUserReq{
+		Field:    "id",
+		Value:    cast.ToString(claims["id"]),
+		IsActive: false,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+		return
+	}
+
+	hashPass, err := e.HashPassword(newPassword)
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+		return
+	}
+
+	response, err := h.serviceManager.UserService().UserService().ChangePassword(ctx, &pb.ChangeUserPasswordReq{
+		PhoneNumber: user.PhoneNumber,
+		Password:    hashPass,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+		return
+	}
+
+	c.JSON(http.StatusOK, &models.StatusRes{Status: response.Status})
+}
+
 // VerifyOtpCode ...
 // @Summary VerifyOtpCode
 // @Description VerifyOtpCode - Api for Verify Otp Code users

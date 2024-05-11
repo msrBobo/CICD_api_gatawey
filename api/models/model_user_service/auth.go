@@ -80,3 +80,17 @@ type Response struct {
 type PhoneNumberReq struct {
 	PhoneNumber string `json:"phone_number" example:"+998950230605"`
 }
+
+type UpdateRefreshTokenUserResp struct {
+	AccessToken string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+}
+
+type Tokens struct {
+	AccessToken string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+}
+
+type RefreshToken  struct {
+	RefreshToken string `json:"refresh_token" example:"RefreshToken"`
+}
