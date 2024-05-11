@@ -11,13 +11,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net/http"
+	"time"
+
 	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
-	"net/http"
-	"time"
 )
 
 // Register ...
@@ -218,6 +219,7 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, &model_user_service.Response{
+		Id:          user.Id,
 		FirstName:   user.FirstName,
 		LastName:    user.LastName,
 		BrithDate:   user.BrithDate,

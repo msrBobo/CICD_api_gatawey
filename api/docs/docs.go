@@ -3208,6 +3208,41 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/token/get-token": {
+            "get": {
+                "description": "GetTokens",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Token"
+                ],
+                "summary": "GetTokens",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.Tokens"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/user": {
             "get": {
                 "description": "Api for ListUsers",
@@ -3287,13 +3322,6 @@ const docTemplate = `{
                 ],
                 "summary": "UpdateUser",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UserId",
-                        "name": "UserId",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdUserReq",
                         "name": "UpdUserReq",
@@ -3377,7 +3405,12 @@ const docTemplate = `{
         },
         "/v1/user/get": {
             "get": {
-                "description": "Api for GetUser",
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for GetUserByID",
                 "consumes": [
                     "application/json"
                 ],
@@ -3387,23 +3420,7 @@ const docTemplate = `{
                 "tags": [
                     "User"
                 ],
-                "summary": "GetUser",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Field",
-                        "name": "Field",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Value",
-                        "name": "Value",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
+                "summary": "GetUserByID",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -3458,6 +3475,52 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/model_user_service.GetUserResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/user/update-refresh-token": {
+            "put": {
+                "description": "Update the refresh token of the user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update Refresh Token",
+                "parameters": [
+                    {
+                        "description": "RefreshToken",
+                        "name": "RefreshToken",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.RefreshToken"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.UpdateRefreshTokenUserResp"
                         }
                     },
                     "400": {
@@ -4574,6 +4637,14 @@ const docTemplate = `{
                 }
             }
         },
+        "model_user_service.RefreshToken": {
+            "type": "object",
+            "properties": {
+                "refresh_token": {
+                    "type": "string"
+                }
+            }
+        },
         "model_user_service.RegisterRequest": {
             "type": "object",
             "properties": {
@@ -4618,10 +4689,24 @@ const docTemplate = `{
                 "gender": {
                     "type": "string"
                 },
+                "id": {
+                    "type": "string"
+                },
                 "last_name": {
                     "type": "string"
                 },
                 "phone_number": {
+                    "type": "string"
+                }
+            }
+        },
+        "model_user_service.Tokens": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "refresh_token": {
                     "type": "string"
                 }
             }
@@ -4638,7 +4723,21 @@ const docTemplate = `{
                 "gender": {
                     "type": "string"
                 },
+                "id": {
+                    "type": "string"
+                },
                 "last_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "model_user_service.UpdateRefreshTokenUserResp": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "refresh_token": {
                     "type": "string"
                 }
             }
@@ -4694,6 +4793,7 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
+	
 }
 
 func init() {

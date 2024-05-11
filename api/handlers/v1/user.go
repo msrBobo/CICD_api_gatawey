@@ -8,40 +8,41 @@ import (
 	pb "dennic_api_gateway/genproto/user_service"
 	"dennic_api_gateway/internal/pkg/logger"
 	jwt "dennic_api_gateway/internal/pkg/tokens"
-	"github.com/spf13/cast"
 	"net/http"
 	"time"
+
+	"github.com/spf13/cast"
 
 	"github.com/gin-gonic/gin"
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
-// GetUser
-// @Summary GetUser
-// @Description Api for GetUser
+// GetUserByID
+// @Summary GetUserByID
+// @Description Api for GetUserByID
+// @Security ApiKeyAuth
 // @Tags User
 // @Accept json
 // @Produce json
-// @Param Field query string true "Field"
-// @Param Value query string true "Value"
 // @Success 200 {object} model_user_service.GetUserResp
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/user/get [GET]
-func (h *HandlerV1) GetUser(c *gin.Context) {
-	var jspbMarshal protojson.MarshalOptions
-	jspbMarshal.UseProtoNames = true
+func (h *HandlerV1) GetUserByID(c *gin.Context) {
 
-	Field := c.Query("Field")
-	Value := c.Query("Value")
+	token := c.GetHeader("Authorization")
+	claims, err := jwt.ExtractClaim(token)
+	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "GetUserByID") {
+		return
+	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	response, err := h.serviceManager.UserService().UserService().Get(
 		ctx, &pb.GetUserReq{
-			Field:    Field,
-			Value:    Value,
+			Field:    "id",
+			Value:    cast.ToString(claims["id"]),
 			IsActive: false,
 		})
 
@@ -149,7 +150,6 @@ func (h *HandlerV1) ListUsers(c *gin.Context) {
 // @Tags User
 // @Accept json
 // @Produce json
-// @Param UserId  query string true "UserId"
 // @Param UpdUserReq body model_user_service.UpdUserReq true "UpdUserReq"
 // @Success 200 {object} model_user_service.GetUserResp
 // @Failure 400 {object} model_common.StandardErrorModel
@@ -170,7 +170,6 @@ func (h *HandlerV1) UpdateUser(c *gin.Context) {
 		h.log.Error("failed to bind json", logger.Error(err))
 		return
 	}
-	body.Id = c.Query("UserId")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
@@ -255,6 +254,64 @@ func (h *HandlerV1) UpdatePassword(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, &models.StatusRes{Status: response.Status})
+}
+
+
+// UpdateRefreshToken
+// @Summary Update Refresh Token
+// @Description Update the refresh token of the user
+// @Tags User
+// @Accept json
+// @Produce json
+// @Param RefreshToken body model_user_service.RefreshToken true "RefreshToken"
+// @Success 200 {object} model_user_service.UpdateRefreshTokenUserResp "Successful response"
+// @Failure 400 {object} model_common.StandardErrorModel
+// @Failure 500 {object} model_common.StandardErrorModel
+// @Router /v1/user/update-refresh-token [PUT]
+func (h *HandlerV1) UpdateRefreshToken(c *gin.Context) {
+
+	var (
+		RefreshToken model_user_service.RefreshToken
+		jspbMarshal  protojson.MarshalOptions
+	)
+	jspbMarshal.UseProtoNames = true
+
+	err := c.ShouldBindJSON(&RefreshToken)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		h.log.Error("failed to bind json", logger.Error(err))
+		return
+	}
+
+	claims, err := jwt.ExtractClaim(RefreshToken.RefreshToken)
+	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "UpdateRefreshToken") {
+		return
+	}
+
+	access, refresh, err := h.jwthandler.GenerateAuthJWT(cast.ToString(claims["phone"]), cast.ToString(claims["id"]), cast.ToString(claims["session_id"]), "user")
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Login") {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
+	defer cancel()
+
+	_, err = h.serviceManager.UserService().UserService().UpdateRefreshToken(ctx, &pb.UpdateRefreshTokenUserReq{
+		Id:           cast.ToString(claims["id"]),
+		RefreshToken: refresh,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "UpdateRefreshToken") {
+		return
+	}
+	resp := model_user_service.UpdateRefreshTokenUserResp{
+		AccessToken:  access,
+		RefreshToken: refresh,
+	}
+
+	c.JSON(http.StatusOK, resp)
 }
 
 // DeleteUser

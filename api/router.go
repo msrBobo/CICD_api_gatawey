@@ -80,11 +80,15 @@ func NewRoute(option RouteOption) *gin.Engine {
 
 	// user
 	user := api.Group("/user")
-	user.GET("/get", HandlerV1.GetUser)
+	user.GET("/get", HandlerV1.GetUserByID)
 	user.GET("/", HandlerV1.ListUsers)
 	user.PUT("/", HandlerV1.UpdateUser)
 	user.PUT("/update-password", HandlerV1.UpdatePassword)
+	user.PUT("/update-refresh-token", HandlerV1.UpdateRefreshToken)
 	user.DELETE("/", HandlerV1.DeleteUser)
+
+	token := api.Group("/token")
+	token.GET("/get-token", HandlerV1.GetTokens)
 
 	// archive
 	archive := api.Group("/archive")

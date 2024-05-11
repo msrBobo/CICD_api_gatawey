@@ -19,6 +19,7 @@ type ListUserResp struct {
 }
 
 type UpdUserReq struct {
+	Id        string `json:"id"`
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 	BrithDate string `json:"birth_date"`
@@ -58,3 +59,16 @@ type CheckUserFieldResp struct {
 	Status bool `json:"status"`
 }
 
+type UpdateRefreshTokenUserResp struct {
+	AccessToken string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+}
+
+type Tokens struct {
+	AccessToken string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
+}
+
+type RefreshToken  struct {
+	RefreshToken string `json:"refresh_token"`
+}

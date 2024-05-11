@@ -716,6 +716,11 @@ definitions:
         example: "+998950230605"
         type: string
     type: object
+  model_user_service.RefreshToken:
+    properties:
+      refresh_token:
+        type: string
+    type: object
   model_user_service.RegisterRequest:
     properties:
       birth_date:
@@ -747,9 +752,18 @@ definitions:
         type: string
       gender:
         type: string
+      id:
+        type: string
       last_name:
         type: string
       phone_number:
+        type: string
+    type: object
+  model_user_service.Tokens:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
         type: string
     type: object
   model_user_service.UpdUserReq:
@@ -760,7 +774,16 @@ definitions:
         type: string
       gender:
         type: string
+      id:
+        type: string
       last_name:
+        type: string
+    type: object
+  model_user_service.UpdateRefreshTokenUserResp:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
         type: string
     type: object
   model_user_service.Verify:
@@ -2858,6 +2881,29 @@ paths:
       summary: ListSpecializations
       tags:
       - Specialization
+  /v1/token/get-token:
+    get:
+      consumes:
+      - application/json
+      description: GetTokens
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/model_user_service.Tokens'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetTokens
+      tags:
+      - Token
   /v1/user:
     delete:
       consumes:
@@ -2940,11 +2986,6 @@ paths:
       - application/json
       description: Api for UpdateUser
       parameters:
-      - description: UserId
-        in: query
-        name: UserId
-        required: true
-        type: string
       - description: UpdUserReq
         in: body
         name: UpdUserReq
@@ -2973,18 +3014,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: Api for GetUser
-      parameters:
-      - description: Field
-        in: query
-        name: Field
-        required: true
-        type: string
-      - description: Value
-        in: query
-        name: Value
-        required: true
-        type: string
+      description: Api for GetUserByID
       produces:
       - application/json
       responses:
@@ -3000,7 +3030,9 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: GetUser
+      security:
+      - ApiKeyAuth: []
+      summary: GetUserByID
       tags:
       - User
   /v1/user/update-password:
@@ -3032,6 +3064,36 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: UpdatePassword
+      tags:
+      - User
+  /v1/user/update-refresh-token:
+    put:
+      consumes:
+      - application/json
+      description: Update the refresh token of the user
+      parameters:
+      - description: RefreshToken
+        in: body
+        name: RefreshToken
+        required: true
+        schema:
+          $ref: '#/definitions/model_user_service.RefreshToken'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/model_user_service.UpdateRefreshTokenUserResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: Update Refresh Token
       tags:
       - User
 securityDefinitions:
