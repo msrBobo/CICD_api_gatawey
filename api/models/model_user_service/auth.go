@@ -74,6 +74,7 @@ type Response struct {
 	PhoneNumber string `json:"phone_number" `
 	Gender      string `json:"gender"`
 	AccessToken string `json:"access_token"`
+	RefreshToken string `json:"refresh_token"`
 }
 
 type PhoneNumberReq struct {

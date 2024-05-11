@@ -219,13 +219,14 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, &model_user_service.Response{
-		Id:          user.Id,
-		FirstName:   user.FirstName,
-		LastName:    user.LastName,
-		BrithDate:   user.BrithDate,
-		PhoneNumber: user.PhoneNumber,
-		Gender:      user.Gender,
-		AccessToken: access,
+		Id:           user.Id,
+		FirstName:    user.FirstName,
+		LastName:     user.LastName,
+		BrithDate:    user.BrithDate,
+		PhoneNumber:  user.PhoneNumber,
+		Gender:       user.Gender,
+		AccessToken:  access,
+		RefreshToken: refresh,
 	})
 
 }
@@ -465,13 +466,14 @@ func (h *HandlerV1) Login(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, model_user_service.Response{
-		Id:          user.Id,
-		FirstName:   user.FirstName,
-		LastName:    user.LastName,
-		BrithDate:   user.BirthDate,
-		PhoneNumber: user.PhoneNumber,
-		Gender:      user.Gender,
-		AccessToken: access,
+		Id:           user.Id,
+		FirstName:    user.FirstName,
+		LastName:     user.LastName,
+		BrithDate:    user.BirthDate,
+		PhoneNumber:  user.PhoneNumber,
+		Gender:       user.Gender,
+		AccessToken:  access,
+		RefreshToken: refresh,
 	})
 }
 

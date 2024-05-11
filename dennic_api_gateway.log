@@ -1380,3 +1380,137 @@ net/http.(*conn).serve
 2024-05-11T23:49:23.522+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
 main.main.func1
 	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T00:49:28.134+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T00:49:32.852+0500	WARN	regtool/handle_error.go:20	invalid password
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/bobo/go/src/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Login
+	/home/bobo/go/src/dennic_api_gateway/api/handlers/v1/registration.go:417
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/bobo/go/src/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/bobo/go/src/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-12T00:49:45.661+0500	WARN	regtool/handle_error.go:20	failed to check phone number uniques
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/bobo/go/src/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/bobo/go/src/dennic_api_gateway/api/handlers/v1/registration.go:77
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/bobo/go/src/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/bobo/go/src/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-12T01:07:40.405+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T01:07:40.406+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
+2024-05-12T01:07:43.789+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-12T01:07:55.208+0500	WARN	regtool/handle_error.go:20	redis: nil
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/bobo/go/src/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Verify
+	/home/bobo/go/src/dennic_api_gateway/api/handlers/v1/registration.go:142
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/bobo/go/src/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/bobo/go/src/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-12T01:08:02.396+0500	WARN	regtool/handle_error.go:20	redis: nil
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/bobo/go/src/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Verify
+	/home/bobo/go/src/dennic_api_gateway/api/handlers/v1/registration.go:142
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/bobo/go/src/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/bobo/go/src/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/bobo/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-12T01:10:49.991+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-12T01:10:49.991+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/bobo/go/src/dennic_api_gateway/cmd/app/main.go:32
