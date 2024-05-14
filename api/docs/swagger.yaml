@@ -814,6 +814,12 @@ definitions:
         example: "+998950230605"
         type: string
     type: object
+  model_user_service.RefreshToken:
+    properties:
+      refresh_token:
+        example: RefreshToken
+        type: string
+    type: object
   model_user_service.RegisterRequest:
     properties:
       birth_date:
@@ -851,16 +857,39 @@ definitions:
         type: string
       phone_number:
         type: string
+      refresh_token:
+        type: string
+    type: object
+  model_user_service.Tokens:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
+        type: string
     type: object
   model_user_service.UpdUserReq:
     properties:
       birth_date:
+        example: "1990-01-01"
         type: string
       first_name:
+        example: To'rahon
         type: string
       gender:
+        example: male
+        type: string
+      id:
+        example: UUID
         type: string
       last_name:
+        example: To'rayevich
+        type: string
+    type: object
+  model_user_service.UpdateRefreshTokenUserResp:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
         type: string
     type: object
   model_user_service.Verify:
@@ -887,7 +916,7 @@ definitions:
 host: localhost:9050
 info:
   contact: {}
-  title: API
+  title: Dennic Project
   version: "1.7"
 paths:
   /v1/appointment:
@@ -1325,6 +1354,37 @@ paths:
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
       summary: Register
+      tags:
+      - customer
+  /v1/customer/update-password:
+    put:
+      consumes:
+      - application/json
+      description: Api for UpdatePassword
+      parameters:
+      - description: NewPassword
+        in: query
+        name: NewPassword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_user_service.GetUserResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      security:
+      - ApiKeyAuth: []
+      summary: UpdatePassword
       tags:
       - customer
   /v1/customer/verify:
@@ -3017,6 +3077,29 @@ paths:
       summary: GetSpecialization
       tags:
       - Specialization
+  /v1/token/get-token:
+    get:
+      consumes:
+      - application/json
+      description: GetTokens
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/model_user_service.Tokens'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetTokens
+      tags:
+      - Token
   /v1/user:
     delete:
       consumes:
@@ -3059,12 +3142,10 @@ paths:
       - description: Page
         in: query
         name: Page
-        required: true
         type: string
       - description: Limit
         in: query
         name: Limit
-        required: true
         type: string
       - description: Field
         in: query
@@ -3101,11 +3182,6 @@ paths:
       - application/json
       description: Api for UpdateUser
       parameters:
-      - description: UserId
-        in: query
-        name: UserId
-        required: true
-        type: string
       - description: UpdUserReq
         in: body
         name: UpdUserReq
@@ -3134,47 +3210,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: Api for GetUser
-      parameters:
-      - description: Field
-        in: query
-        name: Field
-        required: true
-        type: string
-      - description: Value
-        in: query
-        name: Value
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model_user_service.GetUserResp'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/model_common.StandardErrorModel'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: GetUser
-      tags:
-      - User
-  /v1/user/update-password:
-    put:
-      consumes:
-      - application/json
-      description: Api for UpdatePassword
-      parameters:
-      - description: NewPassword
-        in: query
-        name: NewPassword
-        required: true
-        type: string
+      description: Api for GetUserByID
       produces:
       - application/json
       responses:
@@ -3192,7 +3228,37 @@ paths:
             $ref: '#/definitions/model_common.StandardErrorModel'
       security:
       - ApiKeyAuth: []
-      summary: UpdatePassword
+      summary: GetUserByID
+      tags:
+      - User
+  /v1/user/update-refresh-token:
+    put:
+      consumes:
+      - application/json
+      description: Update the refresh token of the user
+      parameters:
+      - description: RefreshToken
+        in: body
+        name: RefreshToken
+        required: true
+        schema:
+          $ref: '#/definitions/model_user_service.RefreshToken'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: '#/definitions/model_user_service.UpdateRefreshTokenUserResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: Update Refresh Token
       tags:
       - User
 securityDefinitions:

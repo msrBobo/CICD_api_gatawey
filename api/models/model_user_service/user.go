@@ -14,15 +14,16 @@ type GetUserResp struct {
 }
 
 type ListUserResp struct {
-	Users []GetUserResp `json:"users"`
 	Count uint64        `json:"count"`
+	Users []GetUserResp `json:"users"`
 }
 
 type UpdUserReq struct {
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	BrithDate string `json:"birth_date"`
-	Gender    string `json:"gender"`
+	Id        string `json:"id" example:"UUID"`
+	FirstName string `json:"first_name" example:"To'rahon"`
+	LastName  string `json:"last_name" example:"To'rayevich"`
+	BrithDate string `json:"birth_date" example:"1990-01-01"`
+	Gender    string `json:"gender" example:"male"`
 }
 
 type UpdUserResp struct {
@@ -57,4 +58,3 @@ type DeleteUserReq struct {
 type CheckUserFieldResp struct {
 	Status bool `json:"status"`
 }
-

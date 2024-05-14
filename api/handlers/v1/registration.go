@@ -11,13 +11,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net/http"
+	"time"
+
 	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
-	"net/http"
-	"time"
 )
 
 // Register ...
@@ -218,12 +219,14 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, &model_user_service.Response{
-		FirstName:   user.FirstName,
-		LastName:    user.LastName,
-		BrithDate:   user.BrithDate,
-		PhoneNumber: user.PhoneNumber,
-		Gender:      user.Gender,
-		AccessToken: access,
+		Id:           user.Id,
+		FirstName:    user.FirstName,
+		LastName:     user.LastName,
+		BrithDate:    user.BrithDate,
+		PhoneNumber:  user.PhoneNumber,
+		Gender:       user.Gender,
+		AccessToken:  access,
+		RefreshToken: refresh,
 	})
 
 }
@@ -287,6 +290,59 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 	c.JSON(http.StatusOK, model_user_service.MessageRes{
 		Message: "Code has been sent to you phone number, please check.",
 	})
+}
+
+// UpdatePassword
+// @Summary UpdatePassword
+// @Description Api for UpdatePassword
+// @Tags customer
+// @Security ApiKeyAuth
+// @Accept json
+// @Produce json
+// @Param NewPassword  query string true "NewPassword"
+// @Success 200 {object} model_user_service.GetUserResp
+// @Failure 400 {object} model_common.StandardErrorModel
+// @Failure 500 {object} model_common.StandardErrorModel
+// @Router /v1/customer/update-password [PUT]
+func (h *HandlerV1) UpdatePassword(c *gin.Context) {
+	newPassword := c.Query("NewPassword")
+	token := c.GetHeader("Authorization")
+
+	claims, err := jwt.ExtractClaim(token)
+
+	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "ChangePasswordUser") {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
+	defer cancel()
+
+	user, err := h.serviceManager.UserService().UserService().Get(ctx, &pb.GetUserReq{
+		Field:    "id",
+		Value:    cast.ToString(claims["id"]),
+		IsActive: false,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+		return
+	}
+
+	hashPass, err := e.HashPassword(newPassword)
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+		return
+	}
+
+	response, err := h.serviceManager.UserService().UserService().ChangePassword(ctx, &pb.ChangeUserPasswordReq{
+		PhoneNumber: user.PhoneNumber,
+		Password:    hashPass,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+		return
+	}
+
+	c.JSON(http.StatusOK, &models.StatusRes{Status: response.Status})
 }
 
 // VerifyOtpCode ...
@@ -463,13 +519,14 @@ func (h *HandlerV1) Login(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, model_user_service.Response{
-		Id:          user.Id,
-		FirstName:   user.FirstName,
-		LastName:    user.LastName,
-		BrithDate:   user.BirthDate,
-		PhoneNumber: user.PhoneNumber,
-		Gender:      user.Gender,
-		AccessToken: access,
+		Id:           user.Id,
+		FirstName:    user.FirstName,
+		LastName:     user.LastName,
+		BrithDate:    user.BirthDate,
+		PhoneNumber:  user.PhoneNumber,
+		Gender:       user.Gender,
+		AccessToken:  access,
+		RefreshToken: refresh,
 	})
 }
 

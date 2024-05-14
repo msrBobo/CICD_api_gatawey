@@ -691,6 +691,55 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/customer/update-password": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for UpdatePassword",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "customer"
+                ],
+                "summary": "UpdatePassword",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "NewPassword",
+                        "name": "NewPassword",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.GetUserResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/customer/verify": {
             "post": {
                 "description": "customer - Api for registering users",
@@ -3296,6 +3345,41 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/token/get-token": {
+            "get": {
+                "description": "GetTokens",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Token"
+                ],
+                "summary": "GetTokens",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.Tokens"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/user": {
             "get": {
                 "description": "Api for ListUsers",
@@ -3314,15 +3398,13 @@ const docTemplate = `{
                         "type": "string",
                         "description": "Page",
                         "name": "Page",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     },
                     {
                         "type": "string",
                         "description": "Limit",
                         "name": "Limit",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     },
                     {
                         "type": "string",
@@ -3377,13 +3459,6 @@ const docTemplate = `{
                 ],
                 "summary": "UpdateUser",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "UserId",
-                        "name": "UserId",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdUserReq",
                         "name": "UpdUserReq",
@@ -3467,7 +3542,12 @@ const docTemplate = `{
         },
         "/v1/user/get": {
             "get": {
-                "description": "Api for GetUser",
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for GetUserByID",
                 "consumes": [
                     "application/json"
                 ],
@@ -3477,23 +3557,7 @@ const docTemplate = `{
                 "tags": [
                     "User"
                 ],
-                "summary": "GetUser",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Field",
-                        "name": "Field",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Value",
-                        "name": "Value",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
+                "summary": "GetUserByID",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -3516,14 +3580,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/user/update-password": {
+        "/v1/user/update-refresh-token": {
             "put": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Api for UpdatePassword",
+                "description": "Update the refresh token of the user",
                 "consumes": [
                     "application/json"
                 ],
@@ -3533,21 +3592,23 @@ const docTemplate = `{
                 "tags": [
                     "User"
                 ],
-                "summary": "UpdatePassword",
+                "summary": "Update Refresh Token",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "NewPassword",
-                        "name": "NewPassword",
-                        "in": "query",
-                        "required": true
+                        "description": "RefreshToken",
+                        "name": "RefreshToken",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.RefreshToken"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "Successful response",
                         "schema": {
-                            "$ref": "#/definitions/model_user_service.GetUserResp"
+                            "$ref": "#/definitions/model_user_service.UpdateRefreshTokenUserResp"
                         }
                     },
                     "400": {
@@ -4783,6 +4844,15 @@ const docTemplate = `{
                 }
             }
         },
+        "model_user_service.RefreshToken": {
+            "type": "object",
+            "properties": {
+                "refresh_token": {
+                    "type": "string",
+                    "example": "RefreshToken"
+                }
+            }
+        },
         "model_user_service.RegisterRequest": {
             "type": "object",
             "properties": {
@@ -4835,6 +4905,20 @@ const docTemplate = `{
                 },
                 "phone_number": {
                     "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                }
+            }
+        },
+        "model_user_service.Tokens": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
                 }
             }
         },
@@ -4842,15 +4926,34 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "birth_date": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "1990-01-01"
                 },
                 "first_name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "To'rahon"
                 },
                 "gender": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "male"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "UUID"
                 },
                 "last_name": {
+                    "type": "string",
+                    "example": "To'rayevich"
+                }
+            }
+        },
+        "model_user_service.UpdateRefreshTokenUserResp": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "refresh_token": {
                     "type": "string"
                 }
             }
@@ -4902,7 +5005,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:9050",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "API",
+	Title:            "Dennic Project",
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
