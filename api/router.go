@@ -141,6 +141,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	doctor.POST("/", HandlerV1.CreateDoctor)
 	doctor.GET("/get", HandlerV1.GetDoctor)
 	doctor.GET("/", HandlerV1.ListDoctors)
+	doctor.GET("/spec", HandlerV1.ListDoctorsBySpecializationId)
 	doctor.PUT("/", HandlerV1.UpdateDoctor)
 	doctor.DELETE("/", HandlerV1.DeleteDoctor)
 

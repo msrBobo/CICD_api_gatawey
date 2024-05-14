@@ -100,7 +100,7 @@ func NewConfig() (*Config, error) {
 	config.DB.Port = getEnv("POSTGRES_PORT", "5432")
 	config.DB.Name = getEnv("POSTGRES_DATABASE", "dennic")
 	config.DB.User = getEnv("POSTGRES_USER", "postgres")
-	config.DB.Password = getEnv("POSTGRES_PASSWORD", "20030505")
+	config.DB.Password = getEnv("POSTGRES_PASSWORD", "123")
 	config.DB.SSLMode = getEnv("POSTGRES_SSLMODE", "disable")
 
 	// redis configuration
@@ -147,7 +147,7 @@ func NewConfig() (*Config, error) {
 	config.Kafka.Topic.InvestmentPaymentTransaction = getEnv("KAFKA_TOPIC_INVESTMENT_PAYMENT_TRANSACTION", "investment.payment.transaction")
 
 	// model_minio configuration
-	config.MinioService.Endpoint = getEnv("MINIO_SERVICE_ENDPOINT", "localhost:9000")
+	config.MinioService.Endpoint = getEnv("MINIO_SERVICE_ENDPOINT", "dennic.uz:9001")
 	config.MinioService.AccessKey = getEnv("MINIO_SERVICE_ACCESS_KEY", "53B17RC5vDChanAQ")
 	config.MinioService.SecretKey = getEnv("MINIO_SERVICE_SECRET_KEY", "0Fkmzb3uyTh41xKHImLc4l8fE9YIV7w4")
 	config.MinioService.BucketName = getEnv("MINIO_SERVICE_BUCKET_NAME", "dennic")

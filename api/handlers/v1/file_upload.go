@@ -18,6 +18,7 @@ import (
 // @Accept image/png
 // @Produce json
 // @Param file formData file true "file"
+// @Param bucketName query string true "bucket" Enums(department, reasons, specialization, doctor) "bucket name"
 // @Success 200 {object} model_minio.MinioURL
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
