@@ -18,10 +18,9 @@ type webAddress struct {
 }
 
 type minio struct {
-	Endpoint   string
-	AccessKey  string
-	SecretKey  string
-	BucketName string
+	Endpoint  string
+	AccessKey string
+	SecretKey string
 }
 
 type Config struct {
@@ -150,7 +149,6 @@ func NewConfig() (*Config, error) {
 	config.MinioService.Endpoint = getEnv("MINIO_SERVICE_ENDPOINT", "dennic.uz:9001")
 	config.MinioService.AccessKey = getEnv("MINIO_SERVICE_ACCESS_KEY", "53B17RC5vDChanAQ")
 	config.MinioService.SecretKey = getEnv("MINIO_SERVICE_SECRET_KEY", "0Fkmzb3uyTh41xKHImLc4l8fE9YIV7w4")
-	config.MinioService.BucketName = getEnv("MINIO_SERVICE_BUCKET_NAME", "dennic")
 
 	return &config, nil
 }

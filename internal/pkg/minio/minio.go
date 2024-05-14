@@ -10,7 +10,7 @@ import (
 	"github.com/minio/minio-go/v7/pkg/credentials"
 )
 
-func UploadToMinio(cfg *config.Config, objectName string, content []byte, contentLength int64) (string, error) {
+func UploadToMinio(cfg *config.Config, objectName string, content []byte, bucketName string) (string, error) {
 	minioClient, err := minio.New(cfg.MinioService.Endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(cfg.MinioService.AccessKey, cfg.MinioService.SecretKey, ""),
 		Secure: false,
@@ -19,12 +19,12 @@ func UploadToMinio(cfg *config.Config, objectName string, content []byte, conten
 		return "", err
 	}
 
-	found, err := minioClient.BucketExists(context.Background(), cfg.MinioService.BucketName)
+	found, err := minioClient.BucketExists(context.Background(), bucketName)
 	if err != nil {
 		return "", err
 	}
 	if !found {
-		err = minioClient.MakeBucket(context.Background(), cfg.MinioService.BucketName, minio.MakeBucketOptions{})
+		err = minioClient.MakeBucket(context.Background(), bucketName, minio.MakeBucketOptions{})
 		if err != nil {
 			return "", err
 		}
@@ -33,12 +33,12 @@ func UploadToMinio(cfg *config.Config, objectName string, content []byte, conten
 		fmt.Println("Bucket already exists.")
 	}
 
-	_, err = minioClient.PutObject(context.Background(), cfg.MinioService.BucketName, objectName, bytes.NewReader(content), int64(len(content)), minio.PutObjectOptions{UserMetadata: map[string]string{"x-amz-acl": "private"}})
+	_, err = minioClient.PutObject(context.Background(), bucketName, objectName, bytes.NewReader(content), int64(len(content)), minio.PutObjectOptions{UserMetadata: map[string]string{"x-amz-acl": "private"}})
 	if err != nil {
 		return "", err
 	}
 
-	objectURL := fmt.Sprintf("%s/%s/%s", cfg.MinioService.Endpoint, cfg.MinioService.BucketName, objectName)
+	objectURL := fmt.Sprintf("%s/%s/%s", cfg.MinioService.Endpoint, bucketName, objectName)
 	return objectURL, nil
 }
 
@@ -51,11 +51,11 @@ func UploadToMinio(cfg *config.Config, objectName string, content []byte, conten
 //     return "", err
 //   }
 
-//   _, err = minioClient.StatObject(context.Background(), cfg.MinioService.BucketName, objectName, model_minio.StatObjectOptions{})
+//   _, err = minioClient.StatObject(context.Background(), bucketName, objectName, model_minio.StatObjectOptions{})
 //   if err != nil {
 //     return "", err
 //   }
 
-//   objectURL := fmt.Sprintf("%s/%s/%s", cfg.MinioService.Endpoint, cfg.MinioService.BucketName, objectName)
+//   objectURL := fmt.Sprintf("%s/%s/%s", cfg.MinioService.Endpoint, bucketName, objectName)
 //   return objectURL, nil
 // }
