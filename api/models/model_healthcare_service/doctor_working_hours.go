@@ -18,6 +18,6 @@ type DoctorWorkingHoursReq struct {
 }
 
 type ListDoctorWorkingHours struct {
-	ListDWH []*DoctorWorkingHoursRes `json:"doctor_working_hours"`
 	Count   int32                    `json:"count"`
+	ListDWH []*DoctorWorkingHoursRes `json:"doctor_working_hours"`
 }

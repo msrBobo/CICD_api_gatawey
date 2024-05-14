@@ -23,6 +23,6 @@ type DoctorServicesRes struct {
 }
 
 type ListDoctorServices struct {
-	DoctorServices []*DoctorServicesRes `json:"doctorServices"`
 	Count          int32                `json:"count"`
+	DoctorServices []*DoctorServicesRes `json:"doctorServices"`
 }

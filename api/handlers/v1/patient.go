@@ -71,7 +71,7 @@ func (h *HandlerV1) CreatePatient(c *gin.Context) {
 		Country:        res.Country,
 		PatientProblem: res.PatientProblem,
 		CreatedAt:      res.CreatedAt,
-		UpdatedAt:      res.UpdatedAt,
+		UpdatedAt:      e.UpdateTimeFilter(res.UpdatedAt),
 	})
 }
 
@@ -116,7 +116,7 @@ func (h *HandlerV1) GetPatient(c *gin.Context) {
 		Country:        res.Country,
 		PatientProblem: res.PatientProblem,
 		CreatedAt:      res.CreatedAt,
-		UpdatedAt:      res.UpdatedAt,
+		UpdatedAt:      e.UpdateTimeFilter(res.UpdatedAt),
 	})
 }
 
@@ -174,7 +174,7 @@ func (h *HandlerV1) ListPatient(c *gin.Context) {
 		patientRes.Country = patient.Country
 		patientRes.PatientProblem = patient.PatientProblem
 		patientRes.CreatedAt = patient.CreatedAt
-		patientRes.UpdatedAt = patient.UpdatedAt
+		patientRes.UpdatedAt = e.UpdateTimeFilter(patient.UpdatedAt)
 		patients.Patients = append(patients.Patients, &patientRes)
 	}
 
@@ -244,7 +244,7 @@ func (h *HandlerV1) UpdatePatient(c *gin.Context) {
 		Country:        res.Country,
 		PatientProblem: res.PatientProblem,
 		CreatedAt:      res.CreatedAt,
-		UpdatedAt:      res.UpdatedAt,
+		UpdatedAt:      e.UpdateTimeFilter(res.UpdatedAt),
 	})
 }
 

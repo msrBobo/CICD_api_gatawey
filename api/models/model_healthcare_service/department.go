@@ -21,6 +21,6 @@ type DepartmentRes struct {
 }
 
 type ListDepartments struct {
-	Departments []*DepartmentRes `json:"departments"`
 	Count       int32            `json:"count"`
+	Departments []*DepartmentRes `json:"departments"`
 }

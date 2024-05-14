@@ -33,12 +33,14 @@ func UploadToMinio(cfg *config.Config, objectName string, content []byte, conten
 		fmt.Println("Bucket already exists.")
 	}
 
-	_, err = minioClient.PutObject(context.Background(), cfg.MinioService.BucketName, objectName, bytes.NewReader(content), int64(len(content)), minio.PutObjectOptions{UserMetadata: map[string]string{"x-amz-acl": "private"}})
+	opts := minio.PutObjectOptions{ContentType: "png/jpeg/zip/pdf/text/dock/csv/rar/xml", UserMetadata: map[string]string{"x-amz-acl": "public-read"}}
+
+	_, err = minioClient.PutObject(context.Background(), cfg.MinioService.BucketName, objectName, bytes.NewReader(content), int64(len(content)), opts)
 	if err != nil {
 		return "", err
 	}
 
-	objectURL := fmt.Sprintf("%s/%s/%s", cfg.MinioService.Endpoint, cfg.MinioService.BucketName, objectName)
+	objectURL := fmt.Sprintf("http://dennic.uz:9001/%s/%s", cfg.MinioService.BucketName, objectName)
 	return objectURL, nil
 }
 

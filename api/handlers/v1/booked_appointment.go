@@ -68,7 +68,7 @@ func (h *HandlerV1) CreateBookedAppointment(c *gin.Context) {
 		ExpiresAt:       res.ExpiresAt,
 		PatientStatus:   res.PatientStatus,
 		CreatedAt:       res.CreatedAt,
-		UpdatedAt:       res.UpdatedAt,
+		UpdatedAt:       e.UpdateTimeFilter(res.UpdatedAt),
 	})
 }
 
@@ -112,7 +112,7 @@ func (h *HandlerV1) GetBookedAppointment(c *gin.Context) {
 		ExpiresAt:       res.ExpiresAt,
 		PatientStatus:   res.PatientStatus,
 		CreatedAt:       res.CreatedAt,
-		UpdatedAt:       res.UpdatedAt,
+		UpdatedAt:       e.UpdateTimeFilter(res.UpdatedAt),
 	})
 }
 
@@ -169,7 +169,7 @@ func (h *HandlerV1) ListBookedAppointments(c *gin.Context) {
 		app.ExpiresAt = appointment.ExpiresAt
 		app.PatientStatus = appointment.PatientStatus
 		app.CreatedAt = appointment.CreatedAt
-		app.UpdatedAt = appointment.UpdatedAt
+		app.UpdatedAt = e.UpdateTimeFilter(appointment.UpdatedAt)
 		response.Appointments = append(response.Appointments, &app)
 	}
 
@@ -235,7 +235,7 @@ func (h *HandlerV1) UpdateBookedAppointment(c *gin.Context) {
 		ExpiresAt:       res.ExpiresAt,
 		PatientStatus:   res.PatientStatus,
 		CreatedAt:       res.CreatedAt,
-		UpdatedAt:       res.UpdatedAt,
+		UpdatedAt:       e.UpdateTimeFilter(res.UpdatedAt),
 	})
 }
 

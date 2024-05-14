@@ -64,7 +64,7 @@ func (h *HandlerV1) CreateDoctorService(c *gin.Context) {
 		Name:             doctorServices.Name,
 		Duration:         doctorServices.Duration,
 		CreatedAt:        doctorServices.CreatedAt,
-		UpdatedAt:        doctorServices.UpdatedAt,
+		UpdatedAt:        e.UpdateTimeFilter(doctorServices.UpdatedAt),
 	})
 }
 
@@ -78,7 +78,7 @@ func (h *HandlerV1) CreateDoctorService(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.DoctorServicesRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctor-services [get]
+// @Router /v1/doctor-services/get [get]
 func (h *HandlerV1) GetDoctorService(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -105,7 +105,7 @@ func (h *HandlerV1) GetDoctorService(c *gin.Context) {
 		Name:             doctorServices.Name,
 		Duration:         doctorServices.Duration,
 		CreatedAt:        doctorServices.CreatedAt,
-		UpdatedAt:        doctorServices.UpdatedAt,
+		UpdatedAt:        e.UpdateTimeFilter(doctorServices.UpdatedAt),
 	})
 }
 
@@ -119,7 +119,7 @@ func (h *HandlerV1) GetDoctorService(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.ListDoctorServices
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctor-services/get [get]
+// @Router /v1/doctor-services [get]
 func (h *HandlerV1) ListDoctorServices(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -159,12 +159,12 @@ func (h *HandlerV1) ListDoctorServices(c *gin.Context) {
 			Name:             doctorServicesRes.Name,
 			Duration:         doctorServicesRes.Duration,
 			CreatedAt:        doctorServicesRes.CreatedAt,
-			UpdatedAt:        doctorServicesRes.UpdatedAt,
+			UpdatedAt:        e.UpdateTimeFilter(doctorServicesRes.UpdatedAt),
 		})
 	}
 
 	c.JSON(http.StatusOK, model_healthcare_service.ListDoctorServices{
-		Count:          int32(doctorServicess.Count),
+		Count:          doctorServicess.Count,
 		DoctorServices: doctorServicessRes.DoctorServices,
 	})
 }
@@ -223,7 +223,7 @@ func (h *HandlerV1) UpdateDoctorServices(c *gin.Context) {
 		Name:             doctorServices.Name,
 		Duration:         doctorServices.Duration,
 		CreatedAt:        doctorServices.CreatedAt,
-		UpdatedAt:        doctorServices.UpdatedAt,
+		UpdatedAt:        e.UpdateTimeFilter(doctorServices.UpdatedAt),
 	})
 }
 

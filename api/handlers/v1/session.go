@@ -51,7 +51,7 @@ func (h *HandlerV1) GetUserSessions(c *gin.Context) {
 			PlatformType: session.PlatformType,
 			LoginAt:      session.LoginAt,
 			CreatedAt:    session.CreatedAt,
-			UpdatedAt:    session.UpdatedAt,
+			UpdatedAt:    e.UpdateTimeFilter(session.UpdatedAt),
 		})
 	}
 	c.JSON(http.StatusOK, model_session_service.ListSessions{

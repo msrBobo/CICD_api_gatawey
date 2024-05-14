@@ -43,6 +43,7 @@ func New(c *HandlerV1Config) *HandlerV1 {
 		serviceManager: c.Service,
 		cfg:            c.Config,
 		redis:          c.Redis,
+		ContextTimeout: c.ContextTimeout,
 
 		//BrokerProducer: c.BrokerProducer,
 	}

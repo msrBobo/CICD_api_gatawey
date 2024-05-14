@@ -15,6 +15,6 @@ type ReasonsRes struct {
 }
 
 type ListReasons struct {
-	Reasons []*ReasonsRes `json:"reasons"`
 	Count   int32         `json:"count"`
+	Reasons []*ReasonsRes `json:"reasons"`
 }

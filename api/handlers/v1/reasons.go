@@ -57,7 +57,7 @@ func (h *HandlerV1) CreateReasons(c *gin.Context) {
 		SpecializationId: reasons.SpecializationId,
 		ImageUrl:         reasons.ImageUrl,
 		CreatedAt:        reasons.CreatedAt,
-		UpdatedAt:        reasons.UpdatedAt,
+		UpdatedAt:        e.UpdateTimeFilter(reasons.UpdatedAt),
 	})
 }
 
@@ -71,7 +71,7 @@ func (h *HandlerV1) CreateReasons(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.ReasonsRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/reasons [get]
+// @Router /v1/reasons/get [get]
 func (h *HandlerV1) GetReasons(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -94,7 +94,7 @@ func (h *HandlerV1) GetReasons(c *gin.Context) {
 		SpecializationId: reasons.SpecializationId,
 		ImageUrl:         reasons.ImageUrl,
 		CreatedAt:        reasons.CreatedAt,
-		UpdatedAt:        reasons.UpdatedAt,
+		UpdatedAt:        e.UpdateTimeFilter(reasons.UpdatedAt),
 	})
 }
 
@@ -108,7 +108,7 @@ func (h *HandlerV1) GetReasons(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.ListReasons
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/reasons/get [get]
+// @Router /v1/reasons [get]
 func (h *HandlerV1) ListReasons(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -144,7 +144,7 @@ func (h *HandlerV1) ListReasons(c *gin.Context) {
 			SpecializationId: repreasons.SpecializationId,
 			ImageUrl:         repreasons.ImageUrl,
 			CreatedAt:        repreasons.CreatedAt,
-			UpdatedAt:        repreasons.UpdatedAt,
+			UpdatedAt:        e.UpdateTimeFilter(repreasons.UpdatedAt),
 		})
 	}
 
@@ -201,7 +201,7 @@ func (h *HandlerV1) UpdateReasons(c *gin.Context) {
 		SpecializationId: respreasons.SpecializationId,
 		ImageUrl:         respreasons.ImageUrl,
 		CreatedAt:        respreasons.CreatedAt,
-		UpdatedAt:        respreasons.UpdatedAt,
+		UpdatedAt:        e.UpdateTimeFilter(respreasons.UpdatedAt),
 	})
 }
 

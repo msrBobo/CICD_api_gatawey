@@ -63,7 +63,7 @@ func (h *HandlerV1) CreateArchive(c *gin.Context) {
 		PaymentType:          archive.PaymentType,
 		PaymentAmount:        float64(archive.PaymentAmount),
 		CreatedAt:            archive.CreatedAt,
-		UpdatedAt:            archive.UpdatedAt,
+		UpdatedAt:            e.UpdateTimeFilter(archive.UpdatedAt),
 	})
 }
 
@@ -105,7 +105,7 @@ func (h *HandlerV1) GetArchive(c *gin.Context) {
 		PaymentType:          archive.PaymentType,
 		PaymentAmount:        float64(archive.PaymentAmount),
 		CreatedAt:            archive.CreatedAt,
-		UpdatedAt:            archive.UpdatedAt,
+		UpdatedAt:            e.UpdateTimeFilter(archive.UpdatedAt),
 	})
 }
 
@@ -160,7 +160,7 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 		archive.PaymentType = archiveRes.PaymentType
 		archive.PaymentAmount = float64(archiveRes.PaymentAmount)
 		archive.CreatedAt = archiveRes.CreatedAt
-		archive.UpdatedAt = archiveRes.UpdatedAt
+		archive.UpdatedAt = e.UpdateTimeFilter(archiveRes.UpdatedAt)
 		archivesRes.Archives = append(archivesRes.Archives, &archive)
 	}
 
@@ -225,7 +225,7 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 		PaymentType:          archive.PaymentType,
 		PaymentAmount:        float64(archive.PaymentAmount),
 		CreatedAt:            archive.CreatedAt,
-		UpdatedAt:            archive.UpdatedAt,
+		UpdatedAt:            e.UpdateTimeFilter(archive.UpdatedAt),
 	})
 }
 

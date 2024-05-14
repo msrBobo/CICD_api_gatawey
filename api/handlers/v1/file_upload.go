@@ -35,9 +35,9 @@ func (h *HandlerV1) UploadFile(c *gin.Context) {
 		return
 	}
 
-	id := uuid.New().String() + filepath.Ext(header.Filename)
+	generatedFileName := uuid.New().String() + filepath.Ext(header.Filename)
 
-	objectURL, err := minio.UploadToMinio(h.cfg, id, fileBytes, int64(len(fileBytes)))
+	objectURL, err := minio.UploadToMinio(h.cfg, generatedFileName, fileBytes, int64(len(fileBytes)))
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "UploadFile") {
 		return

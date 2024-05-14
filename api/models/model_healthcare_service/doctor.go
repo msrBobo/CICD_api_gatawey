@@ -55,6 +55,6 @@ type ListDoctorByDepIdReq struct {
 }
 
 type ListDoctors struct {
+	Count   int64        `json:"count"`
 	Doctors []*DoctorRes `json:"doctors"`
-	Count   int32        `json:"count"`
 }

@@ -19,6 +19,6 @@ type SpecializationReq struct {
 }
 
 type ListSpecializations struct {
-	Specializations []*SpecializationRes `json:"specializations"`
 	Count           int32                `json:"count"`
+	Specializations []*SpecializationRes `json:"specializations"`
 }

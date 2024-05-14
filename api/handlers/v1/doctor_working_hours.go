@@ -58,7 +58,7 @@ func (h *HandlerV1) CreateDoctorWorkingHours(c *gin.Context) {
 		StartTime:  dwh.StartTime,
 		FinishTime: dwh.FinishTime,
 		CreatedAt:  dwh.CreatedAt,
-		UpdatedAt:  dwh.UpdatedAt,
+		UpdatedAt:  e.UpdateTimeFilter(dwh.UpdatedAt),
 	})
 }
 
@@ -72,7 +72,7 @@ func (h *HandlerV1) CreateDoctorWorkingHours(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.DoctorWorkingHoursRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctor-working-hours [get]
+// @Router /v1/doctor-working-hours/get [get]
 func (h *HandlerV1) GetDoctorWorkingHours(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -96,7 +96,7 @@ func (h *HandlerV1) GetDoctorWorkingHours(c *gin.Context) {
 		StartTime:  dwh.StartTime,
 		FinishTime: dwh.FinishTime,
 		CreatedAt:  dwh.CreatedAt,
-		UpdatedAt:  dwh.UpdatedAt,
+		UpdatedAt:  e.UpdateTimeFilter(dwh.UpdatedAt),
 	})
 }
 
@@ -110,7 +110,7 @@ func (h *HandlerV1) GetDoctorWorkingHours(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.ListDoctorWorkingHours
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctor-working-hours/get [get]
+// @Router /v1/doctor-working-hours [get]
 func (h *HandlerV1) ListDoctorWorkingHours(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -147,7 +147,7 @@ func (h *HandlerV1) ListDoctorWorkingHours(c *gin.Context) {
 			StartTime:  dwhRes.StartTime,
 			FinishTime: dwhRes.FinishTime,
 			CreatedAt:  dwhRes.CreatedAt,
-			UpdatedAt:  dwhRes.UpdatedAt,
+			UpdatedAt:  e.UpdateTimeFilter(dwhRes.UpdatedAt),
 		})
 	}
 
@@ -206,7 +206,7 @@ func (h *HandlerV1) UpdateDoctorWorkingHours(c *gin.Context) {
 		StartTime:  dwh.StartTime,
 		FinishTime: dwh.FinishTime,
 		CreatedAt:  dwh.CreatedAt,
-		UpdatedAt:  dwh.UpdatedAt,
+		UpdatedAt:  e.UpdateTimeFilter(dwh.UpdatedAt),
 	})
 }
 

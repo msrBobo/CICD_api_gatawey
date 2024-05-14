@@ -28,9 +28,8 @@ import (
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/user/get [GET]
 func (h *HandlerV1) GetUserByID(c *gin.Context) {
+	userInfo, err := GetUserInfo(c)
 
-	token := c.GetHeader("Authorization")
-	claims, err := jwt.ExtractClaim(token)
 	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "GetUserByID") {
 		return
 	}
@@ -41,7 +40,7 @@ func (h *HandlerV1) GetUserByID(c *gin.Context) {
 	response, err := h.serviceManager.UserService().UserService().Get(
 		ctx, &pb.GetUserReq{
 			Field:    "id",
-			Value:    cast.ToString(claims["id"]),
+			Value:    userInfo.UserId,
 			IsActive: false,
 		})
 
