@@ -1,10 +1,16 @@
 package model_user_service
 
+import (
+	"regexp"
+
+	validation "github.com/go-ozzo/ozzo-validation/v3"
+)
+
 type User struct {
 	Id           string `json:"-"`
 	UserOrder    string `json:"-"`
 	FirstName    string `json:"first_name" example:"Ali"`
-	LastName     string `json:"last_name" example:"Jo'raxonov'"`
+	LastName     string `json:"last_name" example:"Jo'raxonov"`
 	BrithDate    string `json:"birth_date" example:"2000-01-01"`
 	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
 	Password     string `json:"password" example:"password"`
@@ -18,27 +24,25 @@ type Users struct {
 }
 
 type RegisterRequest struct {
-	Id           string `json:"-"`
-	FirstName    string `json:"first_name" example:"Ali"`
-	LastName     string `json:"last_name" example:"Jo'raxonov'"`
-	BrithDate    string `json:"birth_date" example:"2000-01-01"`
-	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
-	Password     string `json:"password" example:"password"`
-	Gender       string `json:"gender" example:"male"`
-	RefreshToken string `json:"-"`
-	Code         int64  `json:"-"`
+	Id          string `json:"-"`
+	FirstName   string `json:"first_name" example:"Ali"`
+	LastName    string `json:"last_name" example:"Jo'raxonov'"`
+	BrithDate   string `json:"birth_date" example:"2000-01-01"`
+	PhoneNumber string `json:"phone_number" example:"+998950230605"`
+	Password    string `json:"password" example:"password"`
+	Gender      string `json:"gender" example:"male"`
+	Code        int64  `json:"-"`
 }
 
 type Redis struct {
-	Id           string `json:"id"`
-	FirstName    string `json:"first_name" example:"Ali"`
-	LastName     string `json:"last_name" example:"Jo'raxonov'"`
-	BrithDate    string `json:"birth_date" example:"2000-01-01"`
-	PhoneNumber  string `json:"phone_number" example:"+998950230605"`
-	Password     string `json:"password" example:"password"`
-	Gender       string `json:"gender" example:"male"`
-	RefreshToken string `json:"refresh_token"`
-	Code         int64  `json:"code"`
+	Id          string `json:"id"`
+	FirstName   string `json:"first_name" example:"Ali"`
+	LastName    string `json:"last_name" example:"Jo'raxonov"`
+	BrithDate   string `json:"birth_date" example:"2000-01-01"`
+	PhoneNumber string `json:"phone_number" example:"+998950230605"`
+	Password    string `json:"password" example:"password"`
+	Gender      string `json:"gender" example:"male"`
+	Code        int64  `json:"code"`
 }
 
 type MessageRes struct {
@@ -67,13 +71,13 @@ type LoginReq struct {
 }
 
 type Response struct {
-	Id          string `json:"id"`
-	FirstName   string `json:"first_name" `
-	LastName    string `json:"last_name" `
-	BrithDate   string `json:"birth_date" `
-	PhoneNumber string `json:"phone_number" `
-	Gender      string `json:"gender"`
-	AccessToken string `json:"access_token"`
+	Id           string `json:"id"`
+	FirstName    string `json:"first_name" `
+	LastName     string `json:"last_name" `
+	BrithDate    string `json:"birth_date" `
+	PhoneNumber  string `json:"phone_number" `
+	Gender       string `json:"gender"`
+	AccessToken  string `json:"access_token"`
 	RefreshToken string `json:"refresh_token"`
 }
 
@@ -82,15 +86,26 @@ type PhoneNumberReq struct {
 }
 
 type UpdateRefreshTokenUserResp struct {
-	AccessToken string `json:"access_token"`
+	AccessToken  string `json:"access_token"`
 	RefreshToken string `json:"refresh_token"`
 }
 
 type Tokens struct {
-	AccessToken string `json:"access_token"`
+	AccessToken  string `json:"access_token"`
 	RefreshToken string `json:"refresh_token"`
 }
 
-type RefreshToken  struct {
+type RefreshToken struct {
 	RefreshToken string `json:"refresh_token" example:"RefreshToken"`
+}
+
+// User info Validate
+func (u *Redis) Validate() error {
+	return validation.ValidateStruct(
+		u,
+		validation.Field(&u.PhoneNumber, validation.Required, validation.Length(13, 13), validation.Match(regexp.MustCompile("^\\+[0-9]"))),
+		validation.Field(&u.Password, validation.Required, validation.Length(8, 32), validation.Match(regexp.MustCompile("^[a-zA-Z0-9!@#$%^&*()-_=+]"))),
+		validation.Field(&u.FirstName, validation.Required, validation.Length(3, 50), validation.Match(regexp.MustCompile("^[A-Z][a-zA-Z']*([\\\\s-][A-Z][a-zA-Z']*)*$"))),
+		validation.Field(&u.LastName, validation.Required, validation.Length(3, 50), validation.Match(regexp.MustCompile("^[A-Z][a-zA-Z']*([\\\\s-][A-Z][a-zA-Z']*)*$"))),
+	)
 }

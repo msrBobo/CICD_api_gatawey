@@ -837,7 +837,7 @@ const docTemplate = `{
         },
         "/v1/department": {
             "get": {
-                "description": "GetDepartment - Api for get department",
+                "description": "ListDepartments - Api for list department",
                 "consumes": [
                     "application/json"
                 ],
@@ -847,11 +847,26 @@ const docTemplate = `{
                 "tags": [
                     "Department"
                 ],
-                "summary": "GetDepartment",
+                "summary": "ListDepartments",
                 "parameters": [
                     {
                         "type": "string",
                         "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -864,7 +879,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DepartmentRes"
+                            "$ref": "#/definitions/model_healthcare_service.ListDepartments"
                         }
                     },
                     "400": {
@@ -1024,7 +1039,7 @@ const docTemplate = `{
         },
         "/v1/department/get": {
             "get": {
-                "description": "ListDepartments - Api for list department",
+                "description": "GetDepartment - Api for get department",
                 "consumes": [
                     "application/json"
                 ],
@@ -1034,7 +1049,54 @@ const docTemplate = `{
                 "tags": [
                     "Department"
                 ],
-                "summary": "ListDepartments",
+                "summary": "GetDepartment",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_healthcare_service.DepartmentRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor": {
+            "get": {
+                "description": "ListDoctors - Api for list doctor",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "ListDoctors",
                 "parameters": [
                     {
                         "type": "string",
@@ -1066,54 +1128,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.ListDepartments"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/model_common.StandardErrorModel"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/doctor": {
-            "get": {
-                "description": "GetDoctor - Api for get doctor",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Doctor"
-                ],
-                "summary": "GetDoctor",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DoctorRes"
+                            "$ref": "#/definitions/model_healthcare_service.ListDoctors"
                         }
                     },
                     "400": {
@@ -1149,7 +1164,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DoctorReq"
+                            "$ref": "#/definitions/model_healthcare_service.DoctorUpdateReq"
                         }
                     },
                     {
@@ -1522,7 +1537,7 @@ const docTemplate = `{
         },
         "/v1/doctor-services": {
             "get": {
-                "description": "GetDoctorService - Api for get doctor_services",
+                "description": "ListDoctorServices - Api for list doctor_services",
                 "consumes": [
                     "application/json"
                 ],
@@ -1532,11 +1547,26 @@ const docTemplate = `{
                 "tags": [
                     "Doctor Services"
                 ],
-                "summary": "GetDoctorService",
+                "summary": "ListDoctorServices",
                 "parameters": [
                     {
                         "type": "string",
                         "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -1549,7 +1579,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesRes"
+                            "$ref": "#/definitions/model_healthcare_service.ListDoctorServices"
                         }
                     },
                     "400": {
@@ -1709,7 +1739,7 @@ const docTemplate = `{
         },
         "/v1/doctor-services/get": {
             "get": {
-                "description": "ListDoctorServices - Api for list doctor_services",
+                "description": "GetDoctorService - Api for get doctor_services",
                 "consumes": [
                     "application/json"
                 ],
@@ -1719,26 +1749,11 @@ const docTemplate = `{
                 "tags": [
                     "Doctor Services"
                 ],
-                "summary": "ListDoctorServices",
+                "summary": "GetDoctorService",
                 "parameters": [
                     {
                         "type": "string",
                         "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "order_by",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -1751,7 +1766,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.ListDoctorServices"
+                            "$ref": "#/definitions/model_healthcare_service.DoctorServicesRes"
                         }
                     },
                     "400": {
@@ -2020,7 +2035,7 @@ const docTemplate = `{
         },
         "/v1/doctor-working-hours": {
             "get": {
-                "description": "GetDoctorWorkingHours - Api for get doctor_working_hours",
+                "description": "ListDoctorWorkingHours - Api for list doctor_working_hours",
                 "consumes": [
                     "application/json"
                 ],
@@ -2030,11 +2045,26 @@ const docTemplate = `{
                 "tags": [
                     "Doctor Working Hours"
                 ],
-                "summary": "GetDoctorWorkingHours",
+                "summary": "ListDoctorWorkingHours",
                 "parameters": [
                     {
                         "type": "string",
                         "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -2047,7 +2077,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DoctorWorkingHoursRes"
+                            "$ref": "#/definitions/model_healthcare_service.ListDoctorWorkingHours"
                         }
                     },
                     "400": {
@@ -2207,7 +2237,7 @@ const docTemplate = `{
         },
         "/v1/doctor-working-hours/get": {
             "get": {
-                "description": "ListDoctorWorkingHours - Api for list doctor_working_hours",
+                "description": "GetDoctorWorkingHours - Api for get doctor_working_hours",
                 "consumes": [
                     "application/json"
                 ],
@@ -2217,26 +2247,11 @@ const docTemplate = `{
                 "tags": [
                     "Doctor Working Hours"
                 ],
-                "summary": "ListDoctorWorkingHours",
+                "summary": "GetDoctorWorkingHours",
                 "parameters": [
                     {
                         "type": "string",
                         "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "order_by",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -2249,7 +2264,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.ListDoctorWorkingHours"
+                            "$ref": "#/definitions/model_healthcare_service.DoctorWorkingHoursRes"
                         }
                     },
                     "400": {
@@ -2269,7 +2284,7 @@ const docTemplate = `{
         },
         "/v1/doctor/get": {
             "get": {
-                "description": "ListDoctors - Api for list doctor",
+                "description": "GetDoctor - Api for get doctor",
                 "consumes": [
                     "application/json"
                 ],
@@ -2279,7 +2294,54 @@ const docTemplate = `{
                 "tags": [
                     "Doctor"
                 ],
-                "summary": "ListDoctors",
+                "summary": "GetDoctor",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "value",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_healthcare_service.DoctorRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/doctor/spec": {
+            "get": {
+                "description": "ListDoctorsBySpecializationId - Api for list doctors by specialization id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Doctor"
+                ],
+                "summary": "ListDoctorsBySpecializationId",
                 "parameters": [
                     {
                         "type": "string",
@@ -2305,6 +2367,13 @@ const docTemplate = `{
                         "type": "string",
                         "name": "value",
                         "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "specialization_id",
+                        "name": "specialization_id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2348,6 +2417,20 @@ const docTemplate = `{
                         "description": "file",
                         "name": "file",
                         "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            "department",
+                            "reasons",
+                            "specialization",
+                            "doctor",
+                            "user"
+                        ],
+                        "type": "string",
+                        "description": "bucket",
+                        "name": "bucketName",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -2675,7 +2758,7 @@ const docTemplate = `{
         },
         "/v1/reasons": {
             "get": {
-                "description": "GetReasons - Api for get reasons",
+                "description": "ListReasons - Api for list reasons",
                 "consumes": [
                     "application/json"
                 ],
@@ -2685,11 +2768,26 @@ const docTemplate = `{
                 "tags": [
                     "Reasons"
                 ],
-                "summary": "GetReasons",
+                "summary": "ListReasons",
                 "parameters": [
                     {
                         "type": "string",
                         "name": "field",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -2702,7 +2800,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.ReasonsRes"
+                            "$ref": "#/definitions/model_healthcare_service.ListReasons"
                         }
                     },
                     "400": {
@@ -2862,7 +2960,7 @@ const docTemplate = `{
         },
         "/v1/reasons/get": {
             "get": {
-                "description": "ListReasons - Api for list reasons",
+                "description": "GetReasons - Api for get reasons",
                 "consumes": [
                     "application/json"
                 ],
@@ -2872,26 +2970,11 @@ const docTemplate = `{
                 "tags": [
                     "Reasons"
                 ],
-                "summary": "ListReasons",
+                "summary": "GetReasons",
                 "parameters": [
                     {
                         "type": "string",
                         "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "order_by",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -2904,7 +2987,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.ListReasons"
+                            "$ref": "#/definitions/model_healthcare_service.ReasonsRes"
                         }
                     },
                     "400": {
@@ -3010,7 +3093,7 @@ const docTemplate = `{
         },
         "/v1/specialization": {
             "get": {
-                "description": "GetSpecialization - Api for get specialization",
+                "description": "ListSpecializations - Api for list specialization",
                 "consumes": [
                     "application/json"
                 ],
@@ -3020,7 +3103,7 @@ const docTemplate = `{
                 "tags": [
                     "Specialization"
                 ],
-                "summary": "GetSpecialization",
+                "summary": "ListSpecializations",
                 "parameters": [
                     {
                         "type": "string",
@@ -3029,7 +3112,28 @@ const docTemplate = `{
                     },
                     {
                         "type": "string",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order_by",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
                         "name": "value",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "department_id",
+                        "name": "department_id",
                         "in": "query"
                     }
                 ],
@@ -3037,7 +3141,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.SpecializationRes"
+                            "$ref": "#/definitions/model_healthcare_service.ListSpecializations"
                         }
                     },
                     "400": {
@@ -3197,7 +3301,7 @@ const docTemplate = `{
         },
         "/v1/specialization/get": {
             "get": {
-                "description": "ListSpecializations - Api for list specialization",
+                "description": "GetSpecialization - Api for get specialization",
                 "consumes": [
                     "application/json"
                 ],
@@ -3207,26 +3311,11 @@ const docTemplate = `{
                 "tags": [
                     "Specialization"
                 ],
-                "summary": "ListSpecializations",
+                "summary": "GetSpecialization",
                 "parameters": [
                     {
                         "type": "string",
                         "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "order_by",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "page",
                         "in": "query"
                     },
                     {
@@ -3239,7 +3328,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.ListSpecializations"
+                            "$ref": "#/definitions/model_healthcare_service.SpecializationRes"
                         }
                     },
                     "400": {
@@ -4057,19 +4146,24 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "description"
                 },
                 "floor_number": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 2
                 },
                 "image_url": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "http://example.com/image.png"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "name"
                 },
                 "short_description": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "short_description"
                 }
             }
         },
@@ -4109,55 +4203,72 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "address": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Addres"
                 },
                 "bio": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Biography"
                 },
                 "birth_date": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2012-12-12"
                 },
                 "city": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "City"
                 },
                 "country": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Country"
                 },
                 "department_id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174001"
                 },
                 "email": {
-                    "type": "string"
-                },
-                "end_work_date": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "email@gmail.com"
                 },
                 "first_name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "First Name"
                 },
                 "gender": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "male"
+                },
+                "image_url": {
+                    "type": "string",
+                    "example": "http://example.com/image.png"
                 },
                 "last_name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Last Name"
                 },
                 "password": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "password"
                 },
                 "phone_number": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "+998901234567"
                 },
                 "room_number": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "salary": {
-                    "type": "number"
+                    "type": "number",
+                    "example": 10
                 },
                 "start_work_date": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2012-12-12"
                 },
                 "work_years": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 4
                 }
             }
         },
@@ -4200,6 +4311,9 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
+                "image_url": {
+                    "type": "string"
+                },
                 "last_name": {
                     "type": "string"
                 },
@@ -4232,33 +4346,39 @@ const docTemplate = `{
         "model_healthcare_service.DoctorServicesReq": {
             "type": "object",
             "properties": {
-                "doctorId": {
-                    "type": "string"
+                "doctor_id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614274001"
                 },
                 "duration": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "12:12"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "name"
                 },
-                "offlinePrice": {
-                    "type": "number"
+                "offline_price": {
+                    "type": "number",
+                    "example": 1.1
                 },
-                "onlinePrice": {
-                    "type": "number"
+                "online_price": {
+                    "type": "number",
+                    "example": 1.1
                 },
-                "specializationId": {
-                    "type": "string"
+                "specialization_id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614375001"
                 }
             }
         },
         "model_healthcare_service.DoctorServicesRes": {
             "type": "object",
             "properties": {
-                "createdAt": {
+                "created_at": {
                     "type": "string"
                 },
-                "doctorId": {
+                "doctor_id": {
                     "type": "string"
                 },
                 "duration": {
@@ -4270,62 +4390,143 @@ const docTemplate = `{
                 "name": {
                     "type": "string"
                 },
-                "offlinePrice": {
+                "offline_price": {
                     "type": "number"
                 },
-                "onlinePrice": {
+                "online_price": {
                     "type": "number"
                 },
                 "order": {
                     "type": "integer"
                 },
-                "specializationId": {
+                "specialization_id": {
                     "type": "string"
                 },
-                "updatedAt": {
+                "updated_at": {
                     "type": "string"
+                }
+            }
+        },
+        "model_healthcare_service.DoctorUpdateReq": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "example": "Addres"
+                },
+                "bio": {
+                    "type": "string",
+                    "example": "Biography"
+                },
+                "birth_date": {
+                    "type": "string",
+                    "example": "2012-12-12"
+                },
+                "city": {
+                    "type": "string",
+                    "example": "City"
+                },
+                "country": {
+                    "type": "string",
+                    "example": "Country"
+                },
+                "department_id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174001"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "email@gmail.com"
+                },
+                "end-work-date": {
+                    "type": "string",
+                    "example": "2022-12-12"
+                },
+                "first_name": {
+                    "type": "string",
+                    "example": "First Name"
+                },
+                "gender": {
+                    "type": "string",
+                    "example": "male"
+                },
+                "image_url": {
+                    "type": "string",
+                    "example": "http://example.com/image.png"
+                },
+                "last_name": {
+                    "type": "string",
+                    "example": "Last Name"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "password"
+                },
+                "phone_number": {
+                    "type": "string",
+                    "example": "+998901234567"
+                },
+                "room_number": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "salary": {
+                    "type": "number",
+                    "example": 10
+                },
+                "start_work_date": {
+                    "type": "string",
+                    "example": "2012-12-12"
+                },
+                "work_years": {
+                    "type": "integer",
+                    "example": 4
                 }
             }
         },
         "model_healthcare_service.DoctorWorkingHoursReq": {
             "type": "object",
             "properties": {
-                "dayOfWeek": {
-                    "type": "string"
+                "day_of_week": {
+                    "type": "string",
+                    "example": "Monday"
                 },
-                "doctorId": {
-                    "type": "string"
+                "doctor_id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614274001"
                 },
-                "finishTime": {
-                    "type": "string"
+                "finish_time": {
+                    "type": "string",
+                    "example": "12:00:00"
                 },
-                "startTime": {
-                    "type": "string"
+                "start_time": {
+                    "type": "string",
+                    "example": "12:00:00"
                 }
             }
         },
         "model_healthcare_service.DoctorWorkingHoursRes": {
             "type": "object",
             "properties": {
-                "createdAt": {
+                "created_at": {
                     "type": "string"
                 },
-                "dayOfWeek": {
+                "day_of_week": {
                     "type": "string"
                 },
-                "doctorId": {
+                "doctor_id": {
                     "type": "string"
                 },
-                "finishTime": {
+                "finish_time": {
                     "type": "string"
                 },
                 "id": {
                     "type": "integer"
                 },
-                "startTime": {
+                "start_time": {
                     "type": "string"
                 },
-                "updatedAt": {
+                "updated_at": {
                     "type": "string"
                 }
             }
@@ -4417,36 +4618,39 @@ const docTemplate = `{
         "model_healthcare_service.ReasonsReq": {
             "type": "object",
             "properties": {
-                "imageUrl": {
-                    "type": "string"
+                "image_url": {
+                    "type": "string",
+                    "example": "http://example.com/image.png"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "name"
                 },
-                "specializationId": {
-                    "type": "string"
+                "specialization_id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614375001"
                 }
             }
         },
         "model_healthcare_service.ReasonsRes": {
             "type": "object",
             "properties": {
-                "createdAt": {
+                "created_at": {
                     "type": "string"
                 },
                 "id": {
                     "type": "string"
                 },
-                "imageUrl": {
+                "image_url": {
                     "type": "string"
                 },
                 "name": {
                     "type": "string"
                 },
-                "specializationId": {
+                "specialization_id": {
                     "type": "string"
                 },
-                "updatedAt": {
+                "updated_at": {
                     "type": "string"
                 }
             }
@@ -4455,16 +4659,20 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "department_id": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174003"
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Specialization description"
                 },
                 "image_url": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "http://example.com/image.png"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Specialization"
                 }
             }
         },
@@ -4578,6 +4786,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
+                    "type": "string"
+                },
+                "image_url": {
                     "type": "string"
                 },
                 "last_name": {
@@ -4733,6 +4944,9 @@ const docTemplate = `{
                 "id": {
                     "type": "string",
                     "example": "UUID"
+                },
+                "image_url": {
+                    "type": "string"
                 },
                 "last_name": {
                     "type": "string",

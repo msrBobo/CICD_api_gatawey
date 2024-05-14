@@ -60,7 +60,7 @@ func (h *HandlerV1) CreateSpecialization(c *gin.Context) {
 		DepartmentId: specialization.DepartmentId,
 		ImageUrl:     specialization.ImageUrl,
 		CreatedAt:    specialization.CreatedAt,
-		UpdatedAt:    specialization.UpdatedAt,
+		UpdatedAt:    e.UpdateTimeFilter(specialization.UpdatedAt),
 	})
 }
 
@@ -74,7 +74,7 @@ func (h *HandlerV1) CreateSpecialization(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.SpecializationRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/specialization [get]
+// @Router /v1/specialization/get [get]
 func (h *HandlerV1) GetSpecialization(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -99,7 +99,7 @@ func (h *HandlerV1) GetSpecialization(c *gin.Context) {
 		DepartmentId: specialization.DepartmentId,
 		ImageUrl:     specialization.ImageUrl,
 		CreatedAt:    specialization.CreatedAt,
-		UpdatedAt:    specialization.UpdatedAt,
+		UpdatedAt:    e.UpdateTimeFilter(specialization.UpdatedAt),
 	})
 }
 
@@ -110,10 +110,11 @@ func (h *HandlerV1) GetSpecialization(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param ListReq query models.ListReq false "ListReq"
+// @Param department_id query string false "department_id"
 // @Success 200 {object} model_healthcare_service.ListSpecializations
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/specialization/get [get]
+// @Router /v1/specialization [get]
 func (h *HandlerV1) ListSpecializations(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -121,6 +122,7 @@ func (h *HandlerV1) ListSpecializations(c *gin.Context) {
 	page := c.Query("page")
 	orderBy := c.Query("orderBy")
 
+	departmentId := c.Query("department_id")
 	pageInt, limitInt, err := e.ParseQueryParams(page, limit)
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListSpecializations") {
 		return
@@ -130,12 +132,13 @@ func (h *HandlerV1) ListSpecializations(c *gin.Context) {
 	defer cancel()
 
 	specializations, err := h.serviceManager.HealthcareService().SpecializationService().GetAllSpecializations(ctx, &pb.GetAllSpecialization{
-		Field:    field,
-		Value:    value,
-		IsActive: false,
-		Page:     int32(pageInt),
-		Limit:    int32(limitInt),
-		OrderBy:  orderBy,
+		Field:        field,
+		Value:        value,
+		IsActive:     false,
+		Page:         int32(pageInt),
+		Limit:        int32(limitInt),
+		OrderBy:      orderBy,
+		DepartmentId: departmentId,
 	})
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListSpecializations") {
@@ -152,7 +155,7 @@ func (h *HandlerV1) ListSpecializations(c *gin.Context) {
 			DepartmentId: specializationRes.DepartmentId,
 			ImageUrl:     specializationRes.ImageUrl,
 			CreatedAt:    specializationRes.CreatedAt,
-			UpdatedAt:    specializationRes.UpdatedAt,
+			UpdatedAt:    e.UpdateTimeFilter(specializationRes.UpdatedAt),
 		})
 	}
 
@@ -212,7 +215,7 @@ func (h *HandlerV1) UpdateSpecialization(c *gin.Context) {
 		DepartmentId: specialization.DepartmentId,
 		ImageUrl:     specialization.ImageUrl,
 		CreatedAt:    specialization.CreatedAt,
-		UpdatedAt:    specialization.UpdatedAt,
+		UpdatedAt:    e.UpdateTimeFilter(specialization.UpdatedAt),
 	})
 }
 

@@ -37,6 +37,7 @@ p, unauthorized, /v1/doctor/, GET
 p, unauthorized, /v1/doctor/get, GET
 p, unauthorized, /v1/doctor/, PUT
 p, unauthorized, /v1/doctor/, DELETE
+p, unauthorized, /v1/doctor/spec, GET
 
 # specialization
 p, unauthorized, /v1/specialization/, POST

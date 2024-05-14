@@ -98,7 +98,6 @@ type GetReqStrDep struct {
 	Field                string   `protobuf:"bytes,5,opt,name=field,proto3" json:"field"`
 	Value                string   `protobuf:"bytes,6,opt,name=value,proto3" json:"value"`
 	OrderBy              string   `protobuf:"bytes,7,opt,name=order_by,json=orderBy,proto3" json:"order_by"`
-	Count                int32    `protobuf:"varint,8,opt,name=count,proto3" json:"count"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -186,11 +185,99 @@ func (m *GetReqStrDep) GetOrderBy() string {
 	return ""
 }
 
-func (m *GetReqStrDep) GetCount() int32 {
+type GetReqStrSpec struct {
+	SpecializationId     string   `protobuf:"bytes,1,opt,name=specialization_id,json=specializationId,proto3" json:"specialization_id"`
+	IsActive             bool     `protobuf:"varint,2,opt,name=is_active,json=isActive,proto3" json:"is_active"`
+	Page                 int32    `protobuf:"varint,3,opt,name=page,proto3" json:"page"`
+	Limit                int32    `protobuf:"varint,4,opt,name=limit,proto3" json:"limit"`
+	Field                string   `protobuf:"bytes,5,opt,name=field,proto3" json:"field"`
+	Value                string   `protobuf:"bytes,6,opt,name=value,proto3" json:"value"`
+	OrderBy              string   `protobuf:"bytes,7,opt,name=order_by,json=orderBy,proto3" json:"order_by"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetReqStrSpec) Reset()         { *m = GetReqStrSpec{} }
+func (m *GetReqStrSpec) String() string { return proto.CompactTextString(m) }
+func (*GetReqStrSpec) ProtoMessage()    {}
+func (*GetReqStrSpec) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ce53f37ef6317b16, []int{2}
+}
+func (m *GetReqStrSpec) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetReqStrSpec) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetReqStrSpec.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetReqStrSpec) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetReqStrSpec.Merge(m, src)
+}
+func (m *GetReqStrSpec) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetReqStrSpec) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetReqStrSpec.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetReqStrSpec proto.InternalMessageInfo
+
+func (m *GetReqStrSpec) GetSpecializationId() string {
 	if m != nil {
-		return m.Count
+		return m.SpecializationId
+	}
+	return ""
+}
+
+func (m *GetReqStrSpec) GetIsActive() bool {
+	if m != nil {
+		return m.IsActive
+	}
+	return false
+}
+
+func (m *GetReqStrSpec) GetPage() int32 {
+	if m != nil {
+		return m.Page
 	}
 	return 0
+}
+
+func (m *GetReqStrSpec) GetLimit() int32 {
+	if m != nil {
+		return m.Limit
+	}
+	return 0
+}
+
+func (m *GetReqStrSpec) GetField() string {
+	if m != nil {
+		return m.Field
+	}
+	return ""
+}
+
+func (m *GetReqStrSpec) GetValue() string {
+	if m != nil {
+		return m.Value
+	}
+	return ""
+}
+
+func (m *GetReqStrSpec) GetOrderBy() string {
+	if m != nil {
+		return m.OrderBy
+	}
+	return ""
 }
 
 type StatusDoctor struct {
@@ -204,7 +291,7 @@ func (m *StatusDoctor) Reset()         { *m = StatusDoctor{} }
 func (m *StatusDoctor) String() string { return proto.CompactTextString(m) }
 func (*StatusDoctor) ProtoMessage()    {}
 func (*StatusDoctor) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce53f37ef6317b16, []int{2}
+	return fileDescriptor_ce53f37ef6317b16, []int{3}
 }
 func (m *StatusDoctor) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -256,7 +343,7 @@ func (m *GetAllDoctorS) Reset()         { *m = GetAllDoctorS{} }
 func (m *GetAllDoctorS) String() string { return proto.CompactTextString(m) }
 func (*GetAllDoctorS) ProtoMessage()    {}
 func (*GetAllDoctorS) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce53f37ef6317b16, []int{3}
+	return fileDescriptor_ce53f37ef6317b16, []int{4}
 }
 func (m *GetAllDoctorS) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -339,7 +426,7 @@ func (m *ListDoctors) Reset()         { *m = ListDoctors{} }
 func (m *ListDoctors) String() string { return proto.CompactTextString(m) }
 func (*ListDoctors) ProtoMessage()    {}
 func (*ListDoctors) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce53f37ef6317b16, []int{4}
+	return fileDescriptor_ce53f37ef6317b16, []int{5}
 }
 func (m *ListDoctors) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -387,24 +474,25 @@ type Doctor struct {
 	Order                int32    `protobuf:"varint,2,opt,name=order,proto3" json:"order"`
 	FirstName            string   `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3" json:"first_name"`
 	LastName             string   `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name"`
-	Gender               string   `protobuf:"bytes,5,opt,name=gender,proto3" json:"gender"`
-	BirthDate            string   `protobuf:"bytes,6,opt,name=birth_date,json=birthDate,proto3" json:"birth_date"`
-	PhoneNumber          string   `protobuf:"bytes,7,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number"`
-	Email                string   `protobuf:"bytes,8,opt,name=email,proto3" json:"email"`
-	Password             string   `protobuf:"bytes,9,opt,name=password,proto3" json:"password"`
-	Address              string   `protobuf:"bytes,10,opt,name=address,proto3" json:"address"`
-	City                 string   `protobuf:"bytes,11,opt,name=city,proto3" json:"city"`
-	Country              string   `protobuf:"bytes,12,opt,name=country,proto3" json:"country"`
-	Salary               float32  `protobuf:"fixed32,13,opt,name=salary,proto3" json:"salary"`
-	Bio                  string   `protobuf:"bytes,14,opt,name=bio,proto3" json:"bio"`
-	StartWorkDate        string   `protobuf:"bytes,15,opt,name=start_work_date,json=startWorkDate,proto3" json:"start_work_date"`
-	EndWorkDate          string   `protobuf:"bytes,16,opt,name=end_work_date,json=endWorkDate,proto3" json:"end_work_date"`
-	WorkYears            int32    `protobuf:"varint,17,opt,name=work_years,json=workYears,proto3" json:"work_years"`
-	DepartmentId         string   `protobuf:"bytes,18,opt,name=department_id,json=departmentId,proto3" json:"department_id"`
-	RoomNumber           int32    `protobuf:"varint,19,opt,name=room_number,json=roomNumber,proto3" json:"room_number"`
-	CreatedAt            string   `protobuf:"bytes,20,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
-	UpdatedAt            string   `protobuf:"bytes,21,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
-	DeletedAt            string   `protobuf:"bytes,22,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
+	ImageUrl             string   `protobuf:"bytes,5,opt,name=image_url,json=imageUrl,proto3" json:"image_url"`
+	Gender               string   `protobuf:"bytes,6,opt,name=gender,proto3" json:"gender"`
+	BirthDate            string   `protobuf:"bytes,7,opt,name=birth_date,json=birthDate,proto3" json:"birth_date"`
+	PhoneNumber          string   `protobuf:"bytes,8,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number"`
+	Email                string   `protobuf:"bytes,9,opt,name=email,proto3" json:"email"`
+	Password             string   `protobuf:"bytes,10,opt,name=password,proto3" json:"password"`
+	Address              string   `protobuf:"bytes,11,opt,name=address,proto3" json:"address"`
+	City                 string   `protobuf:"bytes,12,opt,name=city,proto3" json:"city"`
+	Country              string   `protobuf:"bytes,13,opt,name=country,proto3" json:"country"`
+	Salary               float32  `protobuf:"fixed32,14,opt,name=salary,proto3" json:"salary"`
+	Bio                  string   `protobuf:"bytes,15,opt,name=bio,proto3" json:"bio"`
+	StartWorkDate        string   `protobuf:"bytes,16,opt,name=start_work_date,json=startWorkDate,proto3" json:"start_work_date"`
+	EndWorkDate          string   `protobuf:"bytes,17,opt,name=end_work_date,json=endWorkDate,proto3" json:"end_work_date"`
+	WorkYears            int32    `protobuf:"varint,18,opt,name=work_years,json=workYears,proto3" json:"work_years"`
+	DepartmentId         string   `protobuf:"bytes,19,opt,name=department_id,json=departmentId,proto3" json:"department_id"`
+	RoomNumber           int32    `protobuf:"varint,20,opt,name=room_number,json=roomNumber,proto3" json:"room_number"`
+	CreatedAt            string   `protobuf:"bytes,21,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt            string   `protobuf:"bytes,22,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	DeletedAt            string   `protobuf:"bytes,23,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -414,7 +502,7 @@ func (m *Doctor) Reset()         { *m = Doctor{} }
 func (m *Doctor) String() string { return proto.CompactTextString(m) }
 func (*Doctor) ProtoMessage()    {}
 func (*Doctor) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ce53f37ef6317b16, []int{5}
+	return fileDescriptor_ce53f37ef6317b16, []int{6}
 }
 func (m *Doctor) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -467,6 +555,13 @@ func (m *Doctor) GetFirstName() string {
 func (m *Doctor) GetLastName() string {
 	if m != nil {
 		return m.LastName
+	}
+	return ""
+}
+
+func (m *Doctor) GetImageUrl() string {
+	if m != nil {
+		return m.ImageUrl
 	}
 	return ""
 }
@@ -600,6 +695,7 @@ func (m *Doctor) GetDeletedAt() string {
 func init() {
 	proto.RegisterType((*GetReqStrDoctor)(nil), "healthcare.GetReqStrDoctor")
 	proto.RegisterType((*GetReqStrDep)(nil), "healthcare.GetReqStrDep")
+	proto.RegisterType((*GetReqStrSpec)(nil), "healthcare.GetReqStrSpec")
 	proto.RegisterType((*StatusDoctor)(nil), "healthcare.StatusDoctor")
 	proto.RegisterType((*GetAllDoctorS)(nil), "healthcare.GetAllDoctorS")
 	proto.RegisterType((*ListDoctors)(nil), "healthcare.ListDoctors")
@@ -609,54 +705,58 @@ func init() {
 func init() { proto.RegisterFile("healthcare-service/doctor.proto", fileDescriptor_ce53f37ef6317b16) }
 
 var fileDescriptor_ce53f37ef6317b16 = []byte{
-	// 744 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x55, 0x4f, 0x6f, 0xd3, 0x4e,
-	0x10, 0xfd, 0x39, 0xff, 0x33, 0x71, 0xda, 0xfe, 0x96, 0x52, 0xb6, 0x45, 0x4d, 0x43, 0x90, 0xaa,
-	0x1c, 0xa0, 0x48, 0x45, 0xea, 0x99, 0xa4, 0x41, 0x15, 0x12, 0xaa, 0x84, 0x2b, 0x84, 0xe0, 0x62,
-	0x6d, 0xe2, 0x6d, 0x63, 0xd5, 0xb1, 0xcd, 0xee, 0xa6, 0x95, 0xbf, 0x09, 0x97, 0x7e, 0x1f, 0x8e,
-	0xdc, 0xb8, 0xa2, 0xf2, 0x1d, 0x38, 0xa3, 0x9d, 0xdd, 0x34, 0x4e, 0x48, 0x91, 0xb8, 0xed, 0x7b,
-	0x6f, 0x32, 0x9e, 0x37, 0xb3, 0xb3, 0x81, 0xbd, 0x31, 0x67, 0x91, 0x1a, 0x8f, 0x98, 0xe0, 0xcf,
-	0x25, 0x17, 0x57, 0xe1, 0x88, 0xbf, 0x08, 0x92, 0x91, 0x4a, 0xc4, 0x41, 0x2a, 0x12, 0x95, 0x10,
-	0x98, 0x07, 0x74, 0x3e, 0xc1, 0xfa, 0x09, 0x57, 0x1e, 0xff, 0x7c, 0xa6, 0xc4, 0x00, 0x83, 0xc8,
-	0x26, 0x94, 0xcf, 0x43, 0x1e, 0x05, 0xd4, 0x69, 0x3b, 0xdd, 0xba, 0x67, 0x80, 0x66, 0xaf, 0x58,
-	0x34, 0xe5, 0xb4, 0x60, 0x58, 0x04, 0xe4, 0x31, 0xd4, 0x43, 0xe9, 0xb3, 0x91, 0x0a, 0xaf, 0x38,
-	0x2d, 0xb6, 0x9d, 0x6e, 0xcd, 0xab, 0x85, 0xb2, 0x87, 0xb8, 0xf3, 0xdd, 0x01, 0x77, 0x9e, 0x9c,
-	0xa7, 0xe4, 0x29, 0x34, 0x03, 0x9e, 0x32, 0xa1, 0x26, 0x3c, 0x56, 0x7e, 0x38, 0xfb, 0x82, 0x3b,
-	0x27, 0xdf, 0x04, 0x8b, 0x29, 0x0b, 0x8b, 0x29, 0x09, 0x81, 0x52, 0xca, 0x2e, 0xcc, 0xa7, 0xca,
-	0x1e, 0x9e, 0x75, 0x65, 0x51, 0x38, 0x09, 0x15, 0x2d, 0x21, 0x69, 0xc0, 0xdc, 0x45, 0x79, 0xa5,
-	0x8b, 0x4a, 0xde, 0xc5, 0x36, 0xd4, 0x12, 0x11, 0x70, 0xe1, 0x0f, 0x33, 0x5a, 0x45, 0xa1, 0x8a,
-	0xb8, 0x9f, 0xe9, 0x1f, 0x8c, 0x92, 0x69, 0xac, 0x68, 0xcd, 0x24, 0x47, 0xd0, 0xd9, 0x07, 0xf7,
-	0x4c, 0x31, 0x35, 0x95, 0xb6, 0x65, 0x5b, 0x50, 0x91, 0x88, 0xd1, 0x51, 0xcd, 0xb3, 0xa8, 0x73,
-	0xe3, 0x40, 0xf3, 0x84, 0xab, 0x5e, 0x14, 0x99, 0xc0, 0xb3, 0x3b, 0x03, 0x3a, 0xae, 0xb8, 0x6c,
-	0xa0, 0x80, 0xe4, 0xb2, 0x81, 0xe2, 0x4a, 0x03, 0xa5, 0xfb, 0x0c, 0x94, 0x17, 0x0d, 0x2c, 0xb4,
-	0xb3, 0xb2, 0x34, 0xa1, 0x77, 0xd0, 0x78, 0x1b, 0x4a, 0x65, 0x8a, 0x93, 0x73, 0xb3, 0xa6, 0x3a,
-	0x03, 0xc8, 0x33, 0xa8, 0x9a, 0xeb, 0x23, 0x69, 0xa1, 0x5d, 0xec, 0x36, 0x0e, 0xc9, 0xc1, 0xfc,
-	0x02, 0x1d, 0x98, 0xdf, 0x7a, 0xb3, 0x90, 0xce, 0xaf, 0x12, 0x54, 0x6c, 0x57, 0xd6, 0xa0, 0x70,
-	0x37, 0xe3, 0x42, 0x88, 0xb5, 0x63, 0x55, 0xe8, 0xb3, 0xec, 0x19, 0x40, 0x76, 0x01, 0xce, 0x43,
-	0x21, 0x95, 0x1f, 0xb3, 0x09, 0xb7, 0x66, 0xeb, 0xc8, 0x9c, 0xb2, 0x09, 0xde, 0xb0, 0x88, 0xcd,
-	0x54, 0x63, 0xba, 0xa6, 0x09, 0x14, 0xb7, 0xa0, 0x72, 0xc1, 0x63, 0x9d, 0xd2, 0xb8, 0xb6, 0x48,
-	0xe7, 0x1c, 0x86, 0x42, 0x8d, 0xfd, 0x80, 0xa9, 0xd9, 0xac, 0xeb, 0xc8, 0x0c, 0x98, 0xe2, 0xe4,
-	0x09, 0xb8, 0xe9, 0x38, 0x89, 0xb9, 0x1f, 0x4f, 0x27, 0x43, 0x2e, 0xec, 0xcc, 0x1b, 0xc8, 0x9d,
-	0x22, 0xa5, 0x6b, 0xe5, 0x13, 0x16, 0x46, 0x38, 0xf7, 0xba, 0x67, 0x00, 0xd9, 0x81, 0x5a, 0xca,
-	0xa4, 0xbc, 0x4e, 0x44, 0x40, 0xeb, 0xa6, 0x96, 0x19, 0x26, 0x14, 0xaa, 0x2c, 0x08, 0x04, 0x97,
-	0x92, 0x82, 0x19, 0x81, 0x85, 0x7a, 0xe6, 0xa3, 0x50, 0x65, 0xb4, 0x81, 0x34, 0x9e, 0x75, 0x34,
-	0x76, 0x57, 0x64, 0xd4, 0x35, 0xd1, 0x16, 0xe2, 0x5d, 0x62, 0x11, 0x13, 0x19, 0x6d, 0xb6, 0x9d,
-	0x6e, 0xc1, 0xb3, 0x88, 0x6c, 0x40, 0x71, 0x18, 0x26, 0x74, 0x0d, 0xa3, 0xf5, 0x91, 0xec, 0xc3,
-	0xba, 0x54, 0x4c, 0x28, 0xff, 0x3a, 0x11, 0x97, 0xc6, 0xea, 0x3a, 0xaa, 0x4d, 0xa4, 0x3f, 0x24,
-	0xe2, 0x12, 0xed, 0x76, 0xa0, 0xc9, 0xe3, 0x20, 0x17, 0xb5, 0x61, 0xfc, 0xf2, 0x38, 0xb8, 0x8b,
-	0xd9, 0x05, 0x40, 0x3d, 0xe3, 0x4c, 0x48, 0xfa, 0x3f, 0x0e, 0xa8, 0xae, 0x99, 0x8f, 0x9a, 0xf8,
-	0x73, 0x73, 0xc9, 0x8a, 0xcd, 0xdd, 0x83, 0x86, 0x48, 0x92, 0xc9, 0xac, 0xab, 0x0f, 0x30, 0x09,
-	0x68, 0xca, 0x36, 0x75, 0x17, 0x60, 0x24, 0x38, 0x53, 0x3c, 0xf0, 0x99, 0xa2, 0x9b, 0x66, 0x2c,
-	0x96, 0xe9, 0x29, 0x2d, 0x4f, 0xd3, 0x60, 0x26, 0x3f, 0x34, 0xb2, 0x65, 0x8c, 0x1c, 0xf0, 0x88,
-	0x5b, 0x79, 0xcb, 0xc8, 0x96, 0xe9, 0xa9, 0xc3, 0x9b, 0x22, 0x34, 0xed, 0x96, 0x99, 0x47, 0x8f,
-	0x1c, 0x81, 0x7b, 0x8c, 0xc9, 0xed, 0x7d, 0x5c, 0x71, 0x6f, 0x77, 0x56, 0x70, 0xe4, 0x15, 0x2e,
-	0xad, 0x01, 0xfd, 0x4c, 0x3f, 0x49, 0xf9, 0xa0, 0xa5, 0xe7, 0x72, 0x65, 0x86, 0xe3, 0xc5, 0xb5,
-	0x97, 0x64, 0x7b, 0x29, 0xc3, 0xfc, 0x45, 0xd8, 0x79, 0x94, 0x97, 0xf2, 0xdb, 0x78, 0x04, 0xee,
-	0x7b, 0x34, 0xff, 0x8f, 0xe5, 0xbf, 0x06, 0x77, 0x80, 0x5d, 0xb1, 0xf8, 0xaf, 0xd5, 0xd3, 0xbc,
-	0xb8, 0xf0, 0xa6, 0x9d, 0xc2, 0x76, 0xae, 0x9a, 0x7e, 0x36, 0xc8, 0x8f, 0x9a, 0xae, 0xce, 0xc9,
-	0xd3, 0x7b, 0xed, 0xf4, 0x37, 0xbe, 0xde, 0xb6, 0x9c, 0x6f, 0xb7, 0x2d, 0xe7, 0xc7, 0x6d, 0xcb,
-	0xf9, 0xf2, 0xb3, 0xf5, 0xdf, 0xb0, 0x82, 0x7f, 0x47, 0x2f, 0x7f, 0x07, 0x00, 0x00, 0xff, 0xff,
-	0x09, 0x51, 0x8b, 0xe5, 0xb1, 0x06, 0x00, 0x00,
+	// 806 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x55, 0xcd, 0x6e, 0x23, 0x45,
+	0x10, 0x66, 0xec, 0xd8, 0xb1, 0xcb, 0xf6, 0x26, 0xdb, 0x2c, 0xbb, 0x9d, 0x40, 0xb2, 0xc1, 0x48,
+	0xab, 0x48, 0x40, 0x90, 0x16, 0x69, 0xcf, 0xc4, 0x1b, 0x84, 0x90, 0x50, 0x24, 0xc6, 0x5a, 0x21,
+	0xb8, 0x8c, 0xda, 0x33, 0xb5, 0x49, 0x6b, 0xe7, 0x8f, 0xee, 0x76, 0xa2, 0xe1, 0x35, 0xb8, 0x70,
+	0xe1, 0x61, 0xb8, 0x21, 0x4e, 0x3c, 0x02, 0x0a, 0x4f, 0xc0, 0x1b, 0xa0, 0xae, 0x6e, 0x7b, 0xc6,
+	0x66, 0x82, 0xc4, 0x8d, 0xdb, 0x7c, 0x5f, 0x95, 0xab, 0xbf, 0xaf, 0xab, 0xba, 0x0c, 0x4f, 0xaf,
+	0x51, 0xa4, 0xe6, 0x3a, 0x16, 0x0a, 0x3f, 0xd6, 0xa8, 0x6e, 0x64, 0x8c, 0x9f, 0x24, 0x45, 0x6c,
+	0x0a, 0x75, 0x56, 0xaa, 0xc2, 0x14, 0x0c, 0xea, 0x84, 0xe9, 0x77, 0xb0, 0xf7, 0x05, 0x9a, 0x10,
+	0xbf, 0x9f, 0x1b, 0x75, 0x41, 0x49, 0xec, 0x11, 0xf4, 0x5e, 0x4b, 0x4c, 0x13, 0x1e, 0x9c, 0x04,
+	0xa7, 0xc3, 0xd0, 0x01, 0xcb, 0xde, 0x88, 0x74, 0x89, 0xbc, 0xe3, 0x58, 0x02, 0xec, 0x5d, 0x18,
+	0x4a, 0x1d, 0x89, 0xd8, 0xc8, 0x1b, 0xe4, 0xdd, 0x93, 0xe0, 0x74, 0x10, 0x0e, 0xa4, 0x3e, 0x27,
+	0x3c, 0xfd, 0x25, 0x80, 0x71, 0x5d, 0x1c, 0x4b, 0xf6, 0x01, 0x4c, 0x12, 0x2c, 0x85, 0x32, 0x19,
+	0xe6, 0x26, 0x92, 0xab, 0x13, 0xc6, 0x35, 0xf9, 0x65, 0xb2, 0x59, 0xb2, 0xb3, 0x59, 0x92, 0x31,
+	0xd8, 0x29, 0xc5, 0x95, 0x3b, 0xaa, 0x17, 0xd2, 0xb7, 0x55, 0x96, 0xca, 0x4c, 0x1a, 0xbe, 0x43,
+	0xa4, 0x03, 0xb5, 0x8b, 0x5e, 0xab, 0x8b, 0x7e, 0xd3, 0xc5, 0x01, 0x0c, 0x0a, 0x95, 0xa0, 0x8a,
+	0x16, 0x15, 0xdf, 0xa5, 0xc0, 0x2e, 0xe1, 0x59, 0x35, 0xfd, 0x2d, 0x80, 0xc9, 0xda, 0xc3, 0xbc,
+	0xc4, 0x98, 0x7d, 0x08, 0x0f, 0x75, 0x89, 0xb1, 0x14, 0xa9, 0xfc, 0x41, 0x18, 0x59, 0xe4, 0xb5,
+	0x91, 0xfd, 0xcd, 0xc0, 0xff, 0xce, 0xcc, 0x33, 0x18, 0xcf, 0x8d, 0x30, 0x4b, 0xed, 0x3b, 0xfd,
+	0x18, 0xfa, 0x9a, 0x30, 0xe9, 0x1f, 0x84, 0x1e, 0x4d, 0x7f, 0x76, 0xa6, 0xcf, 0xd3, 0xd4, 0x25,
+	0xce, 0xd7, 0x52, 0x6d, 0x5e, 0x77, 0x5b, 0x6a, 0x87, 0xc8, 0x6d, 0xa9, 0xdd, 0x56, 0xa9, 0x3b,
+	0xf7, 0x49, 0xed, 0x6d, 0x48, 0xdd, 0xbc, 0xb8, 0xfe, 0xd6, 0x60, 0x7d, 0x0d, 0xa3, 0xaf, 0xa4,
+	0x36, 0x4e, 0x9c, 0xb6, 0xc5, 0xe3, 0x62, 0x99, 0x1b, 0xaf, 0xce, 0x01, 0xf6, 0x11, 0xec, 0xba,
+	0xa9, 0xd7, 0xbc, 0x73, 0xd2, 0x3d, 0x1d, 0x3d, 0x67, 0x67, 0xf5, 0xdc, 0x9f, 0xb9, 0xdf, 0x86,
+	0xab, 0x94, 0xe9, 0x8f, 0x3d, 0xe8, 0xfb, 0x5b, 0x79, 0x00, 0x9d, 0x75, 0x47, 0x3b, 0x92, 0xb4,
+	0x93, 0x2a, 0xf2, 0xd9, 0x0b, 0x1d, 0x60, 0x47, 0x00, 0xaf, 0xa5, 0xd2, 0x26, 0xca, 0x45, 0x86,
+	0xde, 0xec, 0x90, 0x98, 0x4b, 0x91, 0xd1, 0xc3, 0x48, 0xc5, 0x2a, 0xea, 0x4c, 0x0f, 0x2c, 0xb1,
+	0x0a, 0xca, 0x4c, 0x5c, 0x61, 0xb4, 0x54, 0xa9, 0x37, 0x3e, 0x20, 0xe2, 0x95, 0x4a, 0x6d, 0x53,
+	0xae, 0x30, 0xb7, 0xe7, 0xb9, 0xb6, 0x7a, 0x64, 0x0f, 0x5c, 0x48, 0x65, 0xae, 0xa3, 0x44, 0x18,
+	0xf4, 0x9d, 0x1d, 0x12, 0x73, 0x21, 0x0c, 0xb2, 0xf7, 0x61, 0x5c, 0x5e, 0x17, 0x39, 0x46, 0xf9,
+	0x32, 0x5b, 0xa0, 0xe2, 0x03, 0x4a, 0x18, 0x11, 0x77, 0x49, 0x94, 0x35, 0x82, 0x99, 0x90, 0x29,
+	0x1f, 0xba, 0x26, 0x10, 0x60, 0x87, 0x30, 0x28, 0x85, 0xd6, 0xb7, 0x85, 0x4a, 0x38, 0x38, 0x2d,
+	0x2b, 0xcc, 0x38, 0xec, 0x8a, 0x24, 0x51, 0xa8, 0x35, 0x1f, 0xb9, 0xfe, 0x78, 0x68, 0x07, 0x22,
+	0x96, 0xa6, 0xe2, 0x63, 0xa2, 0xe9, 0xdb, 0x66, 0xd3, 0xd5, 0xab, 0x8a, 0x4f, 0x5c, 0xb6, 0x87,
+	0x34, 0x68, 0x22, 0x15, 0xaa, 0xe2, 0x0f, 0x4e, 0x82, 0xd3, 0x4e, 0xe8, 0x11, 0xdb, 0x87, 0xee,
+	0x42, 0x16, 0x7c, 0x8f, 0xb2, 0xed, 0x27, 0x7b, 0x06, 0x7b, 0xda, 0x08, 0x65, 0xa2, 0xdb, 0x42,
+	0xbd, 0x71, 0x56, 0xf7, 0x29, 0x3a, 0x21, 0xfa, 0x9b, 0x42, 0xbd, 0x21, 0xbb, 0x53, 0x98, 0x60,
+	0x9e, 0x34, 0xb2, 0x1e, 0x3a, 0xbf, 0x98, 0x27, 0xeb, 0x9c, 0x23, 0x00, 0x8a, 0x57, 0x28, 0x94,
+	0xe6, 0x8c, 0xba, 0x37, 0xb4, 0xcc, 0xb7, 0x96, 0xf8, 0xe7, 0x36, 0x7a, 0xbb, 0x65, 0x1b, 0x3d,
+	0x85, 0x91, 0x2a, 0x8a, 0x6c, 0x75, 0xab, 0x8f, 0xa8, 0x08, 0x58, 0xca, 0x5f, 0xea, 0x11, 0x40,
+	0xac, 0x50, 0x18, 0x4c, 0x22, 0x61, 0xf8, 0x3b, 0xae, 0x2d, 0x9e, 0x39, 0x37, 0x36, 0xbc, 0x2c,
+	0x93, 0x55, 0xf8, 0xb1, 0x0b, 0x7b, 0xc6, 0x85, 0x13, 0x4c, 0xd1, 0x87, 0x9f, 0xb8, 0xb0, 0x67,
+	0xce, 0xcd, 0xf3, 0xbf, 0xba, 0x30, 0xf1, 0x4f, 0xd0, 0x2d, 0x72, 0xf6, 0x02, 0xc6, 0x2f, 0xa9,
+	0xb8, 0x1f, 0xd6, 0x96, 0xa1, 0x3e, 0x6c, 0xe1, 0xd8, 0x67, 0xf4, 0xa2, 0x1d, 0x98, 0x55, 0x76,
+	0x33, 0x35, 0x93, 0xb6, 0xfe, 0x02, 0x5a, 0x2b, 0xbc, 0xdc, 0xdc, 0x09, 0x9a, 0x1d, 0x6c, 0x55,
+	0xa8, 0xd7, 0xc5, 0xe1, 0x93, 0x66, 0xa8, 0xf9, 0x54, 0x5f, 0xc0, 0xf8, 0x15, 0x99, 0xff, 0x8f,
+	0xf2, 0x3f, 0x87, 0xf1, 0x05, 0xdd, 0x8a, 0xc7, 0xff, 0xaa, 0x9e, 0x37, 0x83, 0x1b, 0x0b, 0xef,
+	0x12, 0x0e, 0x1a, 0x6a, 0x66, 0xd5, 0x45, 0xb3, 0xd5, 0xbc, 0xbd, 0x26, 0x96, 0xf7, 0xdb, 0x09,
+	0xe1, 0xbd, 0x1a, 0xce, 0xaa, 0xf9, 0xf6, 0xfa, 0x3f, 0x68, 0x2d, 0x69, 0xd3, 0xee, 0xad, 0x39,
+	0xdb, 0xff, 0xf5, 0xee, 0x38, 0xf8, 0xfd, 0xee, 0x38, 0xf8, 0xe3, 0xee, 0x38, 0xf8, 0xe9, 0xcf,
+	0xe3, 0xb7, 0x16, 0x7d, 0xfa, 0xdb, 0xfe, 0xf4, 0xef, 0x00, 0x00, 0x00, 0xff, 0xff, 0x1a, 0x56,
+	0xc7, 0xb0, 0xd9, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -677,6 +777,7 @@ type DoctorServiceClient interface {
 	UpdateDoctor(ctx context.Context, in *Doctor, opts ...grpc.CallOption) (*Doctor, error)
 	DeleteDoctor(ctx context.Context, in *GetReqStrDoctor, opts ...grpc.CallOption) (*StatusDoctor, error)
 	ListDoctorsByDepartmentId(ctx context.Context, in *GetReqStrDep, opts ...grpc.CallOption) (*ListDoctors, error)
+	ListDoctorBySpecializationId(ctx context.Context, in *GetReqStrSpec, opts ...grpc.CallOption) (*ListDoctors, error)
 }
 
 type doctorServiceClient struct {
@@ -741,6 +842,15 @@ func (c *doctorServiceClient) ListDoctorsByDepartmentId(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *doctorServiceClient) ListDoctorBySpecializationId(ctx context.Context, in *GetReqStrSpec, opts ...grpc.CallOption) (*ListDoctors, error) {
+	out := new(ListDoctors)
+	err := c.cc.Invoke(ctx, "/healthcare.DoctorService/ListDoctorBySpecializationId", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DoctorServiceServer is the server API for DoctorService service.
 type DoctorServiceServer interface {
 	CreateDoctor(context.Context, *Doctor) (*Doctor, error)
@@ -749,6 +859,7 @@ type DoctorServiceServer interface {
 	UpdateDoctor(context.Context, *Doctor) (*Doctor, error)
 	DeleteDoctor(context.Context, *GetReqStrDoctor) (*StatusDoctor, error)
 	ListDoctorsByDepartmentId(context.Context, *GetReqStrDep) (*ListDoctors, error)
+	ListDoctorBySpecializationId(context.Context, *GetReqStrSpec) (*ListDoctors, error)
 }
 
 // UnimplementedDoctorServiceServer can be embedded to have forward compatible implementations.
@@ -772,6 +883,9 @@ func (*UnimplementedDoctorServiceServer) DeleteDoctor(ctx context.Context, req *
 }
 func (*UnimplementedDoctorServiceServer) ListDoctorsByDepartmentId(ctx context.Context, req *GetReqStrDep) (*ListDoctors, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDoctorsByDepartmentId not implemented")
+}
+func (*UnimplementedDoctorServiceServer) ListDoctorBySpecializationId(ctx context.Context, req *GetReqStrSpec) (*ListDoctors, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDoctorBySpecializationId not implemented")
 }
 
 func RegisterDoctorServiceServer(s *grpc.Server, srv DoctorServiceServer) {
@@ -886,6 +1000,24 @@ func _DoctorService_ListDoctorsByDepartmentId_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DoctorService_ListDoctorBySpecializationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetReqStrSpec)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DoctorServiceServer).ListDoctorBySpecializationId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/healthcare.DoctorService/ListDoctorBySpecializationId",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DoctorServiceServer).ListDoctorBySpecializationId(ctx, req.(*GetReqStrSpec))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _DoctorService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "healthcare.DoctorService",
 	HandlerType: (*DoctorServiceServer)(nil),
@@ -913,6 +1045,10 @@ var _DoctorService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListDoctorsByDepartmentId",
 			Handler:    _DoctorService_ListDoctorsByDepartmentId_Handler,
+		},
+		{
+			MethodName: "ListDoctorBySpecializationId",
+			Handler:    _DoctorService_ListDoctorBySpecializationId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -994,11 +1130,6 @@ func (m *GetReqStrDep) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if m.Count != 0 {
-		i = encodeVarintDoctor(dAtA, i, uint64(m.Count))
-		i--
-		dAtA[i] = 0x40
-	}
 	if len(m.OrderBy) > 0 {
 		i -= len(m.OrderBy)
 		copy(dAtA[i:], m.OrderBy)
@@ -1044,6 +1175,81 @@ func (m *GetReqStrDep) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.DepartmentId)
 		copy(dAtA[i:], m.DepartmentId)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.DepartmentId)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetReqStrSpec) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetReqStrSpec) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetReqStrSpec) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.OrderBy) > 0 {
+		i -= len(m.OrderBy)
+		copy(dAtA[i:], m.OrderBy)
+		i = encodeVarintDoctor(dAtA, i, uint64(len(m.OrderBy)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.Value) > 0 {
+		i -= len(m.Value)
+		copy(dAtA[i:], m.Value)
+		i = encodeVarintDoctor(dAtA, i, uint64(len(m.Value)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Field) > 0 {
+		i -= len(m.Field)
+		copy(dAtA[i:], m.Field)
+		i = encodeVarintDoctor(dAtA, i, uint64(len(m.Field)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if m.Limit != 0 {
+		i = encodeVarintDoctor(dAtA, i, uint64(m.Limit))
+		i--
+		dAtA[i] = 0x20
+	}
+	if m.Page != 0 {
+		i = encodeVarintDoctor(dAtA, i, uint64(m.Page))
+		i--
+		dAtA[i] = 0x18
+	}
+	if m.IsActive {
+		i--
+		if m.IsActive {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.SpecializationId) > 0 {
+		i -= len(m.SpecializationId)
+		copy(dAtA[i:], m.SpecializationId)
+		i = encodeVarintDoctor(dAtA, i, uint64(len(m.SpecializationId)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1232,7 +1438,7 @@ func (m *Doctor) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x1
 		i--
-		dAtA[i] = 0xb2
+		dAtA[i] = 0xba
 	}
 	if len(m.UpdatedAt) > 0 {
 		i -= len(m.UpdatedAt)
@@ -1241,7 +1447,7 @@ func (m *Doctor) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x1
 		i--
-		dAtA[i] = 0xaa
+		dAtA[i] = 0xb2
 	}
 	if len(m.CreatedAt) > 0 {
 		i -= len(m.CreatedAt)
@@ -1250,14 +1456,14 @@ func (m *Doctor) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x1
 		i--
-		dAtA[i] = 0xa2
+		dAtA[i] = 0xaa
 	}
 	if m.RoomNumber != 0 {
 		i = encodeVarintDoctor(dAtA, i, uint64(m.RoomNumber))
 		i--
 		dAtA[i] = 0x1
 		i--
-		dAtA[i] = 0x98
+		dAtA[i] = 0xa0
 	}
 	if len(m.DepartmentId) > 0 {
 		i -= len(m.DepartmentId)
@@ -1266,14 +1472,14 @@ func (m *Doctor) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x1
 		i--
-		dAtA[i] = 0x92
+		dAtA[i] = 0x9a
 	}
 	if m.WorkYears != 0 {
 		i = encodeVarintDoctor(dAtA, i, uint64(m.WorkYears))
 		i--
 		dAtA[i] = 0x1
 		i--
-		dAtA[i] = 0x88
+		dAtA[i] = 0x90
 	}
 	if len(m.EndWorkDate) > 0 {
 		i -= len(m.EndWorkDate)
@@ -1282,81 +1488,90 @@ func (m *Doctor) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x1
 		i--
-		dAtA[i] = 0x82
+		dAtA[i] = 0x8a
 	}
 	if len(m.StartWorkDate) > 0 {
 		i -= len(m.StartWorkDate)
 		copy(dAtA[i:], m.StartWorkDate)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.StartWorkDate)))
 		i--
-		dAtA[i] = 0x7a
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x82
 	}
 	if len(m.Bio) > 0 {
 		i -= len(m.Bio)
 		copy(dAtA[i:], m.Bio)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.Bio)))
 		i--
-		dAtA[i] = 0x72
+		dAtA[i] = 0x7a
 	}
 	if m.Salary != 0 {
 		i -= 4
 		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(m.Salary))))
 		i--
-		dAtA[i] = 0x6d
+		dAtA[i] = 0x75
 	}
 	if len(m.Country) > 0 {
 		i -= len(m.Country)
 		copy(dAtA[i:], m.Country)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.Country)))
 		i--
-		dAtA[i] = 0x62
+		dAtA[i] = 0x6a
 	}
 	if len(m.City) > 0 {
 		i -= len(m.City)
 		copy(dAtA[i:], m.City)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.City)))
 		i--
-		dAtA[i] = 0x5a
+		dAtA[i] = 0x62
 	}
 	if len(m.Address) > 0 {
 		i -= len(m.Address)
 		copy(dAtA[i:], m.Address)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.Address)))
 		i--
-		dAtA[i] = 0x52
+		dAtA[i] = 0x5a
 	}
 	if len(m.Password) > 0 {
 		i -= len(m.Password)
 		copy(dAtA[i:], m.Password)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.Password)))
 		i--
-		dAtA[i] = 0x4a
+		dAtA[i] = 0x52
 	}
 	if len(m.Email) > 0 {
 		i -= len(m.Email)
 		copy(dAtA[i:], m.Email)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.Email)))
 		i--
-		dAtA[i] = 0x42
+		dAtA[i] = 0x4a
 	}
 	if len(m.PhoneNumber) > 0 {
 		i -= len(m.PhoneNumber)
 		copy(dAtA[i:], m.PhoneNumber)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.PhoneNumber)))
 		i--
-		dAtA[i] = 0x3a
+		dAtA[i] = 0x42
 	}
 	if len(m.BirthDate) > 0 {
 		i -= len(m.BirthDate)
 		copy(dAtA[i:], m.BirthDate)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.BirthDate)))
 		i--
-		dAtA[i] = 0x32
+		dAtA[i] = 0x3a
 	}
 	if len(m.Gender) > 0 {
 		i -= len(m.Gender)
 		copy(dAtA[i:], m.Gender)
 		i = encodeVarintDoctor(dAtA, i, uint64(len(m.Gender)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.ImageUrl) > 0 {
+		i -= len(m.ImageUrl)
+		copy(dAtA[i:], m.ImageUrl)
+		i = encodeVarintDoctor(dAtA, i, uint64(len(m.ImageUrl)))
 		i--
 		dAtA[i] = 0x2a
 	}
@@ -1454,8 +1669,42 @@ func (m *GetReqStrDep) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovDoctor(uint64(l))
 	}
-	if m.Count != 0 {
-		n += 1 + sovDoctor(uint64(m.Count))
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetReqStrSpec) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.SpecializationId)
+	if l > 0 {
+		n += 1 + l + sovDoctor(uint64(l))
+	}
+	if m.IsActive {
+		n += 2
+	}
+	if m.Page != 0 {
+		n += 1 + sovDoctor(uint64(m.Page))
+	}
+	if m.Limit != 0 {
+		n += 1 + sovDoctor(uint64(m.Limit))
+	}
+	l = len(m.Field)
+	if l > 0 {
+		n += 1 + l + sovDoctor(uint64(l))
+	}
+	l = len(m.Value)
+	if l > 0 {
+		n += 1 + l + sovDoctor(uint64(l))
+	}
+	l = len(m.OrderBy)
+	if l > 0 {
+		n += 1 + l + sovDoctor(uint64(l))
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -1553,6 +1802,10 @@ func (m *Doctor) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovDoctor(uint64(l))
 	}
+	l = len(m.ImageUrl)
+	if l > 0 {
+		n += 1 + l + sovDoctor(uint64(l))
+	}
 	l = len(m.Gender)
 	if l > 0 {
 		n += 1 + l + sovDoctor(uint64(l))
@@ -1594,7 +1847,7 @@ func (m *Doctor) Size() (n int) {
 	}
 	l = len(m.StartWorkDate)
 	if l > 0 {
-		n += 1 + l + sovDoctor(uint64(l))
+		n += 2 + l + sovDoctor(uint64(l))
 	}
 	l = len(m.EndWorkDate)
 	if l > 0 {
@@ -1984,11 +2237,62 @@ func (m *GetReqStrDep) Unmarshal(dAtA []byte) error {
 			}
 			m.OrderBy = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 8:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Count", wireType)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDoctor(dAtA[iNdEx:])
+			if err != nil {
+				return err
 			}
-			m.Count = 0
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetReqStrSpec) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDoctor
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetReqStrSpec: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetReqStrSpec: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SpecializationId", wireType)
+			}
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowDoctor
@@ -1998,11 +2302,178 @@ func (m *GetReqStrDep) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Count |= int32(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SpecializationId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IsActive", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDoctor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IsActive = bool(v != 0)
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Page", wireType)
+			}
+			m.Page = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDoctor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Page |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Limit", wireType)
+			}
+			m.Limit = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDoctor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Limit |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Field", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDoctor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Field = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDoctor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Value = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OrderBy", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDoctor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OrderBy = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipDoctor(dAtA[iNdEx:])
@@ -2551,6 +3022,38 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 5:
 			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ImageUrl", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDoctor
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDoctor
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ImageUrl = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Gender", wireType)
 			}
 			var stringLen uint64
@@ -2581,7 +3084,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.Gender = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 6:
+		case 7:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field BirthDate", wireType)
 			}
@@ -2613,7 +3116,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.BirthDate = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 7:
+		case 8:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field PhoneNumber", wireType)
 			}
@@ -2645,7 +3148,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.PhoneNumber = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 8:
+		case 9:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Email", wireType)
 			}
@@ -2677,7 +3180,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.Email = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 9:
+		case 10:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Password", wireType)
 			}
@@ -2709,7 +3212,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.Password = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 10:
+		case 11:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
 			}
@@ -2741,7 +3244,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.Address = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 11:
+		case 12:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field City", wireType)
 			}
@@ -2773,7 +3276,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.City = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 12:
+		case 13:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Country", wireType)
 			}
@@ -2805,7 +3308,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.Country = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 13:
+		case 14:
 			if wireType != 5 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Salary", wireType)
 			}
@@ -2816,7 +3319,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			v = uint32(encoding_binary.LittleEndian.Uint32(dAtA[iNdEx:]))
 			iNdEx += 4
 			m.Salary = float32(math.Float32frombits(v))
-		case 14:
+		case 15:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Bio", wireType)
 			}
@@ -2848,7 +3351,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.Bio = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 15:
+		case 16:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field StartWorkDate", wireType)
 			}
@@ -2880,7 +3383,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.StartWorkDate = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 16:
+		case 17:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field EndWorkDate", wireType)
 			}
@@ -2912,7 +3415,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.EndWorkDate = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 17:
+		case 18:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field WorkYears", wireType)
 			}
@@ -2931,7 +3434,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 18:
+		case 19:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field DepartmentId", wireType)
 			}
@@ -2963,7 +3466,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.DepartmentId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 19:
+		case 20:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field RoomNumber", wireType)
 			}
@@ -2982,7 +3485,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 20:
+		case 21:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
 			}
@@ -3014,7 +3517,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.CreatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 21:
+		case 22:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field UpdatedAt", wireType)
 			}
@@ -3046,7 +3549,7 @@ func (m *Doctor) Unmarshal(dAtA []byte) error {
 			}
 			m.UpdatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 22:
+		case 23:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field DeletedAt", wireType)
 			}

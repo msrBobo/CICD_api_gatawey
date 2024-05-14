@@ -18,6 +18,7 @@ import (
 // @Accept image/png
 // @Produce json
 // @Param file formData file true "file"
+// @Param bucketName query string true "bucket" Enums(department, reasons, specialization, doctor, user) "bucket name"
 // @Success 200 {object} model_minio.MinioURL
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
@@ -28,6 +29,8 @@ func (h *HandlerV1) UploadFile(c *gin.Context) {
 		return
 	}
 
+	bucketName := c.Query("bucketName")
+
 	defer file.Close()
 
 	fileBytes, err := io.ReadAll(file)
@@ -35,9 +38,9 @@ func (h *HandlerV1) UploadFile(c *gin.Context) {
 		return
 	}
 
-	id := uuid.New().String() + filepath.Ext(header.Filename)
+	generatedFileName := uuid.New().String() + filepath.Ext(header.Filename)
 
-	objectURL, err := minio.UploadToMinio(h.cfg, id, fileBytes, int64(len(fileBytes)))
+	objectURL, err := minio.UploadToMinio(h.cfg, generatedFileName, fileBytes, bucketName)
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "UploadFile") {
 		return

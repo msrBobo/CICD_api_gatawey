@@ -7,11 +7,10 @@ import (
 	"dennic_api_gateway/api/models/model_user_service"
 	ps "dennic_api_gateway/genproto/session_service"
 	pb "dennic_api_gateway/genproto/user_service"
-	jwt "dennic_api_gateway/internal/pkg/tokens"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/asaskevich/govalidator"
@@ -49,17 +48,19 @@ func (h *HandlerV1) Register(c *gin.Context) {
 		return
 	}
 
-	if len(body.PhoneNumber) != 13 && !govalidator.IsNumeric(body.PhoneNumber) {
-		err = errors.New("invalid phone number")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Register")
+	err = body.Validate()
+
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "Register") {
 		return
 	}
 
-	if !e.ValidatePassword(body.Password) {
-		err = errors.New("invalid password")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Register")
-		return
-	}
+	body.PhoneNumber = strings.TrimSpace(body.PhoneNumber)
+	body.LastName = strings.TrimSpace(body.LastName)
+	body.LastName = strings.ToLower(body.LastName)
+	body.LastName = strings.Title(body.LastName)
+	body.FirstName = strings.TrimSpace(body.FirstName)
+	body.FirstName = strings.ToLower(body.FirstName)
+	body.FirstName = strings.Title(body.FirstName)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
@@ -73,7 +74,7 @@ func (h *HandlerV1) Register(c *gin.Context) {
 		return
 	}
 	if existsPhone.Status {
-		err = errors.New("failed to check phone number uniques")
+		err = errors.New("already registered")
 		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Register")
 		return
 	}
@@ -84,11 +85,11 @@ func (h *HandlerV1) Register(c *gin.Context) {
 	body.Id = uuid.New().String()
 
 	byteDate, err := json.Marshal(&body)
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Register") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "Register") {
 		return
 	}
 
-	err = h.redis.Client.Set(ctx, body.PhoneNumber, byteDate, time.Minute*h.ContextTimeout).Err()
+	err = h.redis.Client.Set(ctx, body.PhoneNumber, byteDate, h.cfg.Redis.Time).Err()
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Register") {
 		return
 	}
@@ -130,12 +131,6 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
-
-	if len(body.PhoneNumber) != 13 && !govalidator.IsNumeric(body.PhoneNumber) {
-		err = errors.New("invalid phone number")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Register")
-		return
-	}
 
 	redisRes, err := h.redis.Client.Get(ctx, body.PhoneNumber).Result()
 
@@ -187,7 +182,7 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 
 	user.Password, err = e.HashPassword(user.Password)
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Verify") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "Verify") {
 		return
 	}
 
@@ -252,7 +247,7 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&body)
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPasswordVerify") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPasswordVerify") {
 		return
 	}
 
@@ -270,7 +265,7 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 		Value: body.PhoneNumber,
 	})
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPassword") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPassword") {
 		return
 	}
 	if !existsPhone.Status {
@@ -282,7 +277,7 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 	// TODO A method that sends a code to a number
 	code := 7777
 
-	err = h.redis.Client.Set(ctx, body.PhoneNumber, code, time.Minute*h.ContextTimeout).Err()
+	err = h.redis.Client.Set(ctx, body.PhoneNumber, code, h.cfg.Redis.Time).Err()
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ForgetPassword") {
 		return
 	}
@@ -306,30 +301,29 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 // @Router /v1/customer/update-password [PUT]
 func (h *HandlerV1) UpdatePassword(c *gin.Context) {
 	newPassword := c.Query("NewPassword")
-	token := c.GetHeader("Authorization")
-
-	claims, err := jwt.ExtractClaim(token)
-
-	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "ChangePasswordUser") {
-		return
-	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
+	userInfo, err := GetUserInfo(c)
+
+	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "UpdatePassword") {
+		return
+	}
+
 	user, err := h.serviceManager.UserService().UserService().Get(ctx, &pb.GetUserReq{
 		Field:    "id",
-		Value:    cast.ToString(claims["id"]),
+		Value:    userInfo.UserId,
 		IsActive: false,
 	})
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "UpdatePassword") {
 		return
 	}
 
 	hashPass, err := e.HashPassword(newPassword)
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "UpdatePassword") {
 		return
 	}
 
@@ -338,7 +332,7 @@ func (h *HandlerV1) UpdatePassword(c *gin.Context) {
 		Password:    hashPass,
 	})
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ChangePasswordUser") {
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "UpdatePassword") {
 		return
 	}
 
@@ -373,7 +367,7 @@ func (h *HandlerV1) VerifyOtpCode(c *gin.Context) {
 
 	redisRes, err := h.redis.Client.Get(ctx, phoneNumber).Result()
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "VerifyOtpCode") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "VerifyOtpCode") {
 		return
 	}
 
@@ -437,7 +431,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&body)
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "Login") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "Login") {
 		return
 	}
 
@@ -542,8 +536,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/customer/logout [post]
 func (h *HandlerV1) LogOut(c *gin.Context) {
-	token := c.GetHeader("Authorization")
-	claims, err := jwt.ExtractClaim(token)
+	userInfo, err := GetUserInfo(c)
 
 	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "Logout") {
 		return
@@ -553,10 +546,8 @@ func (h *HandlerV1) LogOut(c *gin.Context) {
 	defer cancel()
 
 	_, err = h.serviceManager.SessionService().SessionService().DeleteSessionById(ctx, &ps.StrReq{
-		Id: cast.ToString(claims["session_id"]),
+		Id: userInfo.SessionId,
 	})
-
-	fmt.Println(cast.ToString(claims["session_id"]))
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "LogOut") {
 		return

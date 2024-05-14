@@ -61,7 +61,7 @@ func (h *HandlerV1) CreateDoctorTimes(c *gin.Context) {
 		EndTime:      res.EndTime,
 		Status:       res.Status,
 		CreatedAt:    res.CreatedAt,
-		UpdatedAt:    res.UpdatedAt,
+		UpdatedAt:    e.UpdateTimeFilter(res.UpdatedAt),
 	})
 }
 
@@ -102,7 +102,7 @@ func (h *HandlerV1) GetDoctorTimes(c *gin.Context) {
 		EndTime:      res.EndTime,
 		Status:       res.Status,
 		CreatedAt:    res.CreatedAt,
-		UpdatedAt:    res.UpdatedAt,
+		UpdatedAt:    e.UpdateTimeFilter(res.UpdatedAt),
 	})
 }
 
@@ -156,7 +156,7 @@ func (h *HandlerV1) ListDoctorTimes(c *gin.Context) {
 		doctorTime.EndTime = times.EndTime
 		doctorTime.Status = times.Status
 		doctorTime.CreatedAt = times.CreatedAt
-		doctorTime.UpdatedAt = times.UpdatedAt
+		doctorTime.UpdatedAt = e.UpdateTimeFilter(times.UpdatedAt)
 		doctorTimes.DoctorTimes = append(doctorTimes.DoctorTimes, &doctorTime)
 	}
 
@@ -219,7 +219,7 @@ func (h *HandlerV1) UpdateDoctorTimes(c *gin.Context) {
 		EndTime:      res.EndTime,
 		Status:       res.Status,
 		CreatedAt:    res.CreatedAt,
-		UpdatedAt:    res.UpdatedAt,
+		UpdatedAt:    e.UpdateTimeFilter(res.UpdatedAt),
 	})
 }
 

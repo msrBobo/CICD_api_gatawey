@@ -44,6 +44,7 @@ func (h *HandlerV1) CreateDoctor(c *gin.Context) {
 		Id:            uuid.NewString(),
 		FirstName:     body.FirstName,
 		LastName:      body.LastName,
+		ImageUrl:      body.ImageUrl,
 		Gender:        body.Gender,
 		BirthDate:     body.BirthDate,
 		PhoneNumber:   body.PhoneNumber,
@@ -55,7 +56,6 @@ func (h *HandlerV1) CreateDoctor(c *gin.Context) {
 		Salary:        body.Salary,
 		Bio:           body.Bio,
 		StartWorkDate: body.StartWorkDate,
-		EndWorkDate:   body.EndWorkDate,
 		WorkYears:     body.WorkYears,
 		DepartmentId:  body.DepartmentId,
 		RoomNumber:    body.RoomNumber,
@@ -70,6 +70,7 @@ func (h *HandlerV1) CreateDoctor(c *gin.Context) {
 		Order:         doctor.Order,
 		FirstName:     doctor.FirstName,
 		LastName:      doctor.LastName,
+		ImageUrl:      body.ImageUrl,
 		Gender:        doctor.Gender,
 		BirthDate:     doctor.BirthDate,
 		PhoneNumber:   doctor.PhoneNumber,
@@ -86,7 +87,7 @@ func (h *HandlerV1) CreateDoctor(c *gin.Context) {
 		RoomNumber:    doctor.RoomNumber,
 		Password:      doctor.Password,
 		CreatedAt:     doctor.CreatedAt,
-		UpdatedAt:     doctor.UpdatedAt,
+		UpdatedAt:     e.UpdateTimeFilter(doctor.UpdatedAt),
 	})
 }
 
@@ -100,7 +101,7 @@ func (h *HandlerV1) CreateDoctor(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.DoctorRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctor [get]
+// @Router /v1/doctor/get [get]
 func (h *HandlerV1) GetDoctor(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -122,6 +123,7 @@ func (h *HandlerV1) GetDoctor(c *gin.Context) {
 		Order:         doctor.Order,
 		FirstName:     doctor.FirstName,
 		LastName:      doctor.LastName,
+		ImageUrl:      doctor.ImageUrl,
 		Gender:        doctor.Gender,
 		BirthDate:     doctor.BirthDate,
 		PhoneNumber:   doctor.PhoneNumber,
@@ -138,7 +140,7 @@ func (h *HandlerV1) GetDoctor(c *gin.Context) {
 		RoomNumber:    doctor.RoomNumber,
 		Password:      doctor.Password,
 		CreatedAt:     doctor.CreatedAt,
-		UpdatedAt:     doctor.UpdatedAt,
+		UpdatedAt:     e.UpdateTimeFilter(doctor.UpdatedAt),
 	})
 }
 
@@ -152,7 +154,7 @@ func (h *HandlerV1) GetDoctor(c *gin.Context) {
 // @Success 200 {object} model_healthcare_service.ListDoctors
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
-// @Router /v1/doctor/get [get]
+// @Router /v1/doctor [get]
 func (h *HandlerV1) ListDoctors(c *gin.Context) {
 	field := c.Query("field")
 	value := c.Query("value")
@@ -187,6 +189,7 @@ func (h *HandlerV1) ListDoctors(c *gin.Context) {
 			Order:         doctorRes.Order,
 			FirstName:     doctorRes.FirstName,
 			LastName:      doctorRes.LastName,
+			ImageUrl:      doctorRes.ImageUrl,
 			Gender:        doctorRes.Gender,
 			BirthDate:     doctorRes.BirthDate,
 			PhoneNumber:   doctorRes.PhoneNumber,
@@ -208,7 +211,81 @@ func (h *HandlerV1) ListDoctors(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, model_healthcare_service.ListDoctors{
-		Count:   int32(doctors.Count),
+		Count:   int64(doctors.Count),
+		Doctors: doctorsRes.Doctors,
+	})
+}
+
+// ListDoctorsBySpecializationId ...
+// @Summary ListDoctorsBySpecializationId
+// @Description ListDoctorsBySpecializationId - Api for list doctors by specialization id
+// @Tags Doctor
+// @Accept json
+// @Produce json
+// @Param ListReq query models.ListReq false "ListReq"
+// @Param specialization_id query string true "specialization_id"
+// @Success 200 {object} model_healthcare_service.ListDoctors
+// @Failure 400 {object} model_common.StandardErrorModel
+// @Failure 500 {object} model_common.StandardErrorModel
+// @Router /v1/doctor/spec [get]
+func (h *HandlerV1) ListDoctorsBySpecializationId(c *gin.Context) {
+	field := c.Query("field")
+	value := c.Query("value")
+	limit := c.Query("limit")
+	page := c.Query("page")
+	orderBy := c.Query("orderBy")
+
+	specId := c.Query("specialization_id")
+	pageInt, limitInt, err := e.ParseQueryParams(page, limit)
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "ListDoctorsBySpecializationId") {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
+	defer cancel()
+
+	doctors, err := h.serviceManager.HealthcareService().DoctorService().ListDoctorBySpecializationId(ctx, &pb.GetReqStrSpec{
+		Field:            field,
+		Value:            value,
+		IsActive:         false,
+		Page:             int32(pageInt),
+		Limit:            int32(limitInt),
+		OrderBy:          orderBy,
+		SpecializationId: specId,
+	})
+
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListDoctorsBySpecializationId") {
+		return
+	}
+	var doctorsRes model_healthcare_service.ListDoctors
+	for _, doctorRes := range doctors.Doctors {
+		doctorsRes.Doctors = append(doctorsRes.Doctors, &model_healthcare_service.DoctorRes{
+			Id:            doctorRes.Id,
+			Order:         doctorRes.Order,
+			FirstName:     doctorRes.FirstName,
+			LastName:      doctorRes.LastName,
+			ImageUrl:      doctorRes.ImageUrl,
+			Gender:        doctorRes.Gender,
+			BirthDate:     doctorRes.BirthDate,
+			PhoneNumber:   doctorRes.PhoneNumber,
+			Email:         doctorRes.Email,
+			Address:       doctorRes.Address,
+			City:          doctorRes.City,
+			Country:       doctorRes.Country,
+			Salary:        doctorRes.Salary,
+			Bio:           doctorRes.Bio,
+			StartWorkDate: doctorRes.StartWorkDate,
+			EndWorkDate:   doctorRes.EndWorkDate,
+			WorkYears:     doctorRes.WorkYears,
+			DepartmentId:  doctorRes.DepartmentId,
+			RoomNumber:    doctorRes.RoomNumber,
+			Password:      doctorRes.Password,
+			CreatedAt:     doctorRes.CreatedAt,
+			UpdatedAt:     e.UpdateTimeFilter(doctorRes.UpdatedAt),
+		})
+	}
+	c.JSON(http.StatusOK, model_healthcare_service.ListDoctors{
+		Count:   doctors.Count,
 		Doctors: doctorsRes.Doctors,
 	})
 }
@@ -219,7 +296,7 @@ func (h *HandlerV1) ListDoctors(c *gin.Context) {
 // @Tags Doctor
 // @Accept json
 // @Produce json
-// @Param UpdateDoctorReq body model_healthcare_service.DoctorReq true "UpdateDoctorReq"
+// @Param UpdateDoctorReq body model_healthcare_service.DoctorUpdateReq true "UpdateDoctorReq"
 // @Param id query string true "id"
 // @Success 200 {object} model_healthcare_service.DoctorRes
 // @Failure 400 {object} model_common.StandardErrorModel
@@ -227,7 +304,7 @@ func (h *HandlerV1) ListDoctors(c *gin.Context) {
 // @Router /v1/doctor [put]
 func (h *HandlerV1) UpdateDoctor(c *gin.Context) {
 	var (
-		body        model_healthcare_service.DoctorReq
+		body        model_healthcare_service.DoctorUpdateReq
 		jsonMarshal protojson.MarshalOptions
 	)
 	jsonMarshal.UseProtoNames = true
@@ -247,6 +324,7 @@ func (h *HandlerV1) UpdateDoctor(c *gin.Context) {
 		Id:            id,
 		FirstName:     body.FirstName,
 		LastName:      body.LastName,
+		ImageUrl:      body.ImageUrl,
 		Gender:        body.Gender,
 		BirthDate:     body.BirthDate,
 		PhoneNumber:   body.PhoneNumber,
@@ -272,6 +350,7 @@ func (h *HandlerV1) UpdateDoctor(c *gin.Context) {
 		Id:            doctor.Id,
 		FirstName:     doctor.FirstName,
 		LastName:      doctor.LastName,
+		ImageUrl:      doctor.ImageUrl,
 		Gender:        doctor.Gender,
 		BirthDate:     doctor.BirthDate,
 		PhoneNumber:   doctor.PhoneNumber,
@@ -288,7 +367,7 @@ func (h *HandlerV1) UpdateDoctor(c *gin.Context) {
 		DepartmentId:  doctor.DepartmentId,
 		RoomNumber:    doctor.RoomNumber,
 		CreatedAt:     doctor.CreatedAt,
-		UpdatedAt:     doctor.UpdatedAt,
+		UpdatedAt:     e.UpdateTimeFilter(doctor.UpdatedAt),
 	})
 }
 

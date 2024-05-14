@@ -58,7 +58,7 @@ func (h *HandlerV1) CreateDoctorNote(c *gin.Context) {
 		PatientId:     doctorNote.PatientId,
 		Prescription:  doctorNote.Prescription,
 		CreatedAt:     doctorNote.CreatedAt,
-		UpdatedAt:     doctorNote.UpdatedAt,
+		UpdatedAt:     e.UpdateTimeFilter(doctorNote.UpdatedAt),
 	})
 }
 
@@ -97,7 +97,7 @@ func (h *HandlerV1) GetDoctorNote(c *gin.Context) {
 		PatientId:     doctorNote.PatientId,
 		Prescription:  doctorNote.Prescription,
 		CreatedAt:     doctorNote.CreatedAt,
-		UpdatedAt:     doctorNote.UpdatedAt,
+		UpdatedAt:     e.UpdateTimeFilter(doctorNote.UpdatedAt),
 	})
 }
 
@@ -149,7 +149,7 @@ func (h *HandlerV1) ListDoctorNotes(c *gin.Context) {
 		doctorNote.PatientId = doctorNoteRes.PatientId
 		doctorNote.Prescription = doctorNoteRes.Prescription
 		doctorNote.CreatedAt = doctorNoteRes.CreatedAt
-		doctorNote.UpdatedAt = doctorNoteRes.UpdatedAt
+		doctorNote.UpdatedAt = e.UpdateTimeFilter(doctorNoteRes.UpdatedAt)
 		doctorNotesRes.DoctorNotes = append(doctorNotesRes.DoctorNotes, &doctorNote)
 	}
 
@@ -205,7 +205,7 @@ func (h *HandlerV1) UpdateDoctorNote(c *gin.Context) {
 		PatientId:     doctorNote.PatientId,
 		Prescription:  doctorNote.Prescription,
 		CreatedAt:     doctorNote.CreatedAt,
-		UpdatedAt:     doctorNote.UpdatedAt,
+		UpdatedAt:     e.UpdateTimeFilter(doctorNote.UpdatedAt),
 	})
 }
 
