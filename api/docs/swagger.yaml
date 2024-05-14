@@ -337,14 +337,19 @@ definitions:
   model_healthcare_service.DepartmentReq:
     properties:
       description:
+        example: description
         type: string
       floor_number:
+        example: 2
         type: integer
       image_url:
+        example: http://example.com/image.png
         type: string
       name:
+        example: name
         type: string
       short_description:
+        example: short_description
         type: string
     type: object
   model_healthcare_service.DepartmentRes:
@@ -371,38 +376,55 @@ definitions:
   model_healthcare_service.DoctorReq:
     properties:
       address:
+        example: Addres
         type: string
       bio:
+        example: Biography
         type: string
       birth_date:
+        example: "2012-12-12"
         type: string
       city:
+        example: City
         type: string
       country:
+        example: Country
         type: string
       department_id:
+        example: 123e4567-e89b-12d3-a456-426614174001
         type: string
       email:
-        type: string
-      end_work_date:
+        example: email@gmail.com
         type: string
       first_name:
+        example: First Name
         type: string
       gender:
+        example: male
+        type: string
+      image_url:
+        example: http://example.com/image.png
         type: string
       last_name:
+        example: Last Name
         type: string
       password:
+        example: password
         type: string
       phone_number:
+        example: "+998901234567"
         type: string
       room_number:
+        example: 1
         type: integer
       salary:
+        example: 10
         type: number
       start_work_date:
+        example: "2012-12-12"
         type: string
       work_years:
+        example: 4
         type: integer
     type: object
   model_healthcare_service.DoctorRes:
@@ -431,6 +453,8 @@ definitions:
         type: string
       id:
         type: string
+      image_url:
+        type: string
       last_name:
         type: string
       order:
@@ -452,24 +476,30 @@ definitions:
     type: object
   model_healthcare_service.DoctorServicesReq:
     properties:
-      doctorId:
+      doctor_id:
+        example: 123e4567-e89b-12d3-a456-426614274001
         type: string
       duration:
+        example: "12:12"
         type: string
       name:
+        example: name
         type: string
-      offlinePrice:
+      offline_price:
+        example: 1.1
         type: number
-      onlinePrice:
+      online_price:
+        example: 1.1
         type: number
-      specializationId:
+      specialization_id:
+        example: 123e4567-e89b-12d3-a456-426614375001
         type: string
     type: object
   model_healthcare_service.DoctorServicesRes:
     properties:
-      createdAt:
+      created_at:
         type: string
-      doctorId:
+      doctor_id:
         type: string
       duration:
         type: string
@@ -477,43 +507,104 @@ definitions:
         type: string
       name:
         type: string
-      offlinePrice:
+      offline_price:
         type: number
-      onlinePrice:
+      online_price:
         type: number
       order:
         type: integer
-      specializationId:
+      specialization_id:
         type: string
-      updatedAt:
+      updated_at:
         type: string
+    type: object
+  model_healthcare_service.DoctorUpdateReq:
+    properties:
+      address:
+        example: Addres
+        type: string
+      bio:
+        example: Biography
+        type: string
+      birth_date:
+        example: "2012-12-12"
+        type: string
+      city:
+        example: City
+        type: string
+      country:
+        example: Country
+        type: string
+      department_id:
+        example: 123e4567-e89b-12d3-a456-426614174001
+        type: string
+      email:
+        example: email@gmail.com
+        type: string
+      end-work-date:
+        example: "2022-12-12"
+        type: string
+      first_name:
+        example: First Name
+        type: string
+      gender:
+        example: male
+        type: string
+      image_url:
+        example: http://example.com/image.png
+        type: string
+      last_name:
+        example: Last Name
+        type: string
+      password:
+        example: password
+        type: string
+      phone_number:
+        example: "+998901234567"
+        type: string
+      room_number:
+        example: 1
+        type: integer
+      salary:
+        example: 10
+        type: number
+      start_work_date:
+        example: "2012-12-12"
+        type: string
+      work_years:
+        example: 4
+        type: integer
     type: object
   model_healthcare_service.DoctorWorkingHoursReq:
     properties:
-      dayOfWeek:
+      day_of_week:
+        example: Monday
         type: string
-      doctorId:
+      doctor_id:
+        example: 123e4567-e89b-12d3-a456-426614274001
         type: string
-      finishTime:
+      finish_time:
+        example: "12:00:00"
         type: string
-      startTime:
+      start_time:
+        example: "12:00:00"
         type: string
     type: object
   model_healthcare_service.DoctorWorkingHoursRes:
     properties:
-      createdAt:
+      created_at:
         type: string
-      dayOfWeek:
+      day_of_week:
         type: string
-      doctorId:
+      doctor_id:
         type: string
-      finishTime:
+      finish_time:
         type: string
       id:
         type: integer
-      startTime:
+      start_time:
         type: string
-      updatedAt:
+      updated_at:
         type: string
     type: object
   model_healthcare_service.ListDepartments:
@@ -529,7 +620,7 @@ definitions:
     properties:
       count:
         type: integer
-      doctorServices:
+      doctor_services:
         items:
           $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
         type: array
@@ -572,37 +663,44 @@ definitions:
     type: object
   model_healthcare_service.ReasonsReq:
     properties:
-      imageUrl:
+      image_url:
+        example: http://example.com/image.png
         type: string
       name:
+        example: name
         type: string
-      specializationId:
+      specialization_id:
+        example: 123e4567-e89b-12d3-a456-426614375001
         type: string
     type: object
   model_healthcare_service.ReasonsRes:
     properties:
-      createdAt:
+      created_at:
         type: string
       id:
         type: string
-      imageUrl:
+      image_url:
         type: string
       name:
         type: string
-      specializationId:
+      specialization_id:
         type: string
-      updatedAt:
+      updated_at:
         type: string
     type: object
   model_healthcare_service.SpecializationReq:
     properties:
       department_id:
+        example: 123e4567-e89b-12d3-a456-426614174003
         type: string
       description:
+        example: Specialization description
         type: string
       image_url:
+        example: http://example.com/image.png
         type: string
       name:
+        example: Specialization
         type: string
     type: object
   model_healthcare_service.SpecializationRes:
@@ -1384,10 +1482,19 @@ paths:
     get:
       consumes:
       - application/json
-      description: GetDepartment - Api for get department
+      description: ListDepartments - Api for list department
       parameters:
       - in: query
         name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
         type: string
       - in: query
         name: value
@@ -1398,7 +1505,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.DepartmentRes'
+            $ref: '#/definitions/model_healthcare_service.ListDepartments'
         "400":
           description: Bad Request
           schema:
@@ -1407,7 +1514,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: GetDepartment
+      summary: ListDepartments
       tags:
       - Department
     post:
@@ -1477,19 +1584,10 @@ paths:
     get:
       consumes:
       - application/json
-      description: ListDepartments - Api for list department
+      description: GetDepartment - Api for get department
       parameters:
       - in: query
         name: field
-        type: string
-      - in: query
-        name: limit
-        type: string
-      - in: query
-        name: order_by
-        type: string
-      - in: query
-        name: page
         type: string
       - in: query
         name: value
@@ -1500,7 +1598,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.ListDepartments'
+            $ref: '#/definitions/model_healthcare_service.DepartmentRes'
         "400":
           description: Bad Request
           schema:
@@ -1509,7 +1607,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ListDepartments
+      summary: GetDepartment
       tags:
       - Department
   /v1/doctor:
@@ -1545,10 +1643,19 @@ paths:
     get:
       consumes:
       - application/json
-      description: GetDoctor - Api for get doctor
+      description: ListDoctors - Api for list doctor
       parameters:
       - in: query
         name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
         type: string
       - in: query
         name: value
@@ -1559,7 +1666,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.DoctorRes'
+            $ref: '#/definitions/model_healthcare_service.ListDoctors'
         "400":
           description: Bad Request
           schema:
@@ -1568,7 +1675,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: GetDoctor
+      summary: ListDoctors
       tags:
       - Doctor
     post:
@@ -1610,7 +1717,7 @@ paths:
         name: UpdateDoctorReq
         required: true
         schema:
-          $ref: '#/definitions/model_healthcare_service.DoctorReq'
+          $ref: '#/definitions/model_healthcare_service.DoctorUpdateReq'
       - description: id
         in: query
         name: id
@@ -1828,10 +1935,19 @@ paths:
     get:
       consumes:
       - application/json
-      description: GetDoctorService - Api for get doctor_services
+      description: ListDoctorServices - Api for list doctor_services
       parameters:
       - in: query
         name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
         type: string
       - in: query
         name: value
@@ -1842,7 +1958,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
+            $ref: '#/definitions/model_healthcare_service.ListDoctorServices'
         "400":
           description: Bad Request
           schema:
@@ -1851,7 +1967,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: GetDoctorService
+      summary: ListDoctorServices
       tags:
       - Doctor Services
     post:
@@ -1921,19 +2037,10 @@ paths:
     get:
       consumes:
       - application/json
-      description: ListDoctorServices - Api for list doctor_services
+      description: GetDoctorService - Api for get doctor_services
       parameters:
       - in: query
         name: field
-        type: string
-      - in: query
-        name: limit
-        type: string
-      - in: query
-        name: order_by
-        type: string
-      - in: query
-        name: page
         type: string
       - in: query
         name: value
@@ -1944,7 +2051,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.ListDoctorServices'
+            $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
         "400":
           description: Bad Request
           schema:
@@ -1953,7 +2060,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ListDoctorServices
+      summary: GetDoctorService
       tags:
       - Doctor Services
   /v1/doctor-time:
@@ -2150,10 +2257,19 @@ paths:
     get:
       consumes:
       - application/json
-      description: GetDoctorWorkingHours - Api for get doctor_working_hours
+      description: ListDoctorWorkingHours - Api for list doctor_working_hours
       parameters:
       - in: query
         name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
         type: string
       - in: query
         name: value
@@ -2164,7 +2280,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.DoctorWorkingHoursRes'
+            $ref: '#/definitions/model_healthcare_service.ListDoctorWorkingHours'
         "400":
           description: Bad Request
           schema:
@@ -2173,7 +2289,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: GetDoctorWorkingHours
+      summary: ListDoctorWorkingHours
       tags:
       - Doctor Working Hours
     post:
@@ -2243,19 +2359,10 @@ paths:
     get:
       consumes:
       - application/json
-      description: ListDoctorWorkingHours - Api for list doctor_working_hours
+      description: GetDoctorWorkingHours - Api for get doctor_working_hours
       parameters:
       - in: query
         name: field
-        type: string
-      - in: query
-        name: limit
-        type: string
-      - in: query
-        name: order_by
-        type: string
-      - in: query
-        name: page
         type: string
       - in: query
         name: value
@@ -2266,7 +2373,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.ListDoctorWorkingHours'
+            $ref: '#/definitions/model_healthcare_service.DoctorWorkingHoursRes'
         "400":
           description: Bad Request
           schema:
@@ -2275,14 +2382,45 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ListDoctorWorkingHours
+      summary: GetDoctorWorkingHours
       tags:
       - Doctor Working Hours
   /v1/doctor/get:
     get:
       consumes:
       - application/json
-      description: ListDoctors - Api for list doctor
+      description: GetDoctor - Api for get doctor
+      parameters:
+      - in: query
+        name: field
+        type: string
+      - in: query
+        name: value
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model_healthcare_service.DoctorRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model_common.StandardErrorModel'
+      summary: GetDoctor
+      tags:
+      - Doctor
+  /v1/doctor/spec:
+    get:
+      consumes:
+      - application/json
+      description: ListDoctorsBySpecializationId - Api for list doctors by specialization
+        id
       parameters:
       - in: query
         name: field
@@ -2298,6 +2436,11 @@ paths:
         type: string
       - in: query
         name: value
+        type: string
+      - description: specialization_id
+        in: query
+        name: specialization_id
+        required: true
         type: string
       produces:
       - application/json
@@ -2314,7 +2457,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ListDoctors
+      summary: ListDoctorsBySpecializationId
       tags:
       - Doctor
   /v1/file-upload:
@@ -2328,6 +2471,16 @@ paths:
         name: file
         required: true
         type: file
+      - description: bucket
+        enum:
+        - department
+        - reasons
+        - specialization
+        - doctor
+        in: query
+        name: bucketName
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -2574,10 +2727,19 @@ paths:
     get:
       consumes:
       - application/json
-      description: GetReasons - Api for get reasons
+      description: ListReasons - Api for list reasons
       parameters:
       - in: query
         name: field
+        type: string
+      - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
         type: string
       - in: query
         name: value
@@ -2588,7 +2750,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.ReasonsRes'
+            $ref: '#/definitions/model_healthcare_service.ListReasons'
         "400":
           description: Bad Request
           schema:
@@ -2597,7 +2759,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: GetReasons
+      summary: ListReasons
       tags:
       - Reasons
     post:
@@ -2667,19 +2829,10 @@ paths:
     get:
       consumes:
       - application/json
-      description: ListReasons - Api for list reasons
+      description: GetReasons - Api for get reasons
       parameters:
       - in: query
         name: field
-        type: string
-      - in: query
-        name: limit
-        type: string
-      - in: query
-        name: order_by
-        type: string
-      - in: query
-        name: page
         type: string
       - in: query
         name: value
@@ -2690,7 +2843,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.ListReasons'
+            $ref: '#/definitions/model_healthcare_service.ReasonsRes'
         "400":
           description: Bad Request
           schema:
@@ -2699,7 +2852,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ListReasons
+      summary: GetReasons
       tags:
       - Reasons
   /v1/session:
@@ -2792,13 +2945,26 @@ paths:
     get:
       consumes:
       - application/json
-      description: GetSpecialization - Api for get specialization
+      description: ListSpecializations - Api for list specialization
       parameters:
       - in: query
         name: field
         type: string
       - in: query
+        name: limit
+        type: string
+      - in: query
+        name: order_by
+        type: string
+      - in: query
+        name: page
+        type: string
+      - in: query
         name: value
+        type: string
+      - description: department_id
+        in: query
+        name: department_id
         type: string
       produces:
       - application/json
@@ -2806,7 +2972,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.SpecializationRes'
+            $ref: '#/definitions/model_healthcare_service.ListSpecializations'
         "400":
           description: Bad Request
           schema:
@@ -2815,7 +2981,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: GetSpecialization
+      summary: ListSpecializations
       tags:
       - Specialization
     post:
@@ -2885,19 +3051,10 @@ paths:
     get:
       consumes:
       - application/json
-      description: ListSpecializations - Api for list specialization
+      description: GetSpecialization - Api for get specialization
       parameters:
       - in: query
         name: field
-        type: string
-      - in: query
-        name: limit
-        type: string
-      - in: query
-        name: order_by
-        type: string
-      - in: query
-        name: page
         type: string
       - in: query
         name: value
@@ -2908,7 +3065,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.ListSpecializations'
+            $ref: '#/definitions/model_healthcare_service.SpecializationRes'
         "400":
           description: Bad Request
           schema:
@@ -2917,7 +3074,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model_common.StandardErrorModel'
-      summary: ListSpecializations
+      summary: GetSpecialization
       tags:
       - Specialization
   /v1/token/get-token:

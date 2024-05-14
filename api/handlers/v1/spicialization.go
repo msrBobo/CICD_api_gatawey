@@ -110,6 +110,7 @@ func (h *HandlerV1) GetSpecialization(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param ListReq query models.ListReq false "ListReq"
+// @Param department_id query string false "department_id"
 // @Success 200 {object} model_healthcare_service.ListSpecializations
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
@@ -121,6 +122,7 @@ func (h *HandlerV1) ListSpecializations(c *gin.Context) {
 	page := c.Query("page")
 	orderBy := c.Query("orderBy")
 
+	departmentId := c.Query("department_id")
 	pageInt, limitInt, err := e.ParseQueryParams(page, limit)
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListSpecializations") {
 		return
@@ -130,12 +132,13 @@ func (h *HandlerV1) ListSpecializations(c *gin.Context) {
 	defer cancel()
 
 	specializations, err := h.serviceManager.HealthcareService().SpecializationService().GetAllSpecializations(ctx, &pb.GetAllSpecialization{
-		Field:    field,
-		Value:    value,
-		IsActive: false,
-		Page:     int32(pageInt),
-		Limit:    int32(limitInt),
-		OrderBy:  orderBy,
+		Field:        field,
+		Value:        value,
+		IsActive:     false,
+		Page:         int32(pageInt),
+		Limit:        int32(limitInt),
+		OrderBy:      orderBy,
+		DepartmentId: departmentId,
 	})
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListSpecializations") {

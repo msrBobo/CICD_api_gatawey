@@ -55,6 +55,7 @@ func (h *HandlerV1) CreateDepartment(c *gin.Context) {
 
 	c.JSON(http.StatusOK, model_healthcare_service.DepartmentRes{
 		Id:               department.Id,
+		Order:            department.Order,
 		Name:             department.Name,
 		Description:      department.Description,
 		ImageUrl:         department.ImageUrl,
@@ -94,6 +95,7 @@ func (h *HandlerV1) GetDepartment(c *gin.Context) {
 
 	c.JSON(http.StatusOK, model_healthcare_service.DepartmentRes{
 		Id:               department.Id,
+		Order:            department.Order,
 		Name:             department.Name,
 		Description:      department.Description,
 		ImageUrl:         department.ImageUrl,
@@ -207,6 +209,7 @@ func (h *HandlerV1) UpdateDepartment(c *gin.Context) {
 
 	c.JSON(http.StatusOK, model_healthcare_service.DepartmentRes{
 		Id:               department.Id,
+		Order:            department.Order,
 		Name:             department.Name,
 		Description:      department.Description,
 		ImageUrl:         department.ImageUrl,

@@ -74,7 +74,7 @@ func (h *HandlerV1) Register(c *gin.Context) {
 		return
 	}
 	if existsPhone.Status {
-		err = errors.New("failed to check phone number uniques")
+		err = errors.New("already registered")
 		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "Register")
 		return
 	}
