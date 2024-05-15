@@ -4,7 +4,6 @@ export
 CURRENT_DIR=$(shell pwd)
 APP=evrone_api_gateway
 CMD_DIR=./cmd
-
 SERVER_HOST = localhost:
 SERVER_PORT = 9050
 
@@ -62,7 +61,6 @@ POSTGRES_DATABASE = dennic
 #POSTGRES_HOST = postgresdb
 #POSTGRES_PORT = 5432
 #POSTGRES_DATABASE = dennic
-
 
 
 # build for current os

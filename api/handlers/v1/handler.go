@@ -10,6 +10,15 @@ import (
 	"time"
 )
 
+const (
+	SERVICE_ERROR            = "something went wrong on our side, try again later"
+	INVALID_REQUET_BODY      = "invalid request body"
+	NOT_REGISTERED           = "you have not registered before"
+	INVALID_PHONE_NUMBER     = "invalid phone number"
+	CODE_EXPIRATION_NOT_OVER = "code expiration is not over yet, please wait"
+	INVALID_CODE             = "incorrect code entered"
+)
+
 type HandlerV1 struct {
 	ContextTimeout time.Duration
 	jwthandler     token.JWTHandler

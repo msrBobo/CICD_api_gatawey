@@ -26,3 +26,10 @@ type ListDoctorServices struct {
 	Count          int32                `json:"count"`
 	DoctorServices []*DoctorServicesRes `json:"doctor_services"`
 }
+
+type ListReqDoctorServices struct {
+	Page         string `json:"page"`
+	Limit        string `json:"limit"`
+	OrderBy      string `json:"order_by"`
+	DeleteStatus bool   `json:"-"`
+}

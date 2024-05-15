@@ -140,7 +140,7 @@ func (h *HandlerV1) ListPatient(c *gin.Context) {
 	orderBy := c.Query("orderBy")
 
 	pageInt, limitInt, err := e.ParseQueryParams(page, limit)
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListPatient") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "ListPatient") {
 		return
 	}
 

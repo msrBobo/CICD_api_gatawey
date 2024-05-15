@@ -103,9 +103,9 @@ type RefreshToken struct {
 func (u *Redis) Validate() error {
 	return validation.ValidateStruct(
 		u,
-		validation.Field(&u.PhoneNumber, validation.Required, validation.Length(13, 13), validation.Match(regexp.MustCompile("^\\+[0-9]"))),
-		validation.Field(&u.Password, validation.Required, validation.Length(8, 32), validation.Match(regexp.MustCompile("^[a-zA-Z0-9!@#$%^&*()-_=+]"))),
-		validation.Field(&u.FirstName, validation.Required, validation.Length(3, 50), validation.Match(regexp.MustCompile("^[A-Z][a-zA-Z']*([\\\\s-][A-Z][a-zA-Z']*)*$"))),
-		validation.Field(&u.LastName, validation.Required, validation.Length(3, 50), validation.Match(regexp.MustCompile("^[A-Z][a-zA-Z']*([\\\\s-][A-Z][a-zA-Z']*)*$"))),
+		validation.Field(&u.PhoneNumber, validation.Required, validation.Length(13, 13), validation.Match(regexp.MustCompile("^\\+[0-9]")).Error("Phone number is not valid")),
+		validation.Field(&u.Password, validation.Required, validation.Length(8, 32), validation.Match(regexp.MustCompile("^[a-zA-Z0-9!@#$%^&*()-_=+]")).Error("Password is not valid")),
+		validation.Field(&u.FirstName, validation.Required, validation.Length(3, 50), validation.Match(regexp.MustCompile("^[A-Z][a-zA-Z']*([\\\\s-][A-Z][a-zA-Z']*)*$")).Error("First name is not valid")),
+		validation.Field(&u.LastName, validation.Required, validation.Length(3, 50), validation.Match(regexp.MustCompile("^[A-Z][a-zA-Z']*([\\\\s-][A-Z][a-zA-Z']*)*$")).Error("Last name is not valid")),
 	)
 }

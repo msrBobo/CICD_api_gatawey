@@ -2,6 +2,7 @@ package v1
 
 import (
 	jwt "dennic_api_gateway/internal/pkg/tokens"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"
 )
@@ -17,8 +18,9 @@ func GetUserInfo(c *gin.Context) (*UserTokenRes, error) {
 	token := c.GetHeader("Authorization")
 
 	claims, err := jwt.ExtractClaim(token)
-
+	fmt.Println(err, "----------")
 	if err != nil {
+
 		return nil, err
 	}
 

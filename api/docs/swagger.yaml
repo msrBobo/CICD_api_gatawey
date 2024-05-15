@@ -1540,6 +1540,13 @@ paths:
       - in: query
         name: value
         type: string
+      - description: search
+        enum:
+        - name
+        - description
+        in: query
+        name: search
+        type: string
       produces:
       - application/json
       responses:
@@ -1692,6 +1699,20 @@ paths:
         type: string
       - in: query
         name: value
+        type: string
+      - description: search
+        enum:
+        - first_name
+        - last_name
+        - gender
+        - phone_number
+        - email
+        - address
+        - city
+        - country
+        - biography
+        in: query
+        name: search
         type: string
       produces:
       - application/json
@@ -1976,9 +1997,6 @@ paths:
         type: string
       - in: query
         name: page
-        type: string
-      - in: query
-        name: value
         type: string
       produces:
       - application/json
@@ -2297,6 +2315,12 @@ paths:
       - in: query
         name: value
         type: string
+      - description: search
+        enum:
+        - day_of_week
+        in: query
+        name: search
+        type: string
       produces:
       - application/json
       responses:
@@ -2500,7 +2524,6 @@ paths:
         - user
         in: query
         name: bucketName
-        required: true
         type: string
       produces:
       - application/json
@@ -2766,6 +2789,12 @@ paths:
       - in: query
         name: value
         type: string
+      - description: search
+        enum:
+        - name
+        in: query
+        name: search
+        type: string
       produces:
       - application/json
       responses:
@@ -2984,6 +3013,13 @@ paths:
       - description: department_id
         in: query
         name: department_id
+        type: string
+      - description: search
+        enum:
+        - name
+        - description
+        in: query
+        name: search
         type: string
       produces:
       - application/json

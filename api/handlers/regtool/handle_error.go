@@ -14,8 +14,8 @@ func HandleError(c *gin.Context, err error, l *zap.Logger, statusCode int, msg s
 	c.JSON(statusCode,
 		&model_common.ResponseError{
 			Code:    http.StatusText(statusCode),
-			Message: err.Error(),
-			Date:    msg,
+			Message: msg,
+			Data:    err.Error(),
 		})
 	l.Log(1, err.Error())
 	return true

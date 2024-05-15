@@ -36,6 +36,7 @@ func UploadToMinio(cfg *config.Config, objectName string, content []byte, bucket
 	opts := minio.PutObjectOptions{ContentType: "png/jpeg/zip/pdf/text/dock/csv/rar/xml", UserMetadata: map[string]string{"x-amz-acl": "public-read"}}
 
 	_, err = minioClient.PutObject(context.Background(), bucketName, objectName, bytes.NewReader(content), int64(len(content)), opts)
+
 	if err != nil {
 		return "", err
 	}

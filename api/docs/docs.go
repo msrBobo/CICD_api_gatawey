@@ -908,6 +908,16 @@ const docTemplate = `{
                         "type": "string",
                         "name": "value",
                         "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "name",
+                            "description"
+                        ],
+                        "type": "string",
+                        "description": "search",
+                        "name": "search",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -1144,6 +1154,23 @@ const docTemplate = `{
                     {
                         "type": "string",
                         "name": "value",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "first_name",
+                            "last_name",
+                            "gender",
+                            "phone_number",
+                            "email",
+                            "address",
+                            "city",
+                            "country",
+                            "biography"
+                        ],
+                        "type": "string",
+                        "description": "search",
+                        "name": "search",
                         "in": "query"
                     }
                 ],
@@ -1582,11 +1609,6 @@ const docTemplate = `{
                     {
                         "type": "string",
                         "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
                         "in": "query"
                     }
                 ],
@@ -2078,6 +2100,15 @@ const docTemplate = `{
                         "type": "string",
                         "name": "value",
                         "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "day_of_week"
+                        ],
+                        "type": "string",
+                        "description": "search",
+                        "name": "search",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -2432,8 +2463,7 @@ const docTemplate = `{
                         "type": "string",
                         "description": "bucket",
                         "name": "bucketName",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -2794,6 +2824,15 @@ const docTemplate = `{
                         "type": "string",
                         "name": "value",
                         "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "name"
+                        ],
+                        "type": "string",
+                        "description": "search",
+                        "name": "search",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -3129,6 +3168,16 @@ const docTemplate = `{
                         "type": "string",
                         "description": "department_id",
                         "name": "department_id",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "name",
+                            "description"
+                        ],
+                        "type": "string",
+                        "description": "search",
+                        "name": "search",
                         "in": "query"
                     }
                 ],
@@ -5032,8 +5081,6 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
-	LeftDelim:        "{{",
-	RightDelim:       "}}",
 }
 
 func init() {

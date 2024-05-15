@@ -1,7 +1,9 @@
 package casbin
 
 import (
+	"dennic_api_gateway/api/models/model_common"
 	"dennic_api_gateway/internal/pkg/config"
+	"dennic_api_gateway/internal/pkg/logger"
 	jwt "dennic_api_gateway/internal/pkg/tokens"
 	"fmt"
 	"github.com/casbin/casbin/v2"
@@ -35,9 +37,13 @@ func NewAuthorizer() gin.HandlerFunc {
 
 		claims, err := jwt.ExtractClaim(token1)
 		if err != nil {
-			ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
-				"message": err.Error(),
-			})
+			ctx.AbortWithStatusJSON(http.StatusUnauthorized,
+				&model_common.ResponseError{
+					Code:    http.StatusText(http.StatusUnauthorized),
+					Message: "missing token in the header",
+					Data:    err.Error(),
+				})
+			logger.Error(err)
 			return
 		}
 
