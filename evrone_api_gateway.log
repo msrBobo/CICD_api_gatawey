@@ -7440,3 +7440,1157 @@ main.main.func1
 2024-05-15T14:22:27.003+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
 main.main.func1
 	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T14:44:04.627+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T14:45:24.053+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T14:45:24.054+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T14:45:28.670+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T14:48:27.487+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unknown desc = ERROR: syntax error at or near "$1" (SQLSTATE 42601)
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).ListBookedAppointments
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/booked_appointment.go:155
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:49:16.600+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:49:52.698+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:49:56.917+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:49:59.401+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:50:00.594+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:50:01.207+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:50:01.785+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:50:02.426+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:05.925+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:08.244+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:09.330+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:10.001+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:10.715+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:11.371+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:12.192+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:12.868+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:13.624+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:13.837+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:14.049+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:14.348+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:14.682+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:15.011+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:15.223+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:15.477+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:15.669+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:15.929+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:9070: connect: connection refused"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:51:20.842+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T14:51:20.842+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T14:51:35.576+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T15:20:51.113+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T15:20:51.125+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T15:29:40.480+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T15:29:48.526+0500	ERROR	v1/user.go:119	failed to list users	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: address localhost9070: missing port in address\""}
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).ListUsers
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/user.go:119
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T15:49:18.112+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T15:49:18.116+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T15:49:40.736+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T15:50:20.620+0500	WARN	regtool/handle_error.go:20	dial tcp: address localhost::6379: too many colons in address
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:93
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T15:50:28.898+0500	WARN	regtool/handle_error.go:20	dial tcp: address localhost::6379: too many colons in address
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Verify
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:137
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T15:51:31.473+0500	WARN	regtool/handle_error.go:20	dial tcp: address localhost::6379: too many colons in address
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:93
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T15:52:04.986+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T15:52:04.987+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T15:52:07.529+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T16:24:02.395+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T16:24:02.403+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T16:24:06.791+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T16:24:34.441+0500	WARN	regtool/handle_error.go:20	Code expiration is not over yet, please wait
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).SenOtpCode
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:609
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T16:26:15.448+0500	WARN	regtool/handle_error.go:20	Code expiration is not over yet, please wait
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).SenOtpCode
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:609
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T16:26:16.975+0500	WARN	regtool/handle_error.go:20	Code expiration is not over yet, please wait
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).SenOtpCode
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:609
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T16:26:17.981+0500	WARN	regtool/handle_error.go:20	Code expiration is not over yet, please wait
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).SenOtpCode
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:609
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T16:26:23.592+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T16:26:23.593+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T16:26:35.773+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T16:26:41.449+0500	WARN	regtool/handle_error.go:20	code expiration is not over yet, please wait
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).SenOtpCode
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/registration.go:609
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T16:30:22.996+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T16:30:22.998+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32

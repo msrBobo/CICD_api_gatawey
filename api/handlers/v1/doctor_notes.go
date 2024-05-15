@@ -107,7 +107,7 @@ func (h *HandlerV1) GetDoctorNote(c *gin.Context) {
 // @Tags Doctor Note
 // @Accept json
 // @Produce json
-// @Param searchField query string false "searchField" ENUM(prescription)
+// @Param searchField query string false "searchField" Enums(prescription)
 // @Param ListReq query models.ListReq false "ListReq"
 // @Success 200 {object} model_booking_service.DoctorNotesType
 // @Failure 400 {object} model_common.StandardErrorModel

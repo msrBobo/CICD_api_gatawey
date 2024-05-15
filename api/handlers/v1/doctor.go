@@ -297,6 +297,7 @@ func (h *HandlerV1) ListDoctorsBySpecializationId(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param UpdateDoctorReq body model_healthcare_service.DoctorUpdateReq true "UpdateDoctorReq"
+// @Param id query string true "id"
 // @Success 200 {object} model_healthcare_service.DoctorRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
@@ -310,6 +311,8 @@ func (h *HandlerV1) UpdateDoctor(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&body)
 
+	id := c.Query("id")
+
 	if e.HandleError(c, err, h.log, http.StatusBadRequest, "UpdateDoctor") {
 		return
 	}
@@ -318,7 +321,7 @@ func (h *HandlerV1) UpdateDoctor(c *gin.Context) {
 	defer cancel()
 
 	doctor, err := h.serviceManager.HealthcareService().DoctorService().UpdateDoctor(ctx, &pb.Doctor{
-		Id:            body.Id,
+		Id:            id,
 		FirstName:     body.FirstName,
 		LastName:      body.LastName,
 		ImageUrl:      body.ImageUrl,

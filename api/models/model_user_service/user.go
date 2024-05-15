@@ -9,6 +9,7 @@ type GetUserResp struct {
 	PhoneNumber string `json:"phone_number"`
 	Password    string `json:"password"`
 	Gender      string `json:"gender"`
+	ImageUrl    string `json:"image_url"`
 	CreatedAt   string `json:"created_at"`
 	UpdatedAt   string `json:"updated_at"`
 }
@@ -24,6 +25,7 @@ type UpdUserReq struct {
 	LastName  string `json:"last_name" example:"To'rayevich"`
 	BrithDate string `json:"birth_date" example:"1990-01-01"`
 	Gender    string `json:"gender" example:"male"`
+	ImageUrl  string `json:"image_url"`
 }
 
 type UpdUserResp struct {
@@ -32,6 +34,7 @@ type UpdUserResp struct {
 	LastName  string `json:"last_name"`
 	BrithDate string `json:"birth_date"`
 	Gender    string `json:"gender"`
+	ImageUrl  string `json:"image_url"`
 	UpdatedAt string `json:"updated_at"`
 }
 

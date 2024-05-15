@@ -122,7 +122,7 @@ func (h *HandlerV1) GetBookedAppointment(c *gin.Context) {
 // @Tags Appointment
 // @Accept json
 // @Produce json
-// @Param searchField query string false "searchField" ENUM(key)
+// @Param searchField query string false "searchField" Enums(key)
 // @Param ListReq query models.ListReq false "ListReq"
 // @Success 200 {object} model_booking_service.Appointment
 // @Failure 400 {object} model_common.StandardErrorModel

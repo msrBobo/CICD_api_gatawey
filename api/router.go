@@ -76,6 +76,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	customer.POST("/forget-password", HandlerV1.ForgetPassword)
 	customer.PUT("/update-password", HandlerV1.UpdatePassword)
 	customer.POST("/verify-otp-code", HandlerV1.VerifyOtpCode)
+	customer.POST("/send-otp", HandlerV1.SenOtpCode)
 	customer.POST("/login", HandlerV1.Login)
 	customer.POST("/logout", HandlerV1.LogOut)
 

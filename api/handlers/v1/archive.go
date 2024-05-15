@@ -115,7 +115,7 @@ func (h *HandlerV1) GetArchive(c *gin.Context) {
 // @Tags Archive
 // @Accept json
 // @Produce json
-// @Param searchField query string false "searchField" ENUM(status)
+// @Param searchField query string false "searchField" Enums(status)
 // @Param ListReq query models.ListReq false "ListReq"
 // @Success 200 {object} model_booking_service.ArchivesType
 // @Failure 400 {object} model_common.StandardErrorModel

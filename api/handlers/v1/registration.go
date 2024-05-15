@@ -274,6 +274,14 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 		return
 	}
 
+	codeRed, err := h.redis.Client.Get(ctx, body.PhoneNumber).Result()
+	if codeRed != "" {
+		err = errors.New("code expiration is not over yet, please wait")
+		if e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPassword") {
+			return
+		}
+	}
+
 	// TODO A method that sends a code to a number
 	code := 7777
 
@@ -554,4 +562,70 @@ func (h *HandlerV1) LogOut(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, &model_user_service.MessageRes{Message: "Log out done!"})
+}
+
+// SenOtpCode ...
+// @Summary SenOtpCode
+// @Description SenOtpCode - Api for sen otp code users
+// @Tags customer
+// @Accept json
+// @Produce json
+// @Param SenOtpCode body model_user_service.PhoneNumberReq true "RegisterModelReq"
+// @Success 200 {object} model_user_service.MessageRes
+// @Failure 400 {object} model_common.StandardErrorModel
+// @Failure 500 {object} model_common.StandardErrorModel
+// @Router /v1/customer/send-otp [post]
+func (h *HandlerV1) SenOtpCode(c *gin.Context) {
+	var (
+		body        model_user_service.PhoneNumberReq
+		jsonMarshal protojson.MarshalOptions
+	)
+
+	jsonMarshal.UseProtoNames = true
+
+	err := c.ShouldBindJSON(&body)
+
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "SenOtpCode") {
+		return
+	}
+
+	if len(body.PhoneNumber) != 13 && !govalidator.IsNumeric(body.PhoneNumber) {
+		err := errors.New("invalid phone number")
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "ForgetPassword")
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
+	defer cancel()
+
+	existsPhone, err := h.serviceManager.UserService().UserService().CheckField(ctx, &pb.CheckFieldUserReq{
+		Field: "phone_number",
+		Value: body.PhoneNumber,
+	})
+
+	codeRed, err := h.redis.Client.Get(ctx, body.PhoneNumber).Result()
+	if codeRed != "" {
+		err = errors.New("code expiration is not over yet, please wait")
+		if e.HandleError(c, err, h.log, http.StatusBadRequest, "SenOtpCode") {
+			return
+		}
+	}
+
+	if !existsPhone.Status {
+		err = errors.New("you haven't registered before")
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, "SenOtpCode")
+		return
+	}
+
+	// TODO A method that sends a code to a number
+	code := 7777
+
+	err = h.redis.Client.Set(ctx, body.PhoneNumber, code, h.cfg.Redis.Time).Err()
+	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "SenOtpCode") {
+		return
+	}
+
+	c.JSON(http.StatusOK, model_user_service.MessageRes{
+		Message: "Code has been sent to you phone number, please check.",
+	})
 }

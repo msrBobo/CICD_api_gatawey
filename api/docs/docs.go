@@ -30,6 +30,9 @@ const docTemplate = `{
                 "summary": "ListBookedAppointments",
                 "parameters": [
                     {
+                        "enum": [
+                            "key"
+                        ],
                         "type": "string",
                         "description": "searchField",
                         "name": "searchField",
@@ -273,6 +276,9 @@ const docTemplate = `{
                 "summary": "ListArchive",
                 "parameters": [
                     {
+                        "enum": [
+                            "status"
+                        ],
                         "type": "string",
                         "description": "searchField",
                         "name": "searchField",
@@ -654,6 +660,52 @@ const docTemplate = `{
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/model_user_service.RegisterRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.MessageRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model_common.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/customer/send-otp": {
+            "post": {
+                "description": "SenOtpCode - Api for sen otp code users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "customer"
+                ],
+                "summary": "SenOtpCode",
+                "parameters": [
+                    {
+                        "description": "RegisterModelReq",
+                        "name": "SenOtpCode",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model_user_service.PhoneNumberReq"
                         }
                     }
                 ],
@@ -1137,6 +1189,13 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DoctorUpdateReq"
                         }
+                    },
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1265,6 +1324,9 @@ const docTemplate = `{
                 "summary": "ListDoctorNotes",
                 "parameters": [
                     {
+                        "enum": [
+                            "prescription"
+                        ],
                         "type": "string",
                         "description": "searchField",
                         "name": "searchField",
@@ -1752,6 +1814,9 @@ const docTemplate = `{
                 "summary": "ListDoctorTimes",
                 "parameters": [
                     {
+                        "enum": [
+                            "status"
+                        ],
                         "type": "string",
                         "description": "searchField",
                         "name": "searchField",
@@ -2408,6 +2473,15 @@ const docTemplate = `{
                 "summary": "ListPatient",
                 "parameters": [
                     {
+                        "enum": [
+                            "first_name",
+                            "last_name",
+                            "blood_group",
+                            "phone_number",
+                            "address",
+                            "city",
+                            "country"
+                        ],
                         "type": "string",
                         "description": "searchField",
                         "name": "searchField",
@@ -4059,7 +4133,7 @@ const docTemplate = `{
         "model_common.ResponseError": {
             "type": "object",
             "properties": {
-                "date": {
+                "data": {
                     "type": "string"
                 },
                 "message": {
@@ -4730,6 +4804,9 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
+                "image_url": {
+                    "type": "string"
+                },
                 "last_name": {
                     "type": "string"
                 },
@@ -4884,6 +4961,9 @@ const docTemplate = `{
                     "type": "string",
                     "example": "UUID"
                 },
+                "image_url": {
+                    "type": "string"
+                },
                 "last_name": {
                     "type": "string",
                     "example": "To'rayevich"
@@ -4952,6 +5032,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
 func init() {

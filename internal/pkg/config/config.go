@@ -96,7 +96,7 @@ func NewConfig() (*Config, error) {
 	config.Server.IdleTimeout = getEnv("SERVER_IDLE_TIMEOUT", "120s")
 
 	// db configuration
-	config.DB.Host = getEnv("POSTGRES_HOST", "dennic.uz")
+	config.DB.Host = getEnv("POSTGRES_HOST", "postgresdb")
 	config.DB.Port = getEnv("POSTGRES_PORT", "5432")
 	config.DB.Name = getEnv("POSTGRES_DATABASE", "dennic")
 	config.DB.User = getEnv("POSTGRES_USER", "postgres")
@@ -104,7 +104,7 @@ func NewConfig() (*Config, error) {
 	config.DB.SSLMode = getEnv("POSTGRES_SSLMODE", "disable")
 
 	// redis configuration
-	config.Redis.Host = getEnv("REDIS_HOST", "localhost")
+	config.Redis.Host = getEnv("REDIS_HOST", "redisdb")
 	config.Redis.Port = getEnv("REDIS_PORT", "6379")
 	config.Redis.Password = getEnv("REDIS_PASSWORD", "")
 	config.Redis.Name = getEnv("REDIS_DATABASE", "0")

@@ -4,7 +4,7 @@ package model_common
 type ResponseError struct {
 	Code    string `json:"status"`
 	Message string `json:"message"`
-	Date    string `json:"date"`
+	Data    string `json:"data"`
 }
 
 // StandardErrorModel ...

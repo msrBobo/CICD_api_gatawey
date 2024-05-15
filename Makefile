@@ -23,7 +23,7 @@ SESSION_SERVICE_GRPC_PORT = 9060
 USER_SERVICE_GRPC_HOST = localhost:
 USER_SERVICE_GRPC_PORT = 9070
 
-OTLP_COLLECTOR_HOST = localhost:
+OTLP_COLLECTOR_HOST = 0.0.0.0:
 
 MINIO_SERVICE_ENDPOINT = dennic.uz:9000
 
@@ -35,7 +35,7 @@ POSTGRES_DATABASE = dennic
 
 # -------------DOCKER--------------
 
-#SERVER_HOST = dennic_api_gateway
+#SERVER_HOST = dennic_api_gateway:
 #SERVER_PORT = 9050
 #
 #REDIS_HOST = redisdb

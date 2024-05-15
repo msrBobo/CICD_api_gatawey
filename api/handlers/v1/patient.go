@@ -126,7 +126,7 @@ func (h *HandlerV1) GetPatient(c *gin.Context) {
 // @Tags Patient
 // @Accept json
 // @Produce json
-// @Param searchField query string false "searchField" ENUM(first_name, last_name,blood_group,phone_number,address,city,country)
+// @Param searchField query string false "searchField" Enums(first_name, last_name,blood_group,phone_number,address,city,country)
 // @Param ListReq query models.ListReq false "ListReq"
 // @Success 200 {object} model_booking_service.PatientsType
 // @Failure 400 {object} model_common.StandardErrorModel
