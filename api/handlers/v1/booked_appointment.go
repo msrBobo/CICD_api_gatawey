@@ -185,14 +185,12 @@ func (h *HandlerV1) ListBookedAppointments(c *gin.Context) {
 // @Tags Appointment
 // @Accept json
 // @Produce json
-// @Param appointment_id  query string true "appointment_id"
 // @Param UpdateAppointmentReq body model_booking_service.UpdateAppointmentReq true "UpdateAppointmentReq"
 // @Success 200 {object} model_booking_service.Appointment
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/appointment [put]
 func (h *HandlerV1) UpdateBookedAppointment(c *gin.Context) {
-	id := c.Query("appointment_id")
 	var (
 		body        model_booking_service.UpdateAppointmentReq
 		jsonMarshal protojson.MarshalOptions
@@ -216,7 +214,7 @@ func (h *HandlerV1) UpdateBookedAppointment(c *gin.Context) {
 		ExpiresAt:       body.ExpiresAt,
 		PatientStatus:   body.PatientStatus,
 		Field:           "id",
-		Value:           id,
+		Value:           body.AppointmentId,
 	})
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "UpdateBookedAppointment") {

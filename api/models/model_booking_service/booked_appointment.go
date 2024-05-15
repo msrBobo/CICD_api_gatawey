@@ -33,6 +33,7 @@ type CreateAppointmentReq struct {
 }
 
 type UpdateAppointmentReq struct {
+	AppointmentId   string `json:"appointment_id"`
 	AppointmentDate string `json:"appointment_date"`
 	AppointmentTime string `json:"appointment_time"`
 	Duration        int64  `json:"duration"`

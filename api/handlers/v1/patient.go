@@ -190,16 +190,14 @@ func (h *HandlerV1) ListPatient(c *gin.Context) {
 // @Tags Patient
 // @Accept json
 // @Produce json
-// @Param patient_id query string true "patient_id"
 // @Param UpdatePatientReq body model_booking_service.UpdatePatientReq true "UpdatePatientReq"
 // @Success 200 {object} model_booking_service.Patient
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/patient [put]
 func (h *HandlerV1) UpdatePatient(c *gin.Context) {
-	id := c.Query("patient_id")
 	var (
-		body        model_booking_service.Patient
+		body        model_booking_service.UpdatePatientReq
 		jsonMarshal protojson.MarshalOptions
 	)
 	jsonMarshal.UseProtoNames = true
@@ -215,7 +213,7 @@ func (h *HandlerV1) UpdatePatient(c *gin.Context) {
 
 	res, err := h.serviceManager.BookingService().PatientService().UpdatePatient(ctx, &pb.UpdatePatientReq{
 		Field:          "id",
-		Value:          id,
+		Value:          body.PatientId,
 		FirstName:      body.FirstName,
 		LastName:       body.LastName,
 		BirthDate:      body.BirthDate,

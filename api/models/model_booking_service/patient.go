@@ -35,6 +35,7 @@ type CreatePatientReq struct {
 }
 
 type UpdatePatientReq struct {
+	PatientId      string `json:"patient_id"`
 	FirstName      string `json:"first_name"`
 	LastName       string `json:"last_name"`
 	BirthDate      string `json:"birth_date"`

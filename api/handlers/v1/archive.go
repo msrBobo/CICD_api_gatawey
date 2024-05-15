@@ -176,14 +176,12 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 // @Tags Archive
 // @Accept json
 // @Produce json
-// @Param archive_id  query string true "archive_id"
 // @Param UpdateArchiveReq body model_booking_service.UpdateArchiveReq true "UpdateArchiveReq"
 // @Success 200 {object} model_booking_service.Archive
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/archive [put]
 func (h *HandlerV1) UpdateArchive(c *gin.Context) {
-	id := c.Query("archive_id")
 	var (
 		body        model_booking_service.UpdateArchiveReq
 		jsonMarshal protojson.MarshalOptions
@@ -201,7 +199,7 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 
 	archive, err := h.serviceManager.BookingService().ArchiveService().UpdateArchive(ctx, &pb.UpdateArchiveReq{
 		Field:                "id",
-		Value:                id,
+		Value:                body.ArchiveId,
 		DoctorAvailabilityId: body.DoctorAvailabilityId,
 		StartTime:            body.StartTime,
 		EndTime:              body.EndTime,
