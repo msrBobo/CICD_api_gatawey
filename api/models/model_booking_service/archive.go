@@ -29,6 +29,7 @@ type CreateArchiveReq struct {
 }
 
 type UpdateArchiveReq struct {
+	Id                   string  `json:"id"`
 	DoctorAvailabilityId int64   `json:"doctor_availability_id"`
 	StartTime            string  `json:"start_time"`
 	EndTime              string  `json:"end_time"`

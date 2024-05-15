@@ -245,6 +245,8 @@ definitions:
         type: string
       appointment_time:
         type: string
+      booked_appointment_id:
+        type: string
       duration:
         type: integer
       expires_at:
@@ -259,6 +261,8 @@ definitions:
       doctor_availability_id:
         type: integer
       end_time:
+        type: string
+      id:
         type: string
       patient_problem:
         type: string
@@ -277,6 +281,8 @@ definitions:
         type: integer
       doctor_id:
         type: string
+      doctor_notes_id:
+        type: string
       patient_id:
         type: string
       prescription:
@@ -289,6 +295,8 @@ definitions:
       doctor_date:
         type: string
       doctor_id:
+        type: string
+      doctor_time_id:
         type: string
       end_time:
         type: string
@@ -314,6 +322,8 @@ definitions:
       gender:
         type: string
       last_name:
+        type: string
+      patient_id:
         type: string
       patient_problem:
         type: string
@@ -342,6 +352,8 @@ definitions:
       floor_number:
         example: 2
         type: integer
+      id:
+        type: string
       image_url:
         example: http://example.com/image.png
         type: string
@@ -549,6 +561,8 @@ definitions:
         type: string
       gender:
         example: male
+        type: string
+      id:
         type: string
       image_url:
         example: http://example.com/image.png
@@ -954,8 +968,9 @@ paths:
       - application/json
       description: ListBookedAppointments - API to list doctor notes
       parameters:
-      - in: query
-        name: field
+      - description: searchField
+        in: query
+        name: searchField
         type: string
       - in: query
         name: limit
@@ -1021,11 +1036,6 @@ paths:
       - application/json
       description: UpdateDoctorNote - API to update appointment
       parameters:
-      - description: appointment_id
-        in: query
-        name: appointment_id
-        required: true
-        type: string
       - description: UpdateAppointmentReq
         in: body
         name: UpdateAppointmentReq
@@ -1115,8 +1125,9 @@ paths:
       - application/json
       description: ListArchive - Api for list archive
       parameters:
-      - in: query
-        name: field
+      - description: searchField
+        in: query
+        name: searchField
         type: string
       - in: query
         name: limit
@@ -1182,11 +1193,6 @@ paths:
       - application/json
       description: UpdateArchive - Api for update archive
       parameters:
-      - description: archive_id
-        in: query
-        name: archive_id
-        required: true
-        type: string
       - description: UpdateArchiveReq
         in: body
         name: UpdateArchiveReq
@@ -1485,9 +1491,6 @@ paths:
       description: ListDepartments - Api for list department
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -1557,11 +1560,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model_healthcare_service.DepartmentReq'
-      - description: id
-        in: query
-        name: id
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -1646,9 +1644,6 @@ paths:
       description: ListDoctors - Api for list doctor
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -1718,11 +1713,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model_healthcare_service.DoctorUpdateReq'
-      - description: id
-        in: query
-        name: id
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -1776,8 +1766,9 @@ paths:
       - application/json
       description: ListDoctorNotes - API to list doctor notes
       parameters:
-      - in: query
-        name: field
+      - description: searchField
+        in: query
+        name: searchField
         type: string
       - in: query
         name: limit
@@ -1843,11 +1834,6 @@ paths:
       - application/json
       description: UpdateDoctorNote - API to update a doctor note
       parameters:
-      - description: notes_id
-        in: query
-        name: notes_id
-        required: true
-        type: string
       - description: UpdateDoctorNoteReq
         in: body
         name: UpdateDoctorNoteReq
@@ -1937,9 +1923,6 @@ paths:
       - application/json
       description: ListDoctorServices - Api for list doctor_services
       parameters:
-      - in: query
-        name: field
-        type: string
       - in: query
         name: limit
         type: string
@@ -2098,8 +2081,9 @@ paths:
       - application/json
       description: ListDoctorTimes - Api for list doctor time
       parameters:
-      - in: query
-        name: field
+      - description: searchField
+        in: query
+        name: searchField
         type: string
       - in: query
         name: limit
@@ -2165,11 +2149,6 @@ paths:
       - application/json
       description: UpdateDoctorTimes - Api for update doctor time
       parameters:
-      - description: doctor_time_id
-        in: query
-        name: doctor_time_id
-        required: true
-        type: string
       - description: UpdateDoctorTimeReq
         in: body
         name: UpdateDoctorTimeReq
@@ -2259,9 +2238,6 @@ paths:
       - application/json
       description: ListDoctorWorkingHours - Api for list doctor_working_hours
       parameters:
-      - in: query
-        name: field
-        type: string
       - in: query
         name: limit
         type: string
@@ -2423,9 +2399,6 @@ paths:
         id
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -2477,6 +2450,7 @@ paths:
         - reasons
         - specialization
         - doctor
+        - user
         in: query
         name: bucketName
         required: true
@@ -2534,8 +2508,9 @@ paths:
       - application/json
       description: ListPatient - Api for list patient
       parameters:
-      - in: query
-        name: field
+      - description: searchField
+        in: query
+        name: searchField
         type: string
       - in: query
         name: limit
@@ -2601,11 +2576,6 @@ paths:
       - application/json
       description: UpdatePatient - Api for update patient
       parameters:
-      - description: patient_id
-        in: query
-        name: patient_id
-        required: true
-        type: string
       - description: UpdatePatientReq
         in: body
         name: UpdatePatientReq
@@ -2729,9 +2699,6 @@ paths:
       - application/json
       description: ListReasons - Api for list reasons
       parameters:
-      - in: query
-        name: field
-        type: string
       - in: query
         name: limit
         type: string
@@ -2947,9 +2914,6 @@ paths:
       - application/json
       description: ListSpecializations - Api for list specialization
       parameters:
-      - in: query
-        name: field
-        type: string
       - in: query
         name: limit
         type: string

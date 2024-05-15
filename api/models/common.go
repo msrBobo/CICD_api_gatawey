@@ -10,7 +10,7 @@ type ListReq struct {
 	Page         string `json:"page"`
 	Limit        string `json:"limit"`
 	OrderBy      string `json:"order_by"`
-	Field        string `json:"field"`
+	Field        string `json:"-"`
 	Value        string `json:"value"`
 	DeleteStatus bool   `json:"-"`
 }

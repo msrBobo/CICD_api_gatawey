@@ -28,7 +28,7 @@ import (
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/user/get [GET]
 func (h *HandlerV1) GetUserByID(c *gin.Context) {
-	userInfo, err := GetUserInfo(c)
+	userInfo, err := e.GetUserInfo(c)
 
 	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "GetUserByID") {
 		return

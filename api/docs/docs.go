@@ -31,7 +31,8 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
+                        "description": "searchField",
+                        "name": "searchField",
                         "in": "query"
                     },
                     {
@@ -89,13 +90,6 @@ const docTemplate = `{
                 ],
                 "summary": "UpdateBookedAppointment",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "appointment_id",
-                        "name": "appointment_id",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdateAppointmentReq",
                         "name": "UpdateAppointmentReq",
@@ -280,7 +274,8 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
+                        "description": "searchField",
+                        "name": "searchField",
                         "in": "query"
                     },
                     {
@@ -338,13 +333,6 @@ const docTemplate = `{
                 ],
                 "summary": "UpdateArchive",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "archive_id",
-                        "name": "archive_id",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdateArchiveReq",
                         "name": "UpdateArchiveReq",
@@ -851,11 +839,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -917,13 +900,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DepartmentReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -1100,11 +1076,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -1166,13 +1137,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DoctorUpdateReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -1302,7 +1266,8 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
+                        "description": "searchField",
+                        "name": "searchField",
                         "in": "query"
                     },
                     {
@@ -1360,13 +1325,6 @@ const docTemplate = `{
                 ],
                 "summary": "UpdateDoctorNote",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "notes_id",
-                        "name": "notes_id",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdateDoctorNoteReq",
                         "name": "UpdateDoctorNoteReq",
@@ -1549,11 +1507,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListDoctorServices",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -1800,7 +1753,8 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
+                        "description": "searchField",
+                        "name": "searchField",
                         "in": "query"
                     },
                     {
@@ -1858,13 +1812,6 @@ const docTemplate = `{
                 ],
                 "summary": "UpdateDoctorTimes",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "doctor_time_id",
-                        "name": "doctor_time_id",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdateDoctorTimeReq",
                         "name": "UpdateDoctorTimeReq",
@@ -2047,11 +1994,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListDoctorWorkingHours",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -2345,11 +2287,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -2424,7 +2361,8 @@ const docTemplate = `{
                             "department",
                             "reasons",
                             "specialization",
-                            "doctor"
+                            "doctor",
+                            "user"
                         ],
                         "type": "string",
                         "description": "bucket",
@@ -2471,7 +2409,8 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
+                        "description": "searchField",
+                        "name": "searchField",
                         "in": "query"
                     },
                     {
@@ -2529,13 +2468,6 @@ const docTemplate = `{
                 ],
                 "summary": "UpdatePatient",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "patient_id",
-                        "name": "patient_id",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdatePatientReq",
                         "name": "UpdatePatientReq",
@@ -2769,11 +2701,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListReasons",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -3104,11 +3031,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListSpecializations",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -4004,6 +3926,9 @@ const docTemplate = `{
                 "appointment_time": {
                     "type": "string"
                 },
+                "booked_appointment_id": {
+                    "type": "string"
+                },
                 "duration": {
                     "type": "integer"
                 },
@@ -4025,6 +3950,9 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "end_time": {
+                    "type": "string"
+                },
+                "id": {
                     "type": "string"
                 },
                 "patient_problem": {
@@ -4053,6 +3981,9 @@ const docTemplate = `{
                 "doctor_id": {
                     "type": "string"
                 },
+                "doctor_notes_id": {
+                    "type": "string"
+                },
                 "patient_id": {
                     "type": "string"
                 },
@@ -4071,6 +4002,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "doctor_id": {
+                    "type": "string"
+                },
+                "doctor_time_id": {
                     "type": "string"
                 },
                 "end_time": {
@@ -4109,6 +4043,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "last_name": {
+                    "type": "string"
+                },
+                "patient_id": {
                     "type": "string"
                 },
                 "patient_problem": {
@@ -4151,6 +4088,9 @@ const docTemplate = `{
                 "floor_number": {
                     "type": "integer",
                     "example": 2
+                },
+                "id": {
+                    "type": "string"
                 },
                 "image_url": {
                     "type": "string",
@@ -4448,6 +4388,9 @@ const docTemplate = `{
                 "gender": {
                     "type": "string",
                     "example": "male"
+                },
+                "id": {
+                    "type": "string"
                 },
                 "image_url": {
                     "type": "string",

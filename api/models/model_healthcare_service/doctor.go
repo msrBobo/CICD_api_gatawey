@@ -21,6 +21,7 @@ type DoctorReq struct {
 }
 
 type DoctorUpdateReq struct {
+	Id            string  `json:"id"`
 	FirstName     string  `json:"first_name" example:"First Name"`
 	LastName      string  `json:"last_name" example:"Last Name"`
 	ImageUrl      string  `json:"image_url" example:"http://example.com/image.png"`

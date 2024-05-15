@@ -27,6 +27,7 @@ type CreateDoctorTimeReq struct {
 }
 
 type UpdateDoctorTimeReq struct {
+	DoctorTimeId string `json:"doctor_time_id"`
 	DepartmentId string `json:"department_id"`
 	DoctorId     string `json:"doctor_id"`
 	DoctorDate   string `json:"doctor_date"`

@@ -7338,3 +7338,105 @@ net/http.(*conn).serve
 main.main.func1
 	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
 2024-05-12T05:13:22.396+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T13:49:20.133+0500	INFO	app/main.go:30	Listen: 	{"address": "dennic_api_gateway9050"}
+2024-05-15T13:49:20.139+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp: address dennic_api_gateway9050: missing port in address"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T13:49:31.200+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T13:51:22.841+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost9050"}
+2024-05-15T13:51:22.844+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp: address localhost9050: missing port in address"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T13:57:44.106+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T13:57:46.819+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost9050"}
+2024-05-15T13:57:46.821+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp: address localhost9050: missing port in address"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T14:03:27.141+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T14:03:32.266+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost9050"}
+2024-05-15T14:03:32.269+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp: address localhost9050: missing port in address"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T14:03:52.458+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T14:03:55.774+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost9050"}
+2024-05-15T14:03:55.776+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp: address localhost9050: missing port in address"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T14:04:25.569+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T14:04:27.302+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T14:05:39.752+0500	WARN	regtool/handle_error.go:20	Get "http://localhost:9000/department/?location=": dial tcp 127.0.0.1:9000: connect: connection refused
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).UploadFile
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/file_upload.go:45
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:06:05.548+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T14:06:05.549+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T14:06:07.289+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T14:07:57.676+0500	WARN	regtool/handle_error.go:20	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp: address localhost9090: missing port in address"
+dennic_api_gateway/api/handlers/regtool.HandleError
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/regtool/handle_error.go:20
+dennic_api_gateway/api/handlers/v1.(*HandlerV1).ListBookedAppointments
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/handlers/v1/booked_appointment.go:155
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.NewAuthorizer.func2
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/casbin/casbin.go:30
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+dennic_api_gateway/api.NewRoute.GinTracing.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/api/middleware/tracing.go:31
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/vendor/github.com/gin-gonic/gin/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/home/ali/sdk/go1.22.2/src/net/http/server.go:2039
+2024-05-15T14:08:42.031+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T14:08:42.032+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T14:08:44.141+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T14:22:27.002+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T14:22:27.003+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32

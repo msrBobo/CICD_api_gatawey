@@ -171,7 +171,6 @@ func (h *HandlerV1) ListDepartments(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param UpdateDepartmentReq body model_healthcare_service.DepartmentReq true "UpdateDepartmentReq"
-// @Param id query string true "id"
 // @Success 200 {object} model_healthcare_service.DepartmentReq
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
@@ -185,8 +184,6 @@ func (h *HandlerV1) UpdateDepartment(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&body)
 
-	id := c.Query("id")
-
 	if e.HandleError(c, err, h.log, http.StatusBadRequest, "UpdateDepartment") {
 		return
 	}
@@ -195,7 +192,7 @@ func (h *HandlerV1) UpdateDepartment(c *gin.Context) {
 	defer cancel()
 
 	department, err := h.serviceManager.HealthcareService().DepartmentService().UpdateDepartment(ctx, &pb.Department{
-		Id:               id,
+		Id:               body.Id,
 		Name:             body.Name,
 		Description:      body.Description,
 		ImageUrl:         body.ImageUrl,

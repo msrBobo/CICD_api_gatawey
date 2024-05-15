@@ -115,13 +115,14 @@ func (h *HandlerV1) GetArchive(c *gin.Context) {
 // @Tags Archive
 // @Accept json
 // @Produce json
+// @Param searchField query string false "searchField" ENUM(status)
 // @Param ListReq query models.ListReq false "ListReq"
 // @Success 200 {object} model_booking_service.ArchivesType
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/archive [get]
 func (h *HandlerV1) ListArchive(c *gin.Context) {
-	field := c.Query("field")
+	field := c.Query("searchField")
 	value := c.Query("value")
 	limit := c.Query("limit")
 	page := c.Query("page")
@@ -176,14 +177,12 @@ func (h *HandlerV1) ListArchive(c *gin.Context) {
 // @Tags Archive
 // @Accept json
 // @Produce json
-// @Param archive_id  query string true "archive_id"
 // @Param UpdateArchiveReq body model_booking_service.UpdateArchiveReq true "UpdateArchiveReq"
 // @Success 200 {object} model_booking_service.Archive
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/archive [put]
 func (h *HandlerV1) UpdateArchive(c *gin.Context) {
-	id := c.Query("archive_id")
 	var (
 		body        model_booking_service.UpdateArchiveReq
 		jsonMarshal protojson.MarshalOptions
@@ -201,7 +200,7 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 
 	archive, err := h.serviceManager.BookingService().ArchiveService().UpdateArchive(ctx, &pb.UpdateArchiveReq{
 		Field:                "id",
-		Value:                id,
+		Value:                body.Id,
 		DoctorAvailabilityId: body.DoctorAvailabilityId,
 		StartTime:            body.StartTime,
 		EndTime:              body.EndTime,

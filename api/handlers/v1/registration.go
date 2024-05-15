@@ -305,7 +305,7 @@ func (h *HandlerV1) UpdatePassword(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
-	userInfo, err := GetUserInfo(c)
+	userInfo, err := e.GetUserInfo(c)
 
 	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "UpdatePassword") {
 		return
@@ -536,7 +536,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/customer/logout [post]
 func (h *HandlerV1) LogOut(c *gin.Context) {
-	userInfo, err := GetUserInfo(c)
+	userInfo, err := e.GetUserInfo(c)
 
 	if e.HandleError(c, err, h.log, http.StatusUnauthorized, "Logout") {
 		return

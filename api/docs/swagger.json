@@ -23,7 +23,8 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
+                        "description": "searchField",
+                        "name": "searchField",
                         "in": "query"
                     },
                     {
@@ -81,13 +82,6 @@
                 ],
                 "summary": "UpdateBookedAppointment",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "appointment_id",
-                        "name": "appointment_id",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdateAppointmentReq",
                         "name": "UpdateAppointmentReq",
@@ -272,7 +266,8 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
+                        "description": "searchField",
+                        "name": "searchField",
                         "in": "query"
                     },
                     {
@@ -330,13 +325,6 @@
                 ],
                 "summary": "UpdateArchive",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "archive_id",
-                        "name": "archive_id",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdateArchiveReq",
                         "name": "UpdateArchiveReq",
@@ -843,11 +831,6 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -909,13 +892,6 @@
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DepartmentReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -1092,11 +1068,6 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -1158,13 +1129,6 @@
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DoctorUpdateReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -1294,7 +1258,8 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
+                        "description": "searchField",
+                        "name": "searchField",
                         "in": "query"
                     },
                     {
@@ -1352,13 +1317,6 @@
                 ],
                 "summary": "UpdateDoctorNote",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "notes_id",
-                        "name": "notes_id",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdateDoctorNoteReq",
                         "name": "UpdateDoctorNoteReq",
@@ -1541,11 +1499,6 @@
                 ],
                 "summary": "ListDoctorServices",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -1792,7 +1745,8 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
+                        "description": "searchField",
+                        "name": "searchField",
                         "in": "query"
                     },
                     {
@@ -1850,13 +1804,6 @@
                 ],
                 "summary": "UpdateDoctorTimes",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "doctor_time_id",
-                        "name": "doctor_time_id",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdateDoctorTimeReq",
                         "name": "UpdateDoctorTimeReq",
@@ -2039,11 +1986,6 @@
                 ],
                 "summary": "ListDoctorWorkingHours",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -2337,11 +2279,6 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -2416,7 +2353,8 @@
                             "department",
                             "reasons",
                             "specialization",
-                            "doctor"
+                            "doctor",
+                            "user"
                         ],
                         "type": "string",
                         "description": "bucket",
@@ -2463,7 +2401,8 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
+                        "description": "searchField",
+                        "name": "searchField",
                         "in": "query"
                     },
                     {
@@ -2521,13 +2460,6 @@
                 ],
                 "summary": "UpdatePatient",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "patient_id",
-                        "name": "patient_id",
-                        "in": "query",
-                        "required": true
-                    },
                     {
                         "description": "UpdatePatientReq",
                         "name": "UpdatePatientReq",
@@ -2761,11 +2693,6 @@
                 ],
                 "summary": "ListReasons",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -3096,11 +3023,6 @@
                 ],
                 "summary": "ListSpecializations",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -3996,6 +3918,9 @@
                 "appointment_time": {
                     "type": "string"
                 },
+                "booked_appointment_id": {
+                    "type": "string"
+                },
                 "duration": {
                     "type": "integer"
                 },
@@ -4017,6 +3942,9 @@
                     "type": "integer"
                 },
                 "end_time": {
+                    "type": "string"
+                },
+                "id": {
                     "type": "string"
                 },
                 "patient_problem": {
@@ -4045,6 +3973,9 @@
                 "doctor_id": {
                     "type": "string"
                 },
+                "doctor_notes_id": {
+                    "type": "string"
+                },
                 "patient_id": {
                     "type": "string"
                 },
@@ -4063,6 +3994,9 @@
                     "type": "string"
                 },
                 "doctor_id": {
+                    "type": "string"
+                },
+                "doctor_time_id": {
                     "type": "string"
                 },
                 "end_time": {
@@ -4101,6 +4035,9 @@
                     "type": "string"
                 },
                 "last_name": {
+                    "type": "string"
+                },
+                "patient_id": {
                     "type": "string"
                 },
                 "patient_problem": {
@@ -4143,6 +4080,9 @@
                 "floor_number": {
                     "type": "integer",
                     "example": 2
+                },
+                "id": {
+                    "type": "string"
                 },
                 "image_url": {
                     "type": "string",
@@ -4440,6 +4380,9 @@
                 "gender": {
                     "type": "string",
                     "example": "male"
+                },
+                "id": {
+                    "type": "string"
                 },
                 "image_url": {
                     "type": "string",

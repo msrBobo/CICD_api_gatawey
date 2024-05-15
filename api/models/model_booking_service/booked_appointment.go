@@ -33,10 +33,11 @@ type CreateAppointmentReq struct {
 }
 
 type UpdateAppointmentReq struct {
-	AppointmentDate string `json:"appointment_date"`
-	AppointmentTime string `json:"appointment_time"`
-	Duration        int64  `json:"duration"`
-	Key             string `json:"key"`
-	ExpiresAt       string `json:"expires_at"`
-	PatientStatus   bool   `json:"patient_status"`
+	BookedAppointmentId string `json:"booked_appointment_id"`
+	AppointmentDate     string `json:"appointment_date"`
+	AppointmentTime     string `json:"appointment_time"`
+	Duration            int64  `json:"duration"`
+	Key                 string `json:"key"`
+	ExpiresAt           string `json:"expires_at"`
+	PatientStatus       bool   `json:"patient_status"`
 }
