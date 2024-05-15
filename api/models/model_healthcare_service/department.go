@@ -1,7 +1,7 @@
 package model_healthcare_service
 
 type DepartmentReq struct {
-	Id               string `json:"id"`
+	Id               string `json:"id" example:"123e4567-e89b-12d3-a456-426614274001"`
 	Name             string `json:"name" example:"name"`
 	Description      string `json:"description" example:"description"`
 	ImageUrl         string `json:"image_url" example:"http://example.com/image.png"`

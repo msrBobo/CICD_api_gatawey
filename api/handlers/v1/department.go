@@ -72,20 +72,19 @@ func (h *HandlerV1) CreateDepartment(c *gin.Context) {
 // @Tags Department
 // @Accept json
 // @Produce json
-// @Param GetDepartment query models.FieldValueReq true "FieldValueReq"
+// @Param id query string true "id"
 // @Success 200 {object} model_healthcare_service.DepartmentRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/department/get [get]
 func (h *HandlerV1) GetDepartment(c *gin.Context) {
-	field := c.Query("field")
-	value := c.Query("value")
+	id := c.Query("id")
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	department, err := h.serviceManager.HealthcareService().DepartmentService().GetDepartmentById(ctx, &pb.GetReqStrDepartment{
-		Field:    field,
-		Value:    value,
+		Field:    "id",
+		Value:    id,
 		IsActive: false,
 	})
 

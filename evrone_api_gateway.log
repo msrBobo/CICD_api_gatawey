@@ -8897,3 +8897,8 @@ main.main.func1
 2024-05-15T19:38:26.001+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
 main.main.func1
 	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32
+2024-05-15T19:45:39.005+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:9050"}
+2024-05-15T19:45:42.897+0500	INFO	app/main.go:41	api gateway service stops
+2024-05-15T19:45:42.898+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/ali/Goland/Project/Dennic/Dennic/dennic_api_gateway/cmd/app/main.go:32

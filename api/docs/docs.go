@@ -1091,13 +1091,10 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1216,13 +1213,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DoctorUpdateReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -1654,13 +1644,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DoctorServicesReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -1790,13 +1773,10 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2153,13 +2133,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DoctorWorkingHoursReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -2289,13 +2262,10 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2336,13 +2306,10 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2877,13 +2844,6 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.ReasonsReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -3013,13 +2973,10 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -3359,13 +3316,10 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -4213,7 +4167,12 @@ const docTemplate = `{
                     "example": 2
                 },
                 "id": {
+<<<<<<< HEAD
                     "type": "string"
+=======
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614274001"
+>>>>>>> f59512513a0122b24ea3176ec22ade94224549c9
                 },
                 "image_url": {
                     "type": "string",
@@ -4416,6 +4375,10 @@ const docTemplate = `{
                     "type": "string",
                     "example": "12:12"
                 },
+                "id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614274001"
+                },
                 "name": {
                     "type": "string",
                     "example": "name"
@@ -4513,7 +4476,12 @@ const docTemplate = `{
                     "example": "male"
                 },
                 "id": {
+<<<<<<< HEAD
                     "type": "string"
+=======
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614274001"
+>>>>>>> f59512513a0122b24ea3176ec22ade94224549c9
                 },
                 "image_url": {
                     "type": "string",
@@ -4563,6 +4531,10 @@ const docTemplate = `{
                 "finish_time": {
                     "type": "string",
                     "example": "12:00:00"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614274001"
                 },
                 "start_time": {
                     "type": "string",
@@ -4683,6 +4655,10 @@ const docTemplate = `{
         "model_healthcare_service.ReasonsReq": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614375001"
+                },
                 "image_url": {
                     "type": "string",
                     "example": "http://example.com/image.png"
@@ -4730,6 +4706,10 @@ const docTemplate = `{
                 "description": {
                     "type": "string",
                     "example": "Specialization description"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174003"
                 },
                 "image_url": {
                     "type": "string",

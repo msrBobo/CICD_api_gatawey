@@ -1,6 +1,7 @@
 package model_healthcare_service
 
 type DoctorServicesReq struct {
+	Id               string  `json:"id" example:"123e4567-e89b-12d3-a456-426614274001"`
 	DoctorId         string  `json:"doctor_id" example:"123e4567-e89b-12d3-a456-426614274001"`
 	SpecializationId string  `json:"specialization_id" example:"123e4567-e89b-12d3-a456-426614375001"`
 	OnlinePrice      float32 `json:"online_price" example:"1.1"`

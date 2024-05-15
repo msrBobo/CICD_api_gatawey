@@ -200,7 +200,7 @@ func (h *HandlerV1) UpdateArchive(c *gin.Context) {
 
 	archive, err := h.serviceManager.BookingService().ArchiveService().UpdateArchive(ctx, &pb.UpdateArchiveReq{
 		Field:                "id",
-		Value:                body.Id,
+		Value:                body.ArchiveId,
 		DoctorAvailabilityId: body.DoctorAvailabilityId,
 		StartTime:            body.StartTime,
 		EndTime:              body.EndTime,

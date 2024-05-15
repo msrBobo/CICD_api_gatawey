@@ -70,20 +70,19 @@ func (h *HandlerV1) CreateSpecialization(c *gin.Context) {
 // @Tags Specialization
 // @Accept json
 // @Produce json
-// @Param GetSpecialization query models.FieldValueReq true "FieldValueReq"
+// @Param id query string true "id"
 // @Success 200 {object} model_healthcare_service.SpecializationRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/specialization/get [get]
 func (h *HandlerV1) GetSpecialization(c *gin.Context) {
-	field := c.Query("field")
-	value := c.Query("value")
+	id := c.Query("id")
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	specialization, err := h.serviceManager.HealthcareService().SpecializationService().GetSpecializationById(ctx, &pb.GetReqStrSpecialization{
-		Field:    field,
-		Value:    value,
+		Field:    "id",
+		Value:    id,
 		IsActive: false,
 	})
 
@@ -187,8 +186,6 @@ func (h *HandlerV1) UpdateSpecialization(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&body)
 
-	id := c.Query("id")
-
 	if e.HandleError(c, err, h.log, http.StatusBadRequest, "UpdateSpecialization") {
 		return
 	}
@@ -197,7 +194,7 @@ func (h *HandlerV1) UpdateSpecialization(c *gin.Context) {
 	defer cancel()
 
 	specialization, err := h.serviceManager.HealthcareService().SpecializationService().UpdateSpecialization(ctx, &pb.Specializations{
-		Id:           id,
+		Id:           body.Id,
 		Name:         body.Name,
 		Description:  body.Description,
 		DepartmentId: body.DepartmentId,
