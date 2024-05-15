@@ -111,12 +111,13 @@ func (h *HandlerV1) GetSpecialization(c *gin.Context) {
 // @Produce json
 // @Param ListReq query models.ListReq false "ListReq"
 // @Param department_id query string false "department_id"
+// @Param search query string false "search" Enums(name, description) "search"
 // @Success 200 {object} model_healthcare_service.ListSpecializations
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/specialization [get]
 func (h *HandlerV1) ListSpecializations(c *gin.Context) {
-	field := c.Query("field")
+	search := c.Query("search")
 	value := c.Query("value")
 	limit := c.Query("limit")
 	page := c.Query("page")
@@ -124,7 +125,7 @@ func (h *HandlerV1) ListSpecializations(c *gin.Context) {
 
 	departmentId := c.Query("department_id")
 	pageInt, limitInt, err := e.ParseQueryParams(page, limit)
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListSpecializations") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "ListSpecializations") {
 		return
 	}
 
@@ -132,7 +133,7 @@ func (h *HandlerV1) ListSpecializations(c *gin.Context) {
 	defer cancel()
 
 	specializations, err := h.serviceManager.HealthcareService().SpecializationService().GetAllSpecializations(ctx, &pb.GetAllSpecialization{
-		Field:        field,
+		Field:        search,
 		Value:        value,
 		IsActive:     false,
 		Page:         int32(pageInt),

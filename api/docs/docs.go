@@ -31,11 +31,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -278,11 +273,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListArchive",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -851,11 +841,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -872,6 +857,16 @@ const docTemplate = `{
                     {
                         "type": "string",
                         "name": "value",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "name",
+                            "description"
+                        ],
+                        "type": "string",
+                        "description": "search",
+                        "name": "search",
                         "in": "query"
                     }
                 ],
@@ -1100,11 +1095,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -1121,6 +1111,23 @@ const docTemplate = `{
                     {
                         "type": "string",
                         "name": "value",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "first_name",
+                            "last_name",
+                            "gender",
+                            "phone_number",
+                            "email",
+                            "address",
+                            "city",
+                            "country",
+                            "biography"
+                        ],
+                        "type": "string",
+                        "description": "search",
+                        "name": "search",
                         "in": "query"
                     }
                 ],
@@ -1300,11 +1307,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListDoctorNotes",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -1551,11 +1553,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -1567,11 +1564,6 @@ const docTemplate = `{
                     {
                         "type": "string",
                         "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
                         "in": "query"
                     }
                 ],
@@ -1798,11 +1790,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListDoctorTimes",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -2049,11 +2036,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -2070,6 +2052,15 @@ const docTemplate = `{
                     {
                         "type": "string",
                         "name": "value",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "day_of_week"
+                        ],
+                        "type": "string",
+                        "description": "search",
+                        "name": "search",
                         "in": "query"
                     }
                 ],
@@ -2345,11 +2336,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -2424,13 +2410,13 @@ const docTemplate = `{
                             "department",
                             "reasons",
                             "specialization",
-                            "doctor"
+                            "doctor",
+                            "user"
                         ],
                         "type": "string",
                         "description": "bucket",
                         "name": "bucketName",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -2469,11 +2455,6 @@ const docTemplate = `{
                 ],
                 "summary": "ListPatient",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
                     {
                         "type": "string",
                         "name": "limit",
@@ -2771,11 +2752,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -2792,6 +2768,15 @@ const docTemplate = `{
                     {
                         "type": "string",
                         "name": "value",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "name"
+                        ],
+                        "type": "string",
+                        "description": "search",
+                        "name": "search",
                         "in": "query"
                     }
                 ],
@@ -3106,11 +3091,6 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
                         "name": "limit",
                         "in": "query"
                     },
@@ -3133,6 +3113,16 @@ const docTemplate = `{
                         "type": "string",
                         "description": "department_id",
                         "name": "department_id",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "name",
+                            "description"
+                        ],
+                        "type": "string",
+                        "description": "search",
+                        "name": "search",
                         "in": "query"
                     }
                 ],
@@ -4550,7 +4540,7 @@ const docTemplate = `{
                 "count": {
                     "type": "integer"
                 },
-                "doctor_services": {
+                "doctorServices": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/model_healthcare_service.DoctorServicesRes"

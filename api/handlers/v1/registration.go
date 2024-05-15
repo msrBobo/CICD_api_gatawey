@@ -367,7 +367,7 @@ func (h *HandlerV1) VerifyOtpCode(c *gin.Context) {
 
 	redisRes, err := h.redis.Client.Get(ctx, phoneNumber).Result()
 
-	if e.HandleError(c, err, h.log, http.StatusBadRequest, "VerifyOtpCode") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "code is expired") {
 		return
 	}
 

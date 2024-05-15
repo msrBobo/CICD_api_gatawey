@@ -620,7 +620,7 @@ definitions:
     properties:
       count:
         type: integer
-      doctor_services:
+      doctorServices:
         items:
           $ref: '#/definitions/model_healthcare_service.DoctorServicesRes'
         type: array
@@ -955,9 +955,6 @@ paths:
       description: ListBookedAppointments - API to list doctor notes
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -1115,9 +1112,6 @@ paths:
       - application/json
       description: ListArchive - Api for list archive
       parameters:
-      - in: query
-        name: field
-        type: string
       - in: query
         name: limit
         type: string
@@ -1485,9 +1479,6 @@ paths:
       description: ListDepartments - Api for list department
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -1498,6 +1489,13 @@ paths:
         type: string
       - in: query
         name: value
+        type: string
+      - description: search
+        enum:
+        - name
+        - description
+        in: query
+        name: search
         type: string
       produces:
       - application/json
@@ -1646,9 +1644,6 @@ paths:
       description: ListDoctors - Api for list doctor
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -1659,6 +1654,20 @@ paths:
         type: string
       - in: query
         name: value
+        type: string
+      - description: search
+        enum:
+        - first_name
+        - last_name
+        - gender
+        - phone_number
+        - email
+        - address
+        - city
+        - country
+        - biography
+        in: query
+        name: search
         type: string
       produces:
       - application/json
@@ -1776,9 +1785,6 @@ paths:
       - application/json
       description: ListDoctorNotes - API to list doctor notes
       parameters:
-      - in: query
-        name: field
-        type: string
       - in: query
         name: limit
         type: string
@@ -1938,9 +1944,6 @@ paths:
       description: ListDoctorServices - Api for list doctor_services
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -1948,9 +1951,6 @@ paths:
         type: string
       - in: query
         name: page
-        type: string
-      - in: query
-        name: value
         type: string
       produces:
       - application/json
@@ -2098,9 +2098,6 @@ paths:
       - application/json
       description: ListDoctorTimes - Api for list doctor time
       parameters:
-      - in: query
-        name: field
-        type: string
       - in: query
         name: limit
         type: string
@@ -2260,9 +2257,6 @@ paths:
       description: ListDoctorWorkingHours - Api for list doctor_working_hours
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -2273,6 +2267,12 @@ paths:
         type: string
       - in: query
         name: value
+        type: string
+      - description: search
+        enum:
+        - day_of_week
+        in: query
+        name: search
         type: string
       produces:
       - application/json
@@ -2423,9 +2423,6 @@ paths:
         id
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -2477,9 +2474,9 @@ paths:
         - reasons
         - specialization
         - doctor
+        - user
         in: query
         name: bucketName
-        required: true
         type: string
       produces:
       - application/json
@@ -2534,9 +2531,6 @@ paths:
       - application/json
       description: ListPatient - Api for list patient
       parameters:
-      - in: query
-        name: field
-        type: string
       - in: query
         name: limit
         type: string
@@ -2730,9 +2724,6 @@ paths:
       description: ListReasons - Api for list reasons
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -2743,6 +2734,12 @@ paths:
         type: string
       - in: query
         name: value
+        type: string
+      - description: search
+        enum:
+        - name
+        in: query
+        name: search
         type: string
       produces:
       - application/json
@@ -2948,9 +2945,6 @@ paths:
       description: ListSpecializations - Api for list specialization
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
         name: limit
         type: string
       - in: query
@@ -2965,6 +2959,13 @@ paths:
       - description: department_id
         in: query
         name: department_id
+        type: string
+      - description: search
+        enum:
+        - name
+        - description
+        in: query
+        name: search
         type: string
       produces:
       - application/json

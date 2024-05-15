@@ -23,10 +23,13 @@ type DoctorServicesRes struct {
 }
 
 type ListDoctorServices struct {
-<<<<<<< HEAD
-=======
-	DoctorServices []*DoctorServicesRes `json:"doctor_services"`
->>>>>>> eca93a4806164b242209e3dd00f4c94991ddf34d
 	Count          int32                `json:"count"`
 	DoctorServices []*DoctorServicesRes `json:"doctorServices"`
+}
+
+type ListReqDoctorServices struct {
+	Page         string `json:"page"`
+	Limit        string `json:"limit"`
+	OrderBy      string `json:"order_by"`
+	DeleteStatus bool   `json:"-"`
 }

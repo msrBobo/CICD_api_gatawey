@@ -32,13 +32,10 @@ func (h *HandlerV1) GetUserSessions(c *gin.Context) {
 		IsActive: false,
 	})
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "GetUserSessions") {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, "GetUserSessions") {
 		return
 	}
 
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "GetUserSessions") {
-		return
-	}
 	var sessionsRes model_session_service.ListSessions
 	for _, session := range sessions.UserSessions {
 		sessionsRes.Sessions = append(sessionsRes.Sessions, &model_session_service.SessionRes{
