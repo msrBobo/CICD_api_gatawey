@@ -68,20 +68,19 @@ func (h *HandlerV1) CreateDoctorWorkingHours(c *gin.Context) {
 // @Tags Doctor Working Hours
 // @Accept json
 // @Produce json
-// @Param GetDoctorWorkingHours query models.FieldValueReq true "FieldValueReq"
+// @Param id query string true "id"
 // @Success 200 {object} model_healthcare_service.DoctorWorkingHoursRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/doctor-working-hours/get [get]
 func (h *HandlerV1) GetDoctorWorkingHours(c *gin.Context) {
-	field := c.Query("field")
-	value := c.Query("value")
+	id := c.Query("id")
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	dwh, err := h.serviceManager.HealthcareService().DoctorWorkingHoursService().GetDoctorWorkingHoursById(ctx, &pb.GetReqInt{
-		Field:    field,
-		Value:    value,
+		Field:    "id",
+		Value:    id,
 		IsActive: false,
 	})
 
@@ -165,7 +164,6 @@ func (h *HandlerV1) ListDoctorWorkingHours(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param UpdateDoctorWorkingHoursReq body model_healthcare_service.DoctorWorkingHoursReq true "UpdateDoctorWorkingHoursReq"
-// @Param id query string true "id"
 // @Success 200 {object} model_healthcare_service.DoctorWorkingHoursRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel

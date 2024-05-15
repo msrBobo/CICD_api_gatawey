@@ -97,20 +97,19 @@ func (h *HandlerV1) CreateDoctor(c *gin.Context) {
 // @Tags Doctor
 // @Accept json
 // @Produce json
-// @Param GetDoctor query models.FieldValueReq true "FieldValueReq"
-// @Success 200 {object} model_healthcare_service.DoctorRes
+// @Param id query string true "id"
+// @Success 200 {object} model_healthcare_service.DoctorAndDoctorHours
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/doctor/get [get]
 func (h *HandlerV1) GetDoctor(c *gin.Context) {
-	field := c.Query("field")
-	value := c.Query("value")
+	id := c.Query("id")
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	doctor, err := h.serviceManager.HealthcareService().DoctorService().GetDoctorById(ctx, &pb.GetReqStrDoctor{
-		Field:    field,
-		Value:    value,
+		Field:    "id",
+		Value:    id,
 		IsActive: false,
 	})
 
@@ -118,7 +117,7 @@ func (h *HandlerV1) GetDoctor(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, model_healthcare_service.DoctorRes{
+	c.JSON(http.StatusOK, model_healthcare_service.DoctorAndDoctorHours{
 		Id:            doctor.Id,
 		Order:         doctor.Order,
 		FirstName:     doctor.FirstName,
@@ -132,6 +131,9 @@ func (h *HandlerV1) GetDoctor(c *gin.Context) {
 		City:          doctor.City,
 		Country:       doctor.Country,
 		Salary:        doctor.Salary,
+		StartTime:     doctor.StartTime,
+		FinishTime:    doctor.FinishTime,
+		DayOfWeek:     doctor.DayOfWeek,
 		Bio:           doctor.Bio,
 		StartWorkDate: doctor.StartWorkDate,
 		EndWorkDate:   doctor.EndWorkDate,
@@ -152,7 +154,7 @@ func (h *HandlerV1) GetDoctor(c *gin.Context) {
 // @Produce json
 // @Param ListReq query models.ListReq false "ListReq"
 // @Param search query string false "search" Enums(first_name, last_name, gender, phone_number, email, address, city, country, biography) "search"
-// @Success 200 {object} model_healthcare_service.ListDoctors
+// @Success 200 {object} model_healthcare_service.DoctorAndDoctorHours
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/doctor [get]
@@ -183,9 +185,9 @@ func (h *HandlerV1) ListDoctors(c *gin.Context) {
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, "ListDoctors") {
 		return
 	}
-	var doctorsRes model_healthcare_service.ListDoctors
-	for _, doctorRes := range doctors.Doctors {
-		doctorsRes.Doctors = append(doctorsRes.Doctors, &model_healthcare_service.DoctorRes{
+	var doctorsRes model_healthcare_service.ListDoctorsAndHours
+	for _, doctorRes := range doctors.DoctorHours {
+		doctorsRes.Doctors = append(doctorsRes.Doctors, &model_healthcare_service.DoctorAndDoctorHours{
 			Id:            doctorRes.Id,
 			Order:         doctorRes.Order,
 			FirstName:     doctorRes.FirstName,
@@ -199,6 +201,9 @@ func (h *HandlerV1) ListDoctors(c *gin.Context) {
 			City:          doctorRes.City,
 			Country:       doctorRes.Country,
 			Salary:        doctorRes.Salary,
+			StartTime:     doctorRes.StartTime,
+			FinishTime:    doctorRes.FinishTime,
+			DayOfWeek:     doctorRes.DayOfWeek,
 			Bio:           doctorRes.Bio,
 			StartWorkDate: doctorRes.StartWorkDate,
 			EndWorkDate:   doctorRes.EndWorkDate,
@@ -211,7 +216,7 @@ func (h *HandlerV1) ListDoctors(c *gin.Context) {
 		})
 	}
 
-	c.JSON(http.StatusOK, model_healthcare_service.ListDoctors{
+	c.JSON(http.StatusOK, model_healthcare_service.ListDoctorsAndHours{
 		Count:   doctors.Count,
 		Doctors: doctorsRes.Doctors,
 	})
@@ -298,7 +303,6 @@ func (h *HandlerV1) ListDoctorsBySpecializationId(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param UpdateDoctorReq body model_healthcare_service.DoctorUpdateReq true "UpdateDoctorReq"
-// @Param id query string true "id"
 // @Success 200 {object} model_healthcare_service.DoctorRes
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
@@ -312,8 +316,6 @@ func (h *HandlerV1) UpdateDoctor(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&body)
 
-	id := c.Query("id")
-
 	if e.HandleError(c, err, h.log, http.StatusBadRequest, "UpdateDoctor") {
 		return
 	}
@@ -322,7 +324,7 @@ func (h *HandlerV1) UpdateDoctor(c *gin.Context) {
 	defer cancel()
 
 	doctor, err := h.serviceManager.HealthcareService().DoctorService().UpdateDoctor(ctx, &pb.Doctor{
-		Id:            id,
+		Id:            body.Id,
 		FirstName:     body.FirstName,
 		LastName:      body.LastName,
 		ImageUrl:      body.ImageUrl,

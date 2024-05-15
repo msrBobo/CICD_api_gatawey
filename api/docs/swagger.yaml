@@ -342,6 +342,9 @@ definitions:
       floor_number:
         example: 2
         type: integer
+      id:
+        example: 123e4567-e89b-12d3-a456-426614274001
+        type: string
       image_url:
         example: http://example.com/image.png
         type: string
@@ -482,6 +485,9 @@ definitions:
       duration:
         example: "12:12"
         type: string
+      id:
+        example: 123e4567-e89b-12d3-a456-426614274001
+        type: string
       name:
         example: name
         type: string
@@ -550,6 +556,9 @@ definitions:
       gender:
         example: male
         type: string
+      id:
+        example: 123e4567-e89b-12d3-a456-426614274001
+        type: string
       image_url:
         example: http://example.com/image.png
         type: string
@@ -585,6 +594,9 @@ definitions:
         type: string
       finish_time:
         example: "12:00:00"
+        type: string
+      id:
+        example: 123e4567-e89b-12d3-a456-426614274001
         type: string
       start_time:
         example: "12:00:00"
@@ -663,6 +675,9 @@ definitions:
     type: object
   model_healthcare_service.ReasonsReq:
     properties:
+      id:
+        example: 123e4567-e89b-12d3-a456-426614375001
+        type: string
       image_url:
         example: http://example.com/image.png
         type: string
@@ -695,6 +710,9 @@ definitions:
         type: string
       description:
         example: Specialization description
+        type: string
+      id:
+        example: 123e4567-e89b-12d3-a456-426614174003
         type: string
       image_url:
         example: http://example.com/image.png
@@ -1559,11 +1577,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model_healthcare_service.DepartmentReq'
-      - description: id
-        in: query
-        name: id
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -1588,11 +1601,10 @@ paths:
       - application/json
       description: GetDepartment - Api for get department
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+      - description: id
+        in: query
+        name: id
+        required: true
         type: string
       produces:
       - application/json
@@ -1731,11 +1743,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model_healthcare_service.DoctorUpdateReq'
-      - description: id
-        in: query
-        name: id
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -2014,11 +2021,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model_healthcare_service.DoctorServicesReq'
-      - description: id
-        in: query
-        name: id
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -2043,11 +2045,10 @@ paths:
       - application/json
       description: GetDoctorService - Api for get doctor_services
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+      - description: id
+        in: query
+        name: id
+        required: true
         type: string
       produces:
       - application/json
@@ -2336,11 +2337,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model_healthcare_service.DoctorWorkingHoursReq'
-      - description: id
-        in: query
-        name: id
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -2365,11 +2361,10 @@ paths:
       - application/json
       description: GetDoctorWorkingHours - Api for get doctor_working_hours
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+      - description: id
+        in: query
+        name: id
+        required: true
         type: string
       produces:
       - application/json
@@ -2395,11 +2390,10 @@ paths:
       - application/json
       description: GetDoctor - Api for get doctor
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+      - description: id
+        in: query
+        name: id
+        required: true
         type: string
       produces:
       - application/json
@@ -2803,11 +2797,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/model_healthcare_service.ReasonsReq'
-      - description: id
-        in: query
-        name: id
-        required: true
-        type: string
       produces:
       - application/json
       responses:
@@ -2832,11 +2821,10 @@ paths:
       - application/json
       description: GetReasons - Api for get reasons
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+      - description: id
+        in: query
+        name: id
+        required: true
         type: string
       produces:
       - application/json
@@ -3058,11 +3046,10 @@ paths:
       - application/json
       description: GetSpecialization - Api for get specialization
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+      - description: id
+        in: query
+        name: id
+        required: true
         type: string
       produces:
       - application/json

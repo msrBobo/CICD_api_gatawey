@@ -12,6 +12,7 @@ type SpecializationRes struct {
 }
 
 type SpecializationReq struct {
+	Id           string `json:"id" example:"123e4567-e89b-12d3-a456-426614174003"`
 	Name         string `json:"name" example:"Specialization"`
 	Description  string `json:"description" example:"Specialization description"`
 	DepartmentId string `json:"department_id" example:"123e4567-e89b-12d3-a456-426614174003"`

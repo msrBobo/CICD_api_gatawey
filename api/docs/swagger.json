@@ -904,13 +904,6 @@
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DepartmentReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -1040,13 +1033,10 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1165,13 +1155,6 @@
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DoctorUpdateReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -1601,13 +1584,6 @@
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DoctorServicesReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -1737,13 +1713,10 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2098,13 +2071,6 @@
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.DoctorWorkingHoursReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -2234,13 +2200,10 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2281,13 +2244,10 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2814,13 +2774,6 @@
                         "schema": {
                             "$ref": "#/definitions/model_healthcare_service.ReasonsReq"
                         }
-                    },
-                    {
-                        "type": "string",
-                        "description": "id",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
                     }
                 ],
                 "responses": {
@@ -2950,13 +2903,10 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -3296,13 +3246,10 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -4134,6 +4081,10 @@
                     "type": "integer",
                     "example": 2
                 },
+                "id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614274001"
+                },
                 "image_url": {
                     "type": "string",
                     "example": "http://example.com/image.png"
@@ -4335,6 +4286,10 @@
                     "type": "string",
                     "example": "12:12"
                 },
+                "id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614274001"
+                },
                 "name": {
                     "type": "string",
                     "example": "name"
@@ -4431,6 +4386,10 @@
                     "type": "string",
                     "example": "male"
                 },
+                "id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614274001"
+                },
                 "image_url": {
                     "type": "string",
                     "example": "http://example.com/image.png"
@@ -4479,6 +4438,10 @@
                 "finish_time": {
                     "type": "string",
                     "example": "12:00:00"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614274001"
                 },
                 "start_time": {
                     "type": "string",
@@ -4599,6 +4562,10 @@
         "model_healthcare_service.ReasonsReq": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614375001"
+                },
                 "image_url": {
                     "type": "string",
                     "example": "http://example.com/image.png"
@@ -4646,6 +4613,10 @@
                 "description": {
                     "type": "string",
                     "example": "Specialization description"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "123e4567-e89b-12d3-a456-426614174003"
                 },
                 "image_url": {
                     "type": "string",
