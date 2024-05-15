@@ -4777,6 +4777,9 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
+                "image_url": {
+                    "type": "string"
+                },
                 "last_name": {
                     "type": "string"
                 },
@@ -4930,6 +4933,9 @@ const docTemplate = `{
                 "id": {
                     "type": "string",
                     "example": "UUID"
+                },
+                "image_url": {
+                    "type": "string"
                 },
                 "last_name": {
                     "type": "string",

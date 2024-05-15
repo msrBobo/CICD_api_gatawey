@@ -100,11 +100,11 @@ func NewConfig() (*Config, error) {
 	config.DB.Port = getEnv("POSTGRES_PORT", "5432")
 	config.DB.Name = getEnv("POSTGRES_DATABASE", "dennic")
 	config.DB.User = getEnv("POSTGRES_USER", "postgres")
-	config.DB.Password = getEnv("POSTGRES_PASSWORD", "123")
+	config.DB.Password = getEnv("POSTGRES_PASSWORD", "1234")
 	config.DB.SSLMode = getEnv("POSTGRES_SSLMODE", "disable")
 
 	// redis configuration
-	config.Redis.Host = getEnv("REDIS_HOST", "redisdb")
+	config.Redis.Host = getEnv("REDIS_HOST", "localhost")
 	config.Redis.Port = getEnv("REDIS_PORT", "6379")
 	config.Redis.Password = getEnv("REDIS_PASSWORD", "")
 	config.Redis.Name = getEnv("REDIS_DATABASE", "0")
@@ -139,8 +139,7 @@ func NewConfig() (*Config, error) {
 	config.Token.RefreshTTL = refreshTTL
 
 	// otlp collector configuration
-	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "otel-collector"+
-		"")
+	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "otel-collector")
 	config.OTLPCollector.Port = getEnv("OTLP_COLLECTOR_PORT", ":4317")
 
 	// kafka configuration

@@ -61,6 +61,7 @@ func (h *HandlerV1) GetUserByID(c *gin.Context) {
 		PhoneNumber: response.PhoneNumber,
 		Password:    response.Password,
 		Gender:      response.Gender,
+		ImageUrl:    response.ImageUrl,
 		CreatedAt:   response.CreatedAt,
 		UpdatedAt:   response.UpdatedAt,
 	}
@@ -131,6 +132,7 @@ func (h *HandlerV1) ListUsers(c *gin.Context) {
 			PhoneNumber: in.PhoneNumber,
 			Password:    in.Password,
 			Gender:      in.Gender,
+			ImageUrl:    in.ImageUrl,
 			CreatedAt:   in.CreatedAt,
 			UpdatedAt:   in.UpdatedAt,
 		}
@@ -178,6 +180,7 @@ func (h *HandlerV1) UpdateUser(c *gin.Context) {
 		LastName:  body.LastName,
 		BirthDate: body.BrithDate,
 		Gender:    body.Gender,
+		ImageUrl:  body.ImageUrl,
 	}
 
 	response, err := h.serviceManager.UserService().UserService().Update(ctx, req)
@@ -195,6 +198,7 @@ func (h *HandlerV1) UpdateUser(c *gin.Context) {
 		LastName:  response.LastName,
 		BrithDate: response.BirthDate,
 		Gender:    response.Gender,
+		ImageUrl:  response.ImageUrl,
 		UpdatedAt: response.UpdatedAt,
 	}
 

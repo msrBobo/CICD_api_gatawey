@@ -776,6 +776,8 @@ definitions:
         type: string
       id:
         type: string
+      image_url:
+        type: string
       last_name:
         type: string
       password:
@@ -880,6 +882,8 @@ definitions:
         type: string
       id:
         example: UUID
+        type: string
+      image_url:
         type: string
       last_name:
         example: To'rayevich
