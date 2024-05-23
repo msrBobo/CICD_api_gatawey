@@ -2,10 +2,10 @@ package v1
 
 import (
 	"context"
-	e "dennic_api_gateway/api/handlers/regtool"
-	"dennic_api_gateway/api/models/model_user_service"
-	pb "dennic_api_gateway/genproto/user_service"
-	jwt "dennic_api_gateway/internal/pkg/tokens"
+	e "dennic-api-gateway/api/handlers/regtool"
+	"dennic-api-gateway/api/models/model_user_service"
+	pb "dennic-api-gateway/genproto/user_service"
+	jwt "dennic-api-gateway/internal/pkg/tokens"
 	"net/http"
 	"time"
 

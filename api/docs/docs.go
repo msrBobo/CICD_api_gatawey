@@ -183,12 +183,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -229,14 +224,11 @@ const docTemplate = `{
                 "summary": "GetBookedAppointment",
                 "parameters": [
                     {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -429,12 +421,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -475,14 +462,11 @@ const docTemplate = `{
                 "summary": "GetArchive",
                 "parameters": [
                     {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1044,12 +1028,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -1175,7 +1154,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.ListDoctors"
+                            "$ref": "#/definitions/model_healthcare_service.DoctorAndDoctorHours"
                         }
                     },
                     "400": {
@@ -1295,12 +1274,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -1494,12 +1468,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -1540,14 +1509,11 @@ const docTemplate = `{
                 "summary": "GetDoctorNote",
                 "parameters": [
                     {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1726,12 +1692,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -1969,12 +1930,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -2015,14 +1971,11 @@ const docTemplate = `{
                 "summary": "GetDoctorTimes",
                 "parameters": [
                     {
-                        "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2215,12 +2168,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -2316,7 +2264,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/model_healthcare_service.DoctorRes"
+                            "$ref": "#/definitions/model_healthcare_service.DoctorAndDoctorHours"
                         }
                     },
                     "400": {
@@ -2629,12 +2577,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -2676,13 +2619,10 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
-                        "in": "query"
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2926,12 +2866,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -3269,12 +3204,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "field",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "name": "value",
+                        "name": "id",
                         "in": "query"
                     }
                 ],
@@ -4023,13 +3953,13 @@ const docTemplate = `{
         "model_booking_service.UpdateArchiveReq": {
             "type": "object",
             "properties": {
+                "archive_id": {
+                    "type": "string"
+                },
                 "doctor_availability_id": {
                     "type": "integer"
                 },
                 "end_time": {
-                    "type": "string"
-                },
-                "id": {
                     "type": "string"
                 },
                 "patient_problem": {
@@ -4167,12 +4097,8 @@ const docTemplate = `{
                     "example": 2
                 },
                 "id": {
-<<<<<<< HEAD
-                    "type": "string"
-=======
                     "type": "string",
                     "example": "123e4567-e89b-12d3-a456-426614274001"
->>>>>>> f59512513a0122b24ea3176ec22ade94224549c9
                 },
                 "image_url": {
                     "type": "string",
@@ -4217,6 +4143,86 @@ const docTemplate = `{
                 },
                 "updated_at": {
                     "type": "string"
+                }
+            }
+        },
+        "model_healthcare_service.DoctorAndDoctorHours": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "bio": {
+                    "type": "string"
+                },
+                "birth_date": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "day_of_week": {
+                    "type": "string"
+                },
+                "department_id": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "end_work_date": {
+                    "type": "string"
+                },
+                "finish_time": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image_url": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "order": {
+                    "type": "integer"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "room_number": {
+                    "type": "integer"
+                },
+                "salary": {
+                    "type": "number"
+                },
+                "start_time": {
+                    "type": "string"
+                },
+                "start_work_date": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "work_years": {
+                    "type": "integer"
                 }
             }
         },
@@ -4476,12 +4482,8 @@ const docTemplate = `{
                     "example": "male"
                 },
                 "id": {
-<<<<<<< HEAD
-                    "type": "string"
-=======
                     "type": "string",
                     "example": "123e4567-e89b-12d3-a456-426614274001"
->>>>>>> f59512513a0122b24ea3176ec22ade94224549c9
                 },
                 "image_url": {
                     "type": "string",
@@ -5061,6 +5063,7 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
+
 }
 
 func init() {

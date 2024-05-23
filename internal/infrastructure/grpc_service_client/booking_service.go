@@ -1,7 +1,7 @@
 package grpc_service_clients
 
 import (
-	"dennic_api_gateway/genproto/booking_service"
+	"dennic-api-gateway/genproto/booking_service"
 
 	"google.golang.org/grpc"
 )

@@ -1,15 +1,16 @@
 package casbin
 
 import (
-	"dennic_api_gateway/api/models/model_common"
-	"dennic_api_gateway/internal/pkg/config"
-	"dennic_api_gateway/internal/pkg/logger"
-	jwt "dennic_api_gateway/internal/pkg/tokens"
+	"dennic-api-gateway/api/models/model_common"
+	"dennic-api-gateway/internal/pkg/config"
+	"dennic-api-gateway/internal/pkg/logger"
+	jwt "dennic-api-gateway/internal/pkg/tokens"
 	"fmt"
-	"github.com/casbin/casbin/v2"
-	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+
+	"github.com/casbin/casbin/v2"
+	"github.com/gin-gonic/gin"
 )
 
 type CasbinHandler struct {

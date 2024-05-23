@@ -1,10 +1,11 @@
 package v1
 
 import (
-	"dennic_api_gateway/api/models/model_common"
+	"dennic-api-gateway/api/models/model_common"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
-	"net/http"
 )
 
 func HandleError(c *gin.Context, err error, l *zap.Logger, statusCode int, msg string) bool {

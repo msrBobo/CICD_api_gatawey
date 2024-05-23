@@ -3,7 +3,7 @@ package minio
 import (
 	"bytes"
 	"context"
-	"dennic_api_gateway/internal/pkg/config"
+	"dennic-api-gateway/internal/pkg/config"
 	"fmt"
 
 	"github.com/minio/minio-go/v7"

@@ -11,7 +11,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	validatorEn "github.com/go-playground/validator/v10/translations/en"
 
-	errorpkg "dennic_api_gateway/internal/errors"
+	errorpkg "dennic-api-gateway/internal/errors"
 )
 
 func Validator(s interface{}) error {

@@ -1,0 +1,12 @@
+{
+  "version": "9",
+  "credential": {
+    "anonymous": [
+      {
+        "action": ["getObject"],
+        "effect": "Allow",
+        "resource": ["arn:aws:s3:::golang/*"]
+      }
+    ]
+  }
+}

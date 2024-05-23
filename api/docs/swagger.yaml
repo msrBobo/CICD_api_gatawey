@@ -258,11 +258,11 @@ definitions:
     type: object
   model_booking_service.UpdateArchiveReq:
     properties:
+      archive_id:
+        type: string
       doctor_availability_id:
         type: integer
       end_time:
-        type: string
-      id:
         type: string
       patient_problem:
         type: string
@@ -353,10 +353,7 @@ definitions:
         example: 2
         type: integer
       id:
-<<<<<<< HEAD
-=======
         example: 123e4567-e89b-12d3-a456-426614274001
->>>>>>> f59512513a0122b24ea3176ec22ade94224549c9
         type: string
       image_url:
         example: http://example.com/image.png
@@ -388,6 +385,59 @@ definitions:
         type: string
       updated_at:
         type: string
+    type: object
+  model_healthcare_service.DoctorAndDoctorHours:
+    properties:
+      address:
+        type: string
+      bio:
+        type: string
+      birth_date:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      created_at:
+        type: string
+      day_of_week:
+        type: string
+      department_id:
+        type: string
+      email:
+        type: string
+      end_work_date:
+        type: string
+      finish_time:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      image_url:
+        type: string
+      last_name:
+        type: string
+      order:
+        type: integer
+      password:
+        type: string
+      phone_number:
+        type: string
+      room_number:
+        type: integer
+      salary:
+        type: number
+      start_time:
+        type: string
+      start_work_date:
+        type: string
+      updated_at:
+        type: string
+      work_years:
+        type: integer
     type: object
   model_healthcare_service.DoctorReq:
     properties:
@@ -570,10 +620,7 @@ definitions:
         example: male
         type: string
       id:
-<<<<<<< HEAD
-=======
         example: 123e4567-e89b-12d3-a456-426614274001
->>>>>>> f59512513a0122b24ea3176ec22ade94224549c9
         type: string
       image_url:
         example: http://example.com/image.png
@@ -964,10 +1011,7 @@ paths:
       description: DeleteBookedAppointment - API to delete a appointment
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json
@@ -1092,12 +1136,11 @@ paths:
       - application/json
       description: GetBookedAppointment - API to get Booked appointment by ID
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
-        type: string
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1123,10 +1166,7 @@ paths:
       description: DeleteArchive - Api for delete archive
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json
@@ -1251,12 +1291,11 @@ paths:
       - application/json
       description: GetArchive - Api for get archive
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
-        type: string
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1520,10 +1559,7 @@ paths:
       description: DeleteDepartment - Api for delete department
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json
@@ -1679,10 +1715,7 @@ paths:
       description: DeleteDoctor - Api for delete doctor
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json
@@ -1739,7 +1772,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.ListDoctors'
+            $ref: '#/definitions/model_healthcare_service.DoctorAndDoctorHours'
         "400":
           description: Bad Request
           schema:
@@ -1816,10 +1849,7 @@ paths:
       description: DeleteDoctorNote - API to delete a doctor note
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json
@@ -1944,12 +1974,11 @@ paths:
       - application/json
       description: GetDoctorNote - API to get doctor note by ID
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
-        type: string
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -1975,10 +2004,7 @@ paths:
       description: DeleteDoctorService - Api for delete doctorServices
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json
@@ -2124,10 +2150,7 @@ paths:
       description: DeleteDoctorTimes - Api for delete Doctor time
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json
@@ -2252,12 +2275,11 @@ paths:
       - application/json
       description: GetDoctorTimes - Api for get doctor time
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
-        type: string
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: integer
       produces:
       - application/json
       responses:
@@ -2283,10 +2305,7 @@ paths:
       description: DeleteDoctorWorkingHours - Api for delete doctor_working_hours
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json
@@ -2451,7 +2470,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/model_healthcare_service.DoctorRes'
+            $ref: '#/definitions/model_healthcare_service.DoctorAndDoctorHours'
         "400":
           description: Bad Request
           schema:
@@ -2551,10 +2570,7 @@ paths:
       description: DeletePatient - Api for delete patient
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json
@@ -2685,11 +2701,10 @@ paths:
       - application/json
       description: GetPatient - Api for get patient
       parameters:
-      - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+      - description: id
+        in: query
+        name: id
+        required: true
         type: string
       produces:
       - application/json
@@ -2750,10 +2765,7 @@ paths:
       description: DeleteReasons - Api for delete reasons
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json
@@ -2965,10 +2977,7 @@ paths:
       description: DeleteSpecialization - Api for delete specialization
       parameters:
       - in: query
-        name: field
-        type: string
-      - in: query
-        name: value
+        name: id
         type: string
       produces:
       - application/json

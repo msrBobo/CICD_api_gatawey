@@ -1,0 +1,1 @@
+ALTER TABLE reasons ADD COLUMN image_url varchar(200) NOT NULL;

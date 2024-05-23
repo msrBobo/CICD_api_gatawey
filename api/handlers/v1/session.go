@@ -2,13 +2,14 @@ package v1
 
 import (
 	"context"
-	e "dennic_api_gateway/api/handlers/regtool"
-	"dennic_api_gateway/api/models"
-	"dennic_api_gateway/api/models/model_session_service"
-	pb "dennic_api_gateway/genproto/session_service"
-	"github.com/gin-gonic/gin"
+	e "dennic-api-gateway/api/handlers/regtool"
+	"dennic-api-gateway/api/models"
+	"dennic-api-gateway/api/models/model_session_service"
+	pb "dennic-api-gateway/genproto/session_service"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 // GetUserSessions ...

@@ -1,0 +1,1 @@
+ALTER TABLE departments DROP COLUMN short_description;

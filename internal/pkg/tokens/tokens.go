@@ -1,7 +1,7 @@
 package token
 
 import (
-	"dennic_api_gateway/internal/pkg/config"
+	"dennic-api-gateway/internal/pkg/config"
 	"github.com/dgrijalva/jwt-go"
 	"go.uber.org/zap"
 	"time"

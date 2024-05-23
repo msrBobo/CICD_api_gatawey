@@ -1,14 +1,15 @@
 package v1
 
 import (
-	e "dennic_api_gateway/api/handlers/regtool"
-	m "dennic_api_gateway/api/models/model_minio"
-	"dennic_api_gateway/internal/pkg/minio"
-	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
+	e "dennic-api-gateway/api/handlers/regtool"
+	m "dennic-api-gateway/api/models/model_minio"
+	"dennic-api-gateway/internal/pkg/minio"
 	"io"
 	"net/http"
 	"path/filepath"
+
+	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 // UploadFile ...

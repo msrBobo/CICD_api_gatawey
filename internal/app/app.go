@@ -2,13 +2,13 @@ package app
 
 import (
 	"context"
-	"dennic_api_gateway/api"
-	grpcService "dennic_api_gateway/internal/infrastructure/grpc_service_client"
-	"dennic_api_gateway/internal/pkg/config"
-	"dennic_api_gateway/internal/pkg/logger"
-	"dennic_api_gateway/internal/pkg/otlp"
-	"dennic_api_gateway/internal/pkg/postgres"
-	"dennic_api_gateway/internal/pkg/redis"
+	"dennic-api-gateway/api"
+	grpcService "dennic-api-gateway/internal/infrastructure/grpc_service_client"
+	"dennic-api-gateway/internal/pkg/config"
+	"dennic-api-gateway/internal/pkg/logger"
+	"dennic-api-gateway/internal/pkg/otlp"
+	"dennic-api-gateway/internal/pkg/postgres"
+	"dennic-api-gateway/internal/pkg/redis"
 	"fmt"
 	"go.uber.org/zap"
 	"net/http"
@@ -114,9 +114,6 @@ func (a *App) Stop() {
 	}
 
 	// shutdown otlp collector
-	if err := a.ShutdownOTLP(); err != nil {
-		a.Logger.Error("shutdown otlp collector", zap.Error(err))
-	}
 
 	// zap logger sync
 	a.Logger.Sync()

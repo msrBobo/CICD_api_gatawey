@@ -2,15 +2,16 @@ package v1
 
 import (
 	"context"
-	e "dennic_api_gateway/api/handlers/regtool"
-	"dennic_api_gateway/api/models"
-	"dennic_api_gateway/api/models/model_healthcare_service"
-	pb "dennic_api_gateway/genproto/healthcare-service"
+	e "dennic-api-gateway/api/handlers/regtool"
+	"dennic-api-gateway/api/models"
+	"dennic-api-gateway/api/models/model_healthcare_service"
+	pb "dennic-api-gateway/genproto/healthcare-service"
+	"net/http"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
-	"net/http"
-	"time"
 )
 
 // CreateDoctorWorkingHours ...

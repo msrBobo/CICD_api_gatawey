@@ -2,15 +2,16 @@ package v1
 
 import (
 	"context"
-	e "dennic_api_gateway/api/handlers/regtool"
-	"dennic_api_gateway/api/models"
-	"dennic_api_gateway/api/models/model_booking_service"
-	pb "dennic_api_gateway/genproto/booking_service"
+	e "dennic-api-gateway/api/handlers/regtool"
+	"dennic-api-gateway/api/models"
+	"dennic-api-gateway/api/models/model_booking_service"
+	pb "dennic-api-gateway/genproto/booking_service"
+	"net/http"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"google.golang.org/protobuf/encoding/protojson"
-	"net/http"
-	"time"
 )
 
 // CreatePatient ...
@@ -81,21 +82,20 @@ func (h *HandlerV1) CreatePatient(c *gin.Context) {
 // @Tags Patient
 // @Accept json
 // @Produce json
-// @Param GetDoctorTimeReq query models.FieldValueReq true "FieldValueReq"
+// @Param id query string true "id"
 // @Success 200 {object} model_booking_service.Patient
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/patient/get [get]
 func (h *HandlerV1) GetPatient(c *gin.Context) {
-	field := c.Query("field")
-	value := c.Query("value")
+	id := c.Query("id")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	res, err := h.serviceManager.BookingService().PatientService().GetPatient(ctx, &pb.PatientFieldValueReq{
-		Field:    field,
-		Value:    value,
+		Field:    "id",
+		Value:    id,
 		IsActive: false,
 	})
 

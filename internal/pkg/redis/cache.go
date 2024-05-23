@@ -1,7 +1,7 @@
 package redis
 
 import (
-	"dennic_api_gateway/internal/pkg/config"
+	"dennic-api-gateway/internal/pkg/config"
 	"github.com/go-redis/redis/v8"
 	"strconv"
 )

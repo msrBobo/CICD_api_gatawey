@@ -1,8 +1,8 @@
 package models
 
 type FieldValueReq struct {
-	Field        string `json:"field"`
-	Value        string `json:"value"`
+	Field        string `json:"-"`
+	Value        string `json:"id"`
 	DeleteStatus bool   `json:"-"`
 }
 

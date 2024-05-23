@@ -2,14 +2,15 @@ package v1
 
 import (
 	"context"
-	e "dennic_api_gateway/api/handlers/regtool"
-	"dennic_api_gateway/api/models"
-	"dennic_api_gateway/api/models/model_booking_service"
-	pb "dennic_api_gateway/genproto/booking_service"
-	"github.com/gin-gonic/gin"
-	"google.golang.org/protobuf/encoding/protojson"
+	e "dennic-api-gateway/api/handlers/regtool"
+	"dennic-api-gateway/api/models"
+	"dennic-api-gateway/api/models/model_booking_service"
+	pb "dennic-api-gateway/genproto/booking_service"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"google.golang.org/protobuf/encoding/protojson"
 )
 
 // CreateDoctorTimes ...
@@ -71,21 +72,20 @@ func (h *HandlerV1) CreateDoctorTimes(c *gin.Context) {
 // @Tags Doctor Time
 // @Accept json
 // @Produce json
-// @Param GetDoctorTimeReq query models.FieldValueReq true "FieldValueReq"
+// @Param id query integer true "id"
 // @Success 200 {object} model_booking_service.DoctorTime
 // @Failure 400 {object} model_common.StandardErrorModel
 // @Failure 500 {object} model_common.StandardErrorModel
 // @Router /v1/doctor-time/get [get]
 func (h *HandlerV1) GetDoctorTimes(c *gin.Context) {
-	field := c.Query("field")
-	value := c.Query("value")
+	id := c.Query("id")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.Context.Timeout))
 	defer cancel()
 
 	res, err := h.serviceManager.BookingService().DoctorTimes().GetDoctorTime(ctx, &pb.DoctorTimeFieldValueReq{
-		Field:    field,
-		Value:    value,
+		Field:    "id",
+		Value:    id,
 		IsActive: false,
 	})
 

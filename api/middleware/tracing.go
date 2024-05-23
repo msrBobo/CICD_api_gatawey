@@ -2,11 +2,12 @@ package middleware
 
 import (
 	"bufio"
-	"dennic_api_gateway/api/response"
+	"dennic-api-gateway/api/response"
 	"errors"
-	"go.opentelemetry.io/otel"
 	"net"
 	"net/http"
+
+	"go.opentelemetry.io/otel"
 
 	"github.com/gin-gonic/gin"
 	"go.opentelemetry.io/otel/attribute"

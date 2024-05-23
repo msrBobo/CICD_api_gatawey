@@ -1,8 +1,9 @@
 package v1
 
 import (
-	jwt "dennic_api_gateway/internal/pkg/tokens"
+	jwt "dennic-api-gateway/internal/pkg/tokens"
 	"fmt"
+
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"
 )

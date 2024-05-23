@@ -2,13 +2,14 @@ package v1
 
 import (
 	"context"
-	e "dennic_api_gateway/api/handlers/regtool"
-	"dennic_api_gateway/api/models"
-	"dennic_api_gateway/api/models/model_user_service"
-	ps "dennic_api_gateway/genproto/session_service"
-	pb "dennic_api_gateway/genproto/user_service"
+	e "dennic-api-gateway/api/handlers/regtool"
+	"dennic-api-gateway/api/models"
+	"dennic-api-gateway/api/models/model_user_service"
+	ps "dennic-api-gateway/genproto/session_service"
+	pb "dennic-api-gateway/genproto/user_service"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"strings"
 	"time"
@@ -47,10 +48,9 @@ func (h *HandlerV1) Register(c *gin.Context) {
 	if e.HandleError(c, err, h.log, http.StatusBadRequest, INVALID_REQUET_BODY) {
 		return
 	}
-
 	err = body.Validate()
 
-	if e.HandleError(c, err, h.log, http.StatusBadRequest, err.Error()) {
+	if e.HandleError(c, err, h.log, http.StatusBadRequest, INVALID_REQUET_BODY) {
 		return
 	}
 
@@ -133,12 +133,12 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 	defer cancel()
 
 	redisRes, err := h.redis.Client.Get(ctx, body.PhoneNumber).Result()
-
 	if e.HandleError(c, err, h.log, http.StatusBadRequest, SERVICE_ERROR) {
 		return
 	}
 
 	err = json.Unmarshal([]byte(redisRes), &user)
+	fmt.Println(err, "==================")
 
 	if e.HandleError(c, err, h.log, http.StatusInternalServerError, SERVICE_ERROR) {
 		return
@@ -275,9 +275,6 @@ func (h *HandlerV1) ForgetPassword(c *gin.Context) {
 	}
 
 	codeRed, err := h.redis.Client.Get(ctx, body.PhoneNumber).Result()
-	if e.HandleError(c, err, h.log, http.StatusInternalServerError, SERVICE_ERROR) {
-		return
-	}
 
 	if codeRed != "" {
 		err = errors.New(CODE_EXPIRATION_NOT_OVER)
@@ -458,7 +455,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 
 	if !e.ValidatePassword(body.Password) {
 		err := errors.New("invalid password")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, err.Error())
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, INVALID_REQUET_BODY)
 		return
 	}
 
@@ -474,7 +471,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 
 	if !e.CheckHashPassword(user.Password, body.Password) {
 		err = errors.New("incorrect password")
-		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, err.Error())
+		_ = e.HandleError(c, err, h.log, http.StatusBadRequest, INVALID_REQUET_BODY)
 		return
 	}
 
@@ -490,7 +487,7 @@ func (h *HandlerV1) Login(c *gin.Context) {
 	if sessions != nil {
 		if sessions.Count >= 3 {
 			err = errors.New("the number of devices has exceeded the limit")
-			_ = e.HandleError(c, err, h.log, http.StatusBadRequest, err.Error())
+			_ = e.HandleError(c, err, h.log, http.StatusBadRequest, INVALID_REQUET_BODY)
 			return
 		}
 	}

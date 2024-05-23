@@ -1,0 +1,1 @@
+ALTER TABLE specializations DROP COLUMN image_url;

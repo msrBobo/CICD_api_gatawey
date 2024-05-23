@@ -7,8 +7,8 @@ import (
 
 	"go.opentelemetry.io/otel/attribute"
 
-	otlp_pkg "dennic_api_gateway/internal/pkg/otlp"
-	"dennic_api_gateway/internal/pkg/redis"
+	otlp_pkg "dennic-api-gateway/internal/pkg/otlp"
+	"dennic-api-gateway/internal/pkg/redis"
 )
 
 type Cache interface {

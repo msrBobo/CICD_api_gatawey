@@ -1,13 +1,14 @@
 package v1
 
 import (
-	grpc_service_clients "dennic_api_gateway/internal/infrastructure/grpc_service_client"
-	"dennic_api_gateway/internal/pkg/config"
-	"dennic_api_gateway/internal/pkg/redis"
-	token "dennic_api_gateway/internal/pkg/tokens"
+	grpc_service_clients "dennic-api-gateway/internal/infrastructure/grpc_service_client"
+	"dennic-api-gateway/internal/pkg/config"
+	"dennic-api-gateway/internal/pkg/redis"
+	token "dennic-api-gateway/internal/pkg/tokens"
+	"time"
+
 	"github.com/casbin/casbin/v2"
 	"go.uber.org/zap"
-	"time"
 )
 
 const (
