@@ -1,10 +1,11 @@
 package token
 
 import (
-	"dennic-api-gateway/internal/pkg/config"
+	"Dennic/internal/pkg/config"
+	"time"
+
 	"github.com/dgrijalva/jwt-go"
 	"go.uber.org/zap"
-	"time"
 )
 
 // JWTHandler ...

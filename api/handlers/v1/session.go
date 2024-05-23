@@ -1,11 +1,11 @@
 package v1
 
 import (
+	e "Dennic/api/handlers/regtool"
+	"Dennic/api/models"
+	"Dennic/api/models/model_session_service"
+	pb "Dennic/genproto/session_service"
 	"context"
-	e "dennic-api-gateway/api/handlers/regtool"
-	"dennic-api-gateway/api/models"
-	"dennic-api-gateway/api/models/model_session_service"
-	pb "dennic-api-gateway/genproto/session_service"
 	"net/http"
 	"time"
 

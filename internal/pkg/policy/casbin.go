@@ -2,14 +2,15 @@ package policy
 
 import (
 	"fmt"
+
 	"github.com/casbin/casbin/v2"
 	"github.com/casbin/casbin/v2/model"
 	rediswatcher "github.com/casbin/redis-watcher/v2"
 	"github.com/redis/go-redis/v9"
 	"go.uber.org/zap"
 
-	"dennic-api-gateway/internal/pkg/config"
-	"dennic-api-gateway/internal/pkg/postgres"
+	"Dennic/internal/pkg/config"
+	"Dennic/internal/pkg/postgres"
 )
 
 func NewCachedEnforcer(cfg *config.Config, logger *zap.Logger) (*casbin.CachedEnforcer, error) {

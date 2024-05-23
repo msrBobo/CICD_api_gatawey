@@ -1,9 +1,9 @@
 package v1
 
 import (
-	e "dennic-api-gateway/api/handlers/regtool"
-	m "dennic-api-gateway/api/models/model_minio"
-	"dennic-api-gateway/internal/pkg/minio"
+	e "Dennic/api/handlers/regtool"
+	m "Dennic/api/models/model_minio"
+	"Dennic/internal/pkg/minio"
 	"io"
 	"net/http"
 	"path/filepath"

@@ -23,9 +23,9 @@ services:
     networks:
       - db
 
-  dennic-api-gateway:
-    container_name: dennic-api-gateway
-    build: ./dennic-api-gateway
+  Dennic:
+    container_name: Dennic
+    build: ./Dennic
     depends_on:
       - "db"
     ports:

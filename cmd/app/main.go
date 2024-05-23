@@ -8,8 +8,8 @@ import (
 
 	"go.uber.org/zap"
 
-	"dennic-api-gateway/internal/app"
-	configpkg "dennic-api-gateway/internal/pkg/config"
+	"Dennic/internal/app"
+	configpkg "Dennic/internal/pkg/config"
 )
 
 func main() {

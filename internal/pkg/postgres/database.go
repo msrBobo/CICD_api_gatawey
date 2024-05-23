@@ -4,15 +4,16 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/jackc/pgx/v4"
 	"strings"
+
+	"github.com/jackc/pgx/v4"
 
 	"github.com/jackc/pgconn"
 	"github.com/jackc/pgx/v4/pgxpool"
 	pgxadapter "github.com/pckhoi/casbin-pgx-adapter/v2"
 
-	errorspkg "dennic-api-gateway/internal/errors"
-	"dennic-api-gateway/internal/pkg/config"
+	errorspkg "Dennic/internal/errors"
+	"Dennic/internal/pkg/config"
 )
 
 // PostgresDB ...

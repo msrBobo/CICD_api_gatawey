@@ -1,8 +1,8 @@
 package middleware
 
 import (
+	"Dennic/api/response"
 	"bufio"
-	"dennic-api-gateway/api/response"
 	"errors"
 	"net"
 	"net/http"

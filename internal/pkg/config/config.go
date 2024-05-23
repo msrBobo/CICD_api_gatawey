@@ -1,10 +1,11 @@
 package config
 
 import (
-	"github.com/spf13/cast"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/spf13/cast"
 )
 
 const (
@@ -83,13 +84,13 @@ func NewConfig() (*Config, error) {
 	var config Config
 
 	// general configuration
-	config.APP = getEnv("APP", "dennic-api-gateway")
+	config.APP = getEnv("APP", "Dennic")
 	config.Environment = getEnv("ENVIRONMENT", "develop")
 	config.LogLevel = getEnv("LOG_LEVEL", "debug")
 	config.Context.Timeout = cast.ToInt(getEnv("CONTEXT_TIMEOUT", "2"))
 
 	// server configuration
-	config.Server.Host = getEnv("SERVER_HOST", "dennic-api-gateway")
+	config.Server.Host = getEnv("SERVER_HOST", "Dennic")
 	config.Server.Port = getEnv("SERVER_PORT", ":9050")
 	config.Server.ReadTimeout = getEnv("SERVER_READ_TIMEOUT", "10s")
 	config.Server.WriteTimeout = getEnv("SERVER_WRITE_TIMEOUT", "10s")

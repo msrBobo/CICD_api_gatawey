@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"dennic-api-gateway/internal/pkg/config"
+	"Dennic/internal/pkg/config"
 )
 
 func NewServer(cfg *config.Config, handler http.Handler) (*http.Server, error) {

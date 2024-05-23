@@ -34,7 +34,7 @@ POSTGRES_DATABASE = dennic
 
 # -------------DOCKER--------------
 #
-#SERVER_HOST = dennic-api-gateway:
+#SERVER_HOST = Dennic:
 #SERVER_PORT = 9050
 #
 #REDIS_HOST = redisdb

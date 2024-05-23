@@ -1,9 +1,10 @@
 package redis
 
 import (
-	"dennic-api-gateway/internal/pkg/config"
-	"github.com/go-redis/redis/v8"
+	"Dennic/internal/pkg/config"
 	"strconv"
+
+	"github.com/go-redis/redis/v8"
 )
 
 type RedisDB struct {

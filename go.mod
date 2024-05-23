@@ -1,4 +1,4 @@
-module dennic-api-gateway
+module Dennic
 
 go 1.21.8
 

@@ -1,10 +1,10 @@
 package casbin
 
 import (
-	"dennic-api-gateway/api/models/model_common"
-	"dennic-api-gateway/internal/pkg/config"
-	"dennic-api-gateway/internal/pkg/logger"
-	jwt "dennic-api-gateway/internal/pkg/tokens"
+	"Dennic/api/models/model_common"
+	"Dennic/internal/pkg/config"
+	"Dennic/internal/pkg/logger"
+	jwt "Dennic/internal/pkg/tokens"
 	"fmt"
 	"log"
 	"net/http"

@@ -1,11 +1,11 @@
 package v1
 
 import (
+	e "Dennic/api/handlers/regtool"
+	"Dennic/api/models"
+	"Dennic/api/models/model_booking_service"
+	pb "Dennic/genproto/booking_service"
 	"context"
-	e "dennic-api-gateway/api/handlers/regtool"
-	"dennic-api-gateway/api/models"
-	"dennic-api-gateway/api/models/model_booking_service"
-	pb "dennic-api-gateway/genproto/booking_service"
 	"net/http"
 	"time"
 

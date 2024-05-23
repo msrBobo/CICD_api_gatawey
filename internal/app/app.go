@@ -1,18 +1,19 @@
 package app
 
 import (
+	"Dennic/api"
+	grpcService "Dennic/internal/infrastructure/grpc_service_client"
+	"Dennic/internal/pkg/config"
+	"Dennic/internal/pkg/logger"
+	"Dennic/internal/pkg/otlp"
+	"Dennic/internal/pkg/postgres"
+	"Dennic/internal/pkg/redis"
 	"context"
-	"dennic-api-gateway/api"
-	grpcService "dennic-api-gateway/internal/infrastructure/grpc_service_client"
-	"dennic-api-gateway/internal/pkg/config"
-	"dennic-api-gateway/internal/pkg/logger"
-	"dennic-api-gateway/internal/pkg/otlp"
-	"dennic-api-gateway/internal/pkg/postgres"
-	"dennic-api-gateway/internal/pkg/redis"
 	"fmt"
-	"go.uber.org/zap"
 	"net/http"
 	"time"
+
+	"go.uber.org/zap"
 )
 
 type App struct {

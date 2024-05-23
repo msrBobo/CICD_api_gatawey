@@ -1,12 +1,12 @@
 package v1
 
 import (
+	e "Dennic/api/handlers/regtool"
+	"Dennic/api/models"
+	"Dennic/api/models/model_user_service"
+	ps "Dennic/genproto/session_service"
+	pb "Dennic/genproto/user_service"
 	"context"
-	e "dennic-api-gateway/api/handlers/regtool"
-	"dennic-api-gateway/api/models"
-	"dennic-api-gateway/api/models/model_user_service"
-	ps "dennic-api-gateway/genproto/session_service"
-	pb "dennic-api-gateway/genproto/user_service"
 	"encoding/json"
 	"errors"
 	"fmt"

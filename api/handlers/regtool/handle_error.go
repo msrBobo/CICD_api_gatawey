@@ -1,7 +1,7 @@
 package v1
 
 import (
-	"dennic-api-gateway/api/models/model_common"
+	"Dennic/api/models/model_common"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

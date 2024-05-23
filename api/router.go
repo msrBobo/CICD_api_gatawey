@@ -2,13 +2,13 @@ package api
 
 import (
 	// "github.com/casbin/casbin/v2"
-	_ "dennic-api-gateway/api/docs"
-	"dennic-api-gateway/api/middleware/casbin"
-	"dennic-api-gateway/internal/pkg/redis"
+	_ "Dennic/api/docs"
+	"Dennic/api/middleware/casbin"
+	"Dennic/internal/pkg/redis"
 	"time"
 
-	v1 "dennic-api-gateway/api/handlers/v1"
-	"dennic-api-gateway/api/middleware"
+	v1 "Dennic/api/handlers/v1"
+	"Dennic/api/middleware"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -16,8 +16,8 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/zap"
 
-	grpcClients "dennic-api-gateway/internal/infrastructure/grpc_service_client"
-	"dennic-api-gateway/internal/pkg/config"
+	grpcClients "Dennic/internal/infrastructure/grpc_service_client"
+	"Dennic/internal/pkg/config"
 )
 
 type RouteOption struct {

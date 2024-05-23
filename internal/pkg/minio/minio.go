@@ -1,9 +1,9 @@
 package minio
 
 import (
+	"Dennic/internal/pkg/config"
 	"bytes"
 	"context"
-	"dennic-api-gateway/internal/pkg/config"
 	"fmt"
 
 	"github.com/minio/minio-go/v7"
