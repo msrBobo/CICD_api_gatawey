@@ -1,10 +1,10 @@
 package casbin
 
 import (
-	"Dennic/api/models/model_common"
-	"Dennic/internal/pkg/config"
-	"Dennic/internal/pkg/logger"
-	jwt "Dennic/internal/pkg/tokens"
+	"CICD_api_gatawey/api/models/model_common"
+	"CICD_api_gatawey/internal/pkg/config"
+	"CICD_api_gatawey/internal/pkg/logger"
+	jwt "CICD_api_gatawey/internal/pkg/tokens"
 	"fmt"
 	"log"
 	"net/http"

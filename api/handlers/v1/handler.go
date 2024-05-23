@@ -1,10 +1,10 @@
 package v1
 
 import (
-	grpc_service_clients "Dennic/internal/infrastructure/grpc_service_client"
-	"Dennic/internal/pkg/config"
-	"Dennic/internal/pkg/redis"
-	token "Dennic/internal/pkg/tokens"
+	grpc_service_clients "CICD_api_gatawey/internal/infrastructure/grpc_service_client"
+	"CICD_api_gatawey/internal/pkg/config"
+	"CICD_api_gatawey/internal/pkg/redis"
+	token "CICD_api_gatawey/internal/pkg/tokens"
 	"time"
 
 	"github.com/casbin/casbin/v2"

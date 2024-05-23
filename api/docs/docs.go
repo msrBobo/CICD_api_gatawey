@@ -5059,7 +5059,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:9050",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "Dennic Project",
+	Title:            "CICD_api_gatawey Project",
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

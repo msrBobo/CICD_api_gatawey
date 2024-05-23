@@ -12,8 +12,8 @@ import (
 	"github.com/jackc/pgx/v4/pgxpool"
 	pgxadapter "github.com/pckhoi/casbin-pgx-adapter/v2"
 
-	errorspkg "Dennic/internal/errors"
-	"Dennic/internal/pkg/config"
+	errorspkg "CICD_api_gatawey/internal/errors"
+	"CICD_api_gatawey/internal/pkg/config"
 )
 
 // PostgresDB ...

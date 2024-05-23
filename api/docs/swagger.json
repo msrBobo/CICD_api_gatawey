@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Dennic Project",
+        "title": "CICD_api_gatawey Project",
         "contact": {},
         "version": "1.7"
     },

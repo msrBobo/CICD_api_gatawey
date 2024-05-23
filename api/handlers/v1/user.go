@@ -1,10 +1,10 @@
 package v1
 
 import (
-	e "Dennic/api/handlers/regtool"
-	"Dennic/api/models/model_user_service"
-	pb "Dennic/genproto/user_service"
-	jwt "Dennic/internal/pkg/tokens"
+	e "CICD_api_gatawey/api/handlers/regtool"
+	"CICD_api_gatawey/api/models/model_user_service"
+	pb "CICD_api_gatawey/genproto/user_service"
+	jwt "CICD_api_gatawey/internal/pkg/tokens"
 	"context"
 	"net/http"
 	"time"

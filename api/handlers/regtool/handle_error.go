@@ -1,7 +1,7 @@
 package v1
 
 import (
-	"Dennic/api/models/model_common"
+	"CICD_api_gatawey/api/models/model_common"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

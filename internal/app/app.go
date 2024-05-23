@@ -1,13 +1,13 @@
 package app
 
 import (
-	"Dennic/api"
-	grpcService "Dennic/internal/infrastructure/grpc_service_client"
-	"Dennic/internal/pkg/config"
-	"Dennic/internal/pkg/logger"
-	"Dennic/internal/pkg/otlp"
-	"Dennic/internal/pkg/postgres"
-	"Dennic/internal/pkg/redis"
+	"CICD_api_gatawey/api"
+	grpcService "CICD_api_gatawey/internal/infrastructure/grpc_service_client"
+	"CICD_api_gatawey/internal/pkg/config"
+	"CICD_api_gatawey/internal/pkg/logger"
+	"CICD_api_gatawey/internal/pkg/otlp"
+	"CICD_api_gatawey/internal/pkg/postgres"
+	"CICD_api_gatawey/internal/pkg/redis"
 	"context"
 	"fmt"
 	"net/http"

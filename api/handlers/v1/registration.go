@@ -1,11 +1,11 @@
 package v1
 
 import (
-	e "Dennic/api/handlers/regtool"
-	"Dennic/api/models"
-	"Dennic/api/models/model_user_service"
-	ps "Dennic/genproto/session_service"
-	pb "Dennic/genproto/user_service"
+	e "CICD_api_gatawey/api/handlers/regtool"
+	"CICD_api_gatawey/api/models"
+	"CICD_api_gatawey/api/models/model_user_service"
+	ps "CICD_api_gatawey/genproto/session_service"
+	pb "CICD_api_gatawey/genproto/user_service"
 	"context"
 	"encoding/json"
 	"errors"

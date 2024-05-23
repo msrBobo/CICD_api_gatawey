@@ -9,8 +9,8 @@ import (
 	"github.com/redis/go-redis/v9"
 	"go.uber.org/zap"
 
-	"Dennic/internal/pkg/config"
-	"Dennic/internal/pkg/postgres"
+	"CICD_api_gatawey/internal/pkg/config"
+	"CICD_api_gatawey/internal/pkg/postgres"
 )
 
 func NewCachedEnforcer(cfg *config.Config, logger *zap.Logger) (*casbin.CachedEnforcer, error) {

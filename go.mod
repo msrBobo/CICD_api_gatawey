@@ -1,4 +1,4 @@
-module Dennic
+module CICD_api_gatawey
 
 go 1.21.8
 

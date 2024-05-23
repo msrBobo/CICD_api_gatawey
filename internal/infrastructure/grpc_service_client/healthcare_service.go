@@ -1,7 +1,7 @@
 package grpc_service_clients
 
 import (
-	"Dennic/genproto/healthcare-service"
+	"CICD_api_gatawey/genproto/healthcare-service"
 
 	"google.golang.org/grpc"
 )

@@ -1,7 +1,7 @@
 package grpc_service_clients
 
 import (
-	"Dennic/internal/pkg/config"
+	"CICD_api_gatawey/internal/pkg/config"
 	"fmt"
 
 	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"

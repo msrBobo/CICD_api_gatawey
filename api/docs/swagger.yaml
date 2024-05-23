@@ -1001,7 +1001,7 @@ definitions:
 host: localhost:9050
 info:
   contact: {}
-  title: Dennic Project
+  title: CICD_api_gatawey Project
   version: "1.7"
 paths:
   /v1/appointment:

@@ -1,10 +1,10 @@
 package v1
 
 import (
-	e "Dennic/api/handlers/regtool"
-	"Dennic/api/models"
-	"Dennic/api/models/model_session_service"
-	pb "Dennic/genproto/session_service"
+	e "CICD_api_gatawey/api/handlers/regtool"
+	"CICD_api_gatawey/api/models"
+	"CICD_api_gatawey/api/models/model_session_service"
+	pb "CICD_api_gatawey/genproto/session_service"
 	"context"
 	"net/http"
 	"time"

@@ -1,7 +1,7 @@
 package token
 
 import (
-	"Dennic/internal/pkg/config"
+	"CICD_api_gatawey/internal/pkg/config"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"

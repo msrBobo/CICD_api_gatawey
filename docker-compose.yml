@@ -6,10 +6,10 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 20030505
-      POSTGRES_DB: dennic
+      POSTGRES_DB: CICD_api_gatawey
       PGDATA: /data/postgres/new
     volumes:
-      - db:/data/postgres/dennic
+      - db:/data/postgres/CICD_api_gatawey
     ports:
       - "5432:5432"
     networks:
@@ -23,9 +23,9 @@ services:
     networks:
       - db
 
-  Dennic:
-    container_name: Dennic
-    build: ./Dennic
+  CICD_api_gatawey:
+    container_name: CICD_api_gatawey
+    build: ./CICD_api_gatawey
     depends_on:
       - "db"
     ports:
@@ -65,7 +65,7 @@ services:
       - db
     volumes:
       - ./migrations:/migrations
-    command: [ "-path", "/migrations", "-database",  "postgres://postgres:20030505@db:5432/dennic?sslmode=disable", "up"]
+    command: [ "-path", "/migrations", "-database",  "postgres://postgres:20030505@db:5432/CICD_api_gatawey?sslmode=disable", "up"]
     links:
       - db
     depends_on:
@@ -82,8 +82,8 @@ services:
       - minio_data:/minio_data
       - ./config.json:/opt/bitnami/minio/conf/config.json
     environment:
-      - MINIO_ROOT_USER=dennic
-      - MINIO_ROOT_PASSWORD=dennic_service
+      - MINIO_ROOT_USER=CICD_api_gatawey
+      - MINIO_ROOT_PASSWORD=CICD_api_gatawey_service
       - MINIO_DEFAULT_BUCKETS=department
       - MINIO_DEFAULT_BUCKETS=doctor
       - MINIO_DEFAULT_BUCKETS=reasons
@@ -135,18 +135,18 @@ volumes:
   #     KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
   #     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-  # dennic_booking_service:
-  #   container_name: dennic_booking_service
-  #   build: ./dennic_booking_service
+  # CICD_api_gatawey_booking_service:
+  #   container_name: CICD_api_gatawey_booking_service
+  #   build: ./CICD_api_gatawey_booking_service
   #   depends_on:
   #     - "db"
   #   ports:
   #     - "9090:9090"
   #   networks:
   #     - db
-  # dennic_healthcare_service:
-  #   container_name: dennic_healthcare_service
-  #   build: ./dennic_healthcare_service
+  # CICD_api_gatawey_healthcare_service:
+  #   container_name: CICD_api_gatawey_healthcare_service
+  #   build: ./CICD_api_gatawey_healthcare_service
   #   depends_on:
   #     - "db"
   #   ports:
@@ -154,9 +154,9 @@ volumes:
   #   networks:
   #     - db
 
-  # dennic_session_service:
-  #   container_name: dennic_session_service
-  #   build: ./dennic_session_service
+  # CICD_api_gatawey_session_service:
+  #   container_name: CICD_api_gatawey_session_service
+  #   build: ./CICD_api_gatawey_session_service
   #   depends_on:
   #     - "db"
   #   ports:
@@ -164,9 +164,9 @@ volumes:
   #   networks:
   #     - db
 
-  # dennic_user_service:
-  #   container_name: dennic_user_service
-  #   build: ./dennic_user_service
+  # CICD_api_gatawey_user_service:
+  #   container_name: CICD_api_gatawey_user_service
+  #   build: ./CICD_api_gatawey_user_service
   #   depends_on:
   #     - "db"
   #   ports:

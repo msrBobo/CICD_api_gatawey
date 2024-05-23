@@ -2,10 +2,10 @@
 CURRENT_DIR=$(pwd)
 
 # shellcheck disable=SC2044
-for module in $(find "$CURRENT_DIR"/dennic_protos/* -type d); do
+for module in $(find "$CURRENT_DIR"/CICD_api_gatawey_protos/* -type d); do
     protoc -I /usr/local/include \
             -I "$GOPATH"/pkg/mod/github.com/gogo/protobuf@v1.3.2 \
-            -I "$CURRENT_DIR"/dennic_protos/ \
+            -I "$CURRENT_DIR"/CICD_api_gatawey_protos/ \
             --gofast_out=plugins=grpc:"$CURRENT_DIR"/genproto/ \
             "$module"/*.proto;
 done;

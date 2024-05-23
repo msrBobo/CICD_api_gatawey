@@ -6,7 +6,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"Dennic/internal/pkg/app"
+	"CICD_api_gatawey/internal/pkg/app"
 )
 
 func productionConfig(file string) zap.Config {

@@ -1,7 +1,7 @@
 package v1
 
 import (
-	jwt "Dennic/internal/pkg/tokens"
+	jwt "CICD_api_gatawey/internal/pkg/tokens"
 	"fmt"
 
 	"github.com/gin-gonic/gin"

@@ -1,9 +1,9 @@
 package v1
 
 import (
-	e "Dennic/api/handlers/regtool"
-	m "Dennic/api/models/model_minio"
-	"Dennic/internal/pkg/minio"
+	e "CICD_api_gatawey/api/handlers/regtool"
+	m "CICD_api_gatawey/api/models/model_minio"
+	"CICD_api_gatawey/internal/pkg/minio"
 	"io"
 	"net/http"
 	"path/filepath"

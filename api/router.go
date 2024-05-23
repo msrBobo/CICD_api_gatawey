@@ -2,13 +2,13 @@ package api
 
 import (
 	// "github.com/casbin/casbin/v2"
-	_ "Dennic/api/docs"
-	"Dennic/api/middleware/casbin"
-	"Dennic/internal/pkg/redis"
+	_ "CICD_api_gatawey/api/docs"
+	"CICD_api_gatawey/api/middleware/casbin"
+	"CICD_api_gatawey/internal/pkg/redis"
 	"time"
 
-	v1 "Dennic/api/handlers/v1"
-	"Dennic/api/middleware"
+	v1 "CICD_api_gatawey/api/handlers/v1"
+	"CICD_api_gatawey/api/middleware"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -16,8 +16,8 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/zap"
 
-	grpcClients "Dennic/internal/infrastructure/grpc_service_client"
-	"Dennic/internal/pkg/config"
+	grpcClients "CICD_api_gatawey/internal/infrastructure/grpc_service_client"
+	"CICD_api_gatawey/internal/pkg/config"
 )
 
 type RouteOption struct {
@@ -30,17 +30,17 @@ type RouteOption struct {
 
 }
 
-// @host swag.dennic.uz
+// @host swag.CICD_api_gatawey.uz
 
 // NewRoute
-// @title Dennic Project
+// @title CICD_api_gatawey Project
 // @version 1.7
 // @securityDefinitions.apikey ApiKeyAuth
 // @in header
 // @name Authorization
 // @host localhost:9050
 
-// @title Dennic Project
+// @title CICD_api_gatawey Project
 // @version 1.7
 // @in header
 // @name Authorization

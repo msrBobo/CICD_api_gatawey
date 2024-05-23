@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"Dennic/internal/pkg/config"
+	"CICD_api_gatawey/internal/pkg/config"
 )
 
 func NewServer(cfg *config.Config, handler http.Handler) (*http.Server, error) {

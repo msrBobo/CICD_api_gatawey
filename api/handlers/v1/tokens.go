@@ -1,8 +1,8 @@
 package v1
 
 import (
-	e "Dennic/api/handlers/regtool"
-	"Dennic/api/models/model_user_service"
+	e "CICD_api_gatawey/api/handlers/regtool"
+	"CICD_api_gatawey/api/models/model_user_service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

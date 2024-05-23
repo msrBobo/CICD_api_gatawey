@@ -1,7 +1,7 @@
 package redis
 
 import (
-	"Dennic/internal/pkg/config"
+	"CICD_api_gatawey/internal/pkg/config"
 	"strconv"
 
 	"github.com/go-redis/redis/v8"

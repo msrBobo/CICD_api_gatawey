@@ -1,7 +1,7 @@
 package minio
 
 import (
-	"Dennic/internal/pkg/config"
+	"CICD_api_gatawey/internal/pkg/config"
 	"bytes"
 	"context"
 	"fmt"
@@ -41,7 +41,7 @@ func UploadToMinio(cfg *config.Config, objectName string, content []byte, bucket
 		return "", err
 	}
 
-	objectURL := fmt.Sprintf("http://dennic.uz:9000/%s/%s", bucketName, objectName)
+	objectURL := fmt.Sprintf("http://CICD_api_gatawey.uz:9000/%s/%s", bucketName, objectName)
 
 	return objectURL, nil
 }

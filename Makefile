@@ -24,32 +24,32 @@ USER_SERVICE_GRPC_PORT = 9070
 
 OTLP_COLLECTOR_HOST = 0.0.0.0
 
-MINIO_SERVICE_ENDPOINT = dennic.uz:9000
+MINIO_SERVICE_ENDPOINT = CICD_api_gatawey.uz:9000
 
 POSTGRES_USER = postgres
 POSTGRES_PASSWORD = 20030505
-POSTGRES_HOST = dennic.uz
+POSTGRES_HOST = CICD_api_gatawey.uz
 POSTGRES_PORT = 5432
-POSTGRES_DATABASE = dennic
+POSTGRES_DATABASE = CICD_api_gatawey
 
 # -------------DOCKER--------------
 #
-#SERVER_HOST = Dennic:
+#SERVER_HOST = CICD_api_gatawey:
 #SERVER_PORT = 9050
 #
 #REDIS_HOST = redisdb
 #REDIS_PORT = 6379
 #
-#BOOKING_SERVICE_GRPC_HOST = dennic_booking_service
+#BOOKING_SERVICE_GRPC_HOST = CICD_api_gatawey_booking_service
 #BOOKING_SERVICE_GRPC_PORT = 9090
 #
-#HEALTHCARE_SERVICE_GRPC_HOST = dennic_healthcare_service
+#HEALTHCARE_SERVICE_GRPC_HOST = CICD_api_gatawey_healthcare_service
 #HEALTHCARE_SERVICE_GRPC_PORT = 9080
 #
-#SESSION_SERVICE_GRPC_HOST = dennic_session_service
+#SESSION_SERVICE_GRPC_HOST = CICD_api_gatawey_session_service
 #SESSION_SERVICE_GRPC_PORT = 9060
 #
-#USER_SERVICE_GRPC_HOST = dennic_user_service
+#USER_SERVICE_GRPC_HOST = CICD_api_gatawey_user_service
 #USER_SERVICE_GRPC_PORT = 9070
 #
 #OTLP_COLLECTOR_HOST = otlp-collector
@@ -58,9 +58,9 @@ POSTGRES_DATABASE = dennic
 #
 #POSTGRES_USER = postgres
 #POSTGRES_PASSWORD = 20030505
-#POSTGRES_HOST = dennic.uz
+#POSTGRES_HOST = CICD_api_gatawey.uz
 #POSTGRES_PORT = 5432
-#POSTGRES_DATABASE = dennic
+#POSTGRES_DATABASE = CICD_api_gatawey
 
 
 # build for current os

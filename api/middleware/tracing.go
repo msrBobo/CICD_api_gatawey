@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"Dennic/api/response"
+	"CICD_api_gatawey/api/response"
 	"bufio"
 	"errors"
 	"net"
